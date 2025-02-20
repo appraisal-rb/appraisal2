@@ -4,8 +4,18 @@ require "spec_helper"
 
 RSpec.describe "Appraisals file Bundler DSL compatibility" do
   it "supports all Bundler DSL in Appraisals file" do
-    build_gems %w[bagel orange_juice milk waffle coffee ham
-                  sausage pancake rotten_egg mayonnaise]
+    build_gems %w[
+      bagel
+      orange_juice
+      milk
+      waffle
+      coffee
+      ham
+      sausage
+      pancake
+      rotten_egg
+      mayonnaise
+    ]
     build_git_gems %w[egg croissant pain_au_chocolat omelette]
 
     build_gemfile <<-GEMFILE
@@ -52,7 +62,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
     build_appraisal_file <<-APPRAISALS
       appraise 'breakfast' do
         source 'http://some-other-source.com'
-        ruby "2.3.0"
+        ruby "1.8.7"
 
         gem 'bread'
         gem "pain_au_chocolat", :custom_git_source => "pain_au_chocolat"
@@ -100,7 +110,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
       source "https://rubygems.org"
       source "http://some-other-source.com"
 
-      ruby "2.3.0"
+      ruby "1.8.7"
 
       git "../../build/egg" do
         gem "egg"
@@ -163,7 +173,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
 
     build_appraisal_file <<-APPRAISALS
       appraise 'ruby-version' do
-        ruby file: ".ruby-version"
+        ruby({:file => ".ruby-version"})
       end
     APPRAISALS
 
@@ -175,7 +185,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
 
       source "https://rubygems.org"
 
-      ruby({:file=>".ruby-version"})
+      ruby(:file => ".ruby-version")
 
       gem "appraisal", :path => #{PROJECT_ROOT.inspect}
     GEMFILE

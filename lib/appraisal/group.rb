@@ -11,21 +11,21 @@ module Appraisal
     end
 
     def to_s
-      formatted_output indent(super)
+      formatted_output(indent(super))
     end
 
     # :nodoc:
     def for_dup
-      formatted_output indent(super)
+      formatted_output(indent(super))
     end
 
     private
 
     def formatted_output(output_dependencies)
-      <<~OUTPUT.strip
-        group #{Utils.format_arguments(@group_names)} do
-        #{output_dependencies}
-        end
+      <<-OUTPUT.strip
+group #{Utils.format_arguments(@group_names)} do
+#{output_dependencies}
+end
       OUTPUT
     end
   end

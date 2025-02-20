@@ -1,24 +1,35 @@
 # frozen_string_literal: true
 
 require "appraisal/dependency_list"
+require "appraisal/ordered_hash"
 
 module Appraisal
   class BundlerDSL
     attr_reader :dependencies
 
-    PARTS = %w[source ruby_version gits paths dependencies groups
-               platforms source_blocks install_if gemspec]
+    PARTS = %w[
+      source
+      ruby_version
+      gits
+      paths
+      dependencies
+      groups
+      platforms
+      source_blocks
+      install_if
+      gemspec
+    ]
 
     def initialize
       @sources = []
       @ruby_version = nil
       @dependencies = DependencyList.new
       @gemspecs = []
-      @groups = {}
-      @platforms = {}
-      @gits = {}
-      @paths = {}
-      @source_blocks = {}
+      @groups = OrderedHash.new
+      @platforms = OrderedHash.new
+      @gits = OrderedHash.new
+      @paths = OrderedHash.new
+      @source_blocks = OrderedHash.new
       @git_sources = {}
       @install_if = {}
     end
@@ -82,11 +93,11 @@ module Appraisal
     end
 
     def to_s
-      Utils.join_parts(PARTS.map { |part| send("#{part}_entry") })
+      Utils.join_parts(PARTS.map { |part| send(:"#{part}_entry") })
     end
 
     def for_dup
-      Utils.join_parts(PARTS.map { |part| send("#{part}_entry_for_dup") })
+      Utils.join_parts(PARTS.map { |part| send(:"#{part}_entry_for_dup") })
     end
 
     def gemspec(options = {})
@@ -114,7 +125,7 @@ module Appraisal
 
       case @ruby_version
       when String then "ruby #{@ruby_version.inspect}"
-      else "ruby(#{@ruby_version.inspect})"
+      else "ruby(#{Utils.format_string(@ruby_version)})"
       end
     end
 
@@ -137,7 +148,7 @@ module Appraisal
     end
 
     %i[gits paths platforms groups source_blocks install_if].each do |method_name|
-      class_eval <<-METHODS, __FILE__, __LINE__
+      class_eval <<-METHODS, __FILE__, __LINE__ + 1
         private
 
         def #{method_name}_entry
@@ -156,11 +167,11 @@ module Appraisal
 
     def substitute_git_source(requirements)
       requirements.each do |requirement|
-        if requirement.is_a?(Hash)
-          (requirement.keys & @git_sources.keys).each do |matching_source|
-            value = requirement.delete(matching_source)
-            requirement[:git] = @git_sources[matching_source].call(value)
-          end
+        next unless requirement.is_a?(Hash)
+
+        (requirement.keys & @git_sources.keys).each do |matching_source|
+          value = requirement.delete(matching_source)
+          requirement[:git] = @git_sources[matching_source].call(value)
         end
       end
     end

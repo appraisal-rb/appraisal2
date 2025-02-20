@@ -40,8 +40,24 @@ jobs:
           RUBY_VERSION: ${{ matrix.ruby }}
         run: |
           case ${RUBY_VERSION} in
+            1.8|1.9|2.0|2.1|2.2)
+              gem install bundler -v 1.17.3
+            ;;
+
+            2.3|2.4|2.5)
+              gem install bundler -v 2.3.27
+            ;;
+
+            2.6|2.7)
+              gem install bundler -v 2.4.22
+            ;;
+
+            3.0)
+              gem install bundler -v 2.5.23
+            ;;
+
             truffleruby|truffleruby-head)
-              gem install bundler -v 2.5.18
+              gem install bundler -v 2.5.23
             ;;
 
             *)

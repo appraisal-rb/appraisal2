@@ -22,7 +22,7 @@ module AcceptanceTestHelpers
   included do
     metadata[:type] = :acceptance
 
-    before parallel: true do
+    before :parallel => true do
       unless Appraisal::Utils.support_parallel_installation?
         pending "This Bundler version does not support --jobs flag."
       end
@@ -58,7 +58,7 @@ module AcceptanceTestHelpers
   end
 
   def add_binstub_path
-    ENV["PATH"] = "bin:#{ENV['PATH']}"
+    ENV["PATH"] = "bin:#{ENV["PATH"]}"
   end
 
   def restore_environment_variables
@@ -94,7 +94,7 @@ module AcceptanceTestHelpers
 
   def content_of(path)
     file(path).read.tap do |content|
-      content.gsub!(/(\S+): /, ":\\1 => ")
+      content.gsub!(/(\S+): /, ':\\1 => ')
     end
   end
 
@@ -130,15 +130,15 @@ module AcceptanceTestHelpers
   def ensure_bundler_is_available
     run "bundle -v 2>&1", false
 
-    if $?.exitstatus != 0
-      puts <<-WARNING.squish.strip_heredoc
+    return unless $?.exitstatus != 0
+
+    puts <<-WARNING.squish.strip_heredoc
         Reinstall Bundler to #{TMP_GEM_ROOT} as `BUNDLE_DISABLE_SHARED_GEMS`
         is enabled.
-      WARNING
-      version = Utils.bundler_version
+    WARNING
+    version = Utils.bundler_version
 
-      run "gem install bundler --version #{version} --install-dir '#{TMP_GEM_ROOT}'"
-    end
+    run "gem install bundler --version #{version} --install-dir '#{TMP_GEM_ROOT}'"
   end
 
   def build_default_gemfile
@@ -146,9 +146,20 @@ module AcceptanceTestHelpers
       source 'https://rubygems.org'
 
       gem 'appraisal', :path => '#{PROJECT_ROOT}'
+
+      if RUBY_VERSION < "1.9"
+        #{File.read(File.join(PROJECT_ROOT, "Gemfile-1.8"))}
+      elsif RUBY_VERSION < "2.2"
+        #{File.read(File.join(PROJECT_ROOT, "Gemfile-2.1"))}
+      end
     GEMFILE
 
     run "bundle install --local"
+    # Support for binstubs --all was added to bundler's 1-17-stable branch
+    #   and released with bundler v1.17.0.pre.2 (2018-10-13)
+    # See:
+    #   - https://github.com/rubygems/bundler/pull/6450
+    #   - https://github.com/rubygems/bundler/commit/9d59fa41ef43aaccc6cf867a69a49648510c4df7#diff-06572a96a58dc510037d5efa622f9bec8519bc1beab13c9f251e97e657a9d4edR10
     run "bundle binstubs --all"
   end
 
@@ -159,17 +170,15 @@ module AcceptanceTestHelpers
 
   def run(command, raise_on_error = true)
     in_test_directory do
-      `#{command}`.tap do |output|
+      %x(#{command}).tap do |output|
         exitstatus = $?.exitstatus
 
-        if ENV["VERBOSE"]
-          puts output
-        end
+        puts output if ENV["VERBOSE"]
 
         if raise_on_error && exitstatus != 0
-          raise RuntimeError, <<-ERROR_MESSAGE.strip_heredoc
+          raise <<-ERROR_MESSAGE.strip_heredoc.to_s
             Command #{command.inspect} exited with status #{exitstatus}. Output:
-            #{output.gsub(/^/, '  ')}
+            #{output.gsub(/^/, "  ")}
           ERROR_MESSAGE
         end
       end

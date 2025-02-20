@@ -20,8 +20,8 @@ RSpec.describe "CLI", "appraisal update" do
 
   after do
     in_test_directory do
-      `gem uninstall dummy -v 1.0.1`
-      `gem uninstall dummy2 -a`
+      %x{gem uninstall dummy -v 1.0.1}
+      %x{gem uninstall dummy2 -a}
     end
   end
 

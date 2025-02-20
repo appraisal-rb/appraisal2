@@ -45,11 +45,12 @@ RSpec.describe "Gemspec" do
   end
 
   def build_appraisal_file
-    super <<-APPRAISALS
+    appraisals = <<-APPRAISALS
       appraise 'stock' do
         gem 'rake'
       end
     APPRAISALS
+    super(appraisals)
   end
 
   def build_rakefile
@@ -66,7 +67,11 @@ RSpec.describe "Gemspec" do
   end
 
   def build_gemspec(path = ".")
-    Dir.mkdir("tmp/stage/#{path}") rescue nil
+    begin
+      Dir.mkdir("tmp/stage/#{path}")
+    rescue StandardError
+      nil
+    end
 
     write_file File.join(path, "gemspec_project.gemspec"), <<-GEMSPEC
       Gem::Specification.new do |s|
