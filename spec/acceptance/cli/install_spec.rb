@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe "CLI", "appraisal install" do
   it "raises error when there is no Appraisals file" do
     output = run "appraisal install 2>&1", false
@@ -10,7 +8,7 @@ RSpec.describe "CLI", "appraisal install" do
   end
 
   it "installs the dependencies" do
-    build_appraisal_file <<-APPRAISAL
+    build_appraisal_file <<-APPRAISAL.strip_heredoc
       appraise '1.0.0' do
         gem 'dummy', '1.0.0'
       end
@@ -30,7 +28,7 @@ RSpec.describe "CLI", "appraisal install" do
     build_gemspec
     add_gemspec_to_gemfile
 
-    build_appraisal_file <<-APPRAISAL
+    build_appraisal_file <<-APPRAISAL.strip_heredoc
       appraise '1.0.0' do
         gem 'dummy', '1.0.0'
       end
@@ -49,7 +47,7 @@ RSpec.describe "CLI", "appraisal install" do
     uri_dummy_path = "#{current_directory}/uri_dummy"
     FileUtils.symlink(File.absolute_path("tmp/build/uri_dummy"), uri_dummy_path)
 
-    build_appraisal_file <<-APPRAISAL
+    build_appraisal_file <<-APPRAISAL.strip_heredoc
       appraise '1.0.0' do
         gem 'uri_dummy', git: 'file://#{uri_dummy_path}'
       end
@@ -62,7 +60,7 @@ RSpec.describe "CLI", "appraisal install" do
 
   context "with job size", :parallel do
     before do
-      build_appraisal_file <<-APPRAISAL
+      build_appraisal_file <<-APPRAISAL.strip_heredoc
         appraise '1.0.0' do
           gem 'dummy', '1.0.0'
         end
@@ -86,7 +84,7 @@ RSpec.describe "CLI", "appraisal install" do
 
   context "with full-index", :parallel do
     before do
-      build_appraisal_file <<-APPRAISAL
+      build_appraisal_file <<-APPRAISAL.strip_heredoc
         appraise '1.0.0' do
           gem 'dummy', '1.0.0'
         end
@@ -102,7 +100,7 @@ RSpec.describe "CLI", "appraisal install" do
 
   context "with path", :parallel do
     before do
-      build_appraisal_file <<-APPRAISAL
+      build_appraisal_file <<-APPRAISAL.strip_heredoc
         appraise '1.0.0' do
           gem 'dummy', '1.0.0'
         end

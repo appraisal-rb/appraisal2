@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe "Bundle without group" do
   it "config set --local without group is honored by Bundler" do
     pending "config set --local without group support seems broken, see: https://github.com/rubygems/rubygems/issues/8518"
     build_gems %w[pancake orange_juice waffle coffee sausage soda]
 
-    build_gemfile <<-GEMFILE
+    build_gemfile <<-GEMFILE.strip_heredoc
       source "https://rubygems.org"
 
       gem "pancake"
@@ -20,7 +18,7 @@ RSpec.describe "Bundle without group" do
       gem "appraisal", :path => #{PROJECT_ROOT.inspect}
     GEMFILE
 
-    build_appraisal_file <<-APPRAISALS
+    build_appraisal_file <<-APPRAISALS.strip_heredoc
       appraise "breakfast" do
         gem "waffle"
 

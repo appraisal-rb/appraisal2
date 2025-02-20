@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
+# External Libraries
 require "rspec/expectations/expectation_target"
-require "active_support/core_ext/string/strip"
 require "active_support/core_ext/string/filters"
 require "active_support/concern"
+
+# This library
 require "appraisal/utils"
-require "./spec/support/dependency_helpers"
 
 module AcceptanceTestHelpers
   extend ActiveSupport::Concern
@@ -91,7 +92,7 @@ module AcceptanceTestHelpers
   end
 
   def build_gemspec
-    write_file "stage.gemspec", <<-GEMSPEC
+    write_file "stage.gemspec", <<-GEMSPEC.strip_heredoc
       Gem::Specification.new do |s|
         s.name = 'stage'
         s.version = '0.1'
@@ -141,9 +142,9 @@ module AcceptanceTestHelpers
 
     return unless $?.exitstatus != 0
 
-    puts <<-WARNING.squish.strip_heredoc
-        Reinstall Bundler to #{TMP_GEM_ROOT} as `BUNDLE_DISABLE_SHARED_GEMS`
-        is enabled.
+    puts <<-WARNING.strip_heredoc
+      Reinstall Bundler to #{TMP_GEM_ROOT} as `BUNDLE_DISABLE_SHARED_GEMS`
+      is enabled.
     WARNING
     version = Utils.bundler_version
 
@@ -151,16 +152,10 @@ module AcceptanceTestHelpers
   end
 
   def build_default_gemfile
-    build_gemfile <<-GEMFILE
+    build_gemfile <<-GEMFILE.strip_heredoc
       source 'https://rubygems.org'
 
       gem 'appraisal', :path => '#{PROJECT_ROOT}'
-
-      if RUBY_VERSION < "1.9"
-        #{File.read(File.join(PROJECT_ROOT, "Gemfile-1.8"))}
-      elsif RUBY_VERSION < "2.2"
-        #{File.read(File.join(PROJECT_ROOT, "Gemfile-2.1"))}
-      end
     GEMFILE
 
     run "bundle install --local"
@@ -185,7 +180,7 @@ module AcceptanceTestHelpers
         puts output if ENV["VERBOSE"]
 
         if raise_on_error && exitstatus != 0
-          raise <<-ERROR_MESSAGE.strip_heredoc.to_s
+          raise <<-ERROR_MESSAGE.strip_heredoc
             Command #{command.inspect} exited with status #{exitstatus}. Output:
             #{output.gsub(/^/, "  ")}
           ERROR_MESSAGE

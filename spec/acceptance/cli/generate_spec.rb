@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe "CLI", "appraisal generate" do
   it "generates the gemfiles" do
-    build_gemfile <<-GEMFILE
+    build_gemfile <<-GEMFILE.strip_heredoc
       source "https://rubygems.org"
 
       gem "appraisal", :path => "#{PROJECT_ROOT}"
     GEMFILE
 
-    build_appraisal_file <<-APPRAISAL
+    build_appraisal_file <<-APPRAISAL.strip_heredoc
       appraise '1.0.0' do
         gem 'dummy', '1.0.0'
       end

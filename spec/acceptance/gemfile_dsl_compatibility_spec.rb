@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe "Gemfile DSL compatibility" do
   it "supports all Bundler DSL in Gemfile" do
     build_gems %w[bacon orange_juice waffle]
     build_git_gem "egg"
     build_gemspec
 
-    build_gemfile <<-GEMFILE
+    build_gemfile <<-GEMFILE.strip_heredoc
       source "https://rubygems.org"
       ruby "#{RUBY_VERSION}#{ruby_dev_append}"
 
@@ -33,7 +31,7 @@ RSpec.describe "Gemfile DSL compatibility" do
       gemspec
     GEMFILE
 
-    build_appraisal_file <<-APPRAISALS
+    build_appraisal_file <<-APPRAISALS.strip_heredoc
       appraise "japanese" do
         gem "rice"
         gem "miso_soup"
@@ -112,14 +110,14 @@ RSpec.describe "Gemfile DSL compatibility" do
     build_gem "bacon", "1.1.0"
     build_gem "bacon", "1.2.0"
 
-    build_gemfile <<-GEMFILE
+    build_gemfile <<-GEMFILE.strip_heredoc
       source "https://rubygems.org"
 
       gem "appraisal", :path => #{PROJECT_ROOT.inspect}
       gem "bacon", "1.2.0"
     GEMFILE
 
-    build_appraisal_file <<-APPRAISALS
+    build_appraisal_file <<-APPRAISALS.strip_heredoc
       appraise "1.0.0" do
         gem "bacon", "1.0.0"
       end
@@ -145,7 +143,7 @@ RSpec.describe "Gemfile DSL compatibility" do
     build_gem "bacon", "1.0.0"
     build_gemspec
 
-    build_gemfile <<-GEMFILE
+    build_gemfile <<-GEMFILE.strip_heredoc
       source "https://rubygems.org"
 
       gem "appraisal", :path => #{PROJECT_ROOT.inspect}
@@ -155,7 +153,7 @@ RSpec.describe "Gemfile DSL compatibility" do
       end
     GEMFILE
 
-    build_appraisal_file <<-APPRAISALS
+    build_appraisal_file <<-APPRAISALS.strip_heredoc
       appraise "1.0.0" do
         gem "bacon", "1.0.0"
       end

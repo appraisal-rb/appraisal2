@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe "CLI", "appraisal update" do
   before do
     build_gem "dummy2", "1.0.0"
 
-    build_appraisal_file <<-APPRAISAL
+    build_appraisal_file <<-APPRAISAL.strip_heredoc
       appraise 'dummy' do
         gem 'dummy', '~> 1.0.0'
         gem 'dummy2', '~> 1.0.0'

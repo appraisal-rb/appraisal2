@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe "Gemspec" do
   before do
     build_appraisal_file
@@ -11,7 +9,7 @@ RSpec.describe "Gemspec" do
   it "supports gemspec syntax with default options" do
     build_gemspec
 
-    write_file "Gemfile", <<-GEMFILE
+    write_file "Gemfile", <<-GEMFILE.strip_heredoc
       source "https://rubygems.org"
 
       gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
@@ -29,7 +27,7 @@ RSpec.describe "Gemspec" do
   it "supports gemspec syntax with path option" do
     build_gemspec "specdir"
 
-    write_file "Gemfile", <<-GEMFILE
+    write_file "Gemfile", <<-GEMFILE.strip_heredoc
       source "https://rubygems.org"
 
       gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
@@ -45,7 +43,7 @@ RSpec.describe "Gemspec" do
   end
 
   def build_appraisal_file
-    appraisals = <<-APPRAISALS
+    appraisals = <<-APPRAISALS.strip_heredoc
       appraise 'stock' do
         gem 'rake'
       end
@@ -54,7 +52,7 @@ RSpec.describe "Gemspec" do
   end
 
   def build_rakefile
-    write_file "Rakefile", <<-RAKEFILE
+    write_file "Rakefile", <<-RAKEFILE.strip_heredoc
       require 'rubygems'
       require 'bundler/setup'
       require 'appraisal'
@@ -73,7 +71,7 @@ RSpec.describe "Gemspec" do
       nil
     end
 
-    write_file File.join(path, "gemspec_project.gemspec"), <<-GEMSPEC
+    write_file File.join(path, "gemspec_project.gemspec"), <<-GEMSPEC.strip_heredoc
       Gem::Specification.new do |s|
         s.name = 'gemspec_project'
         s.version = '0.1'

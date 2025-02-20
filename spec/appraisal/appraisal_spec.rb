@@ -45,9 +45,9 @@ RSpec.describe Appraisal::Appraisal do
     end
 
     it "generates a gemfile with multiple lines of custom heading" do
-      heading = <<-HEADING
-frozen_string_literal: true\n
-This file was generated with a custom heading!
+      heading = <<-HEADING.strip_heredoc
+        frozen_string_literal: true\n
+        This file was generated with a custom heading!
       HEADING
       Appraisal::Customize.new(:heading => heading)
       output_file = Tempfile.new("gemfile")
@@ -56,9 +56,9 @@ This file was generated with a custom heading!
 
       appraisal.write_gemfile
 
-      expected_output = <<-HEADING
-# frozen_string_literal: true\n
-# This file was generated with a custom heading!
+      expected_output = <<-HEADING.strip_heredoc
+        # frozen_string_literal: true\n
+        # This file was generated with a custom heading!
       HEADING
       expect(output_file.read).to start_with(expected_output)
     end

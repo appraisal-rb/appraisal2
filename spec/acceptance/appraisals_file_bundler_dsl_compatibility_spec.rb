@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe "Appraisals file Bundler DSL compatibility" do
   it "supports all Bundler DSL in Appraisals file" do
     build_gems %w[
@@ -18,7 +16,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
     ]
     build_git_gems %w[egg croissant pain_au_chocolat omelette]
 
-    build_gemfile <<-GEMFILE
+    build_gemfile <<-GEMFILE.strip_heredoc
       source 'https://rubygems.org'
       git_source(:custom_git_source) { |repo| "../build/\#{repo}" }
       ruby "#{RUBY_VERSION}#{ruby_dev_append}"
@@ -59,7 +57,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
       gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
     GEMFILE
 
-    build_appraisal_file <<-APPRAISALS
+    build_appraisal_file <<-APPRAISALS.strip_heredoc
       appraise 'breakfast' do
         source 'http://some-other-source.com'
         ruby "1.8.7"
@@ -163,7 +161,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
   end
 
   it 'supports ruby file: ".ruby-version" DSL' do
-    build_gemfile <<-GEMFILE
+    build_gemfile <<-GEMFILE.strip_heredoc
       source 'https://rubygems.org'
 
       ruby "#{RUBY_VERSION}#{ruby_dev_append}"
@@ -171,7 +169,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
       gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
     GEMFILE
 
-    build_appraisal_file <<-APPRAISALS
+    build_appraisal_file <<-APPRAISALS.strip_heredoc
       appraise 'ruby-version' do
         ruby({:file => ".ruby-version"})
       end

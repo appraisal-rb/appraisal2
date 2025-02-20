@@ -8,10 +8,10 @@ RSpec.describe Appraisal::Customize do
   let(:appraisal) { Appraisal::Appraisal.new("test", "Gemfile") }
   let(:single_line_heading) { "This file was generated with a custom heading!" }
   let(:multi_line_heading) do
-    <<-HEADING
-frozen_string_literal: true
+    <<-HEADING.strip_heredoc
+      frozen_string_literal: true
 
-This file was generated with a custom heading!
+      This file was generated with a custom heading!
     HEADING
   end
   let(:subject) { described_class.new }

@@ -13,7 +13,7 @@ module DependencyHelpers
       lib_file = "lib/#{gem_name}.rb"
 
       File.open gemspec, "w" do |file|
-        file.puts <<-GEMSPEC
+        file.puts <<-GEMSPEC.strip_heredoc
             Gem::Specification.new do |s|
               s.name    = #{gem_name.inspect}
               s.version = #{version.inspect}

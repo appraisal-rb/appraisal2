@@ -47,7 +47,7 @@ RSpec.describe Appraisal::Gemfile do
       gem "one"
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
       group :development, :test do
         gem "one"
       end
@@ -69,7 +69,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
       group :development, :test do
         git "git://example.com/repo.git" do
           gem "two"
@@ -93,7 +93,7 @@ RSpec.describe Appraisal::Gemfile do
       gem "one"
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
       platforms :jruby do
         gem "one"
       end
@@ -115,7 +115,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
       platforms :jruby do
         git "git://example.com/repo.git" do
           gem "two"
@@ -139,7 +139,7 @@ RSpec.describe Appraisal::Gemfile do
       gem "one"
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
       git "git://example.com/repo.git" do
         gem "one"
       end
@@ -161,7 +161,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
       git "git://example.com/repo.git" do
         path "../.." do
           gem "three"
@@ -185,7 +185,7 @@ RSpec.describe Appraisal::Gemfile do
       gem "one"
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
       path "../../path" do
         gem "one"
       end
@@ -207,7 +207,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
       path "../../path" do
         git "git://example.com/repo.git" do
           gem "three"
@@ -317,7 +317,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
           path "../" do
             gem "bacon"
           end
@@ -331,7 +331,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
           path "../../bacon" do
             gem "bacon"
           end
@@ -345,7 +345,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
           path "/tmp" do
             gem "bacon"
           end
@@ -361,7 +361,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
           git "../" do
             gem "bacon"
           end
@@ -375,7 +375,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
           git "../../bacon" do
             gem "bacon"
           end
@@ -389,7 +389,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
           git "/tmp" do
             gem "bacon"
           end
@@ -403,7 +403,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.strip
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
           git "git@github.com:bacon/bacon.git" do
             gem "bacon"
           end

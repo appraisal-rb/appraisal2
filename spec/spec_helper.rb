@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 require "rubygems"
+
 if ENV["CI"].nil? && ENV["DEBUG"] == "true"
+  ENV["VERBOSE"] = "true"
   ruby_version = Gem::Version.new(RUBY_VERSION)
   if ruby_version < Gem::Version.new("2.7")
     # Use byebug in code
@@ -11,8 +13,15 @@ if ENV["CI"].nil? && ENV["DEBUG"] == "true"
     require "debug"
   end
 end
-require "./spec/support/acceptance_test_helpers"
-require "./spec/support/stream_helpers"
+
+# External Libraries
+require "active_support/core_ext/string/strip"
+
+# This library
+require "support/dependency_helpers"
+require "support/acceptance_test_helpers"
+require "support/stream_helpers"
+
 
 PROJECT_ROOT = File.expand_path(File.join(File.dirname(__FILE__), "..")).freeze
 TMP_GEM_ROOT = File.join(PROJECT_ROOT, "tmp", "bundler")

@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe "Bundle with custom path" do
   let(:gem_name) { "rack" }
   let(:path) { "vendor/bundle" }
 
   shared_examples "gemfile dependencies are satisfied" do
     it "installs gems in the --path directory" do
-      build_gemfile <<-GEMFILE
+      build_gemfile <<-GEMFILE.strip_heredoc
         source "https://rubygems.org"
 
         gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
@@ -20,7 +18,7 @@ RSpec.describe "Bundle with custom path" do
         end
       GEMFILE
 
-      build_appraisal_file <<-APPRAISALS
+      build_appraisal_file <<-APPRAISALS.strip_heredoc
         appraise "#{gem_name}" do
           gem '#{gem_name}'
         end
@@ -49,7 +47,7 @@ RSpec.describe "Bundle with custom path" do
 
   context "when already installed in vendor/another" do
     before do
-      build_gemfile <<-GEMFILE
+      build_gemfile <<-GEMFILE.strip_heredoc
         source "https://rubygems.org"
 
         if RUBY_VERSION <= "1.9"

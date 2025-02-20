@@ -41,11 +41,11 @@ module Appraisal
       return if system("gem install bundler --version #{version}")
 
       puts
-      puts <<-ERROR.strip.gsub(/\s+/, " ")
-            Bundler installation failed.
-            Please try running:
-              `GEM_HOME="#{ENV["GEM_HOME"]}" gem install bundler --version #{version}`
-            manually.
+      puts <<-ERROR.strip_heredoc
+        Bundler installation failed.
+        Please try running:
+          `GEM_HOME="#{ENV["GEM_HOME"]}" gem install bundler --version #{version}`
+        manually.
       ERROR
       exit(1)
     end
