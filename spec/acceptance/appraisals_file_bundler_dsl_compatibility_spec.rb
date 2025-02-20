@@ -21,7 +21,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
     build_gemfile <<-GEMFILE
       source 'https://rubygems.org'
       git_source(:custom_git_source) { |repo| "../build/\#{repo}" }
-      ruby RUBY_VERSION
+      ruby "#{RUBY_VERSION}#{ruby_dev_append}"
 
       gem 'bagel'
       gem "croissant", :custom_git_source => "croissant"
@@ -166,7 +166,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
     build_gemfile <<-GEMFILE
       source 'https://rubygems.org'
 
-      ruby RUBY_VERSION
+      ruby "#{RUBY_VERSION}#{ruby_dev_append}"
 
       gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
     GEMFILE

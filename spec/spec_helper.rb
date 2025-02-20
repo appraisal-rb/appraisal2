@@ -1,7 +1,16 @@
 # frozen_string_literal: true
 
 require "rubygems"
-require "byebug" if ENV["CI"].nil? && ENV["DEBUG"] == "true"
+if ENV["CI"].nil? && ENV["DEBUG"] == "true"
+  ruby_version = Gem::Version.new(RUBY_VERSION)
+  if ruby_version < Gem::Version.new("2.7")
+    # Use byebug in code
+    require "byebug"
+  else
+    # Use binding.break, binding.b, or debugger in code
+    require "debug"
+  end
+end
 require "./spec/support/acceptance_test_helpers"
 require "./spec/support/stream_helpers"
 

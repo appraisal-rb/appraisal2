@@ -10,7 +10,7 @@ RSpec.describe "Gemfile DSL compatibility" do
 
     build_gemfile <<-GEMFILE
       source "https://rubygems.org"
-      ruby RUBY_VERSION
+      ruby "#{RUBY_VERSION}#{ruby_dev_append}"
 
       git "../build/egg" do
         gem "egg"
@@ -52,7 +52,7 @@ RSpec.describe "Gemfile DSL compatibility" do
 
       source "https://rubygems.org"
 
-      ruby "#{RUBY_VERSION}"
+      ruby "#{RUBY_VERSION}#{ruby_dev_append}"
 
       git "../../build/egg" do
         gem "egg"
@@ -82,7 +82,7 @@ RSpec.describe "Gemfile DSL compatibility" do
 
       source "https://rubygems.org"
 
-      ruby "#{RUBY_VERSION}"
+      ruby "#{RUBY_VERSION}#{ruby_dev_append}"
 
       git "../../build/egg" do
         gem "egg"

@@ -43,6 +43,15 @@ module AcceptanceTestHelpers
     end
   end
 
+  # A head version of MRI ruby will require the -dev appended to the ruby string in the gemfile.
+  # Unfortunately, there is no ENV variable that has access to the "dev" concept directly.
+  # Perhaps the best we can do is parse RUBY_DESCRIPTION?
+  #   > RUBY_DESCRIPTION
+  #   "ruby 3.5.0dev (2025-02-20T18:14:37Z master b2cf48f406) +PRISM [arm64-darwin24]"
+  def ruby_dev_append
+    RUBY_DESCRIPTION.include?("dev") ? "-dev" : ""
+  end
+
   def save_environment_variables
     @original_environment_variables = {}
 

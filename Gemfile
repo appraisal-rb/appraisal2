@@ -2,9 +2,18 @@ source "https://rubygems.org"
 
 gemspec
 
+# For Ruby version specific dependencies
+ruby_version = Gem::Version.new(RUBY_VERSION)
+
 platform :mri do
   # Debugging
-  gem "byebug", ">= 11"
+  if ruby_version < Gem::Version.new("2.7")
+    # Use byebug in code
+    gem "byebug", ">= 11"
+  else
+    # Use binding.break, binding.b, or debugger in code
+    gem "debug", ">= 1.0.0"
+  end
 
   # Dev Console - Binding.pry - Irb replacement
   gem "pry", "~> 0.14"                     # ruby >= 2.0
@@ -13,8 +22,6 @@ end
 # This here to make sure appraisal works with Rails 3.0.0.
 gem "thor", "~> 0.14.0"
 
-# Ruby version specific dependencies
-ruby_version = Gem::Version.new(RUBY_VERSION)
 if ruby_version < Gem::Version.new("1.9")
   eval File.read("Gemfile-1.8")
 elsif ruby_version < Gem::Version.new("2.1")
