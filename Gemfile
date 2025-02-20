@@ -27,5 +27,15 @@ elsif ruby_version < Gem::Version.new("2.7")
 else
   # Ruby >= 2.7 we can run style / lint checks via rubocop-gradual with rubocop-lts rules for Ruby 1.8+.
   # This means we can develop on modern Ruby but remain compatible with ancient Ruby.
-  eval_gemfile "gemfiles/modular/style.gemfile"
+  # TODO: Replace individual style gems below with modular gemfile, once eval_gemfile support is added to appraisal.
+  # eval_gemfile "gemfiles/modular/style.gemfile"
+  # We run rubocop on the latest version of Ruby,
+  #   but in support of the oldest supported version of Ruby
+  gem "rubocop-lts", "~> 0.1", ">= 0.1.1" # Style and Linting support for Ruby >= 1.8
+  gem "rubocop-packaging", "~> 0.5", ">= 0.5.2"
+  gem "rubocop-rspec", "~> 3.2"
+  gem "standard", ">= 1.35.1", "!= 1.41.1", "!= 1.42.0"
+
+  # Std Lib extractions
+  gem "benchmark", "~> 0.4" # Removed from Std Lib in Ruby 3.5
 end
