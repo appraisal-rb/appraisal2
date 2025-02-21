@@ -18,6 +18,7 @@ module Appraisal
       source_blocks
       install_if
       gemspec
+      eval_gemfile
     ]
 
     def initialize
@@ -32,10 +33,15 @@ module Appraisal
       @source_blocks = OrderedHash.new
       @git_sources = {}
       @install_if = {}
+      @eval_gemfile = []
     end
 
     def run(&block)
       instance_exec(&block)
+    end
+
+    def eval_gemfile(path, contents = nil)
+      @eval_gemfile << [path, contents]
     end
 
     def gem(name, *requirements)
@@ -113,6 +119,12 @@ module Appraisal
     attr_writer :git_sources
 
     private
+
+    def eval_gemfile_entry
+      @eval_gemfile.map { |(p, c)| "eval_gemfile(#{p.inspect}#{", #{c.inspect}" if c})" } * "\n\n"
+    end
+
+    alias_method :eval_gemfile_entry_for_dup, :eval_gemfile_entry
 
     def source_entry
       @sources.uniq.map { |source| "source #{source.inspect}" }.join("\n")
