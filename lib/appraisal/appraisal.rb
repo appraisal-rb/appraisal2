@@ -19,6 +19,10 @@ module Appraisal
       @gemfile = source_gemfile.dup
     end
 
+    def eval_gemfile(*args)
+      gemfile.eval_gemfile(*args)
+    end
+
     def gem(*args)
       gemfile.gem(*args)
     end
