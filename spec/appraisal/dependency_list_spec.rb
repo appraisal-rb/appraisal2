@@ -17,7 +17,7 @@ RSpec.describe Appraisal::DependencyList do
       dependency_list.add("rails", ["4.1.4"])
       dependency_list.add("bundler", ["1.7.2"])
 
-      expect(dependency_list.to_s).to eq <<-GEMS.strip_heredoc
+      expect(dependency_list.to_s).to eq <<-GEMS.strip_heredoc.rstrip
         gem "rails", "4.1.4"
         gem "bundler", "1.7.2"
       GEMS

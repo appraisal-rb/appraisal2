@@ -5,7 +5,7 @@ RSpec.describe "Bundle without group" do
     pending "config set --local without group support seems broken, see: https://github.com/rubygems/rubygems/issues/8518"
     build_gems %w[pancake orange_juice waffle coffee sausage soda]
 
-    build_gemfile <<-GEMFILE.strip_heredoc
+    build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source "https://rubygems.org"
 
       gem "pancake"
@@ -18,7 +18,7 @@ RSpec.describe "Bundle without group" do
       gem "appraisal", :path => #{PROJECT_ROOT.inspect}
     GEMFILE
 
-    build_appraisal_file <<-APPRAISALS.strip_heredoc
+    build_appraisal_file <<-APPRAISALS.strip_heredoc.rstrip
       appraise "breakfast" do
         gem "waffle"
 

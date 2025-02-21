@@ -29,6 +29,12 @@ module AcceptanceTestHelpers
       end
     end
 
+    before :git_local => true do
+      unless Appraisal::Utils.support_git_local_installation?
+        pending "This Bundler version does not support sourcing gems from git repos on local filesystem."
+      end
+    end
+
     before do
       cleanup_artifacts
       save_environment_variables
@@ -48,7 +54,7 @@ module AcceptanceTestHelpers
   # Unfortunately, there is no ENV variable that has access to the "dev" concept directly.
   # Perhaps the best we can do is parse RUBY_DESCRIPTION?
   #   > RUBY_DESCRIPTION
-  #   "ruby 3.5.0dev (2025-02-20T18:14:37Z master b2cf48f406) +PRISM [arm64-darwin24]"
+  #   "ruby 3.5.0dev (2025-02-20T18:14:37Z ... etc)
   def ruby_dev_append
     RUBY_DESCRIPTION.include?("dev") ? "-dev" : ""
   end
@@ -92,7 +98,7 @@ module AcceptanceTestHelpers
   end
 
   def build_gemspec
-    write_file "stage.gemspec", <<-GEMSPEC.strip_heredoc
+    write_file "stage.gemspec", <<-GEMSPEC.strip_heredoc.rstrip
       Gem::Specification.new do |s|
         s.name = 'stage'
         s.version = '0.1'
@@ -105,7 +111,7 @@ module AcceptanceTestHelpers
   def content_of(path)
     file(path).read.tap do |content|
       content.gsub!(/(\S+): /, ':\\1 => ')
-    end
+    end.strip
   end
 
   def file(path)
@@ -142,7 +148,7 @@ module AcceptanceTestHelpers
 
     return unless $?.exitstatus != 0
 
-    puts <<-WARNING.strip_heredoc
+    puts <<-WARNING.strip_heredoc.rstrip
       Reinstall Bundler to #{TMP_GEM_ROOT} as `BUNDLE_DISABLE_SHARED_GEMS`
       is enabled.
     WARNING
@@ -152,7 +158,7 @@ module AcceptanceTestHelpers
   end
 
   def build_default_gemfile
-    build_gemfile <<-GEMFILE.strip_heredoc
+    build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source 'https://rubygems.org'
 
       gem 'appraisal', :path => '#{PROJECT_ROOT}'
@@ -180,7 +186,7 @@ module AcceptanceTestHelpers
         puts output if ENV["VERBOSE"]
 
         if raise_on_error && exitstatus != 0
-          raise <<-ERROR_MESSAGE.strip_heredoc
+          raise <<-ERROR_MESSAGE.strip_heredoc.rstrip
             Command #{command.inspect} exited with status #{exitstatus}. Output:
             #{output.gsub(/^/, "  ")}
           ERROR_MESSAGE

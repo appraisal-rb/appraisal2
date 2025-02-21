@@ -8,7 +8,7 @@ RSpec.describe "CLI", "appraisal install" do
   end
 
   it "installs the dependencies" do
-    build_appraisal_file <<-APPRAISAL.strip_heredoc
+    build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise '1.0.0' do
         gem 'dummy', '1.0.0'
       end
@@ -28,7 +28,7 @@ RSpec.describe "CLI", "appraisal install" do
     build_gemspec
     add_gemspec_to_gemfile
 
-    build_appraisal_file <<-APPRAISAL.strip_heredoc
+    build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise '1.0.0' do
         gem 'dummy', '1.0.0'
       end
@@ -39,7 +39,7 @@ RSpec.describe "CLI", "appraisal install" do
     expect(content_of("gemfiles/1.0.0.gemfile.lock")).not_to include(current_directory)
   end
 
-  it "does not relativize directory of uris in gemfile.lock" do
+  it "does not relativize directory of uris in gemfile.lock", :git_local do
     build_gemspec
     add_gemspec_to_gemfile
 
@@ -47,7 +47,7 @@ RSpec.describe "CLI", "appraisal install" do
     uri_dummy_path = "#{current_directory}/uri_dummy"
     FileUtils.symlink(File.absolute_path("tmp/build/uri_dummy"), uri_dummy_path)
 
-    build_appraisal_file <<-APPRAISAL.strip_heredoc
+    build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise '1.0.0' do
         gem 'uri_dummy', git: 'file://#{uri_dummy_path}'
       end
@@ -60,7 +60,7 @@ RSpec.describe "CLI", "appraisal install" do
 
   context "with job size", :parallel do
     before do
-      build_appraisal_file <<-APPRAISAL.strip_heredoc
+      build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
         appraise '1.0.0' do
           gem 'dummy', '1.0.0'
         end
@@ -84,7 +84,7 @@ RSpec.describe "CLI", "appraisal install" do
 
   context "with full-index", :parallel do
     before do
-      build_appraisal_file <<-APPRAISAL.strip_heredoc
+      build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
         appraise '1.0.0' do
           gem 'dummy', '1.0.0'
         end
@@ -100,7 +100,7 @@ RSpec.describe "CLI", "appraisal install" do
 
   context "with path", :parallel do
     before do
-      build_appraisal_file <<-APPRAISAL.strip_heredoc
+      build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
         appraise '1.0.0' do
           gem 'dummy', '1.0.0'
         end

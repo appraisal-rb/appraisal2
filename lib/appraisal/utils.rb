@@ -7,6 +7,10 @@ module Appraisal
       Gem::Version.create(Bundler::VERSION) >= Gem::Version.create("1.4.0.pre.1")
     end
 
+    def self.support_git_local_installation?
+      Gem::Version.create(Bundler::VERSION) > Gem::Version.create("2.4.22")
+    end
+
     # Appraisal needs to print Gemfiles in the oldest Ruby syntax that is supported by Appraisal.
     # Otherwise, a project would not be able to use Appraisal to test compatibility
     #   with older versions of Ruby, which is a core use case for Appraisal.
@@ -46,7 +50,7 @@ module Appraisal
     end
 
     def self.join_parts(parts)
-      parts.reject(&:nil?).reject(&:empty?).join("\n\n").strip
+      parts.reject(&:nil?).reject(&:empty?).join("\n\n").rstrip
     end
 
     def self.prefix_path(path)

@@ -2,7 +2,7 @@
 
 RSpec.describe "CLI appraisal (with arguments)" do
   before do
-    build_appraisal_file <<-APPRAISAL.strip_heredoc
+    build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise '1.0.0' do
         gem 'dummy', '1.0.0'
       end
@@ -18,7 +18,7 @@ RSpec.describe "CLI appraisal (with arguments)" do
   end
 
   it "sets APPRAISAL_INITIALIZED environment variable" do
-    write_file "test.rb", <<-TEST_FILE.strip_heredoc
+    write_file "test.rb", <<-TEST_FILE.strip_heredoc.rstrip
       if ENV['APPRAISAL_INITIALIZED']
         puts "Appraisal initialized!"
       end

@@ -4,7 +4,7 @@ RSpec.describe "CLI", "appraisal update" do
   before do
     build_gem "dummy2", "1.0.0"
 
-    build_appraisal_file <<-APPRAISAL.strip_heredoc
+    build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise 'dummy' do
         gem 'dummy', '~> 1.0.0'
         gem 'dummy2', '~> 1.0.0'

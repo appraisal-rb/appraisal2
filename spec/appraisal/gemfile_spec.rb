@@ -47,7 +47,7 @@ RSpec.describe Appraisal::Gemfile do
       gem "one"
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
       group :development, :test do
         gem "one"
       end
@@ -69,7 +69,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
       group :development, :test do
         git "git://example.com/repo.git" do
           gem "two"
@@ -93,7 +93,7 @@ RSpec.describe Appraisal::Gemfile do
       gem "one"
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
       platforms :jruby do
         gem "one"
       end
@@ -115,7 +115,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
       platforms :jruby do
         git "git://example.com/repo.git" do
           gem "two"
@@ -139,7 +139,7 @@ RSpec.describe Appraisal::Gemfile do
       gem "one"
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
       git "git://example.com/repo.git" do
         gem "one"
       end
@@ -161,7 +161,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
       git "git://example.com/repo.git" do
         path "../.." do
           gem "three"
@@ -185,7 +185,7 @@ RSpec.describe Appraisal::Gemfile do
       gem "one"
     end
 
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
       path "../../path" do
         gem "one"
       end
@@ -195,6 +195,7 @@ RSpec.describe Appraisal::Gemfile do
   it "supports nested DSL within path syntax" do
     gemfile = described_class.new
 
+    # TODO: Small bug: order in a Gemfile can be important for certain gems, but order is not preserved.
     gemfile.path "../path" do
       group :development, :test do
         gem "one"
@@ -206,22 +207,22 @@ RSpec.describe Appraisal::Gemfile do
         gem "three"
       end
     end
-
-    expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+    fixture_gemfile = <<-GEMFILE.strip_heredoc.rstrip
       path "../../path" do
         git "git://example.com/repo.git" do
           gem "three"
         end
-
+        
         group :development, :test do
           gem "one"
         end
-
+        
         platforms :jruby do
           gem "two"
         end
       end
     GEMFILE
+    expect(gemfile.to_s).to eq fixture_gemfile
   end
 
   context "excess new line" do
@@ -317,7 +318,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
           path "../" do
             gem "bacon"
           end
@@ -331,7 +332,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
           path "../../bacon" do
             gem "bacon"
           end
@@ -345,7 +346,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
           path "/tmp" do
             gem "bacon"
           end
@@ -361,7 +362,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
           git "../" do
             gem "bacon"
           end
@@ -375,7 +376,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
           git "../../bacon" do
             gem "bacon"
           end
@@ -389,7 +390,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
           git "/tmp" do
             gem "bacon"
           end
@@ -403,7 +404,7 @@ RSpec.describe Appraisal::Gemfile do
           gem "bacon"
         end
 
-        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc
+        expect(gemfile.to_s).to eq <<-GEMFILE.strip_heredoc.rstrip
           git "git@github.com:bacon/bacon.git" do
             gem "bacon"
           end

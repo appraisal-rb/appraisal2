@@ -11,20 +11,20 @@ module Appraisal
     end
 
     def to_s
-      formatted_output(indent(super))
+      formatted_output(super)
     end
 
     # :nodoc:
     def for_dup
-      formatted_output(indent(super))
+      formatted_output(super)
     end
 
     private
 
     def formatted_output(output_dependencies)
-      <<-OUTPUT.strip
+      <<-OUTPUT.rstrip
 platforms #{Utils.format_arguments(@platform_names)} do
-#{output_dependencies}
+#{indent(output_dependencies)}
 end
       OUTPUT
     end

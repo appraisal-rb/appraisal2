@@ -162,7 +162,21 @@ module Appraisal
     end
 
     def indent(string)
-      string.strip.gsub(/^(.+)$/, '  \1')
+      indent_by = ENV.fetch("APPRAISAL_INDENTER", "lookahead")
+      if indent_by == "lookahead"
+        # Default indenter for Appraisal v3
+        # Uses a look-ahead to indent lines that start with a "word" (as defined by RegExp)
+        #   (optionally preceded by whitespace).
+        # First it finds the point where the white space ends / words starts,
+        #   and inserts two spaces at that point, leaving any existing whitespace in place.
+        # In other words, retain existing indentation, and indent the line again.
+        string.gsub(/^(?=(\s*)\w)/, "  ").rstrip
+      elsif indent_by == "capture"
+        # Original indentation regex for Appraisal < v3
+        string.gsub(/^(.+)$/, '  \1').rstrip
+      else
+        string
+      end
     end
 
     def substitute_git_source(requirements)
