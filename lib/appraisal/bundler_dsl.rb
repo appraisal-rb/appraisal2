@@ -172,6 +172,7 @@ module Appraisal
           #   (?![\r\n]) - Negative Look Behind which requires that the following pattern,
           #                which is (\s*) in this case, *not* be followed by a new line character
           #   (\s*) - Captures whitespace at beginning of the line
+          #   Learn more here: https://learnbyexample.github.io/Ruby_Regexp/lookarounds.html
           gsub(/^(?![\r\n])(\s*)/, '  \0').
           rstrip
       elsif indent_by == "capture"
