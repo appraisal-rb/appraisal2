@@ -212,11 +212,11 @@ RSpec.describe Appraisal::Gemfile do
         git "git://example.com/repo.git" do
           gem "three"
         end
-        
+
         group :development, :test do
           gem "one"
         end
-        
+
         platforms :jruby do
           gem "two"
         end

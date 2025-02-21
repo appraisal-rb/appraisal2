@@ -165,12 +165,15 @@ module Appraisal
       indent_by = ENV.fetch("APPRAISAL_INDENTER", "lookahead")
       if indent_by == "lookahead"
         # Default indenter for Appraisal v3
-        # Uses a look-ahead to indent lines that start with a "word" (as defined by RegExp)
-        #   (optionally preceded by whitespace).
-        # First it finds the point where the white space ends / words starts,
-        #   and inserts two spaces at that point, leaving any existing whitespace in place.
-        # In other words, retain existing indentation, and indent the line again.
-        string.gsub(/^(?=(\s*)\w)/, "  ").rstrip
+        # Uses a look-behind to indent lines are more than just empty space.
+        # In other words, retain existing indentation, and indent the line again, but not on empty lines.
+        string.
+          # NOTES:
+          #   (?![\r\n]) - Negative Look Behind which requires that the following pattern,
+          #                which is (\s*) in this case, *not* be followed by a new line character
+          #   (\s*) - Captures whitespace at beginning of the line
+          gsub(/^(?![\r\n])(\s*)/, '  \0').
+          rstrip
       elsif indent_by == "capture"
         # Original indentation regex for Appraisal < v3
         string.gsub(/^(.+)$/, '  \1').rstrip
