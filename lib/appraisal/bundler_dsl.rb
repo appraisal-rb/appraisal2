@@ -165,7 +165,7 @@ module Appraisal
       indent_by = ENV.fetch("APPRAISAL_INDENTER", "lookaround")
       if indent_by == "lookaround"
         # Default indenter for Appraisal v3
-        # Uses a "look-around" of the "look-behind" variety to indent lines are more than just empty space.
+        # Uses a "look-around" of the "look-behind" variety to indent lines that are more than just empty space.
         # In other words, retain existing indentation, and indent the line again, but not on empty lines.
         string.
           # NOTES:
