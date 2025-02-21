@@ -18,14 +18,15 @@
     [17, 5, 62, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 4082816720],
     [21, 5, 516, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 2780620929]
   ],
-  "lib/appraisal/utils.rb:3242656341": [
+  "lib/appraisal/utils.rb:3706894031": [
     [6, 5, 129, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 733338411],
-    [13, 5, 354, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 119295155],
-    [35, 5, 152, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1306460482],
-    [42, 5, 151, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1120325158],
-    [48, 5, 98, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 714993131],
-    [52, 5, 244, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1461524090],
-    [61, 5, 111, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1909626476]
+    [10, 5, 124, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 222857520],
+    [17, 5, 354, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 119295155],
+    [39, 5, 152, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1306460482],
+    [46, 5, 151, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1120325158],
+    [52, 5, 98, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 714993131],
+    [56, 5, 244, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1461524090],
+    [65, 5, 111, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1909626476]
   ],
   "spec/acceptance/cli/clean_spec.rb:1564995421": [
     [3, 23, 17, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 1606893221]
@@ -36,7 +37,7 @@
   "spec/acceptance/cli/help_spec.rb:3569358941": [
     [3, 23, 16, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 2148351217]
   ],
-  "spec/acceptance/cli/install_spec.rb:1306756550": [
+  "spec/acceptance/cli/install_spec.rb:3249736824": [
     [3, 23, 19, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 3284642881]
   ],
   "spec/acceptance/cli/list_spec.rb:36921834": [
@@ -86,7 +87,7 @@
     [68, 7, 85, "RSpec/ReceiveMessages: Use `receive_messages` instead of multiple stubs on lines [65, 66, 67].", 3874694796],
     [72, 7, 7, "RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.", 1892732441]
   ],
-  "spec/appraisal/gemfile_spec.rb:2644921119": [
+  "spec/appraisal/gemfile_spec.rb:3969538335": [
     [228, 11, 17, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 3608128140],
     [229, 13, 13, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 420381022],
     [236, 13, 15, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 3511037132],
@@ -102,8 +103,8 @@
   "spec/appraisal/utils_spec.rb:2286225770": [
     [62, 17, 58, "RSpec/VerifiedDoubles: Prefer using verifying doubles over normal doubles.", 1573223692]
   ],
-  "spec/support/acceptance_test_helpers.rb:293636491": [
-    [143, 5, 32, "Style/InvertibleUnlessCondition: Prefer `if $?.exitstatus == 0` over `unless $?.exitstatus != 0`.", 4187517264]
+  "spec/support/acceptance_test_helpers.rb:3072478660": [
+    [149, 5, 32, "Style/InvertibleUnlessCondition: Prefer `if $?.exitstatus == 0` over `unless $?.exitstatus != 0`.", 4187517264]
   ],
   "spec/support/stream_helpers.rb:3654818709": [
     [10, 17, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787]
