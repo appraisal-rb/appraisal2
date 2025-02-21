@@ -130,7 +130,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
         gem "orange_juice"
         gem "omelette", :git => "../../build/omelette"
         gem "bacon"
-        
+
         platforms :rbx do
           gem "ham"
         end
@@ -139,7 +139,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
       platforms :ruby, :jruby do
         gem "milk"
         gem "yoghurt"
-        
+
         group :lunch do
           gem "coffee"
         end
