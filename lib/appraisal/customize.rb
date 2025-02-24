@@ -2,7 +2,9 @@
 
 module Appraisal
   class Customize
-    def initialize(heading: nil, single_quotes: false)
+    def initialize(options = {})
+      heading = options.fetch(:heading, nil)
+      single_quotes = options.fetch(:single_quotes, false)
       @@heading = !heading.nil? && heading.chomp
       @@single_quotes = single_quotes
     end
