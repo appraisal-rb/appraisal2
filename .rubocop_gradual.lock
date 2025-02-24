@@ -1,5 +1,5 @@
 {
-  "Gemfile:2720967286": [
+  "Gemfile:3872962921": [
     [26, 3, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787],
     [28, 3, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787],
     [30, 3, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787]
@@ -294,11 +294,7 @@
     [40, 36, 2, "Style/AndOr: Use `||` instead of `or`.", 5861240]
   ],
   "spec/tmp/bundler/gems/rake-13.2.1/rake.gemspec:2780653655": [
-    [12, 19, 2, "Lint/Syntax: unexpected token tLSHFT\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5859461],
-    [13, 25, 7, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 1804902097],
-    [14, 15, 2, "Lint/Syntax: unexpected token kIN\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5861154],
-    [16, 7, 1, "Lint/Syntax: unexpected token tSTAR\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 177551],
-    [16, 24, 1, "Lint/Syntax: unterminated string meets end of file\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 177538]
+    [12, 19, 2, "Lint/Syntax: unexpected token tLSHFT\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5859461]
   ],
   "spec/tmp/bundler/gems/rotten_egg-1.0.0/lib/rotten_egg.rb:2010666510": [
     [1, 1, 19, "Style/GlobalVars: Do not introduce global variables.", 2573678312]
