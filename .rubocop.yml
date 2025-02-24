@@ -15,3 +15,6 @@ RSpec/DescribeClass:
 #       See: https://coderscat.com/ruby-change-current-working-directory/
 ThreadSafety/DirChdir:
   Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets

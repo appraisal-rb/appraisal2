@@ -159,7 +159,7 @@ module Appraisal
       @dependencies.for_dup
     end
 
-    %i[gits paths platforms groups source_blocks install_if].each do |method_name|
+    [:gits, :paths, :platforms, :groups, :source_blocks, :install_if].each do |method_name|
       class_eval <<-METHODS, __FILE__, __LINE__ + 1
         private
 

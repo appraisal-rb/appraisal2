@@ -7,16 +7,16 @@
   "bin/bundle:41466308": [
     [66, 5, 20, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2485198147]
   ],
-  "lib/appraisal/appraisal_file.rb:3486777149": [
+  "lib/appraisal/appraisal_file.rb:3950440874": [
     [13, 5, 52, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 946226050]
   ],
   "lib/appraisal/cli.rb:435288507": [
     [116, 5, 410, "Style/MissingRespondToMissing: When using `method_missing`, define `respond_to_missing?`.", 1969529734]
   ],
-  "lib/appraisal/customize.rb:190316824": [
-    [10, 5, 138, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 2682968747],
-    [17, 5, 62, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 4082816720],
-    [21, 5, 516, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 2780620929]
+  "lib/appraisal/customize.rb:473220891": [
+    [12, 5, 138, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 2682968747],
+    [19, 5, 62, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 4082816720],
+    [23, 5, 516, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 2780620929]
   ],
   "lib/appraisal/utils.rb:3706894031": [
     [6, 5, 129, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 733338411],
