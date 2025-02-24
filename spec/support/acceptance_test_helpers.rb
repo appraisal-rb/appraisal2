@@ -25,13 +25,13 @@ module AcceptanceTestHelpers
 
     before :parallel => true do
       unless Appraisal::Utils.support_parallel_installation?
-        pending "This Bundler version does not support --jobs flag."
+        skip "This Bundler version does not support --jobs flag."
       end
     end
 
     before :git_local => true do
       unless Appraisal::Utils.support_git_local_installation?
-        pending "This Bundler version does not support sourcing gems from git repos on local filesystem."
+        skip "This Bundler version does not support sourcing gems from git repos on local filesystem."
       end
     end
 

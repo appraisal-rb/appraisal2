@@ -27,7 +27,9 @@ jobs:
           - jruby
           - jruby-head
           - truffleruby
-          - truffleruby-head
+          # truffleruby-head is failing.
+          # TODO: Turn this back on once more important MRI Rubies are validated.
+          # - truffleruby-head
 
     steps:
       - uses: actions/checkout@v4

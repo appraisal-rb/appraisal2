@@ -16,6 +16,7 @@ end
 
 # External Libraries
 require "active_support/core_ext/string/strip"
+require "rspec/pending_for"
 
 # This library
 require "support/dependency_helpers"

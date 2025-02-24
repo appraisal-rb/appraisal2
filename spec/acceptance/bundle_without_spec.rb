@@ -2,7 +2,10 @@
 
 RSpec.describe "Bundle without group" do
   it "config set --local without group is honored by Bundler" do
-    # pending "config set --local without group support seems broken, see: https://github.com/rubygems/rubygems/issues/8518"
+    reason = "config set --local without group support seems broken, see: https://github.com/rubygems/rubygems/issues/8518"
+    # Somehow this spec passes on truffleruby *only*!!
+    pending_for(:engine => "ruby", :reason => reason)
+    pending_for(:engine => "jruby", :reason => reason)
     build_gems %w[pancake orange_juice waffle coffee sausage soda]
 
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip

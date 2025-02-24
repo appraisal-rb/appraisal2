@@ -49,4 +49,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency("activesupport", ">= 3.2.21")
   s.add_development_dependency("rspec", "~> 3.13")
+  s.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.17")
 end
