@@ -3,7 +3,8 @@
 # TODO: Switch to require_relative once support for Ruby < 2 is dropped.
 # require_relative "lib/appraisal/version"
 
-$:.push(File.expand_path("lib", __dir__))
+lib = File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "appraisal/version"
 
 Gem::Specification.new do |s|
@@ -42,10 +43,10 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 1.8.7"
 
-  s.add_runtime_dependency("bundler", ">= 1.17.3") # Last version supporting Ruby 1.8.7
-  s.add_runtime_dependency("rake", ">= 10") # Last version supporting Ruby 1.8.7
-  s.add_runtime_dependency("thor", ">= 0.14.0")
+  s.add_runtime_dependency("bundler", ">= 1.17.3")  # Last version supporting Ruby 1.8.7
+  s.add_runtime_dependency("rake", ">= 10")         # Last version supporting Ruby 1.8.7
+  s.add_runtime_dependency("thor", ">= 0.14")       # Last version supporting Ruby 1.8.7 && Rails 3
 
   s.add_development_dependency("activesupport", ">= 3.2.21")
-  s.add_development_dependency("rspec", "~> 3.0")
+  s.add_development_dependency("rspec", "~> 3.13")
 end

@@ -2,7 +2,7 @@
 
 RSpec.describe "Bundle without group" do
   it "config set --local without group is honored by Bundler" do
-    pending "config set --local without group support seems broken, see: https://github.com/rubygems/rubygems/issues/8518"
+    # pending "config set --local without group support seems broken, see: https://github.com/rubygems/rubygems/issues/8518"
     build_gems %w[pancake orange_juice waffle coffee sausage soda]
 
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
