@@ -12,7 +12,7 @@ RSpec.describe "Gemspec" do
     write_file "Gemfile", <<-GEMFILE.strip_heredoc.rstrip
       source "https://rubygems.org"
 
-      gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
+      gem 'appraisal2', :path => #{PROJECT_ROOT.inspect}
 
       gemspec
     GEMFILE
@@ -30,7 +30,7 @@ RSpec.describe "Gemspec" do
     write_file "Gemfile", <<-GEMFILE.strip_heredoc.rstrip
       source "https://rubygems.org"
 
-      gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
+      gem 'appraisal2', :path => #{PROJECT_ROOT.inspect}
 
       gemspec :path => './specdir'
     GEMFILE

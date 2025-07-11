@@ -54,7 +54,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
         gem 'mayonnaise'
       end
 
-      gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
+      gem 'appraisal2', :path => #{PROJECT_ROOT.inspect}
     GEMFILE
 
     build_appraisal_file <<-APPRAISALS.strip_heredoc.rstrip
@@ -122,7 +122,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
 
       gem "bagel"
       gem "croissant", :git => "../../build/croissant"
-      gem "appraisal", :path => #{PROJECT_ROOT.inspect}
+      gem "appraisal2", :path => #{PROJECT_ROOT.inspect}
       gem "bread"
       gem "pain_au_chocolat", :git => "../../build/pain_au_chocolat"
 
@@ -166,7 +166,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
 
       ruby "#{RUBY_VERSION}#{ruby_dev_append}"
 
-      gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
+      gem 'appraisal2', :path => #{PROJECT_ROOT.inspect}
     GEMFILE
 
     build_appraisal_file <<-APPRAISALS.strip_heredoc.rstrip
@@ -185,7 +185,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
 
       ruby(:file => ".ruby-version")
 
-      gem "appraisal", :path => #{PROJECT_ROOT.inspect}
+      gem "appraisal2", :path => #{PROJECT_ROOT.inspect}
     GEMFILE
   end
 end

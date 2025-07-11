@@ -19,7 +19,7 @@ platform :mri do
   gem "pry", "~> 0.14"                     # ruby >= 2.0
 end
 
-# This here to make sure appraisal works with Rails 3.0.0.
+# This here to make sure appraisal2 works with Rails 3.0.0.
 gem "thor", "~> 0.14.0"
 
 if ruby_version < Gem::Version.new("1.9")
@@ -34,7 +34,7 @@ elsif ruby_version < Gem::Version.new("2.7")
 else
   # Ruby >= 2.7 we can run style / lint checks via rubocop-gradual with rubocop-lts rules for Ruby 1.8+.
   # This means we can develop on modern Ruby but remain compatible with ancient Ruby.
-  # TODO: Replace individual style gems below with modular gemfile, once eval_gemfile support is added to appraisal.
+  # TODO: Replace individual style gems below with modular gemfile, once eval_gemfile support is added to appraisal2.
   # eval_gemfile "gemfiles/modular/style.gemfile"
   # We run rubocop on the latest version of Ruby,
   #   but in support of the oldest supported version of Ruby

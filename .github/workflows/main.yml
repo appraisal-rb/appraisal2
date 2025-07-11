@@ -33,13 +33,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        if: ${{ !env.ACT || !startsWith(matrix.ruby, 'jruby') }}
 
       - name: Setup Ruby
+        if: ${{ !env.ACT || !startsWith(matrix.ruby, 'jruby') }}
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
 
       - name: Update bundler
+        if: ${{ !env.ACT || !startsWith(matrix.ruby, 'jruby') }}
         env:
           RUBY_VERSION: ${{ matrix.ruby }}
         # See: https://dev.to/galtzo/matrix-ruby-gem-bundler-etc-4kk7
@@ -69,4 +72,5 @@ jobs:
           bundle install
 
       - name: Run tests
+        if: ${{ !env.ACT || !startsWith(matrix.ruby, 'jruby') }}
         run: bin/rspec

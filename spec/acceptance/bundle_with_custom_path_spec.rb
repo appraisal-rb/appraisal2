@@ -9,7 +9,7 @@ RSpec.describe "Bundle with custom path" do
       build_gemfile <<-GEMFILE.strip_heredoc.rstrip
         source "https://rubygems.org"
 
-        gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
+        gem 'appraisal2', :path => #{PROJECT_ROOT.inspect}
 
         if RUBY_VERSION < "1.9"
           #{File.read(File.join(PROJECT_ROOT, "Gemfile-1.8"))}

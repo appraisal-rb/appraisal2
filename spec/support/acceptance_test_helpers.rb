@@ -161,7 +161,7 @@ module AcceptanceTestHelpers
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source 'https://rubygems.org'
 
-      gem 'appraisal', :path => '#{PROJECT_ROOT}'
+      gem 'appraisal2', :path => '#{PROJECT_ROOT}'
     GEMFILE
 
     run "bundle install --local"

@@ -5,7 +5,7 @@ RSpec.describe "CLI", "appraisal generate" do
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source "https://rubygems.org"
 
-      gem "appraisal", :path => "#{PROJECT_ROOT}"
+      gem "appraisal2", :path => "#{PROJECT_ROOT}"
     GEMFILE
 
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
@@ -27,7 +27,7 @@ RSpec.describe "CLI", "appraisal generate" do
 
       source "https://rubygems.org"
 
-      gem "appraisal", :path => "#{PROJECT_ROOT}"
+      gem "appraisal2", :path => "#{PROJECT_ROOT}"
       gem "dummy", "1.0.0"
     GEMFILE
   end

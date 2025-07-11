@@ -14,7 +14,7 @@ RSpec.describe "eval_gemfile" do
     write_file "Gemfile", <<-GEMFILE
       source "https://rubygems.org"
 
-      gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
+      gem 'appraisal2', :path => #{PROJECT_ROOT.inspect}
 
       gemspec
     GEMFILE
