@@ -26,7 +26,7 @@ pollute the global namespace, one alternative is
 Setup
 -----
 
-Setting up appraisal requires an `Appraisals` file (similar to a `Gemfile`) in
+Setting up appraisal2 requires an `Appraisals` file (similar to a `Gemfile`) in
 your project root, named "Appraisals" (note the case), and some slight changes
 to your project's `Rakefile`.
 
@@ -326,7 +326,7 @@ Thank you to all [the contributors][contributors]
 The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 
 [thoughtbot]: http://thoughtbot.com/community
-[contributors]: https://github.com/thoughtbot/appraisal/contributors
+[contributors]: https://github.com/appraisal-rb/appraisal2/contributors
 
 License
 -------

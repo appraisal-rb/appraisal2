@@ -26,7 +26,7 @@ RSpec.describe "Gemfile DSL compatibility" do
         gem "waffle"
       end
 
-      gem 'appraisal', :path => #{PROJECT_ROOT.inspect}
+      gem 'appraisal2', :path => #{PROJECT_ROOT.inspect}
 
       gemspec
     GEMFILE
@@ -60,7 +60,7 @@ RSpec.describe "Gemfile DSL compatibility" do
         gem "orange_juice"
       end
 
-      gem "appraisal", :path => #{PROJECT_ROOT.inspect}
+      gem "appraisal2", :path => #{PROJECT_ROOT.inspect}
       gem "rice"
       gem "miso_soup"
 
@@ -90,7 +90,7 @@ RSpec.describe "Gemfile DSL compatibility" do
         gem "orange_juice"
       end
 
-      gem "appraisal", :path => #{PROJECT_ROOT.inspect}
+      gem "appraisal2", :path => #{PROJECT_ROOT.inspect}
       gem "bread"
 
       group :breakfast do
@@ -113,7 +113,7 @@ RSpec.describe "Gemfile DSL compatibility" do
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source "https://rubygems.org"
 
-      gem "appraisal", :path => #{PROJECT_ROOT.inspect}
+      gem "appraisal2", :path => #{PROJECT_ROOT.inspect}
       gem "bacon", "1.2.0"
     GEMFILE
 
@@ -146,7 +146,7 @@ RSpec.describe "Gemfile DSL compatibility" do
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source "https://rubygems.org"
 
-      gem "appraisal", :path => #{PROJECT_ROOT.inspect}
+      gem "appraisal2", :path => #{PROJECT_ROOT.inspect}
 
       group :plugin do
         gemspec
@@ -167,7 +167,7 @@ RSpec.describe "Gemfile DSL compatibility" do
 
       source "https://rubygems.org"
 
-      gem "appraisal", :path => #{PROJECT_ROOT.inspect}
+      gem "appraisal2", :path => #{PROJECT_ROOT.inspect}
       gem "bacon", "1.0.0"
 
       group :plugin do

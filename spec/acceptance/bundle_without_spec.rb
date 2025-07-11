@@ -18,7 +18,7 @@ RSpec.describe "Bundle without group" do
         gem "orange_juice"
       end
 
-      gem "appraisal", :path => #{PROJECT_ROOT.inspect}
+      gem "appraisal2", :path => #{PROJECT_ROOT.inspect}
     GEMFILE
 
     build_appraisal_file <<-APPRAISALS.strip_heredoc.rstrip
