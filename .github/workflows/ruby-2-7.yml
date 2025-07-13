@@ -45,6 +45,7 @@ jobs:
             exec_cmd: "rake test"
             rubygems: '3.4.22'
             bundler: '2.4.22'
+            experimental: false
 
     steps:
       - name: Checkout

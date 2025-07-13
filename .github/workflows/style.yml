@@ -43,6 +43,7 @@ jobs:
             exec_cmd: "rake rubocop_gradual:check"
             rubygems: latest
             bundler: latest
+            experimental: false
 
     steps:
       - name: Checkout

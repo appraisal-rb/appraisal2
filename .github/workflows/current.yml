@@ -46,6 +46,7 @@ jobs:
             exec_cmd: "rake test"
             rubygems: latest
             bundler: latest
+            experimental: false
 
           # truffleruby <whichever version is current, e.g., 24.1 as of 2025-07-12>
           - ruby: "truffleruby"
@@ -53,6 +54,7 @@ jobs:
             exec_cmd: "rake test"
             rubygems: default
             bundler: default
+            experimental: false
 
           # jruby <whichever version is current, e.g., 10.0 (targets Ruby 3.4 compatibility) as of 2025-07-12>
           - ruby: "jruby"
@@ -60,6 +62,7 @@ jobs:
             exec_cmd: "rake test"
             rubygems: default
             bundler: default
+            experimental: false
 
     steps:
       - name: Checkout
