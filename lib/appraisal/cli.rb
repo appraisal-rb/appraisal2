@@ -108,7 +108,7 @@ module Appraisal
 
     desc "version", "Display the version and exit"
     def version
-      puts "Appraisal #{VERSION}"
+      puts "Appraisal2 #{VERSION}"
     end
 
     private

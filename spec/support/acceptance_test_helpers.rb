@@ -195,3 +195,7 @@ module AcceptanceTestHelpers
     end
   end
 end
+
+RSpec.configure do |config|
+  config.include AcceptanceTestHelpers, :type => :acceptance
+end

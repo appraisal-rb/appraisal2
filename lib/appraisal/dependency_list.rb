@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
+# Std libs
+require "set"
+
+# This gem
 require "appraisal/dependency"
 require "appraisal/ordered_hash"
-require "set"
 
 module Appraisal
   class DependencyList

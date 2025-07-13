@@ -1,0 +1,2 @@
+# Ruby >= 2.0, last compatible with Ruby 2.5 (dependency of rails)
+gem "thor", "~> 1.2.2"

@@ -7,47 +7,63 @@ lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "appraisal/version"
 
-Gem::Specification.new do |s|
-  s.name = "appraisal2"
-  s.version = Appraisal::VERSION.dup
-  s.platform = Gem::Platform::RUBY
-  s.authors = ["Joe Ferris", "Prem Sichanugrist"]
-  s.email = ["jferris@thoughtbot.com", "prem@thoughtbot.com"]
-  s.homepage = "http://github.com/appraisal-rb/appraisal2"
-  s.summary = "Find out what your Ruby gems are worth"
-  s.description = 'Appraisal integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals."'
-  s.license = "MIT"
+Gem::Specification.new do |spec|
+  spec.name = "appraisal2"
+  spec.version = Appraisal::VERSION.dup
+  spec.platform = Gem::Platform::RUBY
+  spec.authors = ["Joe Ferris", "Prem Sichanugrist"]
+  spec.email = ["jferris@thoughtbot.com", "prem@thoughtbot.com"]
+  spec.homepage = "http://github.com/appraisal-rb/appraisal2"
+  spec.summary = "Find out what your Ruby gems are worth"
+  spec.description = 'Appraisal integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals."'
+  spec.license = "MIT"
 
-  # specify which files should be added to the gem when it is released.
-  s.files = Dir[
-    # Splats (keep alphabetical)
+  # Specify which files are part of the released package.
+  spec.files = Dir[
+    # Splats (alphabetical)
     "lib/**/*.rb",
   ]
-
-  # automatically included with gem package, no need to list twice (i.e. do not list in files above).
-  s.extra_rdoc_files = Dir[
-    # Files (keep alphabetical)
+  # Automatically included with gem package, no need to list again in files.
+  spec.extra_rdoc_files = Dir[
+    # Files (alphabetical)
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
-    "MIT-LICENSE",
+    "LICENSE.txt",
     "README.md",
     "SECURITY.md",
   ]
-
+  spec.rdoc_options += [
+    "--title",
+    "#{spec.name} - #{spec.summary}",
+    "--main",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "LICENSE.txt",
+    "README.md",
+    "SECURITY.md",
+    "--line-numbers",
+    "--inline-source",
+    "--quiet",
+  ]
+  spec.require_paths = ["lib"]
   # bin/ is scripts, in any available language, for development of this specific gem
   # exe/ is for ruby scripts that will ship with this gem to be used by other tools
-  s.bindir = "exe"
+  spec.bindir = "exe"
   # files listed are relative paths from bindir above.
-  s.executables = [
+  spec.executables = [
     "appraisal",
   ]
 
-  s.required_ruby_version = ">= 1.8.7"
+  spec.required_ruby_version = ">= 1.8.7"
 
-  s.add_runtime_dependency("bundler", ">= 1.17.3")  # Last version supporting Ruby 1.8.7
-  s.add_runtime_dependency("rake", ">= 10")         # Last version supporting Ruby 1.8.7
-  s.add_runtime_dependency("thor", ">= 0.14")       # Last version supporting Ruby 1.8.7 && Rails 3
+  spec.add_dependency("bundler", ">= 1.17.3")  # Last version supporting Ruby 1.8.7
+  spec.add_dependency("rake", ">= 10")         # Last version supporting Ruby 1.8.7
+  spec.add_dependency("thor", ">= 0.14")       # Last version supporting Ruby 1.8.7 && Rails 3
 
-  s.add_development_dependency("activesupport", ">= 3.2.21")
-  s.add_development_dependency("rspec", "~> 3.13")
-  s.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.17")
+  spec.add_development_dependency("activesupport", ">= 3.2.21")
+  spec.add_development_dependency("rspec", "~> 3.13")
+  spec.add_development_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")
+  spec.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.17")
 end

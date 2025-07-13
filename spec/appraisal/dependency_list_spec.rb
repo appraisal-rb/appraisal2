@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
 require "appraisal/dependency_list"
 
 RSpec.describe Appraisal::DependencyList do

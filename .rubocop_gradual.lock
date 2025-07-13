@@ -1,8 +1,8 @@
 {
-  "Gemfile:3872962921": [
-    [26, 3, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787],
-    [28, 3, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787],
-    [30, 3, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787]
+  "Gemfile:2056742212": [
+    [41, 3, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787],
+    [43, 3, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787],
+    [45, 3, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787]
   ],
   "bin/bundle:41466308": [
     [66, 5, 20, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2485198147]
@@ -31,7 +31,7 @@
   "spec/acceptance/cli/clean_spec.rb:1564995421": [
     [3, 23, 17, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 1606893221]
   ],
-  "spec/acceptance/cli/generate_spec.rb:245350726": [
+  "spec/acceptance/cli/generate_spec.rb:3842740582": [
     [3, 23, 20, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 3905826443]
   ],
   "spec/acceptance/cli/help_spec.rb:3569358941": [
@@ -103,7 +103,7 @@
   "spec/appraisal/utils_spec.rb:2286225770": [
     [62, 17, 58, "RSpec/VerifiedDoubles: Prefer using verifying doubles over normal doubles.", 1573223692]
   ],
-  "spec/support/acceptance_test_helpers.rb:3072478660": [
+  "spec/support/acceptance_test_helpers.rb:3908433317": [
     [149, 5, 32, "Style/InvertibleUnlessCondition: Prefer `if $?.exitstatus == 0` over `unless $?.exitstatus != 0`.", 4187517264]
   ],
   "spec/support/stream_helpers.rb:3654818709": [

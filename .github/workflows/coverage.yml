@@ -1,0 +1,120 @@
+---
+# Targets the evergreen latest release of ruby
+name: Test Coverage
+
+permissions:
+  contents: read
+  pull-requests: write
+  id-token: write
+
+env:
+  COVERAGE_GEMS: true
+  K_SOUP_COV_MIN_BRANCH: 85
+  K_SOUP_COV_MIN_LINE: 91
+  K_SOUP_COV_MIN_HARD: true
+  K_SOUP_COV_FORMATTERS: "html,xml,rcov,lcov,json,tty"
+  K_SOUP_COV_DO: true
+  K_SOUP_COV_MULTI_FORMATTERS: true
+  K_SOUP_COV_COMMAND_NAME: "Test Coverage"
+
+on:
+  push:
+    branches:
+      - 'main'
+      - '*-stable'
+    tags:
+      - '!*' # Do not execute on tags
+  pull_request:
+    branches:
+      - '*'
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  coverage:
+    name: Code Coverage ${{ matrix.ruby }} gemfiles/${{ matrix.gemfile }}.gemfile ${{ matrix.name_extra || '' }}
+    if: ${{ !contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
+    # NOTE: This does not use the primary Gemfile at all.
+    env: # $BUNDLE_GEMFILE - set at job level, so applies to all steps
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Ruby <whichever version is current, e.g., 3.4 as of 2025-07-12>
+          - ruby: "ruby"
+            gemfile: "coverage"
+            exec_cmd: "rake test"
+            rubygems: latest
+            bundler: latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby & RubyGems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "${{ matrix.ruby }}"
+          rubygems: "${{ matrix.rubygems }}"
+          bundler: "${{ matrix.bundler }}"
+      - name: bundle install
+        if: ${{ !env.ACT || (env.ACT && !startsWith(matrix.ruby, 'jruby')) }}
+        run: bundle install --gemfile ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
+      - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
+        if: ${{ !env.ACT || (env.ACT && !startsWith(matrix.ruby, 'jruby')) }}
+        run: bundle exec --gemfile ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile ${{ matrix.exec_cmd }}
+
+      # Do SaaS coverage uploads first
+      - name: Upload coverage to Coveralls
+        if: ${{ !env.ACT }}
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload coverage to QLTY
+        if: ${{ !env.ACT }}
+        uses: qltysh/qlty-action/coverage@main
+        with:
+          token: ${{secrets.QLTY_COVERAGE_TOKEN}}
+          files: coverage/.resultset.json
+
+      # Build will fail here if coverage upload fails
+      #   which will hopefully be noticed for the lack of code coverage comments
+      - name: Upload coverage to CodeCov
+        if: ${{ !env.ACT }}
+        uses: codecov/codecov-action@v5
+        with:
+          use_oidc: true
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
+
+      # Then PR comments
+      - name: Code Coverage Summary Report
+        if: ${{ !env.ACT && github.event_name == 'pull_request' }}
+        uses: irongut/CodeCoverageSummary@v1.3.0
+        with:
+          filename: ./coverage/coverage.xml
+          badge: true
+          fail_below_min: true
+          format: markdown
+          hide_branch_rate: false
+          hide_complexity: true
+          indicators: true
+          output: both
+          thresholds: '91 85'
+
+      - name: Add Coverage PR Comment
+        if: ${{ !env.ACT && github.event_name == 'pull_request' }}
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          recreate: true
+          path: code-coverage-results.md

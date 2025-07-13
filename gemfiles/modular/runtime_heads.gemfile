@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+# Test against HEAD of runtime dependencies so we can proactively file bugs
+
+# std lib extractions
+eval_gemfile("x_std_libs/vHEAD.gemfile")
+
+# Runtime deps
+eval_gemfile("thor/vHEAD.gemfile")

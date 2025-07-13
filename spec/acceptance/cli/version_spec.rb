@@ -5,7 +5,7 @@ RSpec.describe "CLI", "appraisal version" do
     it "prints out version string" do
       output = run "appraisal version"
 
-      expect(output).to include("Appraisal #{Appraisal::VERSION}")
+      expect(output).to include("Appraisal2 #{Appraisal::VERSION}")
     end
   end
 
@@ -13,7 +13,7 @@ RSpec.describe "CLI", "appraisal version" do
     it "prints out version string" do
       output = run "appraisal -v"
 
-      expect(output).to include("Appraisal #{Appraisal::VERSION}")
+      expect(output).to include("Appraisal2 #{Appraisal::VERSION}")
     end
   end
 
@@ -21,7 +21,7 @@ RSpec.describe "CLI", "appraisal version" do
     it "prints out version string" do
       output = run "appraisal --version"
 
-      expect(output).to include("Appraisal #{Appraisal::VERSION}")
+      expect(output).to include("Appraisal2 #{Appraisal::VERSION}")
     end
   end
 end
