@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "spec_helper"
-
 RSpec.describe "eval_gemfile" do
   before do
     build_appraisal_file

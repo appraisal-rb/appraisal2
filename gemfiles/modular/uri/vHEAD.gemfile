@@ -1,0 +1,2 @@
+# Ruby >= 2.5
+gem "uri", :github => "ruby/uri", :branch => "master"

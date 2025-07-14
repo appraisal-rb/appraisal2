@@ -1,0 +1,2 @@
+# Ruby >= 2.6 (dependency of rails)
+gem "thor", :github => "rails/thor", :branch => "main"

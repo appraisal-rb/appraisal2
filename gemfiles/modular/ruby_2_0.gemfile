@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+gem "activesupport", "~> 4.2.7"
+gem "rack", "~> 1.6.5"
+gem "benchmark", "~> 0.3"
+
+eval_gemfile("thor/r2/v1.2.gemfile")
+
+eval_gemfile("x_std_libs/r2/libs.gemfile")

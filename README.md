@@ -186,7 +186,7 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "appraisal"
+gem "appraisal2"
 ```
 
 Now when you need to update your appraisals:

@@ -12,9 +12,9 @@ RSpec.describe "Bundle with custom path" do
         gem 'appraisal2', :path => #{PROJECT_ROOT.inspect}
 
         if RUBY_VERSION < "1.9"
-          #{File.read(File.join(PROJECT_ROOT, "Gemfile-1.8"))}
+          #{File.read(File.join(PROJECT_ROOT, "spec", "fixtures", "Gemfile-1.8"))}
         elsif RUBY_VERSION < "2.2"
-          #{File.read(File.join(PROJECT_ROOT, "Gemfile-2.1"))}
+          #{File.read(File.join(PROJECT_ROOT, "spec", "fixtures", "Gemfile-2.1"))}
         end
       GEMFILE
 
@@ -43,7 +43,7 @@ RSpec.describe "Bundle with custom path" do
     end
   end
 
-  include_examples "gemfile dependencies are satisfied"
+  it_behaves_like "gemfile dependencies are satisfied"
 
   context "when already installed in vendor/another" do
     before do
@@ -62,6 +62,6 @@ RSpec.describe "Bundle with custom path" do
       run "bundle config unset --local path"
     end
 
-    include_examples "gemfile dependencies are satisfied"
+    it_behaves_like "gemfile dependencies are satisfied"
   end
 end

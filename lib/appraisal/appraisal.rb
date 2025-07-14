@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
+# Std Lib
+require "fileutils"
+require "pathname"
+
+# This gem
 require "appraisal/gemfile"
 require "appraisal/command"
 require "appraisal/customize"
 require "appraisal/utils"
-require "fileutils"
-require "pathname"
 
 module Appraisal
   # Represents one appraisal and its dependencies

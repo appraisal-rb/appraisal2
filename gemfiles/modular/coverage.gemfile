@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+# We run code coverage on the latest version of Ruby only.
+
+# Coverage
+# All coverage gems are listed in gemspec dependencies.
+# But fix in the main branch (https://github.com/dashingrocket/simplecov-cobertura/pull/32)
+#   needed to prevent the circular require warning and stacktrace.
+gem "simplecov-cobertura", :github => "dashingrocket/simplecov-cobertura", :branch => "main"
+
+gem "ostruct", "~> 0.6", ">= 0.6.1" # Ruby >= 2.5
