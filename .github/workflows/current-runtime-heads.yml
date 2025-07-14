@@ -53,7 +53,6 @@ jobs:
           - ruby: "truffleruby"
             gemfile: "dep-heads"
             exec_cmd: "rake test"
-            experimental: true
             rubygems: default
             bundler: default
             experimental: true
@@ -62,7 +61,6 @@ jobs:
           - ruby: "jruby"
             gemfile: "dep-heads"
             exec_cmd: "rake test"
-            experimental: true
             rubygems: default
             bundler: default
             experimental: true
