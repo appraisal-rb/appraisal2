@@ -1,2 +1,2 @@
-eval_gemfile "../../logger/r2/v1.5.gemfile"
-eval_gemfile "../../uri/r2/v0.gemfile"
+eval_gemfile "../../logger/r2/default.gemfile"
+eval_gemfile "../../uri/r2/default.gemfile"

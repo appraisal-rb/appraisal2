@@ -3,8 +3,13 @@
 RSpec.describe "Bundle without group" do
   it "config set --local without group is honored by Bundler" do
     reason = "config set --local without group support seems broken, see: https://github.com/rubygems/rubygems/issues/8518"
+    # The seeming randomness of the below behavior may be due to the many layers of bundler here.
+    # The spec suite itself runs in bundler, and then we further execute bundler within tests.
     # Somehow this spec passes on truffleruby *only*!!
-    pending_for(:engine => "ruby", :reason => reason)
+    # For some reason it is not working on Ruby v3
+    pending_for(:engine => "ruby", :versions => %w(3.0.7 3.1.6 3.2.7 3.3.7 3.4.4), :reason => reason)
+    # And only some versions of Ruby v2
+    pending_for(:engine => "ruby", :versions => %w(2.3.8 2.4.10 2.5.9), :reason => reason)
     pending_for(:engine => "jruby", :reason => reason)
     build_gems %w[pancake orange_juice waffle coffee sausage soda]
 
