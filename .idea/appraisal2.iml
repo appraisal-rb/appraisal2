@@ -1858,7 +1858,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="rubocop-ast (v1.45.1) [path][gem]" type="rubylib">
+      <library name="rubocop-ast (v1.46.0) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -1875,15 +1875,15 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.45.1" />
-          <option name="version" value="1.45.1" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.46.0" />
+          <option name="version" value="1.46.0" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.45.1/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.46.0/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.45.1/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.46.0/lib" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -2494,7 +2494,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="simplecov-html (v0.13.1) [path][gem]" type="rubylib">
+      <library name="simplecov-html (v0.13.2) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -2511,23 +2511,23 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1" />
-          <option name="version" value="0.13.1" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2" />
+          <option name="version" value="0.13.2" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/views" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/public" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/views" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/public" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/views" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/public" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/views" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/public" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/views" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/public" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/views" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/public" />
         </excluded>
       </library>
     </orderEntry>
