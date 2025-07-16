@@ -1,22 +1,60 @@
 # frozen_string_literal: true
 
-# TODO: Switch to require_relative once support for Ruby < 2 is dropped.
-# require_relative "lib/appraisal/version"
-
-lib = File.expand_path("../lib", __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "appraisal/version"
+gem_version =
+  if RUBY_VERSION >= "3.1"
+    # Loading version into an anonymous module allows version.rb to get code coverage from SimpleCov!
+    # See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-2630782358
+    Module.new.tap { |mod| Kernel.load("lib/appraisal/version.rb", mod) }::Appraisal::VERSION
+  else
+    # TODO: Remove this hack once support for Ruby 3.0 and below is removed
+    Kernel.load("lib/appraisal/version.rb")
+    g_ver = Appraisal::VERSION
+    Appraisal.send(:remove_const, :VERSION)
+    g_ver
+  end
 
 Gem::Specification.new do |spec|
   spec.name = "appraisal2"
-  spec.version = Appraisal::VERSION.dup
-  spec.platform = Gem::Platform::RUBY
+  spec.version = gem_version
   spec.authors = ["Peter Boling", "Joe Ferris", "Prem Sichanugrist"]
   spec.email = ["galtzo@floss.com"]
-  spec.homepage = "http://github.com/appraisal-rb/appraisal2"
+
+  # Linux distros often package gems and securely certify them independent
+  #   of the official RubyGem certification process. Allowed via ENV["SKIP_GEM_SIGNING"]
+  # Ref: https://gitlab.com/oauth-xx/version_gem/-/issues/3
+  # Hence, only enable signing if `SKIP_GEM_SIGNING` is not set in ENV.
+  # See CONTRIBUTING.md
+  unless ENV.include?("SKIP_GEM_SIGNING")
+    user_cert = "certs/#{ENV.fetch("GEM_CERT_USER", ENV["USER"])}.pem"
+    cert_file_path = File.join(__dir__, user_cert)
+    cert_chain = cert_file_path.split(",")
+    cert_chain.select! { |fp| File.exist?(fp) }
+    if cert_file_path && cert_chain.any?
+      spec.cert_chain = cert_chain
+      if $PROGRAM_NAME.end_with?("gem") && ARGV[0] == "build"
+        spec.signing_key = File.join(Gem.user_home, ".ssh", "gem-private_key.pem")
+      end
+    end
+  end
+
   spec.summary = "Find out what your Ruby gems are worth"
-  spec.description = 'Appraisal integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals."'
+  spec.description = 'Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals."'
+  gh_mirror = "https://github.com/appraisal-rb/#{spec.name}"
+  gl_homepage = "https://gitlab.com/appraisal-rb/#{spec.name}"
+  spec.homepage = gl_homepage
   spec.license = "MIT"
+  spec.required_ruby_version = ">= 1.8.7"
+
+  spec.metadata["homepage_uri"] = "https://#{spec.name}.galtzo.com/"
+  spec.metadata["source_code_uri"] = "#{gh_mirror}/releases/tag/v#{spec.version}"
+  spec.metadata["changelog_uri"] = "#{gl_homepage}/-/blob/v#{spec.version}/CHANGELOG.md"
+  spec.metadata["bug_tracker_uri"] = "#{gl_homepage}/-/issues"
+  spec.metadata["documentation_uri"] = "https://www.rubydoc.info/gems/#{spec.name}/#{spec.version}"
+  spec.metadata["wiki_uri"] = "#{gl_homepage}/-/wiki"
+  spec.metadata["funding_uri"] = "https://github.com/sponsors/pboling"
+  spec.metadata["news_uri"] = "https://www.railsbling.com/tags/#{spec.name}"
+  spec.metadata["discord_uri"] = "https://discord.gg/3qme4XHNKN"
+  spec.metadata["rubygems_mfa_required"] = "true"
 
   # Specify which files are part of the released package.
   spec.files = Dir[
