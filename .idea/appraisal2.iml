@@ -11,7 +11,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/another" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bundle" />
     </content>
-    <orderEntry type="jdk" jdkName="mise: 3.4.4" jdkType="RUBY_SDK" />
+    <orderEntry type="jdk" jdkName="mise: 3.4.5" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="activesupport (v8.0.2) [path][gem]" type="rubylib">
@@ -1788,6 +1788,36 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="rspec_junit_formatter (v0.6.0) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="rspec_junit_formatter" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rspec_junit_formatter-0.6.0" />
+          <option name="version" value="0.6.0" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rspec_junit_formatter-0.6.0/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rspec_junit_formatter-0.6.0/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="rubocop (v1.75.8) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
@@ -2760,6 +2790,43 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="stone_checksums (v1.0.0) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="stone_checksums" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0" />
+          <option name="version" value="1.0.0" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/exe" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/sig" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/exe" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/sig" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/exe" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="stringio (v3.1.7) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
@@ -3191,6 +3258,6 @@
         </SOURCES>
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.6.9, mise: 3.4.4) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.7.0, mise: 3.4.5) [gem]" level="application" />
   </component>
 </module>
