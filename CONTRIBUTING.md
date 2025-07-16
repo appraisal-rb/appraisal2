@@ -8,7 +8,12 @@ to abide by the thoughtbot [code of conduct].
 1. Fork the repo.
 
 2. Run the tests. We only take pull requests with passing tests, and it's great
-to know that you have a clean slate: `bundle && rake`
+to know that you have a clean slate.  We use `act` to run the tests the same way they run in CI.
+Because there are so many workflows, running `act` naked might grind your machine to a halt.
+Instead you can run a single workflow like this:
+```console
+act -W '.github/workflows/ruby-3-3.yml' 
+```
 
 3. Add a test for your change. Only refactoring and documentation changes
 require no new tests. If you are adding functionality or fixing a bug, we need
