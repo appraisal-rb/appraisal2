@@ -1,0 +1,6 @@
+exclude_paths:
+  - tmp/*
+  - vendor/*
+  - coverage/*
+  - results/*
+  - .bundle/*
