@@ -16,6 +16,7 @@ Appraisal.*.gemfile.lock
 .rspec_status
 /coverage/
 /spec/reports/
+/results/*
 
 # Documentation
 /.yardoc/
