@@ -44,7 +44,9 @@ begin
   require "rspec/core/rake_task"
 
   RSpec::Core::RakeTask.new(:spec)
-  defaults << "spec"
+  # Not adding to defaults, because the coverage task,
+  #   which is in defaults outside CI, will run specs.
+  defaults << "spec" if Kettle::Soup::Cover::IS_CI
 rescue LoadError
   desc("spec task stub")
   task(:spec) do
@@ -100,7 +102,7 @@ begin
   Reek::Rake::Task.new do |t|
     t.fail_on_error = true
     t.verbose = false
-    t.source_files = "{lib,test}/**/*.rb"
+    t.source_files = "{lib,spec}/**/*.rb"
   end
   defaults << "reek" unless is_gitlab
 rescue LoadError
