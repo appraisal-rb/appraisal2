@@ -80,7 +80,7 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          path-to-lcov: ./coverage/coverage.lcov
+          path-to-lcov: ./coverage/lcov.info
 
 
       - name: Upload coverage to QLTY

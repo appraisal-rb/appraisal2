@@ -825,7 +825,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="json (v2.12.2) [path][gem]" type="rubylib">
+      <library name="json (v2.13.0) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -842,20 +842,20 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2" />
-          <option name="version" value="2.12.2" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0" />
+          <option name="version" value="2.13.0" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0/lib" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0/ext" />
         </excluded>
       </library>
     </orderEntry>
@@ -1096,7 +1096,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="nokogiri (v1.18.8) [path][gem]" type="rubylib">
+      <library name="nokogiri (v1.18.9) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -1113,31 +1113,31 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu" />
-          <option name="version" value="1.18.8" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu" />
+          <option name="version" value="1.18.9" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/gumbo-parser" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/gumbo-parser" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/gumbo-parser" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/gumbo-parser" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/gumbo-parser" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/gumbo-parser" />
         </excluded>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="ostruct (v0.6.2) [path][gem]" type="rubylib">
+      <library name="ostruct (v0.6.3) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -1154,20 +1154,20 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2" />
-          <option name="version" value="0.6.2" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3" />
+          <option name="version" value="0.6.3" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3/lib" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3/bin" />
         </excluded>
       </library>
     </orderEntry>
