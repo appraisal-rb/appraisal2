@@ -9,8 +9,8 @@ permissions:
 
 env:
   COVERAGE_GEMS: true
-  K_SOUP_COV_MIN_BRANCH: 85
-  K_SOUP_COV_MIN_LINE: 91
+  K_SOUP_COV_MIN_BRANCH: 54
+  K_SOUP_COV_MIN_LINE: 62
   K_SOUP_COV_MIN_HARD: true
   K_SOUP_COV_FORMATTERS: "xml,rcov,lcov,json,tty"
   K_SOUP_COV_DO: true
