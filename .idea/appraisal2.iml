@@ -10,6 +10,10 @@
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/another" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/.bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor" />
     </content>
     <orderEntry type="jdk" jdkName="mise: 3.4.5" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
