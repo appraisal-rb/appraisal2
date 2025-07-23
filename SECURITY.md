@@ -1,20 +1,21 @@
-<!-- START /templates/security.md -->
 # Security Policy
 
 ## Supported Versions
 
-Only the the latest version of this project is supported at a given time. If
-you find a security issue with an older version, please try updating to the
-latest version first.
+| Version  | Supported |
+|----------|-----------|
+| 1.latest | ✅         |
 
-If for some reason you can't update to the latest version, please let us know
-your reasons so that we can have a better understanding of your situation.
+## Security contact information
 
-## Reporting a Vulnerability
+To report a security vulnerability, please use the
+[Tidelift security contact](https://tidelift.com/security).
+Tidelift will coordinate the fix and disclosure.
 
-For security inquiries or vulnerability reports, visit
-<https://thoughtbot.com/security>.
+## Additional Support
 
-If you have any suggestions to improve this policy, visit <https://thoughtbot.com/security>.
+If you are interested in support for versions older than the latest release,
+please consider sponsoring the project / maintainer @ https://liberapay.com/pboling/donate,
+or find other sponsorship links in the [README].
 
-<!-- END /templates/security.md -->
+[README]: README.md

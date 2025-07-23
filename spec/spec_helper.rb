@@ -24,4 +24,7 @@ rescue LoadError
 end
 
 # This library
+require "appraisal2"
+
+# RSpec support that depends on this library
 require "support/acceptance_test_helpers"

@@ -113,7 +113,7 @@ are used.
 Sharing Modular Gemfiles between Appraisals
 -------
 
-_New for version 3.0_
+_New in appraisal2_ (not possible in thoughtbot's appraisal)
 
 It is common for Appraisals to duplicate sets of gems, and sometimes it
 makes sense to DRY this up into a shared, modular, gemfile.
