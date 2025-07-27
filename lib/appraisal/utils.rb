@@ -54,8 +54,8 @@ module Appraisal
     end
 
     def self.prefix_path(path)
-      if path !~ %r{^(?:/|\S:)} && path !~ %r{^\S+://} && path !~ /^\S+@\S+:/
-        cleaned_path = path.gsub(%r{(^|/)\.(?:/|$)}, '\\1')
+      if path !~ /^(?:\/|\S:)/ && path !~ /^\S+:\/\// && path !~ /^\S+@\S+:/
+        cleaned_path = path.gsub(/(^|\/)\.(?:\/|$)/, "\\1")
         File.join("..", cleaned_path)
       else
         path
