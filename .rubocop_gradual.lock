@@ -13,16 +13,6 @@
     [19, 5, 62, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 4082816720],
     [23, 5, 516, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 2780620929]
   ],
-  "lib/appraisal/utils.rb:3706894031": [
-    [6, 5, 129, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 733338411],
-    [10, 5, 124, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 222857520],
-    [17, 5, 354, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 119295155],
-    [39, 5, 152, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1306460482],
-    [46, 5, 151, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1120325158],
-    [52, 5, 98, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 714993131],
-    [56, 5, 244, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1461524090],
-    [65, 5, 111, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 1909626476]
-  ],
   "spec/acceptance/cli/clean_spec.rb:1564995421": [
     [3, 23, 17, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 1606893221]
   ],
