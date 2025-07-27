@@ -30,7 +30,7 @@ concurrency:
 
 jobs:
   test:
-    name: Tests ${{ matrix.ruby }} with main Gemfile.lock ${{ matrix.name_extra || '' }}
+    name: Tests default rake task with main Gemfile.lock ${{ matrix.name_extra || '' }}
     if: ${{ !contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]') }}
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental }}
