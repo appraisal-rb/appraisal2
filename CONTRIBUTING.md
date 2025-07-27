@@ -21,12 +21,15 @@ Simply follow these instructions:
 6. Push to the branch (`git push origin my-new-feature`)
 7. Make sure to add tests for it. This is important, so it doesn't break in a future release.
 8. Run the at least one workflow of tests via `act`, e.g.,:
-```console
-act -W '.github/workflows/ruby-3-3.yml'
-```
-NOTE: Because there are so many workflows, running `act` naked might grind your machine to a halt.
+    ```console
+    act -W '.github/workflows/ruby-3-3.yml'
+    ```
+    NOTE: Because there are so many workflows, running `act` naked might grind your machine to a halt.
 9. Create new Pull Request.
 10. Announce it in the channel for this org in the [Discord][✉️discord-invite]!
+
+NOTE: Run tests with `act` to have confidence they will pass in CI. 
+      Also, for complex reasons, many specs don't pass locally except when run via `act`.
 
 ## The Reek List
 
@@ -40,11 +43,18 @@ bundle exec reek > REEK
 
 ## Run Tests
 
-To run all tests
+To run all tests against the current Ruby release:
 
 ```console
-bundle exec rake test
+bundle exec rake act
 ```
+
+Or the equivalent:
+
+```console
+act -W '.github/workflows/current.yml'
+```
+NOTE: Because there are so many workflows, running `act` naked might grind your machine to a halt.
 
 ## Lint It
 

@@ -14,7 +14,14 @@ begin
   Kettle::Soup::Cover.install_tasks
   # NOTE: Coverage on CI is configured independent of this task.
   #       This task is for local development, as it opens results in browser
-  defaults << "coverage" unless Kettle::Soup::Cover::IS_CI
+  # Not adding 'coverage' to defaults, because tests run via act (see just below)
+
+  unless Kettle::Soup::Cover::IS_CI
+    desc "Run tests against current Ruby release"
+    task :act do
+      `act -W '.github/workflows/current.yml'`
+    end
+  end
 rescue LoadError
   desc("(stub) coverage is unavailable")
   task("coverage") do
@@ -44,9 +51,7 @@ begin
   require "rspec/core/rake_task"
 
   RSpec::Core::RakeTask.new(:spec)
-  # Not adding to defaults, because the coverage task,
-  #   which is in defaults outside CI, will run specs.
-  defaults << "spec" if !Kettle::Soup::Cover::IS_CI && !defined?(Kettle::Soup::Cover::IS_CI) || Kettle::Soup::Cover::IS_CI
+  # Not adding to defaults, because tests run via act
 rescue LoadError
   desc("spec task stub")
   task(:spec) do
