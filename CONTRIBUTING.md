@@ -28,7 +28,7 @@ Simply follow these instructions:
 9. Create new Pull Request.
 10. Announce it in the channel for this org in the [Discord][✉️discord-invite]!
 
-NOTE: Run tests with `act` to have confidence they will pass in CI. 
+NOTE: Run tests with `act` to have confidence they will pass in CI.
       Also, for complex reasons, many specs don't pass locally except when run via `act`.
 
 ## The Reek List
