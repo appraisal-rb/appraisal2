@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# NOTE: Disable this RuboCop rule to use RUBY_VERSION to determine how to get the gem's version
+# rubocop:disable Gemspec/RubyVersionGlobalsUsage
 gem_version =
   if RUBY_VERSION >= "3.1"
     # Loading version into an anonymous module allows version.rb to get code coverage from SimpleCov!
@@ -12,6 +14,7 @@ gem_version =
     Appraisal.send(:remove_const, :VERSION)
     g_ver
   end
+# rubocop:enable Gemspec/RubyVersionGlobalsUsage
 
 Gem::Specification.new do |spec|
   spec.name = "appraisal2"
