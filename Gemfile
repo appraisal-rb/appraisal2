@@ -61,9 +61,6 @@ elsif current_ruby_version < Gem::Version.new("3.3")
 elsif current_ruby_version < Gem::Version.new("3.4")
   eval_gemfile("gemfiles/modular/ruby-3-3.gemfile")
 elsif current_minor_ruby.eql?(latest_ruby_version)
-  # Only runs on the latest Ruby
-  eval_gemfile("gemfiles/modular/current.gemfile")
-
   if is_ci
     if ENV.fetch("DEP_HEADS", "false").casecmp("true") == 0
       eval_gemfile("gemfiles/modular/dep_heads.gemfile")
@@ -85,6 +82,8 @@ elsif current_minor_ruby.eql?(latest_ruby_version)
     eval_gemfile("gemfiles/modular/documentation.gemfile")
     ### Linting
     eval_gemfile("gemfiles/modular/style.gemfile")
+
+    eval_gemfile("gemfiles/modular/current.gemfile")
   end
 elsif current_minor_ruby > latest_ruby_version
   eval_gemfile("gemfiles/modular/heads.gemfile")

@@ -10,8 +10,12 @@
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/another" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/.bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor" />
     </content>
-    <orderEntry type="jdk" jdkName="mise: 3.4.4" jdkType="RUBY_SDK" />
+    <orderEntry type="jdk" jdkName="mise: 3.4.5" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="activesupport (v8.0.2) [path][gem]" type="rubylib">
@@ -41,6 +45,44 @@
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/activesupport-8.0.2/lib" />
         </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="ansi (v1.5.0) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="ansi" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ansi-1.5.0" />
+          <option name="version" value="1.5.0" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ansi-1.5.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ansi-1.5.0/demo" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ansi-1.5.0/test" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ansi-1.5.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ansi-1.5.0/demo" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ansi-1.5.0/test" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ansi-1.5.0/demo" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ansi-1.5.0/test" />
+        </excluded>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
@@ -706,7 +748,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="erb (v5.0.1) [path][gem]" type="rubylib">
+      <library name="erb (v5.0.2) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -723,32 +765,32 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1" />
-          <option name="version" value="5.0.1" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2" />
+          <option name="version" value="5.0.2" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/_doc" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/.github" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/libexec" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/_doc" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/.github" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/libexec" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/_doc" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/.github" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/libexec" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/_doc" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/.github" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/libexec" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/_doc" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/.github" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.1/libexec" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/_doc" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/.github" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/erb-5.0.2/libexec" />
         </excluded>
       </library>
     </orderEntry>
@@ -783,7 +825,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="json (v2.12.2) [path][gem]" type="rubylib">
+      <library name="json (v2.13.0) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -800,21 +842,53 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2" />
-          <option name="version" value="2.12.2" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0" />
+          <option name="version" value="2.13.0" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0/lib" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.12.2/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/json-2.13.0/ext" />
         </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="kettle-soup-cover (v1.0.10) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="kettle-soup-cover" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/kettle-soup-cover-1.0.10" />
+          <option name="version" value="1.0.10" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/kettle-soup-cover-1.0.10/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/kettle-soup-cover-1.0.10/sig" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/kettle-soup-cover-1.0.10/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/kettle-soup-cover-1.0.10/sig" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
@@ -1022,7 +1096,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="nokogiri (v1.18.8) [path][gem]" type="rubylib">
+      <library name="nokogiri (v1.18.9) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -1039,31 +1113,31 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu" />
-          <option name="version" value="1.18.8" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu" />
+          <option name="version" value="1.18.9" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/gumbo-parser" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/gumbo-parser" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/gumbo-parser" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/gumbo-parser" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.8-x86_64-linux-gnu/gumbo-parser" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/nokogiri-1.18.9-x86_64-linux-gnu/gumbo-parser" />
         </excluded>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="ostruct (v0.6.2) [path][gem]" type="rubylib">
+      <library name="ostruct (v0.6.3) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -1080,20 +1154,20 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2" />
-          <option name="version" value="0.6.2" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3" />
+          <option name="version" value="0.6.3" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3/lib" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/ostruct-0.6.3/bin" />
         </excluded>
       </library>
     </orderEntry>
@@ -1718,6 +1792,36 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="rspec_junit_formatter (v0.6.0) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="rspec_junit_formatter" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rspec_junit_formatter-0.6.0" />
+          <option name="version" value="0.6.0" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rspec_junit_formatter-0.6.0/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rspec_junit_formatter-0.6.0/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="rubocop (v1.75.8) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
@@ -1758,7 +1862,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="rubocop-ast (v1.45.1) [path][gem]" type="rubylib">
+      <library name="rubocop-ast (v1.46.0) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -1775,15 +1879,15 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.45.1" />
-          <option name="version" value="1.45.1" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.46.0" />
+          <option name="version" value="1.46.0" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.45.1/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.46.0/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.45.1/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/rubocop-ast-1.46.0/lib" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -2321,7 +2425,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="simplecov-cobertura (v2.1.1.pre.dev) [path][gem]" type="rubylib">
+      <library name="simplecov-cobertura (v3.0.0) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -2332,39 +2436,69 @@
             </AdditionalInfo>
           </option>
           <option name="fromPath" value="true" />
-          <option name="git" value="true" />
           <option name="name" value="simplecov-cobertura" />
-          <option name="ref" value="b72eacdeab8b" />
           <option name="requirePaths">
             <list>
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b" />
-          <option name="version" value="2.1.1.pre.dev" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-cobertura-3.0.0" />
+          <option name="version" value="3.0.0" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/.git" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/test" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/.github" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-cobertura-3.0.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-cobertura-3.0.0/test" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-cobertura-3.0.0/.github" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/.git" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/test" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/.github" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-cobertura-3.0.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-cobertura-3.0.0/test" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-cobertura-3.0.0/.github" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/.git" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/test" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/bundler/gems/simplecov-cobertura-b72eacdeab8b/.github" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-cobertura-3.0.0/test" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-cobertura-3.0.0/.github" />
         </excluded>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="simplecov-html (v0.13.1) [path][gem]" type="rubylib">
+      <library name="simplecov-console (v0.9.3) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="simplecov-console" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-console-0.9.3" />
+          <option name="version" value="0.9.3" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-console-0.9.3/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-console-0.9.3/test" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-console-0.9.3/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-console-0.9.3/test" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-console-0.9.3/test" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="simplecov-html (v0.13.2) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -2381,23 +2515,102 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1" />
-          <option name="version" value="0.13.1" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2" />
+          <option name="version" value="0.13.2" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/views" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/public" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/views" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/public" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/views" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/public" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/views" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/public" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/views" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.1/public" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/views" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-html-0.13.2/public" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="simplecov-lcov (v0.8.0) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="simplecov-lcov" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-lcov-0.8.0" />
+          <option name="version" value="0.8.0" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-lcov-0.8.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-lcov-0.8.0/spec" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-lcov-0.8.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-lcov-0.8.0/spec" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-lcov-0.8.0/spec" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="simplecov-rcov (v0.3.7) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="simplecov-rcov" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7" />
+          <option name="version" value="0.3.7" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/etc" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/test" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/views" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/assets" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/etc" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/test" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/views" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/assets" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/etc" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/test" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/views" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/simplecov-rcov-0.3.7/assets" />
         </excluded>
       </library>
     </orderEntry>
@@ -2581,6 +2794,43 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="stone_checksums (v1.0.0) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="stone_checksums" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0" />
+          <option name="version" value="1.0.0" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/exe" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/sig" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/exe" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/sig" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stone_checksums-1.0.0/exe" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="stringio (v3.1.7) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
@@ -2615,6 +2865,44 @@
         <excluded>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stringio-3.1.7/ext" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/stringio-3.1.7/docs" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="terminal-table (v4.0.0) [path][gem]" type="rubylib">
+        <properties>
+          <option name="additionalInfo">
+            <AdditionalInfo>
+              <option name="authors" value="N/A" />
+              <option name="email" value="N/A" />
+              <option name="homepage" value="N/A" />
+              <option name="summary" value="N/A" />
+            </AdditionalInfo>
+          </option>
+          <option name="fromPath" value="true" />
+          <option name="name" value="terminal-table" />
+          <option name="requirePaths">
+            <list>
+              <option value="lib" />
+            </list>
+          </option>
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/terminal-table-4.0.0" />
+          <option name="version" value="4.0.0" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/terminal-table-4.0.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/terminal-table-4.0.0/.github" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/terminal-table-4.0.0/examples" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/terminal-table-4.0.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/terminal-table-4.0.0/.github" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/terminal-table-4.0.0/examples" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/terminal-table-4.0.0/.github" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.4.0/gems/terminal-table-4.0.0/examples" />
         </excluded>
       </library>
     </orderEntry>
@@ -2974,5 +3262,6 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v2.7.0, mise: 3.4.5) [gem]" level="application" />
   </component>
 </module>
