@@ -1,8 +1,9 @@
-#### IMPORTANT #######################################################
-# Gemfile is for local development ONLY; Gemfile is NOT loaded in CI #
-####################################################### IMPORTANT ####
-# On CI we only need the gemspecs' dependencies (including development dependencies).
-# Exceptions, if any, such as for Appraisals, are in gemfiles/*.gemfile
+#### IMPORTANT ##############################################################
+# Gemfile is for local development, not CI,                                 #
+#   except for the Kitchen Sink workflow (kitchen.yml).                     #
+# Dependencies from gemspecs (including development dependencies) are used, #
+#   with additions (managed by appraisal2) in gemfiles/*.gemfile            #
+####################################################### IMPORTANT ###########
 
 source "https://rubygems.org"
 
@@ -33,35 +34,36 @@ if !is_ci && ENV.fetch("DEBUG", "false").casecmp("true") == 0
 end
 
 if current_ruby_version < Gem::Version.new("1.9")
-  eval_gemfile("gemfiles/modular/ruby-1-8.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_1_8.gemfile")
 elsif current_ruby_version < Gem::Version.new("2.0")
-  eval_gemfile("gemfiles/modular/ruby-1-9.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_1_9.gemfile")
 elsif current_ruby_version < Gem::Version.new("2.1")
-  eval_gemfile("gemfiles/modular/ruby-2-0.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_2_0.gemfile")
 elsif current_ruby_version < Gem::Version.new("2.2")
-  eval_gemfile("gemfiles/modular/ruby-2-1.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_2_1.gemfile")
 elsif current_ruby_version < Gem::Version.new("2.3")
-  eval_gemfile("gemfiles/modular/ruby-2-2.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_2_2.gemfile")
 elsif current_ruby_version < Gem::Version.new("2.4")
-  eval_gemfile("gemfiles/modular/ruby-2-3.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_2_3.gemfile")
 elsif current_ruby_version < Gem::Version.new("2.5")
-  eval_gemfile("gemfiles/modular/ruby-2-4.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_2_4.gemfile")
 elsif current_ruby_version < Gem::Version.new("2.6")
-  eval_gemfile("gemfiles/modular/ruby-2-5.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_2_5.gemfile")
 elsif current_ruby_version < Gem::Version.new("2.7")
-  eval_gemfile("gemfiles/modular/ruby-2-6.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_2_6.gemfile")
 elsif current_ruby_version < Gem::Version.new("3.0")
-  eval_gemfile("gemfiles/modular/ruby-2-7.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_2_7.gemfile")
 elsif current_ruby_version < Gem::Version.new("3.1")
-  eval_gemfile("gemfiles/modular/ruby-3-0.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_3_0.gemfile")
 elsif current_ruby_version < Gem::Version.new("3.2")
-  eval_gemfile("gemfiles/modular/ruby-3-1.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_3_1.gemfile")
 elsif current_ruby_version < Gem::Version.new("3.3")
-  eval_gemfile("gemfiles/modular/ruby-3-2.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_3_2.gemfile")
 elsif current_ruby_version < Gem::Version.new("3.4")
-  eval_gemfile("gemfiles/modular/ruby-3-3.gemfile")
+  eval_gemfile("gemfiles/modular/ruby_3_3.gemfile")
 elsif current_minor_ruby.eql?(latest_ruby_version)
-  if is_ci
+  # Set KITCHEN_SINK: true in workflows/kitchen.yml to get the same Gemfile.lock used for local development.
+  if ENV.fetch("KITCHEN_SINK", "false").casecmp("false") == 0 && is_ci
     if ENV.fetch("DEP_HEADS", "false").casecmp("true") == 0
       eval_gemfile("gemfiles/modular/dep_heads.gemfile")
     elsif ENV.fetch("AUDIT_GEMS", "false").casecmp("true") == 0
