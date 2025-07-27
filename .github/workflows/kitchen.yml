@@ -8,13 +8,6 @@ permissions:
 
 env:
   KITCHEN_SINK: true
-  K_SOUP_COV_MIN_BRANCH: 54
-  K_SOUP_COV_MIN_LINE: 62
-  K_SOUP_COV_MIN_HARD: false
-  K_SOUP_COV_FORMATTERS: "tty"
-  K_SOUP_COV_DO: true
-  K_SOUP_COV_MULTI_FORMATTERS: true
-  K_SOUP_COV_COMMAND_NAME: "Kitchen Sink"
 
 on:
   push:

@@ -46,7 +46,7 @@ begin
   RSpec::Core::RakeTask.new(:spec)
   # Not adding to defaults, because the coverage task,
   #   which is in defaults outside CI, will run specs.
-  defaults << "spec" if !defined?(Kettle::Soup::Cover::IS_CI) || Kettle::Soup::Cover::IS_CI
+  defaults << "spec" if !Kettle::Soup::Cover::IS_CI && !defined?(Kettle::Soup::Cover::IS_CI) || Kettle::Soup::Cover::IS_CI
 rescue LoadError
   desc("spec task stub")
   task(:spec) do
@@ -104,7 +104,7 @@ begin
     t.verbose = false
     t.source_files = "{lib,spec}/**/*.rb"
   end
-  defaults << "reek" unless is_gitlab
+  defaults << "reek" unless is_gitlab || Kettle::Soup::Cover::IS_CI
 rescue LoadError
   desc("(stub) reek is unavailable")
   task(:reek) do
