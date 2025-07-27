@@ -92,13 +92,15 @@ jobs:
 
       # Build will fail here if coverage upload fails
       #   which will hopefully be noticed for the lack of code coverage comments
-      - name: Upload coverage to CodeCov
-        if: ${{ !env.ACT }}
-        uses: codecov/codecov-action@v5
-        with:
-          use_oidc: true
-          fail_ci_if_error: true # optional (default = false)
-          verbose: true # optional (default = false)
+      # For some reason the appraisal-rb GH org isn't recognized by CodeCov.
+      # See: https://github.com/codecov/engineering-team/issues/3593
+#      - name: Upload coverage to CodeCov
+#        if: ${{ !env.ACT }}
+#        uses: codecov/codecov-action@v5
+#        with:
+#          use_oidc: true
+#          fail_ci_if_error: true # optional (default = false)
+#          verbose: true # optional (default = false)
 
       # Then PR comments
       - name: Code Coverage Summary Report
