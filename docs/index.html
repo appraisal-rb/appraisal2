@@ -221,6 +221,64 @@ local location or vendoring plugins is not fully supported. If you do not want t
 pollute the global namespace, one alternative is<br>
 <a href="http://rvm.io/gemsets">RVM’s Gemsets</a>.</p>
 
+<h3 id="in-the-wild">In the wild</h3>
+
+<p>Appraisal2 can be setup to achieve many different things, from testing against<br>
+different versions of services, like MySQL, Redis, or Memcached, and their drivers,<br>
+different versions of gems, different platforms, and running different types of validations<br>
+which each require a distinct set of gems.<br>
+It can also help developers to follow the <a href="https://github.com/rubygems/bundler-site/pull/501">official recommendation</a> (since 2017) of the bundler team,<br>
+to commit the [main] <code>Gemfile.lock</code> for <strong>both</strong> apps <strong>and</strong> gems. It does this by giving you alternate gemfiles that won’t have their <code>gemfiles/*.gemfile.lock</code> committed, so you can simply commit the main one without breaking CI.</p>
+
+<p>Having so many different use cases means it can be helpful to others to see how you have done your implementation. If you are willing to spend the time documenting, please send a PR to update this table with another Appraisal2-using project, linking to the specific workflows people can check to see how it is done!</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>gem name</th>
+      <th>stars / rank</th>
+      <th>commit Gemfile.lock</th>
+      <th>services</th>
+      <th>latest gem deps</th>
+      <th>gem deps @ HEAD</th>
+      <th>Old MRI</th>
+      <th>HEADs</th>
+      <th>os platforms</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><a href="https://github.com/omniauth/omniauth-identity">omniauth-identity</a></td>
+      <td>
+<a href="https://github.com/omniauth/omniauth-identity"><img src="https://img.shields.io/github/stars/omniauth/omniauth-identity" alt="Star"></a><br><a href="https://www.ruby-toolbox.com/projects/omniauth-identity"><img src="https://img.shields.io/gem/rd/omniauth-identity.svg" alt="Rank"></a>
+</td>
+      <td><a href="https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/kitchen.yml"><img src="https://github.com/omniauth/omniauth-identity/actions/workflows/kitchen.yml/badge.svg" alt=".lock"></a></td>
+      <td><a href="https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current-svc-adapters.yml"><img src="https://github.com/omniauth/omniauth-identity/actions/workflows/current-svc-adapters.yml/badge.svg" alt="Secs"></a></td>
+      <td><a href="https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current.yml"><img src="https://github.com/omniauth/omniauth-identity/actions/workflows/current.yml/badge.svg" alt="Current"></a></td>
+      <td><a href="https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current-runtime-heads.yml"><img src="https://github.com/omniauth/omniauth-identity/actions/workflows/current-runtime-heads.yml/badge.svg" alt="Deps@HEAD"></a></td>
+      <td><a href="https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/supported.yml"><img src="https://github.com/omniauth/omniauth-identity/actions/workflows/supported.yml/badge.svg" alt="Old"></a></td>
+      <td><a href="https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/heads.yml"><img src="https://github.com/omniauth/omniauth-identity/actions/workflows/heads.yml/badge.svg" alt="Head"></a></td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><a href="https://github.com/pboling/rspec-stubbed_env">rspec-stubbed_env</a></td>
+      <td>
+<a href="https://github.com/pboling/rspec-stubbed_env"><img src="https://img.shields.io/github/stars/pboling/rspec-stubbed_env" alt="Star"></a><br><a href="https://www.ruby-toolbox.com/projects/rspec-stubbed_env"><img src="https://img.shields.io/gem/rd/rspec-stubbed_env.svg" alt="Rank"></a>
+</td>
+      <td><a href="https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/kitchen.yml"><img src="https://github.com/pboling/rspec-stubbed_env/actions/workflows/kitchen.yml/badge.svg" alt=".lock"></a></td>
+      <td>❌</td>
+      <td><a href="https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/current.yml"><img src="https://github.com/pboling/rspec-stubbed_env/actions/workflows/current.yml/badge.svg" alt="Current"></a></td>
+      <td>❌</td>
+      <td><a href="https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/supported.yml"><img src="https://github.com/pboling/rspec-stubbed_env/actions/workflows/supported.yml/badge.svg" alt="Old"></a></td>
+      <td><a href="https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/heads.yml"><img src="https://github.com/pboling/rspec-stubbed_env/actions/workflows/heads.yml/badge.svg" alt="Head"></a></td>
+      <td>❌</td>
+    </tr>
+  </tbody>
+</table>
+
 <h3 id="-secure-installation">🔒 Secure Installation</h3>
 
 <p><code>appraisal2</code> is cryptographically signed, and has verifiable <a href="https://gitlab.com/appraisal-rb/appraisal2/-/tree/main/checksums">SHA-256 and SHA-512</a> checksums by<br>
@@ -684,7 +742,7 @@ Once fixed, these should look much nicer.
 </div></div>
 
       <div id="footer">
-  Generated on Sun Jul 27 23:25:56 2025 by
+  Generated on Mon Jul 28 11:17:19 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
