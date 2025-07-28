@@ -534,9 +534,9 @@ P.S. If you need help️, or want to say thanks, 👇 Join the Discord.
 
 [✇bundle-group-pattern]: https://gist.github.com/pboling/4564780
 [⛳️gem-namespace]: https://github.com/appraisal-rb/appraisal2
-[⛳️namespace-img]: https://img.shields.io/badge/namespace-Kettle%3A%3ASoup%3A%3ACover-brightgreen.svg?style=flat&logo=ruby&logoColor=white
+[⛳️namespace-img]: https://img.shields.io/badge/namespace-Appraisal-brightgreen.svg?style=flat&logo=ruby&logoColor=white
 [⛳️gem-name]: https://rubygems.org/gems/appraisal2
-[⛳️name-img]: https://img.shields.io/badge/name-kettle--soup--cover-brightgreen.svg?style=flat&logo=rubygems&logoColor=red
+[⛳️name-img]: https://img.shields.io/badge/name-appraisal2-brightgreen.svg?style=flat&logo=rubygems&logoColor=red
 [🚂bdfl-blog]: http://www.railsbling.com/tags/appraisal2
 [🚂bdfl-blog-img]: https://img.shields.io/badge/blog-railsbling-0093D0.svg?style=for-the-badge&logo=rubyonrails&logoColor=orange
 [🚂bdfl-contact]: http://www.railsbling.com/contact
