@@ -42,7 +42,7 @@
     <orderEntry type="library" scope="PROVIDED" name="dry-types (v1.8.3, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erb (v5.0.2, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.14.7, mise: 3.4.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="json (v2.13.1, mise: 3.4.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="json (v2.13.2, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kettle-soup-cover (v1.0.10, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kramdown (v2.5.1, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kramdown-parser-gfm (v1.1.0, mise: 3.4.5) [gem]" level="application" />
@@ -76,7 +76,6 @@
     <orderEntry type="library" scope="PROVIDED" name="rubocop-gradual (v0.3.6, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-lts (v0.1.1, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-md (v1.2.4, mise: 3.4.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rubocop-minitest (v0.38.1, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-packaging (v0.6.0, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-performance (v1.25.0, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubocop-rake (v0.7.1, mise: 3.4.5) [gem]" level="application" />
