@@ -5,7 +5,31 @@
 #   BUNDLE_GEMFILE=Appraisal.root.gemfile bundle exec appraisal update
 #   bundle exec rake rubocop_gradual:autocorrect
 # NOTE: We do not run specs with appraisals, because that's appraisal-inception.
-#       Instead, BUNDLE_GEMFILE in each CI run targets an appraisal.
+#       Instead, BUNDLE_GEMFILE in each CI workflow (except deps_locked.yml) targets an appraisal.
+
+# Lock/Unlock Deps Pattern
+#
+# Two often conflicting goals resolved!
+#
+#  - deps_unlocked.yml
+#    - All runtime & dev dependencies, but does not have a `gemfiles/*.gemfile.lock` committed
+#    - Uses an Appraisal2 "deps_unlocked" gemfile, and the current MRI Ruby release
+#    - Know when new dependency releases will break local dev with unlocked dependencies
+#    - Broken workflow indicates that new releases of dependencies may not work
+#
+#  - deps_locked.yml
+#    - All runtime & dev dependencies, and has a `Gemfile.lock` committed
+#    - Uses the project's main Gemfile, and the current MRI Ruby release
+#    - Matches what contributors and maintainers use locally for development
+#    - Broken workflow indicates that a new contributor will have a bad time
+#
+appraise "deps_unlocked" do
+  eval_gemfile("modular/audit.gemfile")
+  eval_gemfile("modular/coverage.gemfile")
+  eval_gemfile("modular/current.gemfile")
+  eval_gemfile("modular/documentation.gemfile")
+  eval_gemfile("modular/style.gemfile")
+end
 
 # Used for HEAD (nightly) releases of ruby, truffleruby, and jruby.
 # Split into discrete appraisals if one of them needs a dependency locked discretely.
