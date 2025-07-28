@@ -1,6 +1,6 @@
 #### IMPORTANT ##############################################################
 # Gemfile is for local development, not CI,                                 #
-#   except for the Kitchen Sink workflow (kitchen.yml).                     #
+#   except for the Kitchen Sink workflow (deps_locked.yml).                     #
 # Dependencies from gemspecs (including development dependencies) are used, #
 #   with additions (managed by appraisal2) in gemfiles/*.gemfile            #
 ####################################################### IMPORTANT ###########
@@ -62,7 +62,7 @@ elsif current_ruby_version < Gem::Version.new("3.3")
 elsif current_ruby_version < Gem::Version.new("3.4")
   eval_gemfile("gemfiles/modular/ruby_3_3.gemfile")
 elsif current_minor_ruby.eql?(latest_ruby_version)
-  # Set KITCHEN_SINK: true in workflows/kitchen.yml to get the same Gemfile.lock used for local development.
+  # Set KITCHEN_SINK: true in workflows/deps_locked.yml to get the same Gemfile.lock used for local development.
   if ENV.fetch("KITCHEN_SINK", "false").casecmp("false") == 0 && is_ci
     if ENV.fetch("DEP_HEADS", "false").casecmp("true") == 0
       eval_gemfile("gemfiles/modular/dep_heads.gemfile")
@@ -80,12 +80,12 @@ elsif current_minor_ruby.eql?(latest_ruby_version)
     eval_gemfile("gemfiles/modular/audit.gemfile")
     ### Test Coverage
     eval_gemfile("gemfiles/modular/coverage.gemfile")
+    ### Std Libs and other deps for current MRI release
+    eval_gemfile("gemfiles/modular/current.gemfile")
     ### Documentation
     eval_gemfile("gemfiles/modular/documentation.gemfile")
     ### Linting
     eval_gemfile("gemfiles/modular/style.gemfile")
-
-    eval_gemfile("gemfiles/modular/current.gemfile")
   end
 elsif current_minor_ruby > latest_ruby_version
   eval_gemfile("gemfiles/modular/heads.gemfile")
