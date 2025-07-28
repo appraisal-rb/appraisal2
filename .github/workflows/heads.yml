@@ -49,12 +49,12 @@ jobs:
             experimental: true
 
 #          # truffleruby-head
-          - ruby: "truffleruby-head"
-            gemfile: "heads"
-            exec_cmd: "rake test"
-            rubygems: default
-            bundler: default
-            experimental: true
+#          - ruby: "truffleruby-head"
+#            gemfile: "heads"
+#            exec_cmd: "rake test"
+#            rubygems: default
+#            bundler: default
+#            experimental: true
 
           # jruby-head
           - ruby: "jruby-head"
@@ -62,7 +62,7 @@ jobs:
             exec_cmd: "rake test"
             rubygems: default
             bundler: default
-            experimental: false
+            experimental: true
 
     steps:
       - name: Checkout
