@@ -1,12 +1,12 @@
 <p align="center">
   <a href="https://discord.gg/3qme4XHNKN" target="_blank" rel="noopener">
-    <img width="124px" src="https://github.com/galtzo-floss/shields-badge/raw/main/docs/images/logo/galtzo-floss-logos-original.svg?raw=true" alt="Galtzo.com Logo by Aboling0, CC BY-SA 4.0">
+    <img width="120px" src="https://github.com/galtzo-floss/shields-badge/raw/main/docs/images/logo/galtzo-floss-logos-original.svg?raw=true" alt="Galtzo.com Logo by Aboling0, CC BY-SA 4.0">
   </a>
   <a href="https://appraisal2.galtzo.com" target="_blank" rel="noopener">
-    <img width="124px" src="https://github.com/appraisal-rb/appraisal2/raw/main/docs/images/logo/Appraisal2.svg?raw=true" alt="appraisal2 Logo by Aboling0, CC BY-SA 4.0">
+    <img width="120px" src="https://github.com/appraisal-rb/appraisal2/raw/main/docs/images/logo/LoupeAppraiser.svg?raw=true" alt="appraisal-rb Logo by Aboling0, CC BY-SA 4.0">
   </a>
   <a href="https://www.ruby-lang.org/" target="_blank" rel="noopener">
-    <img width="124px" src="https://github.com/galtzo-floss/shields-badge/raw/main/docs/images/logo/ruby-logo-198px.svg?raw=true" alt="Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5">
+    <img width="120px" src="https://github.com/galtzo-floss/shields-badge/raw/main/docs/images/logo/ruby-logo-198px.svg?raw=true" alt="Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5">
   </a>
 </p>
 
@@ -22,7 +22,7 @@
 
 [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi] [![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
 
-## Synopsis
+## 🌻 Synopsis
 
 Appraisal2 integrates with bundler and rake to test your library against
 different versions of dependencies in repeatable scenarios called "appraisals."
