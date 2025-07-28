@@ -116,7 +116,6 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Release Tasks
-  spec.add_development_dependency("rake", "~> 13.0")           # Ruby >= 2.3.0
   spec.add_development_dependency("stone_checksums", "~> 1.0") # Ruby >= 2.2.0
 
   # Testing

@@ -292,7 +292,6 @@ DEPENDENCIES
   kramdown (~> 2.5, >= 2.5.1)
   kramdown-parser-gfm (~> 1.1)
   logger (~> 1.7)
-  rake (~> 13.0)
   rdoc (~> 6.11)
   reek (~> 6.4)
   rspec (~> 3.13)
