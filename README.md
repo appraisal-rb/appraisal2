@@ -84,7 +84,7 @@ pollute the global namespace, one alternative is
 ### In the wild
 
 Appraisal2 can be setup to achieve many different things, from testing against
-different versions of services, like MySQL, Redis, or Memcached, and their drivers, 
+different versions of services, like MySQL, Redis, or Memcached, and their drivers,
 different versions of gems, different platforms, and running different types of validations
 which each require a distinct set of gems.
 It can also help developers to follow the [official recommendation](https://github.com/rubygems/bundler-site/pull/501) (since 2017) of the bundler team,
