@@ -92,21 +92,33 @@ to commit the \[main\] `Gemfile.lock` for **both** apps **and** gems. It does th
 
 Having so many different use cases means it can be helpful to others to see how you have done your implementation. If you are willing to spend the time documenting, please send a PR to update this table with another Appraisal2-using project, linking to the specific workflows people can check to see how it is done!
 
-| # | gem name                  | stars / rank                                     | commit Gemfile.lock       | services               | gem deps                                               | Rubies                                            | os platforms |
-|---|---------------------------|--------------------------------------------------|---------------------------|------------------------|--------------------------------------------------------|---------------------------------------------------|--------------|
-| 1 | [omniauth-identity][1-gh] | [![Star][1-⭐️i]][1-gh]<br>[![Rank][1-🔢i]][1-🧰] | [![.lock][1-🔒️i]][1-🔒️] | [![Secs][1-⚙️i]][1-⚙️] | [![Current][1-⏰i]][1-⏰]<br>[![Deps@HEAD][1-👟i]][1-👟] | [![Old][1-👴i]][1-👴]<br>[![Head][1-🗣️i]][1-🗣️] | ❌            |
-| 2 | [rspec-stubbed_env][2-gh] | [![Star][2-⭐️i]][2-gh]<br>[![Rank][2-🔢i]][2-🧰] | [![.lock][2-🔒️i]][2-🔒️] | ❌                      | [![Current][2-⏰i]][2-⏰]                                | [![Old][2-👴i]][2-👴]<br>[![Head][2-🗣️i]][2-🗣️] | ❌            |
+| # | gem name                  | stars / rank                                     | locked / unlocked deps                                   | services                                                                                                                                       | versioned / HEAD deps                                                           | Rubies                                                                     | os platforms |
+|---|---------------------------|--------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------|--------------|
+| 1 | [omniauth-identity][1-gh] | [![Star][1-⭐️i]][1-gh]<br>[![Rank][1-🔢i]][1-🧰] | [![🔒️][1-🔒️i]][1-🔒️]<br>[![un🔒️][1-un🔒️i]][1-un🔒️] | [![Svcs][1-⚙️i]][1-⚙️]<br>[![L-Svcs][1-l⚙️i]][1-l⚙️]<br>[![S-Svcs][1-s⚙️i]][1-s⚙️]<br>[![U-Svcs][1-u⚙️i]][1-u⚙️]<br>[![U-Svcs][1-a⚙️i]][1-a⚙️] | [![Current][1-⏰i]][1-⏰]<br>[![Deps@HEAD][1-👟i]][1-👟] | [![Old][1-👴i]][1-👴]<br>[![JRuby][1-ji]][1-j]<br>[![Head][1-🗣️i]][1-🗣️] | ❌            |
+| 2 | [rspec-stubbed_env][2-gh] | [![Star][2-⭐️i]][2-gh]<br>[![Rank][2-🔢i]][2-🧰] | [![🔒️][2-🔒️i]][2-🔒️]<br>[![un🔒️][2-un🔒️i]][2-un🔒️] | ❌                                                                                                                                              | [![Current][2-⏰i]][2-⏰]                                                         | [![Old][2-👴i]][2-👴]<br>[![Head][2-🗣️i]][2-🗣️]                          | ❌            |
 
 [1-gh]: https://github.com/omniauth/omniauth-identity
 [1-🧰]: https://www.ruby-toolbox.com/projects/omniauth-identity
 [1-⭐️i]: https://img.shields.io/github/stars/omniauth/omniauth-identity
 [1-🔢i]: https://img.shields.io/gem/rd/omniauth-identity.svg
-[1-🔒️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/kitchen.yml
-[1-🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/kitchen.yml/badge.svg
+[1-🔒️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/deps_locked.yml
+[1-🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/deps_locked.yml/badge.svg
+[1-un🔒️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/deps_unlocked.yml
+[1-un🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/deps_unlocked.yml/badge.svg
 [1-⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current-svc-adapters.yml
 [1-⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current-svc-adapters.yml/badge.svg
+[1-l⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/legacy-svc-adapters.yml
+[1-l⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/legacy-svc-adapters.yml/badge.svg
+[1-s⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/supported-svc-adapters.yml
+[1-s⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/supported-svc-adapters.yml/badge.svg
+[1-u⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/unsupported-svc-adapters.yml
+[1-u⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/unsupported-svc-adapters.yml/badge.svg
+[1-a⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/ancient-svc-adapters.yml
+[1-a⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/ancient-svc-adapters.yml/badge.svg
 [1-⏰]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current.yml
 [1-⏰i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current.yml/badge.svg
+[1-j]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/jruby.yml
+[1-ji]: https://github.com/omniauth/omniauth-identity/actions/workflows/jruby.yml/badge.svg
 [1-👟]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current-runtime-heads.yml
 [1-👟i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current-runtime-heads.yml/badge.svg
 [1-👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/supported.yml
@@ -119,8 +131,10 @@ Having so many different use cases means it can be helpful to others to see how 
 [2-🧰]: https://www.ruby-toolbox.com/projects/rspec-stubbed_env
 [2-⭐️i]: https://img.shields.io/github/stars/pboling/rspec-stubbed_env
 [2-🔢i]: https://img.shields.io/gem/rd/rspec-stubbed_env.svg
-[2-🔒️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/kitchen.yml
-[2-🔒️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/kitchen.yml/badge.svg
+[2-🔒️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/deps_locked.yml
+[2-🔒️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/deps_locked.yml/badge.svg
+[2-un🔒️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/deps_unlocked.yml
+[2-un🔒️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/deps_unlocked.yml/badge.svg
 [2-⏰]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/current.yml
 [2-⏰i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/current.yml/badge.svg
 [2-👴]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/supported.yml
