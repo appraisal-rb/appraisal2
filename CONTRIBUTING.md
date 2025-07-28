@@ -29,7 +29,9 @@ Simply follow these instructions:
 10. Announce it in the channel for this org in the [Discord][✉️discord-invite]!
 
 NOTE: Run tests with `act` to have confidence they will pass in CI.
-      Also, for complex reasons, many specs don't pass locally except when run via `act`.
+      Also, because the spec run makes many changes to local bundle config,
+      many specs will fail locally in subsequent runs unless run via `act`.
+      The spec suite is not idempotent.  This is a goal for the future, if you'd like to work on it.
 
 ## The Reek List
 

@@ -72,16 +72,31 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
 <h3 id="fixed">Fixed</h3>
 <h3 id="security">Security</h3>
 
-<h2 id="300---2025-08-01">
-<a href="https://gitlab.com/appraisal-rb/appraisal2/-/compare/602cdd9b5f8cb8f36992733422f69312b172f427...v3.0.0">3.0.0</a> - 2025-08-01</h2>
+<h2 id="300---2025-07-27">
+<a href="https://gitlab.com/appraisal-rb/appraisal2/-/compare/602cdd9b5f8cb8f36992733422f69312b172f427...v3.0.0">3.0.0</a> - 2025-07-27</h2>
 <ul>
-  <li>Initial release as hard fork, from <a href="https://github.com/thoughtbot/appraisal/commit/602cdd9b5f8cb8f36992733422f69312b172f427">appraisal v3.0.0.rc1</a>, with many improvements - by @pboling</li>
+  <li>Initial release as hard fork, from <a href="https://github.com/thoughtbot/appraisal/commit/602cdd9b5f8cb8f36992733422f69312b172f427">appraisal v3.0.0.rc1</a>, with many improvements - by @pboling
+    <ul>
+      <li>support for <code>eval_gemfile</code>
+</li>
+      <li>support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot’s <code>appraisal</code>)
+        <ul>
+          <li>NOTE: The <a href="https://github.com/ruby/setup-ruby">setup-ruby GH Action</a> only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI. Compatibility is assumed thanks to <a href="https://github.com/rubocop-lts/rubocop-lts">![Enforced Code Style Linter][💎rlts-img]</a> enforcing the syntax for the oldest supported Ruby, which is Ruby v1.8. File a bug if you find something broken.</li>
+        </ul>
+      </li>
+      <li>Support for JRuby 9.4+</li>
+      <li>updated and improved documentation</li>
+      <li>maintainability tracked with QLTY.sh and the reek gem</li>
+      <li>code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem</li>
+      <li>other minor fixes and improvements</li>
+    </ul>
+  </li>
 </ul>
 
 </div></div>
 
       <div id="footer">
-  Generated on Sun Jul 27 20:58:49 2025 by
+  Generated on Sun Jul 27 21:13:34 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
