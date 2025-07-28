@@ -16,7 +16,7 @@
   "spec/acceptance/cli/clean_spec.rb:1564995421": [
     [3, 23, 17, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 1606893221]
   ],
-  "spec/acceptance/cli/generate_spec.rb:3842740582": [
+  "spec/acceptance/cli/generate_spec.rb:4234038420": [
     [3, 23, 20, "RSpec/DescribeMethod: The second argument to describe should be the method being tested. '#instance' or '.class'.", 3905826443]
   ],
   "spec/acceptance/cli/help_spec.rb:3569358941": [
@@ -45,7 +45,7 @@
     [56, 7, 77, "RSpec/NestedGroups: Maximum example group nesting exceeded [4/3].", 1960750461],
     [64, 11, 7, "RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.", 1892732441]
   ],
-  "spec/appraisal/appraisal_spec.rb:3208649742": [
+  "spec/appraisal/appraisal_spec.rb:566301468": [
     [32, 11, 23, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 2511581329],
     [89, 11, 23, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1120511218],
     [94, 7, 83, "RSpec/ReceiveMessages: Use `receive_messages` instead of multiple stubs on lines [95].", 1453890366],
