@@ -16,7 +16,7 @@
 
 - You, possibly
 
-[![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![Depfu][🔑depfui♻️]][🔑depfu] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![CodeCov Test Coverage][🔑codecovi♻️]][🔑codecov] [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf]
+[![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![Depfu][🔑depfui♻️]][🔑depfu] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf]
 
 ---
 
@@ -588,8 +588,8 @@ P.S. If you need help️, or want to say thanks, 👇 Join the Discord.
 [👽versioni]: https://img.shields.io/gem/v/appraisal2.svg
 [🔑qlty-mnt]: https://qlty.sh/gh/appraisal-rb/projects/appraisal2
 [🔑qlty-mnti]: https://qlty.sh/gh/appraisal-rb/projects/appraisal2/maintainability.svg
-[🔑qlty-cov]: https://qlty.sh/gh/appraisal-rb/projects/appraisal2
-[🔑qlty-covi]: https://qlty.sh/gh/appraisal-rb/projects/appraisal2/test_coverage.svg
+[🔑qlty-cov]: https://qlty.sh/gh/appraisal-rb/projects/appraisal2/metrics/code?sort=coverageRating
+[🔑qlty-covi]: https://qlty.sh/gh/appraisal-rb/projects/appraisal2/coverage.svg
 [🔑codecov]: https://codecov.io/gh/appraisal-rb/appraisal2
 [🔑codecovi♻️]: https://codecov.io/gh/appraisal-rb/appraisal2/branch/main/graph/badge.svg?token=0X5VEW9USD
 [🔑coveralls]: https://coveralls.io/github/appraisal-rb/appraisal2?branch=main
