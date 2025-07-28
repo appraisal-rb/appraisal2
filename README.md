@@ -30,13 +30,16 @@ Appraisal2 is designed to make it easy to check for regressions in your library
 without interfering with day-to-day development using Bundler.
 
 Appraisal2 is a hard fork of the venerable appraisal gem,
-which thoughtbot maintained for many years - many thanks to them.
+which thoughtbot maintained for many years.
+Many thanks to [thoughtbot](https://github.com/thoughtbot/),
+and [Joe Ferris](https://github.com/jferris), the original author!
 
 Appraisal2 adds:
 
 - support for `eval_gemfile`
 - support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot's `appraisal`)
   - NOTE: The [setup-ruby GH Action](https://github.com/ruby/setup-ruby) only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI, but compatibility is assumed, and syntax for the oldest supported Ruby, which is Ruby version 1.8, is enforced with [![Enforced Code Style Linter][💎rlts-img]][💎rlts]. File a bug if you find something broken.
+- Support for JRuby 9.4+
 - updated and improved documentation
 - many other fixes and improvements. See [CHANGELOG](CHANGELOG.md) for details.
 
@@ -471,7 +474,7 @@ the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
 For example:
 
 ```ruby
-spec.add_dependency("appraisal2", "~> 1.0")
+spec.add_dependency("appraisal2", "~> 3.0")
 ```
 
 See [CHANGELOG.md][📌changelog] for a list of releases.
@@ -485,7 +488,6 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
 ### © Copyright
 
 <ul>
-    <li>Copyright (c) 2010-2013 Joe Ferris and thoughtbot, inc.</li>
     <li>
         Copyright (c) 2024-2025 Peter H. Boling, of
         <a href="https://discord.gg/3qme4XHNKN">
@@ -495,6 +497,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
             </picture>
         </a>, and Appraisal2 contributors
     </li>
+    <li>Copyright (c) 2010-2013 Joe Ferris and thoughtbot, inc.</li>
 </ul>
 
 ## 🤑 One more thing
