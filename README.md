@@ -85,16 +85,17 @@ pollute the global namespace, one alternative is
 
 Appraisal2 can be setup to achieve many different things, from testing against
 different versions of services, like MySQL, Redis, or Memcached, and their drivers, 
-different versions of gems, different platforms, etc.
+different versions of gems, different platforms, and running different types of validations
+which each require a distinct set of gems.
 It can also help developers to follow the [official recommendation](https://github.com/rubygems/bundler-site/pull/501) (since 2017) of the bundler team,
-to commit the \[main\] Gemfile.lock for both apps and gems. It does this by giving you alternate gemfiles that won't have their gemfile.lock committed, so you can simply commit the main one without breaking CI.
+to commit the \[main\] `Gemfile.lock` for **both** apps **and** gems. It does this by giving you alternate gemfiles that won't have their `gemfiles/*.gemfile.lock` committed, so you can simply commit the main one without breaking CI.
 
-Having so many different use cases means it can be helpful to others to see how you have done your implementation. Please send a PR to update this table with another Appraisal2-using project!
+Having so many different use cases means it can be helpful to others to see how you have done your implementation. If you are willing to spend the time documenting, please send a PR to update this table with another Appraisal2-using project, linking to the specific workflows people can check to see how it is done!
 
 | # | gem name                  | stars                  | rank                   | commit Gemfile.lock       | services               | latest gem deps         | gem deps @ HEAD             | Old MRI               | HEADs                    | os platforms |
 |---|---------------------------|------------------------|------------------------|---------------------------|------------------------|-------------------------|-----------------------------|-----------------------|--------------------------|--------------|
 | 1 | [omniauth-identity][1-gh] | [![Star][1-⭐️i]][1-gh] | [![Rank][1-🔢i]][1-🧰] | [![.lock][1-🔒️i]][1-🔒️] | [![Secs][1-⚙️i]][1-⚙️] | [![Current][1-⏰i]][1-⏰] | [![Deps@HEAD][1-👟i]][1-👟] | [![Old][1-👴i]][1-👴] | [![Head][1-🗣️i]][1-🗣️] | ❌            |
-|   |                           |                        |                        |                           |                        |                         |                             |                       |                          |              |
+| 2 | [rspec-stubbed_env][2-gh] | [![Star][2-⭐️i]][2-gh] | [![Rank][2-🔢i]][2-🧰] | [![.lock][2-🔒️i]][2-🔒️] | ❌                      | [![Current][2-⏰i]][2-⏰] | ❌                           | [![Old][2-👴i]][2-👴] | [![Head][2-🗣️i]][2-🗣️] | ❌            |
 
 [1-gh]: https://github.com/omniauth/omniauth-identity
 [1-🧰]: https://www.ruby-toolbox.com/projects/omniauth-identity
@@ -104,14 +105,28 @@ Having so many different use cases means it can be helpful to others to see how 
 [1-🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/kitchen.yml/badge.svg
 [1-⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current-svc-adapters.yml
 [1-⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current-svc-adapters.yml/badge.svg
-[1-⏰]: https://github.com/omniauth/omniauth-identity/actions/workflows/current.yml
+[1-⏰]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current.yml
 [1-⏰i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current.yml/badge.svg
-[1-👟]: https://github.com/omniauth/omniauth-identity/actions/workflows/current-runtime-heads.yml
+[1-👟]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current-runtime-heads.yml
 [1-👟i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current-runtime-heads.yml/badge.svg
-[1-👴]: https://github.com/omniauth/omniauth-identity/actions/workflows/supported.yml
+[1-👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/supported.yml
 [1-👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/supported.yml/badge.svg
-[1-🗣️]: https://github.com/omniauth/omniauth-identity/actions/workflows/heads.yml
+[1-🗣️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/heads.yml
 [1-🗣️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/heads.yml/badge.svg
+[1-gh]: https://github.com/omniauth/omniauth-identity
+
+[2-gh]: https://github.com/pboling/rspec-stubbed_env
+[2-🧰]: https://www.ruby-toolbox.com/projects/rspec-stubbed_env
+[2-⭐️i]: https://img.shields.io/github/stars/pboling/rspec-stubbed_env
+[2-🔢i]: https://img.shields.io/gem/rd/rspec-stubbed_env.svg
+[2-🔒️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/kitchen.yml
+[2-🔒️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/kitchen.yml/badge.svg
+[2-⏰]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/current.yml
+[2-⏰i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/current.yml/badge.svg
+[2-👴]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/supported.yml
+[2-👴i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/supported.yml/badge.svg
+[2-🗣️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/heads.yml
+[2-🗣️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/heads.yml/badge.svg
 
 ### 🔒 Secure Installation
 
