@@ -92,10 +92,10 @@ to commit the \[main\] `Gemfile.lock` for **both** apps **and** gems. It does th
 
 Having so many different use cases means it can be helpful to others to see how you have done your implementation. If you are willing to spend the time documenting, please send a PR to update this table with another Appraisal2-using project, linking to the specific workflows people can check to see how it is done!
 
-| # | gem name                  | stars / rank                                     | commit Gemfile.lock       | services               | latest gem deps         | gem deps @ HEAD             | Old MRI               | HEADs                    | os platforms |
-|---|---------------------------|--------------------------------------------------|---------------------------|------------------------|-------------------------|-----------------------------|-----------------------|--------------------------|--------------|
-| 1 | [omniauth-identity][1-gh] | [![Star][1-⭐️i]][1-gh]<br>[![Rank][1-🔢i]][1-🧰] | [![.lock][1-🔒️i]][1-🔒️] | [![Secs][1-⚙️i]][1-⚙️] | [![Current][1-⏰i]][1-⏰] | [![Deps@HEAD][1-👟i]][1-👟] | [![Old][1-👴i]][1-👴] | [![Head][1-🗣️i]][1-🗣️] | ❌            |
-| 2 | [rspec-stubbed_env][2-gh] | [![Star][2-⭐️i]][2-gh]<br>[![Rank][2-🔢i]][2-🧰] | [![.lock][2-🔒️i]][2-🔒️] | ❌                      | [![Current][2-⏰i]][2-⏰] | ❌                           | [![Old][2-👴i]][2-👴] | [![Head][2-🗣️i]][2-🗣️] | ❌            |
+| # | gem name                  | stars / rank                                     | commit Gemfile.lock       | services               | gem deps                                               | Old MRI               | HEADs                    | os platforms |
+|---|---------------------------|--------------------------------------------------|---------------------------|------------------------|--------------------------------------------------------|-----------------------|--------------------------|--------------|
+| 1 | [omniauth-identity][1-gh] | [![Star][1-⭐️i]][1-gh]<br>[![Rank][1-🔢i]][1-🧰] | [![.lock][1-🔒️i]][1-🔒️] | [![Secs][1-⚙️i]][1-⚙️] | [![Current][1-⏰i]][1-⏰]<br>[![Deps@HEAD][1-👟i]][1-👟] | [![Old][1-👴i]][1-👴] | [![Head][1-🗣️i]][1-🗣️] | ❌            |
+| 2 | [rspec-stubbed_env][2-gh] | [![Star][2-⭐️i]][2-gh]<br>[![Rank][2-🔢i]][2-🧰] | [![.lock][2-🔒️i]][2-🔒️] | ❌                      | [![Current][2-⏰i]][2-⏰]                                | [![Old][2-👴i]][2-👴] | [![Head][2-🗣️i]][2-🗣️] | ❌            |
 
 [1-gh]: https://github.com/omniauth/omniauth-identity
 [1-🧰]: https://www.ruby-toolbox.com/projects/omniauth-identity
