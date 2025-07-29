@@ -81,7 +81,60 @@ local location or vendoring plugins is not fully supported. If you do not want t
 pollute the global namespace, one alternative is
 [RVM's Gemsets](http://rvm.io/gemsets).
 
-### In the wild
+### 🔒 Secure Installation
+
+`appraisal2` is cryptographically signed, and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
+[stone_checksums][💎stone_checksums]. Be sure the gem you install hasn’t been tampered with
+by following the instructions below.
+
+Add my public key (if you haven’t already, expires 2045-04-29) as a trusted certificate:
+
+```console
+gem cert --add <(curl -Ls https://raw.github.com/appraisal-rb/appraisal2/main/certs/pboling.pem)
+```
+
+You only need to do that once.  Then proceed to install with:
+
+```console
+gem install appraisal2 -P MediumSecurity
+```
+
+The `MediumSecurity` trust profile will verify signed gems, but allow the installation of unsigned dependencies.
+
+This is necessary because not all of `appraisal2`’s dependencies are signed, so we cannot use `HighSecurity`.
+
+If you want to up your security game full-time:
+
+```console
+bundle config set --global trust-policy MediumSecurity
+```
+
+NOTE: Be prepared to track down certs for signed gems and add them the same way you added mine.
+
+## 🔧 Basic Setup
+
+Setting up appraisal2 requires an `Appraisals` file (similar to a `Gemfile`) in
+your project root, named "Appraisals" (note the case), and some slight changes
+to your project's `Rakefile`.
+
+An `Appraisals` file consists of several appraisal definitions. An appraisal
+definition is simply a list of gem dependencies. For example, to test with a
+few versions of Rails:
+
+    appraise "rails-3" do
+      gem "rails", "3.2.14"
+    end
+
+    appraise "rails-4" do
+      gem "rails", "4.0.0"
+    end
+
+The dependencies in your `Appraisals` file are combined with dependencies in
+your `Gemfile`, so you don't need to repeat anything that's the same for each
+appraisal. If something is specified in both the Gemfile and an appraisal, the
+version from the appraisal takes precedence.
+
+### Examples of usage in the wild
 
 Appraisal2 can be setup to achieve many different things, from testing against
 different versions of services, like MySQL, Redis, or Memcached, and their drivers,
@@ -141,59 +194,6 @@ Having so many different use cases means it can be helpful to others to see how 
 [2-👴i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/supported.yml/badge.svg
 [2-🗣️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/heads.yml
 [2-🗣️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/heads.yml/badge.svg
-
-### 🔒 Secure Installation
-
-`appraisal2` is cryptographically signed, and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
-[stone_checksums][💎stone_checksums]. Be sure the gem you install hasn’t been tampered with
-by following the instructions below.
-
-Add my public key (if you haven’t already, expires 2045-04-29) as a trusted certificate:
-
-```console
-gem cert --add <(curl -Ls https://raw.github.com/appraisal-rb/appraisal2/main/certs/pboling.pem)
-```
-
-You only need to do that once.  Then proceed to install with:
-
-```console
-gem install appraisal2 -P MediumSecurity
-```
-
-The `MediumSecurity` trust profile will verify signed gems, but allow the installation of unsigned dependencies.
-
-This is necessary because not all of `appraisal2`’s dependencies are signed, so we cannot use `HighSecurity`.
-
-If you want to up your security game full-time:
-
-```console
-bundle config set --global trust-policy MediumSecurity
-```
-
-NOTE: Be prepared to track down certs for signed gems and add them the same way you added mine.
-
-## 🔧 Basic Setup
-
-Setting up appraisal2 requires an `Appraisals` file (similar to a `Gemfile`) in
-your project root, named "Appraisals" (note the case), and some slight changes
-to your project's `Rakefile`.
-
-An `Appraisals` file consists of several appraisal definitions. An appraisal
-definition is simply a list of gem dependencies. For example, to test with a
-few versions of Rails:
-
-    appraise "rails-3" do
-      gem "rails", "3.2.14"
-    end
-
-    appraise "rails-4" do
-      gem "rails", "4.0.0"
-    end
-
-The dependencies in your `Appraisals` file are combined with dependencies in
-your `Gemfile`, so you don't need to repeat anything that's the same for each
-appraisal. If something is specified in both the Gemfile and an appraisal, the
-version from the appraisal takes precedence.
 
 ## ⚒️ Basic Usage
 
