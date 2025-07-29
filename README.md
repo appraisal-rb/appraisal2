@@ -145,10 +145,11 @@ to commit the \[main\] `Gemfile.lock` for **both** apps **and** gems. It does th
 
 Having so many different use cases means it can be helpful to others to see how you have done your implementation. If you are willing to spend the time documenting, please send a PR to update this table with another Appraisal2-using project, linking to the specific workflows people can check to see how it is done!
 
-| # | gem name                  | stars / rank                                     | locked / unlocked deps                                   | services                                                                                                                                       | versioned / HEAD deps                                                           | Rubies                                                                     | os platforms |
-|---|---------------------------|--------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|----------------------------------------------------------------------------|--------------|
-| 1 | [omniauth-identity][1-gh] | [![Star][1-⭐️i]][1-gh]<br>[![Rank][1-🔢i]][1-🧰] | [![🔒️][1-🔒️i]][1-🔒️]<br>[![un🔒️][1-un🔒️i]][1-un🔒️] | [![Svcs][1-⚙️i]][1-⚙️]<br>[![L-Svcs][1-l⚙️i]][1-l⚙️]<br>[![S-Svcs][1-s⚙️i]][1-s⚙️]<br>[![U-Svcs][1-u⚙️i]][1-u⚙️]<br>[![U-Svcs][1-a⚙️i]][1-a⚙️] | [![Current][1-⏰i]][1-⏰]<br>[![Deps@HEAD][1-👟i]][1-👟] | [![Old][1-👴i]][1-👴]<br>[![JRuby][1-ji]][1-j]<br>[![Head][1-🗣️i]][1-🗣️] | ❌            |
-| 2 | [rspec-stubbed_env][2-gh] | [![Star][2-⭐️i]][2-gh]<br>[![Rank][2-🔢i]][2-🧰] | [![🔒️][2-🔒️i]][2-🔒️]<br>[![un🔒️][2-un🔒️i]][2-un🔒️] | ❌                                                                                                                                              | [![Current][2-⏰i]][2-⏰]                                                         | [![Old][2-👴i]][2-👴]<br>[![Head][2-🗣️i]][2-🗣️]                          | ❌            |
+| # | gem                                                                           | locked / unlocked deps                                   | analysis / services                                                                                                                                                                                                                                            | SemVer / HEAD deps                                     | Rubies                                                                                                                                                                                                                | os |
+|---|-------------------------------------------------------------------------------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----|
+| 1 | [omniauth-identity][1-gh]<br>[![Star][1-⭐️i]][1-gh]<br>[![Rank][1-🔢i]][1-🧰] | [![🔒️][1-🔒️i]][1-🔒️]<br>[![un🔒️][1-un🔒️i]][1-un🔒️] | [![Style][1-as⚙️i]][1-as⚙️]<br>[![Coverage][1-ac⚙️i]][1-ac⚙️]<br>[![Svcs][1-sc⚙️i]][1-sc⚙️]<br>[![L-Svcs][1-sl⚙️i]][1-sl⚙️]<br>[![S-Svcs][1-ss⚙️i]][1-ss⚙️]<br>[![U-Svcs][1-su⚙️i]][1-su⚙️]<br>[![A-Svcs][1-sa⚙️i]][1-sa⚙️]<br>[![J-Svcs][1-sj⚙️i]][1-sj⚙️]<br>[![AJ-Svcs][1-saj⚙️i]][1-saj⚙️] | [![Current][1-⏰i]][1-⏰]<br>[![Deps@HEAD][1-👟i]][1-👟] | [![Supported][1-👴i]][1-👴]<br>[![Unsupported][1-u👴i]][1-u👴]<br>[![Legacy][1-l👴i]][1-l👴]<br>[![Ancient][1-a👴i]][1-a👴]<br>[![JRuby][1-ji]][1-j]<br>[![JRuby Ancient][1-ja👴i]][1-ja👴]<br>[![Head][1-🗣️i]][1-🗣️] | ❌  |
+| 2 | [rspec-stubbed_env][2-gh]<br>[![Star][2-⭐️i]][2-gh]<br>[![Rank][2-🔢i]][2-🧰] | [![🔒️][2-🔒️i]][2-🔒️]<br>[![un🔒️][2-un🔒️i]][2-un🔒️] | [![Style][2-as⚙️i]][2-as⚙️]<br>[![Coverage][2-ac⚙️i]][2-ac⚙️]                                                                                                                                                                                                  | [![Current][2-⏰i]][2-⏰]                                | [![Supported][2-👴i]][2-👴]<br>[![Unsupported][2-u👴i]][2-u👴]<br>[![Legacy][2-l👴i]][2-l👴]<br>[![Ancient][2-a👴i]][2-a👴]<br>[![JRuby][2-ji]][2-j]<br>[![Truffle][2-ti]][2-t]<br>[![Head][2-🗣️i]][2-🗣️]           | ❌  |
+| 3 | [silent_stream][3-gh]<br>[![Star][3-⭐️i]][3-gh]<br>[![Rank][3-🔢i]][3-🧰]     | [![🔒️][3-🔒️i]][3-🔒️]<br>[![un🔒️][3-un🔒️i]][3-un🔒️] | [![Style][3-as⚙️i]][3-as⚙️]<br>[![Coverage][3-ac⚙️i]][3-ac⚙️]                                                                                                                                                                                                  | [![Current][3-⏰i]][3-⏰]                                | [![Supported][3-👴i]][3-👴]<br>[![Unsupported][3-u👴i]][3-u👴]<br>[![Legacy][3-l👴i]][3-l👴]<br>[![Ancient][3-a👴i]][3-a👴]<br>[![JRuby][3-ji]][3-j]<br>[![Truffle][3-ti]][3-t]<br>[![Head][3-🗣️i]][3-🗣️]           | ❌  |
 
 [1-gh]: https://github.com/omniauth/omniauth-identity
 [1-🧰]: https://www.ruby-toolbox.com/projects/omniauth-identity
@@ -158,16 +159,24 @@ Having so many different use cases means it can be helpful to others to see how 
 [1-🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/deps_locked.yml/badge.svg
 [1-un🔒️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/deps_unlocked.yml
 [1-un🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/deps_unlocked.yml/badge.svg
-[1-⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current-svc-adapters.yml
-[1-⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current-svc-adapters.yml/badge.svg
-[1-l⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/legacy-svc-adapters.yml
-[1-l⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/legacy-svc-adapters.yml/badge.svg
-[1-s⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/supported-svc-adapters.yml
-[1-s⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/supported-svc-adapters.yml/badge.svg
-[1-u⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/unsupported-svc-adapters.yml
-[1-u⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/unsupported-svc-adapters.yml/badge.svg
-[1-a⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/ancient-svc-adapters.yml
-[1-a⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/ancient-svc-adapters.yml/badge.svg
+[1-as⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/style.yml
+[1-as⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/style.yml/badge.svg
+[1-ac⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/coverage.yml
+[1-ac⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/coverage.yml/badge.svg
+[1-sc⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current-svc-adapters.yml
+[1-sc⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current-svc-adapters.yml/badge.svg
+[1-sl⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/legacy-svc-adapters.yml
+[1-sl⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/legacy-svc-adapters.yml/badge.svg
+[1-ss⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/supported-svc-adapters.yml
+[1-ss⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/supported-svc-adapters.yml/badge.svg
+[1-su⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/unsupported-svc-adapters.yml
+[1-su⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/unsupported-svc-adapters.yml/badge.svg
+[1-sa⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/ancient-svc-adapters.yml
+[1-sa⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/ancient-svc-adapters.yml/badge.svg
+[1-sj⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/jruby-svc-adapters.yml
+[1-sj⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/jruby-svc-adapters.yml/badge.svg
+[1-saj⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/jruby-ancient-svc-adapters.yml
+[1-saj⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/jruby-ancient-svc-adapters.yml/badge.svg
 [1-⏰]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current.yml
 [1-⏰i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current.yml/badge.svg
 [1-j]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/jruby.yml
@@ -176,6 +185,14 @@ Having so many different use cases means it can be helpful to others to see how 
 [1-👟i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current-runtime-heads.yml/badge.svg
 [1-👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/supported.yml
 [1-👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/supported.yml/badge.svg
+[1-u👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/unsupported.yml
+[1-u👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/unsupported.yml/badge.svg
+[1-l👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/legacy.yml
+[1-l👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/legacy.yml/badge.svg
+[1-a👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/ancient.yml
+[1-a👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/ancient.yml/badge.svg
+[1-ja👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/jruby-ancient.yml
+[1-ja👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/jruby-ancient.yml/badge.svg
 [1-🗣️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/heads.yml
 [1-🗣️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/heads.yml/badge.svg
 [1-gh]: https://github.com/omniauth/omniauth-identity
@@ -188,12 +205,55 @@ Having so many different use cases means it can be helpful to others to see how 
 [2-🔒️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/deps_locked.yml/badge.svg
 [2-un🔒️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/deps_unlocked.yml
 [2-un🔒️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/deps_unlocked.yml/badge.svg
+[2-as⚙️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/style.yml
+[2-as⚙️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/style.yml/badge.svg
+[2-ac⚙️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/coverage.yml
+[2-ac⚙️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/coverage.yml/badge.svg
 [2-⏰]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/current.yml
 [2-⏰i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/current.yml/badge.svg
+[2-j]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/jruby.yml
+[2-ji]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/jruby.yml/badge.svg
+[2-t]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/truffle.yml
+[2-ti]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/truffle.yml/badge.svg
 [2-👴]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/supported.yml
 [2-👴i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/supported.yml/badge.svg
+[2-u👴]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/unsupported.yml
+[2-u👴i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/unsupported.yml/badge.svg
+[2-l👴]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/legacy.yml
+[2-l👴i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/legacy.yml/badge.svg
+[2-a👴]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/ancient.yml
+[2-a👴i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/ancient.yml/badge.svg
 [2-🗣️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/heads.yml
 [2-🗣️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/heads.yml/badge.svg
+
+[3-gh]: https://github.com/pboling/silent_stream
+[3-🧰]: https://www.ruby-toolbox.com/projects/silent_stream
+[3-⭐️i]: https://img.shields.io/github/stars/pboling/silent_stream
+[3-🔢i]: https://img.shields.io/gem/rd/silent_stream.svg
+[3-🔒️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/deps_locked.yml
+[3-🔒️i]: https://github.com/pboling/silent_stream/actions/workflows/deps_locked.yml/badge.svg
+[3-un🔒️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/deps_unlocked.yml
+[3-un🔒️i]: https://github.com/pboling/silent_stream/actions/workflows/deps_unlocked.yml/badge.svg
+[3-as⚙️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/style.yml
+[3-as⚙️i]: https://github.com/pboling/silent_stream/actions/workflows/style.yml/badge.svg
+[3-ac⚙️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/coverage.yml
+[3-ac⚙️i]: https://github.com/pboling/silent_stream/actions/workflows/coverage.yml/badge.svg
+[3-⏰]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/current.yml
+[3-⏰i]: https://github.com/pboling/silent_stream/actions/workflows/current.yml/badge.svg
+[3-j]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/jruby.yml
+[3-ji]: https://github.com/pboling/silent_stream/actions/workflows/jruby.yml/badge.svg
+[3-t]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/truffle.yml
+[3-ti]: https://github.com/pboling/silent_stream/actions/workflows/truffle.yml/badge.svg
+[3-👴]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/supported.yml
+[3-👴i]: https://github.com/pboling/silent_stream/actions/workflows/supported.yml/badge.svg
+[3-u👴]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/unsupported.yml
+[3-u👴i]: https://github.com/pboling/silent_stream/actions/workflows/unsupported.yml/badge.svg
+[3-l👴]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/legacy.yml
+[3-l👴i]: https://github.com/pboling/silent_stream/actions/workflows/legacy.yml/badge.svg
+[3-a👴]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/ancient.yml
+[3-a👴i]: https://github.com/pboling/silent_stream/actions/workflows/ancient.yml/badge.svg
+[3-🗣️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/heads.yml
+[3-🗣️i]: https://github.com/pboling/silent_stream/actions/workflows/heads.yml/badge.svg
 
 ## ⚒️ Basic Usage
 
