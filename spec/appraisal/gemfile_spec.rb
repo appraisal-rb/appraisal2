@@ -4,7 +4,7 @@ require "appraisal/gemfile"
 require "active_support/core_ext/string/strip"
 
 RSpec.describe Appraisal::Gemfile do
-  include StreamHelpers
+  include SilentStream
 
   it "supports gemfiles without sources" do
     gemfile = described_class.new

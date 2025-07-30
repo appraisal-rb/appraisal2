@@ -87,7 +87,7 @@ RSpec.describe Appraisal::Appraisal do
   end
 
   context "parallel installation" do
-    include StreamHelpers
+    include SilentStream
 
     before do
       @appraisal = described_class.new("fake", "fake")

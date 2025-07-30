@@ -3,10 +3,10 @@
 # External Libraries
 require "active_support/core_ext/string/strip"
 require "rspec/pending_for"
+require "silent_stream"
 
 # RSpec Support
 require "support/dependency_helpers"
-require "support/stream_helpers"
 
 # RSpec Configs
 require "config/byebug"

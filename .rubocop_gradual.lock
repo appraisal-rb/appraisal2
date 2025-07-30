@@ -45,7 +45,7 @@
     [56, 7, 77, "RSpec/NestedGroups: Maximum example group nesting exceeded [4/3].", 1960750461],
     [64, 11, 7, "RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.", 1892732441]
   ],
-  "spec/appraisal/appraisal_spec.rb:566301468": [
+  "spec/appraisal/appraisal_spec.rb:2671416576": [
     [32, 11, 23, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 2511581329],
     [89, 11, 23, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1120511218],
     [94, 7, 83, "RSpec/ReceiveMessages: Use `receive_messages` instead of multiple stubs on lines [95].", 1453890366],
@@ -72,7 +72,7 @@
     [67, 7, 85, "RSpec/ReceiveMessages: Use `receive_messages` instead of multiple stubs on lines [64, 65, 66].", 3874694796],
     [71, 7, 7, "RSpec/NamedSubject: Name your test subject if you need to reference it explicitly.", 1892732441]
   ],
-  "spec/appraisal/gemfile_spec.rb:2966428452": [
+  "spec/appraisal/gemfile_spec.rb:2008126072": [
     [227, 11, 17, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 3608128140],
     [228, 13, 13, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 420381022],
     [235, 13, 15, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 3511037132],
@@ -90,8 +90,5 @@
   ],
   "spec/support/acceptance_test_helpers.rb:3908433317": [
     [149, 5, 32, "Style/InvertibleUnlessCondition: Prefer `if $?.exitstatus == 0` over `unless $?.exitstatus != 0`.", 4187517264]
-  ],
-  "spec/support/stream_helpers.rb:3654818709": [
-    [10, 17, 4, "Security/Eval: The use of `eval` is a serious security risk.", 2087429787]
   ]
 }
