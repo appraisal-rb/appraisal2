@@ -68,7 +68,7 @@ jobs:
     steps:
       - name: Checkout
         if: ${{ !env.ACT || !startsWith(matrix.ruby, 'jruby') }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT || !startsWith(matrix.ruby, 'jruby') }}
