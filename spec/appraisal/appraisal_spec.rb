@@ -94,6 +94,9 @@ RSpec.describe Appraisal::Appraisal do
       allow(@appraisal).to receive(:gemfile_path).and_return("/home/test/test directory")
       allow(@appraisal).to receive(:project_root).and_return(Pathname.new("/home/test"))
       allow(Appraisal::Command).to receive(:new).and_return(double(:run => true))
+      # Stub Bundler.settings[:path] to return nil by default (no custom path set)
+      # This prevents the env hash from being added to Command.new calls
+      allow(Bundler.settings).to receive(:[]).with(:path).and_return(nil)
     end
 
     it "runs single install command on Bundler < 1.4.0" do

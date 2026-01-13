@@ -71,6 +71,28 @@ module AcceptanceTestHelpers
     BUNDLER_ENVIRONMENT_VARIABLES.each do |key|
       ENV[key] = nil
     end
+    # Remove vendor/bundle bin paths from PATH to prevent conflicts with test binstubs
+    # Bundler 4.0+ adds vendor/bundle/ruby/VERSION/bin to PATH which would be found
+    # before the test directory's bin/ when running acceptance tests
+    clean_vendor_bundle_from_path
+    # Ensure GEM_PATH includes the parent project's vendor bundle so that
+    # `bundle install --local` can find gems like thor that appraisal2 depends on
+    setup_gem_path_for_local_install
+  end
+
+  def setup_gem_path_for_local_install
+    vendor_gem_path = File.join(PROJECT_ROOT, "vendor", "bundle", "ruby", RUBY_VERSION.split(".")[0..1].join(".") + ".0")
+    if File.directory?(vendor_gem_path)
+      ENV["GEM_PATH"] = [vendor_gem_path, ENV["GEM_PATH"]].compact.join(File::PATH_SEPARATOR)
+    end
+  end
+
+  def clean_vendor_bundle_from_path
+    return unless ENV["PATH"]
+
+    paths = ENV["PATH"].split(File::PATH_SEPARATOR)
+    cleaned_paths = paths.reject { |p| p.include?("vendor/bundle") }
+    ENV["PATH"] = cleaned_paths.join(File::PATH_SEPARATOR)
   end
 
   def add_binstub_path
@@ -125,7 +147,7 @@ module AcceptanceTestHelpers
   private
 
   def current_directory
-    File.expand_path("tmp/stage")
+    File.expand_path("tmp/stage", PROJECT_ROOT)
   end
 
   def write_file(filename, content)

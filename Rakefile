@@ -7,6 +7,9 @@ defaults = []
 # is_gitlab = ENV.fetch("GITLAB_CI", "false").casecmp("true") == 0
 is_ci = ENV.fetch("CI", "false").casecmp("true") == 0
 
+require "appraisal/task"
+Appraisal::Task.new
+
 ### DEVELOPMENT TASKS
 # Setup Kettle Soup Cover
 begin

@@ -6,8 +6,8 @@ RSpec.describe "Bundle without group" do
     # The seeming randomness of the below behavior may be due to the many layers of bundler here.
     # The spec suite itself runs in bundler, and then we further execute bundler within tests.
     # Somehow this spec passes on truffleruby *only*!!
-    # For some reason it is not working on Ruby v3
-    pending_for(:engine => "ruby", :versions => %w(3.0.7 3.1.7 3.2.9 3.3.9 3.4.5 3.5.0), :reason => reason)
+    # For some reason it is not working on Ruby v3 or v4
+    pending_for(:engine => "ruby", :versions => %w(3.0.7 3.1.7 3.2.9 3.3.9 3.4.8 4.0.0), :reason => reason)
     # And only some versions of Ruby v2
     pending_for(:engine => "ruby", :versions => %w(2.3.8 2.4.10 2.5.9), :reason => reason)
     pending_for(:engine => "jruby", :reason => reason)

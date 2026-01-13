@@ -328,7 +328,7 @@ your dependencies in quick test runs, but keep running the tests in older
 versions to check for regressions.
 
 In the case that you want to run all the appraisals by default when you run
-`rake`, you can override your default Rake task by put this into your Rakefile:
+`rake`, you can override your default Rake task by putting this into your Rakefile:
 
     if !ENV["APPRAISAL_INITIALIZED"] && ENV.fetch("CI", "false").casecmp("false") == 0
       task :default => :appraisal
