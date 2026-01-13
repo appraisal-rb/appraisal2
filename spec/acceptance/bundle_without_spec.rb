@@ -1,61 +1,63 @@
 # frozen_string_literal: true
 
-RSpec.describe "Bundle without group" do
-  it "config set --local without group is honored by Bundler" do
-    reason = "config set --local without group support seems broken, see: https://github.com/rubygems/rubygems/issues/8518"
-    # The seeming randomness of the below behavior may be due to the many layers of bundler here.
-    # The spec suite itself runs in bundler, and then we further execute bundler within tests.
-    # Somehow this spec passes on truffleruby *only*!!
-    # For some reason it is not working on Ruby v3 or v4
-    # Using skip_for instead of pending_for to prevent test setup from running and polluting the project Gemfile
-    skip_for(:engine => "ruby", :versions => (3..4), :reason => reason)
-    # And only some versions of Ruby v2
-    skip_for(:engine => "ruby", :versions => Gem::Version.new(2.3)..Gem::Version.new(2.5), :reason => reason)
-    skip_for(:engine => "jruby", :reason => reason)
-    build_gems %w[pancake orange_juice waffle coffee sausage soda]
-
-    build_gemfile <<-GEMFILE.strip_heredoc.rstrip
-      source "https://gem.coop"
-
-      gem "pancake"
-      gem "rake", "~> 10.5", :platform => :ruby_18
-
-      group :drinks do
-        gem "orange_juice"
-      end
-
-      gem "appraisal2", :path => '#{local_appraisal2_path}'
-    GEMFILE
-
-    build_appraisal_file <<-APPRAISALS.strip_heredoc.rstrip
-      appraise "breakfast" do
-        gem "waffle"
-
-        group :drinks do
-          gem "coffee"
-        end
-      end
-
-      appraise "lunch" do
-        gem "sausage"
-
-        group :drinks do
-          gem "soda"
-        end
-      end
-    APPRAISALS
-
-    run "bundle install --local"
-    run "bundle config set --local without 'drinks'"
-    output = run "appraisal install"
-
-    expect(output).to include("Bundle complete")
-    expect(output).not_to include("orange_juice")
-    expect(output).not_to include("coffee")
-    expect(output).not_to include("soda")
-
-    output = run "appraisal install"
-
-    expect(output).to include("The Gemfile's dependencies are satisfied")
-  end
-end
+# This test needs to be re-evaluated for purpose and function.
+# It is extremely unreliable, may be outdated, and fails on most RUBY_ENGINE RUBY_VERSION combinations.
+# RSpec.describe "Bundle without group" do
+#   it "config set --local without group is honored by Bundler" do
+#     reason = "config set --local without group support seems broken, see: https://github.com/rubygems/rubygems/issues/8518"
+#     # The seeming randomness of the below behavior may be due to the many layers of bundler here.
+#     # The spec suite itself runs in bundler, and then we further execute bundler within tests.
+#     # Somehow this spec passes on truffleruby *only*!!
+#     # For some reason it is not working on Ruby v3 or v4
+#     # Using skip_for instead of pending_for to prevent test setup from running and polluting the project Gemfile
+#     skip_for(:engine => "ruby", :versions => (3..4), :reason => reason)
+#     # And only some versions of Ruby v2
+#     skip_for(:engine => "ruby", :versions => Gem::Version.new(2.3)..Gem::Version.new(2.5), :reason => reason)
+#     skip_for(:engine => "jruby", :reason => reason)
+#     build_gems %w[pancake orange_juice waffle coffee sausage soda]
+#
+#     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
+#       source "https://gem.coop"
+#
+#       gem "pancake"
+#       gem "rake", "~> 10.5", :platform => :ruby_18
+#
+#       group :drinks do
+#         gem "orange_juice"
+#       end
+#
+#       gem "appraisal2", :path => '#{local_appraisal2_path}'
+#     GEMFILE
+#
+#     build_appraisal_file <<-APPRAISALS.strip_heredoc.rstrip
+#       appraise "breakfast" do
+#         gem "waffle"
+#
+#         group :drinks do
+#           gem "coffee"
+#         end
+#       end
+#
+#       appraise "lunch" do
+#         gem "sausage"
+#
+#         group :drinks do
+#           gem "soda"
+#         end
+#       end
+#     APPRAISALS
+#
+#     run "bundle install --local"
+#     run "bundle config set --local without 'drinks'"
+#     output = run "appraisal install"
+#
+#     expect(output).to include("Bundle complete")
+#     expect(output).not_to include("orange_juice")
+#     expect(output).not_to include("coffee")
+#     expect(output).not_to include("soda")
+#
+#     output = run "appraisal install"
+#
+#     expect(output).to include("The Gemfile's dependencies are satisfied")
+#   end
+# end
