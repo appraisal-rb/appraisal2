@@ -303,7 +303,6 @@ Having so many different use cases means it can be helpful to others to see how 
 [4-ja👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-ancient.yml/badge.svg
 [4-🗣️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/heads.yml
 [4-🗣️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/heads.yml/badge.svg
-[4-gh]: https://github.com/ruby-oauth/oauth2
 
 ## ⚒️ Basic Usage
 
