@@ -73,7 +73,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
     it "runs ore install command" do
       adapter.install
 
-      expect(Kernel).to have_received(:system).with("ore install -lockfile=#{gemfile_path}.lock")
+      expect(Kernel).to have_received(:system).with("ore", "install", "-lockfile=#{gemfile_path}.lock")
     end
 
     context "when lockfile does not exist" do
@@ -84,8 +84,8 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
       it "runs ore lock first, then ore install" do
         adapter.install
 
-        expect(Kernel).to have_received(:system).with("ore lock -gemfile #{gemfile_path}").ordered
-        expect(Kernel).to have_received(:system).with("ore install -lockfile=#{gemfile_path}.lock").ordered
+        expect(Kernel).to have_received(:system).with("ore", "lock", "-gemfile", gemfile_path).ordered
+        expect(Kernel).to have_received(:system).with("ore", "install", "-lockfile=#{gemfile_path}.lock").ordered
       end
     end
 
@@ -93,13 +93,13 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
       it "includes -workers flag when jobs > 1" do
         adapter.install("jobs" => 4)
 
-        expect(Kernel).to have_received(:system).with("ore install -workers=4 -lockfile=#{gemfile_path}.lock")
+        expect(Kernel).to have_received(:system).with("ore", "install", "-workers=4", "-lockfile=#{gemfile_path}.lock")
       end
 
       it "does not include -workers flag when jobs is 1" do
         adapter.install("jobs" => 1)
 
-        expect(Kernel).to have_received(:system).with("ore install -lockfile=#{gemfile_path}.lock")
+        expect(Kernel).to have_received(:system).with("ore", "install", "-lockfile=#{gemfile_path}.lock")
       end
     end
 
@@ -107,7 +107,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
       it "ignores retry option (ore does not support it)" do
         adapter.install("retry" => 3)
 
-        expect(Kernel).to have_received(:system).with("ore install -lockfile=#{gemfile_path}.lock")
+        expect(Kernel).to have_received(:system).with("ore", "install", "-lockfile=#{gemfile_path}.lock")
       end
     end
 
@@ -115,13 +115,13 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
       it "includes -without flag with comma-separated groups" do
         adapter.install("without" => "development test")
 
-        expect(Kernel).to have_received(:system).with("ore install -without=development,test -lockfile=#{gemfile_path}.lock")
+        expect(Kernel).to have_received(:system).with("ore", "install", "-without=development,test", "-lockfile=#{gemfile_path}.lock")
       end
 
       it "does not include -without flag when empty" do
         adapter.install("without" => "")
 
-        expect(Kernel).to have_received(:system).with("ore install -lockfile=#{gemfile_path}.lock")
+        expect(Kernel).to have_received(:system).with("ore", "install", "-lockfile=#{gemfile_path}.lock")
       end
     end
 
@@ -129,7 +129,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
       it "includes -vendor flag with resolved path" do
         adapter.install("path" => "vendor/bundle")
 
-        expect(Kernel).to have_received(:system).with("ore install -vendor=/home/test/vendor/bundle -lockfile=#{gemfile_path}.lock")
+        expect(Kernel).to have_received(:system).with("ore", "install", "-vendor=/home/test/vendor/bundle", "-lockfile=#{gemfile_path}.lock")
       end
     end
 
@@ -137,7 +137,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
       it "includes all specified options" do
         adapter.install("jobs" => 4, "path" => "vendor/bundle")
 
-        expect(Kernel).to have_received(:system).with("ore install -workers=4 -vendor=/home/test/vendor/bundle -lockfile=#{gemfile_path}.lock")
+        expect(Kernel).to have_received(:system).with("ore", "install", "-workers=4", "-vendor=/home/test/vendor/bundle", "-lockfile=#{gemfile_path}.lock")
       end
     end
   end
@@ -154,13 +154,13 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
     it "runs ore update command with no gems" do
       adapter.update
 
-      expect(Kernel).to have_received(:system).with("ore update -gemfile #{gemfile_path}")
+      expect(Kernel).to have_received(:system).with("ore", "update", "-gemfile", gemfile_path)
     end
 
     it "runs ore update command with specific gems" do
       adapter.update(["rack", "rails"])
 
-      expect(Kernel).to have_received(:system).with("ore update -gemfile #{gemfile_path} rack rails")
+      expect(Kernel).to have_received(:system).with("ore", "update", "-gemfile", gemfile_path, "rack", "rails")
     end
   end
 

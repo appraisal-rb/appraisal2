@@ -56,6 +56,8 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Security
 
+- Ore adapter now uses array-based command construction for `Kernel.system` calls instead of string interpolation, preventing potential shell injection vulnerabilities
+
 ## [3.0.0] - 2025-07-28
 - Initial release as hard fork, from [appraisal v3.0.0.rc1](https://github.com/thoughtbot/appraisal/commit/602cdd9b5f8cb8f36992733422f69312b172f427), with many improvements - by @pboling
   - support for `eval_gemfile`

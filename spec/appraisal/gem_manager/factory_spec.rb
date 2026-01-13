@@ -45,6 +45,11 @@ RSpec.describe Appraisal::GemManager::Factory do
 
     context "with ore manager", :ore do
       it "returns an OreAdapter when ore is available" do
+        # Create the adapter first, then stub its available? method
+        ore_adapter = Appraisal::GemManager::OreAdapter.new(gemfile_path, project_root)
+        allow(ore_adapter).to receive(:available?).and_return(true)
+        allow(Appraisal::GemManager::OreAdapter).to receive(:new).and_return(ore_adapter)
+
         adapter = described_class.create(gemfile_path, project_root, :manager => "ore")
         expect(adapter).to be_a(Appraisal::GemManager::OreAdapter)
       end
