@@ -8,9 +8,9 @@ RSpec.describe "Bundle without group" do
     # Somehow this spec passes on truffleruby *only*!!
     # For some reason it is not working on Ruby v3 or v4
     # Using skip_for instead of pending_for to prevent test setup from running and polluting the project Gemfile
-    skip_for(:engine => "ruby", :versions => %w(3.0.7 3.1.7 3.2.9 3.3.9 3.4.8 4.0.0), :reason => reason)
+    skip_for(:engine => "ruby", :versions => (3..4), :reason => reason)
     # And only some versions of Ruby v2
-    skip_for(:engine => "ruby", :versions => %w(2.3.8 2.4.10 2.5.9), :reason => reason)
+    skip_for(:engine => "ruby", :versions => Gem::Version.new(2.3)..Gem::Version.new(2.5), :reason => reason)
     skip_for(:engine => "jruby", :reason => reason)
     build_gems %w[pancake orange_juice waffle coffee sausage soda]
 
