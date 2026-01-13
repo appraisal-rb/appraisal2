@@ -5,5 +5,3 @@ source "https://gem.coop"
 gemspec :path => "../"
 
 eval_gemfile("modular/ruby_2_5.gemfile")
-
-eval_gemfile("modular/x_std_libs/r2.5/libs.gemfile")

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
-
 source "https://gem.coop"
+
+git_source(:codeberg) { |repo_name| "https://codeberg.org/#{repo_name}" }
+git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 
 # Appraisal Root Gemfile is for running appraisal to generate the Appraisal Gemfiles
 #   in gemfiles/*gemfile.

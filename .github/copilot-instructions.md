@@ -58,8 +58,8 @@ includePattern: "vendor/**"           # All files under vendor/
 includePattern: "vendor/ore-light/**" # All files under vendor/ore-light/
 
 # Search a specific file
-includePattern: "vendor/prism-merge/README.md"
-includePattern: "lib/ast/merge/freezable.rb"
+includePattern: "vendor/*/README.md"
+includePattern: "lib/appraisal/appraisal.rb"
 
 # Search files matching a pattern in a specific directory
 includePattern: "spec/**"              # All spec files recursively
@@ -68,7 +68,7 @@ includePattern: "spec/**"              # All spec files recursively
 ❌ **DOES NOT WORK** - Avoid these:
 ```
 # The | character does NOT work for alternation in includePattern
-includePattern: "vendor/prism-merge/**|vendor/ore-light/**"
+includePattern: "vendor/other-lib/**|vendor/ore-light/**"
 
 # Cannot use ** in the middle of a path with file extension
 includePattern: "vendor/**/spec/**/*.rb"  # Too complex, may fail

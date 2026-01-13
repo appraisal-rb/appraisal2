@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+eval_gemfile("thor/r3/v1.4.gemfile")
+
+eval_gemfile("x_std_libs/r3/libs.gemfile")

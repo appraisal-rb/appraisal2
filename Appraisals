@@ -61,47 +61,38 @@ end
 
 appraise "ruby-2-3" do
   eval_gemfile("modular/ruby_2_3.gemfile")
-  eval_gemfile("modular/x_std_libs/r2.3/libs.gemfile")
 end
 
 appraise "ruby-2-4" do
   eval_gemfile("modular/ruby_2_4.gemfile")
-  eval_gemfile("modular/x_std_libs/r2.5/libs.gemfile")
 end
 
 appraise "ruby-2-5" do
   eval_gemfile("modular/ruby_2_5.gemfile")
-  eval_gemfile("modular/x_std_libs/r2.5/libs.gemfile")
 end
 
 appraise "ruby-2-6" do
   eval_gemfile("modular/ruby_2_6.gemfile")
-  eval_gemfile("modular/x_std_libs/r2/libs.gemfile")
 end
 
 appraise "ruby-2-7" do
   eval_gemfile("modular/ruby_2_7.gemfile")
-  eval_gemfile("modular/x_std_libs/r2/libs.gemfile")
 end
 
 appraise "ruby-3-0" do
   eval_gemfile("modular/ruby_3_0.gemfile")
-  eval_gemfile("modular/x_std_libs/r3/libs.gemfile")
 end
 
 appraise "ruby-3-1" do
   eval_gemfile("modular/ruby_3_1.gemfile")
-  eval_gemfile("modular/x_std_libs/r3/libs.gemfile")
 end
 
 appraise "ruby-3-2" do
   eval_gemfile("modular/ruby_3_2.gemfile")
-  eval_gemfile("modular/x_std_libs/r3/libs.gemfile")
 end
 
 appraise "ruby-3-3" do
   eval_gemfile("modular/ruby_3_3.gemfile")
-  eval_gemfile("modular/x_std_libs/r3/libs.gemfile")
 end
 
 # Used for current releases of ruby, truffleruby, and jruby.
@@ -113,7 +104,6 @@ end
 
 appraise "heads" do
   eval_gemfile("modular/heads.gemfile")
-  eval_gemfile("modular/x_std_libs/vHEAD.gemfile")
 end
 
 # Only run security audit on the latest version of Ruby

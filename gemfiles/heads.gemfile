@@ -5,5 +5,3 @@ source "https://gem.coop"
 gemspec :path => "../"
 
 eval_gemfile("modular/heads.gemfile")
-
-eval_gemfile("modular/x_std_libs/vHEAD.gemfile")
