@@ -35,6 +35,10 @@ module AcceptanceTestHelpers
       end
     end
 
+    before :ore => true do
+      skip "ore-light not installed" unless ore_available?
+    end
+
     before do
       cleanup_artifacts
       save_environment_variables
@@ -97,6 +101,10 @@ module AcceptanceTestHelpers
 
   def add_binstub_path
     ENV["PATH"] = "bin:#{ENV["PATH"]}"
+  end
+
+  def ore_available?
+    system("which ore > /dev/null 2>&1")
   end
 
   def restore_environment_variables

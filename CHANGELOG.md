@@ -6,11 +6,29 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
 ### Added
+
+- Support for [ore-light](https://github.com/contriboss/ore-light) as an alternative gem manager via `--gem-manager=ore` CLI option
+  - New `GemManager::OreAdapter` class implementing ore-light integration
+  - New `GemManager::BundlerAdapter` class (extracted from existing bundler logic)
+  - New `GemManager::Factory` class for creating gem manager adapters
+  - New `GemManager::Base` abstract base class defining the gem manager interface
+  - New `OreNotAvailableError` and `UnknownGemManagerError` error classes
+  - Acceptance tests for ore install and update commands (tagged with `:ore` metadata for conditional execution)
+  - Unit tests for all gem manager adapter classes
+- New `-g` / `--gem-manager` CLI option to select gem manager (bundler or ore) for install/update commands
+
 ### Changed
+
 ### Deprecated
+
 ### Removed
+
 ### Fixed
+
+- Fixed Thor `invoke(:generate, [])` call in `update` command to pass empty options hash, preventing argument leakage
+
 ### Security
 
 ## [3.0.0] - 2025-07-28
