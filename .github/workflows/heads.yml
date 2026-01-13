@@ -43,7 +43,7 @@ jobs:
           # ruby-head
           - ruby: "ruby-head"
             gemfile: "heads"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             rubygems: default
             bundler: default
             experimental: true
@@ -51,7 +51,7 @@ jobs:
 #          # truffleruby-head
 #          - ruby: "truffleruby-head"
 #            gemfile: "heads"
-#            exec_cmd: "rake test"
+#            exec_cmd: "rake magic"
 #            rubygems: default
 #            bundler: default
 #            experimental: true
@@ -59,7 +59,7 @@ jobs:
           # jruby-head
           - ruby: "jruby-head"
             gemfile: "heads"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             rubygems: default
             bundler: default
             experimental: true

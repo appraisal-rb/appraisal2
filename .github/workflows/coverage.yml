@@ -52,7 +52,7 @@ jobs:
           # Ruby <whichever version is current, e.g., 3.4 as of 2025-07-12>
           - ruby: "ruby"
             gemfile: "coverage"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             rubygems: latest
             bundler: latest
             experimental: false
