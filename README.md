@@ -375,14 +375,15 @@ to be a drop-in replacement for Bundler.
 
 ### Installing Ore
 
-Ore is distributed as a Go binary. You can install it via:
+You can install ore-light via:
 
 ```bash
-# Using Go
-go install github.com/nicholaides/ore-light@latest
+# Install Ore Light (no Ruby required for download)
+# Installs to ~/.local/bin by default (no sudo needed)
+curl -fsSL https://raw.githubusercontent.com/contriboss/ore-light/master/scripts/install.sh | bash
 
-# Or download pre-built binaries from the releases page
-# https://github.com/nicholaides/ore-light/releases
+# For system-wide installation to /usr/local/bin
+curl -fsSL https://raw.githubusercontent.com/contriboss/ore-light/master/scripts/install.sh | bash -s -- --system
 ```
 
 ### Using Ore with Appraisal2
