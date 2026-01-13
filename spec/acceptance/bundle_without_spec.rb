@@ -7,10 +7,11 @@ RSpec.describe "Bundle without group" do
     # The spec suite itself runs in bundler, and then we further execute bundler within tests.
     # Somehow this spec passes on truffleruby *only*!!
     # For some reason it is not working on Ruby v3 or v4
-    pending_for(:engine => "ruby", :versions => %w(3.0.7 3.1.7 3.2.9 3.3.9 3.4.8 4.0.0), :reason => reason)
+    # Using skip_for instead of pending_for to prevent test setup from running and polluting the project Gemfile
+    skip_for(:engine => "ruby", :versions => %w(3.0.7 3.1.7 3.2.9 3.3.9 3.4.8 4.0.0), :reason => reason)
     # And only some versions of Ruby v2
-    pending_for(:engine => "ruby", :versions => %w(2.3.8 2.4.10 2.5.9), :reason => reason)
-    pending_for(:engine => "jruby", :reason => reason)
+    skip_for(:engine => "ruby", :versions => %w(2.3.8 2.4.10 2.5.9), :reason => reason)
+    skip_for(:engine => "jruby", :reason => reason)
     build_gems %w[pancake orange_juice waffle coffee sausage soda]
 
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip

@@ -17,6 +17,7 @@ module AcceptanceTestHelpers
     BUNDLE_PATH
     BUNDLE_BIN_PATH
     BUNDLE_GEMFILE
+    BUNDLE_LOCKFILE
     BUNDLER_SETUP
     BUNDLE_APP_CONFIG
     BUNDLE_USER_CONFIG
@@ -112,6 +113,10 @@ module AcceptanceTestHelpers
     # Explicitly set the gemfile to the test directory's Gemfile
     # This ensures bundler never looks at the parent project's Gemfile
     ENV["BUNDLE_GEMFILE"] = File.join(current_directory, "Gemfile")
+
+    # Explicitly set the lockfile to the test directory's Gemfile.lock
+    # This ensures bundler never writes to the parent project's lockfile
+    ENV["BUNDLE_LOCKFILE"] = File.join(current_directory, "Gemfile.lock")
 
     # Disable settings that could cause side effects
     ENV["BUNDLE_IGNORE_FUNDING_REQUESTS"] = "1"
@@ -291,14 +296,17 @@ module AcceptanceTestHelpers
       # This prevents bundler from accidentally using the parent project's Gemfile or config
       # We set these in Ruby ENV so they're inherited by all subprocesses (including bundle exec)
       test_gemfile = File.join(current_directory, "Gemfile")
+      test_lockfile = File.join(current_directory, "Gemfile.lock")
       test_bundle_config = File.join(current_directory, ".bundle")
 
       # Temporarily set the environment for this command
       original_bundle_gemfile = ENV["BUNDLE_GEMFILE"]
+      original_bundle_lockfile = ENV["BUNDLE_LOCKFILE"]
       original_bundle_app_config = ENV["BUNDLE_APP_CONFIG"]
 
       begin
         ENV["BUNDLE_GEMFILE"] = test_gemfile
+        ENV["BUNDLE_LOCKFILE"] = test_lockfile
         ENV["BUNDLE_APP_CONFIG"] = test_bundle_config
 
         # Debug output if VERBOSE
@@ -329,6 +337,7 @@ module AcceptanceTestHelpers
       ensure
         # Restore original values (which may be the test isolation values from setup)
         ENV["BUNDLE_GEMFILE"] = original_bundle_gemfile
+        ENV["BUNDLE_LOCKFILE"] = original_bundle_lockfile
         ENV["BUNDLE_APP_CONFIG"] = original_bundle_app_config
       end
     end

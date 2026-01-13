@@ -41,9 +41,11 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Improved test isolation for acceptance tests to prevent modification of parent project's Gemfile.lock
   - Added `BUNDLE_APP_CONFIG` isolation to prevent reading/writing parent's `.bundle/config`
   - Added explicit `BUNDLE_GEMFILE` prefix to all bundle commands in tests
+  - Added `BUNDLE_LOCKFILE` environment variable to explicitly control where lockfiles are written
   - Set `BUNDLE_IGNORE_FUNDING_REQUESTS` and `BUNDLE_DISABLE_SHARED_GEMS` for cleaner test output
   - Added `BUNDLE_USER_CACHE` isolation to prevent polluting user's gem cache
   - Fixed overly broad `File` stubs in unit tests that interfered with RSpec error formatting
+  - Changed `bundle_without_spec.rb` to use `skip_for` instead of `pending_for` to prevent test setup from running on unsupported Ruby versions (which was polluting the project Gemfile.lock with test gems)
 
 ### Deprecated
 
@@ -51,6 +53,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Fixed `BundlerAdapter#install` not passing `gemfile_path` to `Command.new`, which caused bundler to potentially write to the wrong Gemfile.lock when `Bundler.with_original_env` reset the environment
 - Fixed ore-light adapter path resolution: ore now runs from the gemfile's directory so relative path dependencies resolve correctly (ore resolves paths relative to working directory, not gemfile location)
 - Fixed Thor `invoke(:generate, [])` call in `update` command to pass empty options hash, preventing argument leakage
 
