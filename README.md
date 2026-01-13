@@ -34,7 +34,7 @@ and [Joe Ferris](https://github.com/jferris), the original author!
 Appraisal2 adds:
 
 - support for `eval_gemfile`
-- support for [ore](https://github.com/nicholaides/ore-light) as an alternative gem manager (faster than bundler!)
+- support for [ORE](https://github.com/contriboss/ore-light) as an alternative gem manager (faster than bundler!)
 - support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot's `appraisal`)
   - NOTE: The [setup-ruby GH Action](https://github.com/ruby/setup-ruby) only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI. Compatibility is assumed thanks to [![Enforced Code Style Linter][💎rlts-img]][💎rlts] enforcing the syntax for the oldest supported Ruby, which is Ruby v1.8. File a bug if you find something broken.
 - Support for JRuby 9.4+
@@ -369,16 +369,16 @@ The `install` and `update` commands support several options:
 
 ## 🦀 Using Ore (Alternative Gem Manager)
 
-Appraisal2 supports [ore](https://github.com/nicholaides/ore-light) as an alternative to Bundler
+Appraisal2 supports [ORE](https://github.com/contriboss/ore-light) as an alternative to Bundler
 for dependency resolution and installation. Ore is a fast gem manager written in Go that aims
 to be a drop-in replacement for Bundler.
 
 ### Installing Ore
 
-You can install ore-light via:
+You can install ORE via:
 
 ```bash
-# Install Ore Light (no Ruby required for download)
+# Install ORE Light (no Ruby required for download)
 # Installs to ~/.local/bin by default (no sudo needed)
 curl -fsSL https://raw.githubusercontent.com/contriboss/ore-light/master/scripts/install.sh | bash
 
@@ -388,13 +388,13 @@ curl -fsSL https://raw.githubusercontent.com/contriboss/ore-light/master/scripts
 
 ### Using Ore with Appraisal2
 
-To use ore instead of bundler, pass the `--gem-manager=ore` option:
+To use ORE instead of bundler, pass the `--gem-manager=ore` option:
 
 ```bash
-# Install dependencies using ore
+# Install dependencies using ORE
 bundle exec appraisal install --gem-manager=ore
 
-# Update dependencies using ore
+# Update dependencies using ORE
 bundle exec appraisal update --gem-manager=ore
 ```
 
@@ -406,29 +406,29 @@ bundle exec appraisal install -g ore
 
 ### Ore-Specific Options
 
-When using ore, some options are translated to ore's equivalents:
+When using ORE, some options are translated to ORE's equivalents:
 
-| Appraisal Option | Ore Equivalent | Notes |
-|------------------|----------------|-------|
-| `--jobs=N` | `-workers=N` | Only used when N > 1 |
+| Appraisal Option | Ore Equivalent | Notes                               |
+|------------------|----------------|-------------------------------------|
+| `--jobs=N` | `-workers=N` | Only used when N > 1                |
 | `--path=DIR` | `-vendor=DIR` | Sets the gem installation directory |
-| `--without=GROUPS` | `-without=GROUP1,GROUP2` | Groups are comma-separated in ore |
-| `--retry` | *(ignored)* | Ore handles retries internally |
-| `--full-index` | *(ignored)* | Not applicable to ore |
+| `--without=GROUPS` | `-without=GROUP1,GROUP2` | Groups are comma-separated in ORE   |
+| `--retry` | *(ignored)* | ORE handles retries internally      |
+| `--full-index` | *(ignored)* | Not applicable to ORE               |
 
-### Example Workflow with Ore
+### Example Workflow with ORE
 
 ```bash
 # Generate appraisal gemfiles
 bundle exec appraisal generate
 
-# Install dependencies using ore (faster than bundler)
+# Install dependencies using ORE (faster than bundler)
 bundle exec appraisal install --gem-manager=ore --jobs=4
 
 # Run tests against all appraisals
 bundle exec appraisal rspec
 
-# Update a specific gem using ore
+# Update a specific gem using ORE
 bundle exec appraisal update rack --gem-manager=ore
 ```
 
@@ -438,10 +438,10 @@ Ore can be particularly beneficial when:
 
 - You have many appraisals and want faster installation
 - You're in a CI environment where installation speed matters
-- You want to take advantage of ore's parallel resolution capabilities
+- You want to take advantage of ORE's parallel resolution capabilities
 
-Note that ore must be installed separately and available in your PATH.
-If ore is not available, appraisal2 will fall back to using bundler.
+Note that ORE must be installed separately and available in your PATH.
+If you specify ORE and it is not available, appraisal2 will raise an error.
 
 Under the hood
 --------------
