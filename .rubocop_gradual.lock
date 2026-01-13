@@ -39,7 +39,7 @@
     [53, 33, 39, "RSpec/ExpectChange: Prefer `change(Appraisal::Customize, :heading)`.", 513325635],
     [65, 33, 45, "RSpec/ExpectChange: Prefer `change(Appraisal::Customize, :single_quotes)`.", 627072007]
   ],
-  "spec/appraisal/appraisal_spec.rb:613244901": [
+  "spec/appraisal/appraisal_spec.rb:4079063717": [
     [32, 11, 23, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 2511581329],
     [89, 11, 23, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1120511218],
     [94, 7, 83, "RSpec/ReceiveMessages: Use `receive_messages` instead of multiple stubs on lines [95].", 1453890366],
@@ -55,7 +55,7 @@
   "spec/appraisal/errors_spec.rb:173930462": [
     [5, 1, 44, "RSpec/MultipleDescribes: Do not use multiple top-level example groups - try to nest them.", 1967591745]
   ],
-  "spec/appraisal/gem_manager/ore_adapter_spec.rb:3553052253": [
+  "spec/appraisal/gem_manager/ore_adapter_spec.rb:3988222936": [
     [21, 9, 86, "RSpec/SubjectStub: Do not stub methods of the object under test.", 3688713388],
     [31, 9, 87, "RSpec/SubjectStub: Do not stub methods of the object under test.", 1854331623],
     [43, 9, 55, "RSpec/SubjectStub: Do not stub methods of the object under test.", 4157132302],

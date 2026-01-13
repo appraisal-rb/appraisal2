@@ -84,7 +84,7 @@ module Appraisal
       end
 
       def run_ore_command(command)
-        puts ">> BUNDLE_GEMFILE=#{gemfile_path} #{command.join(' ')}"
+        puts ">> BUNDLE_GEMFILE=#{gemfile_path} #{command.join(" ")}"
 
         # Ore resolves path dependencies relative to the current working directory,
         # not relative to the gemfile location. We need to cd to the gemfile's
