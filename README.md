@@ -34,6 +34,7 @@ and [Joe Ferris](https://github.com/jferris), the original author!
 Appraisal2 adds:
 
 - support for `eval_gemfile`
+- support for [ore](https://github.com/nicholaides/ore-light) as an alternative gem manager (faster than bundler!)
 - support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot's `appraisal`)
   - NOTE: The [setup-ruby GH Action](https://github.com/ruby/setup-ruby) only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI. Compatibility is assumed thanks to [![Enforced Code Style Linter][💎rlts-img]][💎rlts] enforcing the syntax for the oldest supported Ruby, which is Ruby v1.8. File a bug if you find something broken.
 - Support for JRuby 9.4+
@@ -354,6 +355,94 @@ appraisal update [LIST_OF_GEMS]  # Remove all generated gemfiles and lockfiles, 
 appraisal version                # Display the version and exit
 ```
 
+### Command Options
+
+The `install` and `update` commands support several options:
+
+| Option | Description |
+|--------|-------------|
+| `--gem-manager`, `-g` | Gem manager to use: `bundler` (default) or `ore` |
+| `--jobs`, `-j` | Install gems in parallel using the given number of workers |
+| `--retry` | Retry network and git requests that have failed (default: 1) |
+| `--without` | A space-separated list of groups to skip during installation |
+| `--full-index` | Run bundle install with the full-index argument |
+| `--path` | Install gems in the specified directory |
+
+## 🦀 Using Ore (Alternative Gem Manager)
+
+Appraisal2 supports [ore](https://github.com/nicholaides/ore-light) as an alternative to Bundler
+for dependency resolution and installation. Ore is a fast gem manager written in Go that aims
+to be a drop-in replacement for Bundler.
+
+### Installing Ore
+
+Ore is distributed as a Go binary. You can install it via:
+
+```bash
+# Using Go
+go install github.com/nicholaides/ore-light@latest
+
+# Or download pre-built binaries from the releases page
+# https://github.com/nicholaides/ore-light/releases
+```
+
+### Using Ore with Appraisal2
+
+To use ore instead of bundler, pass the `--gem-manager=ore` option:
+
+```bash
+# Install dependencies using ore
+bundle exec appraisal install --gem-manager=ore
+
+# Update dependencies using ore
+bundle exec appraisal update --gem-manager=ore
+```
+
+You can also use the short form:
+
+```bash
+bundle exec appraisal install -g ore
+```
+
+### Ore-Specific Options
+
+When using ore, some options are translated to ore's equivalents:
+
+| Appraisal Option | Ore Equivalent | Notes |
+|------------------|----------------|-------|
+| `--jobs=N` | `-workers=N` | Only used when N > 1 |
+| `--path=DIR` | `-vendor=DIR` | Sets the gem installation directory |
+| `--without=GROUPS` | `-without=GROUP1,GROUP2` | Groups are comma-separated in ore |
+| `--retry` | *(ignored)* | Ore handles retries internally |
+| `--full-index` | *(ignored)* | Not applicable to ore |
+
+### Example Workflow with Ore
+
+```bash
+# Generate appraisal gemfiles
+bundle exec appraisal generate
+
+# Install dependencies using ore (faster than bundler)
+bundle exec appraisal install --gem-manager=ore --jobs=4
+
+# Run tests against all appraisals
+bundle exec appraisal rspec
+
+# Update a specific gem using ore
+bundle exec appraisal update rack --gem-manager=ore
+```
+
+### When to Use Ore
+
+Ore can be particularly beneficial when:
+
+- You have many appraisals and want faster installation
+- You're in a CI environment where installation speed matters
+- You want to take advantage of ore's parallel resolution capabilities
+
+Note that ore must be installed separately and available in your PATH.
+If ore is not available, appraisal2 will fall back to using bundler.
+
 Under the hood
 --------------
 
@@ -434,7 +523,7 @@ end
 
 **Appraisal2.root.gemfile**
 ```ruby
-source "https://rubygems.org"
+source "https://gem.coop"
 
 # Appraisal2 Root Gemfile is for running appraisal to generate the Appraisal2 Gemfiles
 # We do not load the standard Gemfile, as it is tailored for local development,

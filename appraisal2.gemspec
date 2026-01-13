@@ -115,17 +115,49 @@ Gem::Specification.new do |spec|
   #       Development dependencies that require strictly newer Ruby versions should be in a "gemfile",
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
-  # Release Tasks
-  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.3")          # Ruby >= 2.2.0
+  # Dev, Test, & Release Tasks
+  # spec.add_development_dependency("kettle-dev", "~> 1.1", ">= 1.1.60")              # Ruby >= 2.3.0
+  spec.add_development_dependency("kettle-dev", "~> 1.2", ">= 1.2.4")              # Ruby >= 2.3.0
+
+  # Security
+  spec.add_development_dependency("bundler-audit", "~> 0.9.2")                      # ruby >= 2.0.0
+
+  # Tasks
+  spec.add_development_dependency("rake", "~> 13.0")                                # ruby >= 2.2.0
+
+  # Debugging
+  spec.add_development_dependency("require_bench", "~> 1.0", ">= 1.0.4")            # ruby >= 2.2.0
 
   # Testing
   spec.add_development_dependency("activesupport", ">= 3.2.21")
   spec.add_development_dependency("kettle-test", "~> 1.0", ">= 1.0.7")              # Ruby >= 2.3.0
-  spec.add_development_dependency("kettle-dev", "~> 1.1", ">= 1.1.60")              # Ruby >= 2.3.0
   spec.add_development_dependency("rspec", "~> 3.13")                               # Ruby >= 0
   spec.add_development_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")  # Ruby >= 1.8.7
   spec.add_development_dependency("rspec_junit_formatter", "~> 0.6")                # Ruby >= 2.3.0, for GitLab Test Result Parsing
   spec.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.19")       # Ruby >= 1.8.7
   spec.add_development_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.4")        # Ruby >= 1.8.7
   spec.add_development_dependency("silent_stream", "~> 1.0", ">= 1.0.12")           # Ruby >= 2.3.0
+
+  # Release Tasks
+  spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
+  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.3")          # Ruby >= 2.2.0
+
+  # Git integration (optional)
+  # The 'git' gem is optional; toml-merge falls back to shelling out to `git` if it is not present.
+  # The current release of the git gem depends on activesupport, which makes it too heavy to depend on directly
+  # spec.add_dependency("git", ">= 1.19.1")                               # ruby >= 2.3
+
+  # Development tasks
+  # The cake is a lie. erb v2.2, the oldest release, was never compatible with Ruby 2.3.
+  # This means we have no choice but to use the erb that shipped with Ruby 2.3
+  # /opt/hostedtoolcache/Ruby/2.3.8/x64/lib/ruby/gems/2.3.0/gems/erb-2.2.2/lib/erb.rb:670:in `prepare_trim_mode': undefined method `match?' for "-":String (NoMethodError)
+  # spec.add_development_dependency("erb", ">= 2.2")                                  # ruby >= 2.3.0, not SemVer, old rubies get dropped in a patch.
+  spec.add_development_dependency("gitmoji-regex", "~> 1.0", ">= 1.0.3")            # ruby >= 2.3.0
+
+  # HTTP recording for deterministic specs
+  # In Ruby 3.5 (HEAD) the CGI library has been pared down, so we also need to depend on gem "cgi" for ruby@head
+  # This is done in the "head" appraisal.
+  # See: https://github.com/vcr/vcr/issues/1057
+  # spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
+  # spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
 end

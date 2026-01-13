@@ -1,5 +1,6 @@
 --format progress
 --color
+--order random
 --require spec_helper
 --warnings
 --format html

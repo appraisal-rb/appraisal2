@@ -10,8 +10,10 @@ module Appraisal
   class AppraisalFile
     attr_reader :appraisals, :gemfile
 
-    def self.each(&block)
-      new.each(&block)
+    class << self
+      def each(&block)
+        new.each(&block)
+      end
     end
 
     def initialize

@@ -14,7 +14,6 @@ require "appraisal/gem_manager"
 module Appraisal
   # Represents one appraisal and its dependencies
   class Appraisal
-
     attr_reader :name, :gemfile
 
     def initialize(name, source_gemfile)
@@ -81,12 +80,12 @@ module Appraisal
     def install(options = {})
       gem_manager = options.delete(:gem_manager) || options.delete("gem_manager") ||
         options.delete(:"gem-manager") || options.delete("gem-manager")
-      manager = GemManager::Factory.create(gemfile_path, project_root, manager: gem_manager)
+      manager = GemManager::Factory.create(gemfile_path, project_root, :manager => gem_manager)
       manager.install(options)
     end
 
     def update(gems = [], gem_manager: nil)
-      manager = GemManager::Factory.create(gemfile_path, project_root, manager: gem_manager)
+      manager = GemManager::Factory.create(gemfile_path, project_root, :manager => gem_manager)
       manager.update(gems)
     end
 
@@ -134,7 +133,6 @@ module Appraisal
     def clean_name
       name.gsub(/[^\w.]/, "_")
     end
-
 
     def comment_lines(heading)
       heading.lines.map do |line|

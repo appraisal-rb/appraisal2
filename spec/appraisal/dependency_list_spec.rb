@@ -47,5 +47,27 @@ RSpec.describe Appraisal::DependencyList do
       dependency_list.add("rails", ["4.1.0"])
       expect(dependency_list.to_s).to eq("")
     end
+
+    it "handles removing a dependency that was never added" do
+      dependency_list.remove("nonexistent")
+      expect(dependency_list.to_s).to eq %(gem "rails", "4.1.4")
+    end
+
+    it "handles removing the same dependency twice" do
+      dependency_list.remove("rails")
+      dependency_list.remove("rails")
+      expect(dependency_list.to_s).to eq("")
+    end
+  end
+
+  describe "#for_dup" do
+    let(:dependency_list) { described_class.new }
+
+    it "returns dependencies formatted for duplication" do
+      dependency_list.add("rails", ["4.1.4"])
+      dependency_list.add("rspec", ["3.0"])
+      expect(dependency_list.for_dup).to include('gem "rails"')
+      expect(dependency_list.for_dup).to include('gem "rspec"')
+    end
   end
 end

@@ -17,9 +17,33 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - New `OreNotAvailableError` and `UnknownGemManagerError` error classes
   - Acceptance tests for ore install and update commands (tagged with `:ore` metadata for conditional execution)
   - Unit tests for all gem manager adapter classes
+  - README documentation for ore usage, including installation, CLI options, and example workflows
 - New `-g` / `--gem-manager` CLI option to select gem manager (bundler or ore) for install/update commands
+- New `Appraisal::Customize.reset!` class method to reset customization state (useful for testing)
+- Improved test coverage from 66.7% to 76.4% line coverage, 61.5% to 77.4% branch coverage
+  - New unit tests for `BundlerDSL` class (including APPRAISAL_INDENTER variations)
+  - New unit tests for `Command` class
+  - New unit tests for `Conditional` class
+  - New unit tests for `Source` class
+  - New unit tests for `Git` class
+  - New unit tests for `Path` class
+  - New unit tests for `OrderedHash` class
+  - New unit tests for `Dependency` class
+  - New unit tests for `Group` class
+  - New unit tests for `Platform` class
+  - New unit tests for `GemManager::Factory` class
+  - New unit tests for error classes (`AppraisalsNotFound`, `OreNotAvailableError`, `UnknownGemManagerError`)
+  - Enhanced `DependencyList` tests with edge cases
+  - Enhanced `Gemfile` tests with load/run/dup edge cases
 
 ### Changed
+
+- Improved test isolation for acceptance tests to prevent modification of parent project's Gemfile.lock
+  - Added `BUNDLE_APP_CONFIG` isolation to prevent reading/writing parent's `.bundle/config`
+  - Added explicit `BUNDLE_GEMFILE` prefix to all bundle commands in tests
+  - Set `BUNDLE_IGNORE_FUNDING_REQUESTS` and `BUNDLE_DISABLE_SHARED_GEMS` for cleaner test output
+  - Added `BUNDLE_USER_CACHE` isolation to prevent polluting user's gem cache
+  - Fixed overly broad `File` stubs in unit tests that interfered with RSpec error formatting
 
 ### Deprecated
 
@@ -27,6 +51,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Fixed ore-light adapter path resolution: ore now runs from the gemfile's directory so relative path dependencies resolve correctly (ore resolves paths relative to working directory, not gemfile location)
 - Fixed Thor `invoke(:generate, [])` call in `update` command to pass empty options hash, preventing argument leakage
 
 ### Security

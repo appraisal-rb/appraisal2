@@ -4,9 +4,10 @@ require "appraisal/gem_manager/ore_adapter"
 require "appraisal/errors"
 
 RSpec.describe Appraisal::GemManager::OreAdapter do
+  subject(:adapter) { described_class.new(gemfile_path, project_root) }
+
   let(:gemfile_path) { "/home/test/test directory/gemfile" }
   let(:project_root) { Pathname.new("/home/test") }
-  subject(:adapter) { described_class.new(gemfile_path, project_root) }
 
   describe "#name" do
     it "returns 'ore'" do
@@ -62,6 +63,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
     before do
       allow(adapter).to receive(:available?).and_return(true)
       allow(Bundler).to receive(:with_original_env).and_yield
+      allow(Dir).to receive(:chdir).and_yield
       allow(Kernel).to receive(:system).and_return(true)
       allow(adapter).to receive(:puts)
       # Simulate lockfile exists by default
@@ -144,6 +146,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
     before do
       allow(adapter).to receive(:available?).and_return(true)
       allow(Bundler).to receive(:with_original_env).and_yield
+      allow(Dir).to receive(:chdir).and_yield
       allow(Kernel).to receive(:system).and_return(true)
       allow(adapter).to receive(:puts)
     end

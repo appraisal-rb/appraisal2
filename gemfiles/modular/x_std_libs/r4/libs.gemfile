@@ -1,0 +1,3 @@
+eval_gemfile "../../logger/r4/v1.7.gemfile"
+eval_gemfile "../../uri/r4/v1.gemfile"
+eval_gemfile "../../benchmark/r4/v0.5.gemfile"

@@ -1,2 +1,3 @@
 eval_gemfile "../logger/vHEAD.gemfile"
 eval_gemfile "../uri/vHEAD.gemfile"
+eval_gemfile "../benchmark/vHEAD.gemfile"

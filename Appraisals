@@ -37,25 +37,26 @@ appraise "dep-heads" do
   eval_gemfile "modular/runtime_heads.gemfile"
 end
 
-appraise "ruby-1-8" do
-  eval_gemfile "modular/ruby_1_8.gemfile"
-end
-
-appraise "ruby-1-9" do
-  eval_gemfile "modular/ruby_1_9.gemfile"
-end
-
-appraise "ruby-2-0" do
-  eval_gemfile "modular/ruby_2_0.gemfile"
-end
-
-appraise "ruby-2-1" do
-  eval_gemfile "modular/ruby_2_1.gemfile"
-end
-
-appraise "ruby-2-2" do
-  eval_gemfile "modular/ruby_2_2.gemfile"
-end
+# We only run CI on Ruby 2.3+, and these older appraisals are just an unused maintenance headache
+# appraise "ruby-1-8" do
+#   eval_gemfile "modular/ruby_1_8.gemfile"
+# end
+#
+# appraise "ruby-1-9" do
+#   eval_gemfile "modular/ruby_1_9.gemfile"
+# end
+#
+# appraise "ruby-2-0" do
+#   eval_gemfile "modular/ruby_2_0.gemfile"
+# end
+#
+# appraise "ruby-2-1" do
+#   eval_gemfile "modular/ruby_2_1.gemfile"
+# end
+#
+# appraise "ruby-2-2" do
+#   eval_gemfile "modular/ruby_2_2.gemfile"
+# end
 
 appraise "ruby-2-3" do
   eval_gemfile "modular/ruby_2_3.gemfile"

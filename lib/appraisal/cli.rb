@@ -105,7 +105,7 @@ module Appraisal
 
       gem_manager = options["gem-manager"] || options[:gem_manager]
       AppraisalFile.each do |appraisal|
-        appraisal.update(gems, gem_manager: gem_manager)
+        appraisal.update(gems, :gem_manager => gem_manager)
       end
     end
 

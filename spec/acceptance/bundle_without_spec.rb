@@ -14,7 +14,7 @@ RSpec.describe "Bundle without group" do
     build_gems %w[pancake orange_juice waffle coffee sausage soda]
 
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
-      source "https://rubygems.org"
+      source "https://gem.coop"
 
       gem "pancake"
       gem "rake", "~> 10.5", :platform => :ruby_18
@@ -23,7 +23,7 @@ RSpec.describe "Bundle without group" do
         gem "orange_juice"
       end
 
-      gem "appraisal2", :path => #{PROJECT_ROOT.inspect}
+      gem "appraisal2", :path => '#{local_appraisal2_path}'
     GEMFILE
 
     build_appraisal_file <<-APPRAISALS.strip_heredoc.rstrip

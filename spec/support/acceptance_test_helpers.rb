@@ -18,6 +18,10 @@ module AcceptanceTestHelpers
     BUNDLE_BIN_PATH
     BUNDLE_GEMFILE
     BUNDLER_SETUP
+    BUNDLE_APP_CONFIG
+    BUNDLE_USER_CONFIG
+    BUNDLE_USER_CACHE
+    BUNDLE_USER_PLUGIN
   ].freeze
 
   included do
@@ -43,6 +47,7 @@ module AcceptanceTestHelpers
       cleanup_artifacts
       save_environment_variables
       unset_bundler_environment_variables
+      setup_isolated_bundler_environment
       build_default_dummy_gems
       ensure_bundler_is_available
       add_binstub_path
@@ -66,7 +71,15 @@ module AcceptanceTestHelpers
   def save_environment_variables
     @original_environment_variables = {}
 
-    (BUNDLER_ENVIRONMENT_VARIABLES + %w[PATH]).each do |key|
+    # Save all bundler variables plus PATH and the isolation variables we set
+    vars_to_save = BUNDLER_ENVIRONMENT_VARIABLES + %w[
+      PATH
+      BUNDLE_IGNORE_FUNDING_REQUESTS
+      BUNDLE_DISABLE_SHARED_GEMS
+      GEM_PATH
+    ]
+
+    vars_to_save.each do |key|
       @original_environment_variables[key] = ENV[key]
     end
   end
@@ -82,6 +95,32 @@ module AcceptanceTestHelpers
     # Ensure GEM_PATH includes the parent project's vendor bundle so that
     # `bundle install --local` can find gems like thor that appraisal2 depends on
     setup_gem_path_for_local_install
+  end
+
+  def setup_isolated_bundler_environment
+    # Ensure the test directory exists
+    FileUtils.mkdir_p(current_directory)
+
+    # Create an isolated .bundle directory within the test directory
+    # This prevents bundler from reading or writing to the parent project's .bundle/config
+    test_bundle_config_dir = File.join(current_directory, ".bundle")
+    FileUtils.mkdir_p(test_bundle_config_dir)
+
+    # Point bundler to use the test directory's config
+    ENV["BUNDLE_APP_CONFIG"] = test_bundle_config_dir
+
+    # Explicitly set the gemfile to the test directory's Gemfile
+    # This ensures bundler never looks at the parent project's Gemfile
+    ENV["BUNDLE_GEMFILE"] = File.join(current_directory, "Gemfile")
+
+    # Disable settings that could cause side effects
+    ENV["BUNDLE_IGNORE_FUNDING_REQUESTS"] = "1"
+    ENV["BUNDLE_DISABLE_SHARED_GEMS"] = "1"
+
+    # Set a test-specific cache directory to avoid polluting the user's cache
+    test_cache_dir = File.join(current_directory, ".bundle", "cache")
+    FileUtils.mkdir_p(test_cache_dir)
+    ENV["BUNDLE_USER_CACHE"] = test_cache_dir
   end
 
   def setup_gem_path_for_local_install
@@ -100,7 +139,9 @@ module AcceptanceTestHelpers
   end
 
   def add_binstub_path
-    ENV["PATH"] = "bin:#{ENV["PATH"]}"
+    # Add the test directory's bin folder to PATH using absolute path
+    test_bin_path = File.join(current_directory, "bin")
+    ENV["PATH"] = "#{test_bin_path}:#{ENV["PATH"]}"
   end
 
   def ore_available?
@@ -174,24 +215,30 @@ module AcceptanceTestHelpers
   end
 
   def ensure_bundler_is_available
-    run "bundle -v 2>&1", false
+    # Check if bundle is available - the run method will not raise on error
+    # because we pass false, so we need to check the output
+    output = run "bundle -v 2>&1", false
 
-    return unless $?.exitstatus != 0
+    # If bundle -v succeeded, output should contain version info
+    return if output && output.include?("Bundler version")
 
     puts <<-WARNING.strip_heredoc.rstrip
       Reinstall Bundler to #{TMP_GEM_ROOT} as `BUNDLE_DISABLE_SHARED_GEMS`
       is enabled.
     WARNING
-    version = Utils.bundler_version
+    version = Appraisal::Utils.bundler_version
 
     run "gem install bundler --version #{version} --install-dir '#{TMP_GEM_ROOT}'"
   end
 
   def build_default_gemfile
-    build_gemfile <<-GEMFILE.strip_heredoc.rstrip
-      source 'https://rubygems.org'
+    # Copy appraisal2 to the test directory for full isolation
+    copy_appraisal2_to_test_directory
 
-      gem 'appraisal2', :path => '#{PROJECT_ROOT}'
+    build_gemfile <<-GEMFILE.strip_heredoc.rstrip
+      source 'https://gem.coop'
+
+      gem 'appraisal2', :path => './appraisal2'
     GEMFILE
 
     run "bundle install --local"
@@ -203,6 +250,29 @@ module AcceptanceTestHelpers
     run "bundle binstubs --all"
   end
 
+  def copy_appraisal2_to_test_directory
+    appraisal2_dest = File.join(current_directory, "appraisal2")
+    FileUtils.mkdir_p(appraisal2_dest)
+
+    # Copy lib directory
+    FileUtils.cp_r(File.join(PROJECT_ROOT, "lib"), appraisal2_dest)
+
+    # Copy exe directory
+    FileUtils.cp_r(File.join(PROJECT_ROOT, "exe"), appraisal2_dest)
+
+    # Copy gemspec
+    FileUtils.cp(File.join(PROJECT_ROOT, "appraisal2.gemspec"), appraisal2_dest)
+  end
+
+  # Path to the local appraisal2 copy in the test directory
+  # Tests should use this instead of PROJECT_ROOT when referencing appraisal2 in Gemfiles
+  def local_appraisal2_path
+    "./appraisal2"
+  end
+
+  # Constant for use in heredocs - returns the path as a string suitable for Gemfile
+  APPRAISAL2_GEM_PATH = "./appraisal2"
+
   def in_test_directory(&block)
     FileUtils.mkdir_p current_directory
     Dir.chdir current_directory, &block
@@ -210,7 +280,40 @@ module AcceptanceTestHelpers
 
   def run(command, raise_on_error = true)
     in_test_directory do
-      %x(#{command}).tap do |output|
+      # GUARD: Fail fast if we're somehow in the project root directory
+      # This should never happen - all test commands must run in tmp/stage
+      if Dir.pwd == PROJECT_ROOT
+        raise "ISOLATION ERROR: Command #{command.inspect} is running in PROJECT_ROOT instead of test directory. " \
+          "This would pollute the project's Gemfile.lock!"
+      end
+
+      # Set BUNDLE_GEMFILE and BUNDLE_APP_CONFIG to point to this test directory
+      # This prevents bundler from accidentally using the parent project's Gemfile or config
+      # We set these in Ruby ENV so they're inherited by all subprocesses (including bundle exec)
+      test_gemfile = File.join(current_directory, "Gemfile")
+      test_bundle_config = File.join(current_directory, ".bundle")
+
+      # Temporarily set the environment for this command
+      original_bundle_gemfile = ENV["BUNDLE_GEMFILE"]
+      original_bundle_app_config = ENV["BUNDLE_APP_CONFIG"]
+
+      begin
+        ENV["BUNDLE_GEMFILE"] = test_gemfile
+        ENV["BUNDLE_APP_CONFIG"] = test_bundle_config
+
+        # Debug output if VERBOSE
+        if ENV["VERBOSE"]
+          puts "DEBUG: Running command: #{command}"
+          puts "DEBUG: Current directory: #{Dir.pwd}"
+          puts "DEBUG: BUNDLE_GEMFILE: #{ENV["BUNDLE_GEMFILE"]}"
+          puts "DEBUG: BUNDLE_APP_CONFIG: #{ENV["BUNDLE_APP_CONFIG"]}"
+          puts "DEBUG: PATH first 3 entries: #{ENV["PATH"].split(":").first(3).inspect}"
+          appraisal_bin = File.join(current_directory, "bin", "appraisal")
+          puts "DEBUG: appraisal binstub exists? #{File.exist?(appraisal_bin)}"
+        end
+
+        # Capture both stdout and stderr
+        output = %x(#{command} 2>&1)
         exitstatus = $?.exitstatus
 
         puts output if ENV["VERBOSE"]
@@ -221,6 +324,12 @@ module AcceptanceTestHelpers
             #{output.gsub(/^/, "  ")}
           ERROR_MESSAGE
         end
+
+        output
+      ensure
+        # Restore original values (which may be the test isolation values from setup)
+        ENV["BUNDLE_GEMFILE"] = original_bundle_gemfile
+        ENV["BUNDLE_APP_CONFIG"] = original_bundle_app_config
       end
     end
   end
