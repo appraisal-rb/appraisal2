@@ -116,13 +116,16 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Release Tasks
-  spec.add_development_dependency("stone_checksums", "~> 1.0") # Ruby >= 2.2.0
+  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.3")          # Ruby >= 2.2.0
 
   # Testing
   spec.add_development_dependency("activesupport", ">= 3.2.21")
+  spec.add_development_dependency("kettle-test", "~> 1.0", ">= 1.0.7")              # Ruby >= 2.3.0
+  spec.add_development_dependency("kettle-dev", "~> 1.1", ">= 1.1.60")              # Ruby >= 2.3.0
   spec.add_development_dependency("rspec", "~> 3.13")                               # Ruby >= 0
   spec.add_development_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")  # Ruby >= 1.8.7
   spec.add_development_dependency("rspec_junit_formatter", "~> 0.6")                # Ruby >= 2.3.0, for GitLab Test Result Parsing
-  spec.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.17")       # Ruby >= 1.8.7
-  spec.add_development_dependency("silent_stream", "~> 1.0", ">= 1.0.11")           # Ruby >= 2.3.0
+  spec.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.19")       # Ruby >= 1.8.7
+  spec.add_development_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.4")        # Ruby >= 1.8.7
+  spec.add_development_dependency("silent_stream", "~> 1.0", ">= 1.0.12")           # Ruby >= 2.3.0
 end
