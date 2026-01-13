@@ -29,18 +29,18 @@ module Appraisal
 
         # Run ore lock first if lockfile doesn't exist
         unless File.exist?(lockfile)
-          lock_command = "#{ORE_EXECUTABLE} lock -gemfile #{gemfile_path}"
+          lock_command = [ORE_EXECUTABLE, "lock", "-gemfile", gemfile_path]
           run_ore_command(lock_command)
         end
 
-        command = install_command(options).join(" ")
+        command = install_command(options)
         run_ore_command(command)
       end
 
       def update(gems = [])
         validate_availability!
 
-        command = update_command(gems).join(" ")
+        command = update_command(gems)
         run_ore_command(command)
       end
 
@@ -84,7 +84,7 @@ module Appraisal
       end
 
       def run_ore_command(command)
-        puts ">> BUNDLE_GEMFILE=#{gemfile_path} #{command}"
+        puts ">> BUNDLE_GEMFILE=#{gemfile_path} #{command.join(' ')}"
 
         # Ore resolves path dependencies relative to the current working directory,
         # not relative to the gemfile location. We need to cd to the gemfile's
@@ -95,7 +95,7 @@ module Appraisal
           ENV["BUNDLE_GEMFILE"] = gemfile_path
           ENV["APPRAISAL_INITIALIZED"] = "1"
           Dir.chdir(gemfile_dir) do
-            exit(1) unless Kernel.system(command)
+            exit(1) unless Kernel.system(*command)
           end
         end
       end
