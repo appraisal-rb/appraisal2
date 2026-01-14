@@ -154,6 +154,8 @@ module AcceptanceTestHelpers
   end
 
   def restore_environment_variables
+    return unless @original_environment_variables
+
     @original_environment_variables.each_pair do |key, value|
       ENV[key] = value
     end
