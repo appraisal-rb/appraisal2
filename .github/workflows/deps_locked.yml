@@ -21,7 +21,7 @@ permissions:
   contents: read
 
 env:
-  KITCHEN_SINK: true
+  K_SOUP_COV_MIN_HARD: false
 
 on:
   push:
