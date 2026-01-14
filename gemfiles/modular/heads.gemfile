@@ -1,1 +1,9 @@
 # frozen_string_literal: true
+
+# heads is for RUBY_ENGINE heads,
+#   and x_std_libs heads, but not other gem heads.
+# So we use almost the same gems as current, unless we need to customize
+
+eval_gemfile("thor/r4/v1.4.gemfile")
+
+eval_gemfile("x_std_libs/vHEAD.gemfile")

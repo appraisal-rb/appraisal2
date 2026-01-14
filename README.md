@@ -1,14 +1,11 @@
-<p align="center">
-  <a href="https://discord.gg/3qme4XHNKN" target="_blank" rel="noopener">
-    <img width="120px" src="https://github.com/galtzo-floss/shields-badge/raw/main/docs/images/logo/galtzo-floss-logos-original.svg?raw=true" alt="Galtzo.com Logo by Aboling0, CC BY-SA 4.0">
-  </a>
-  <a href="https://appraisal2.galtzo.com" target="_blank" rel="noopener">
-    <img width="120px" src="https://github.com/appraisal-rb/appraisal2/raw/main/docs/images/logo/LoupeAppraiser.svg?raw=true" alt="appraisal-rb Logo by Aboling0, CC BY-SA 4.0">
-  </a>
-  <a href="https://www.ruby-lang.org/" target="_blank" rel="noopener">
-    <img width="120px" src="https://github.com/galtzo-floss/shields-badge/raw/main/docs/images/logo/ruby-logo-198px.svg?raw=true" alt="Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5">
-  </a>
-</p>
+[![Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-i]][🖼️galtzo-discord] [![Appraisal2 Logo by Aboling0, CC BY-SA 4.0][🖼️appraisal2-i]][🖼️appraisal2] [![ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5][🖼️ruby-lang-i]][🖼️ruby-lang]
+
+[🖼️galtzo-i]: https://logos.galtzo.com/assets/images/galtzo-floss/avatar-192px.svg
+[🖼️galtzo-discord]: https://discord.gg/3qme4XHNKN
+[🖼️appraisal2-i]: https://logos.galtzo.com/assets/images/appraisal-rb/appraisal2/avatar-192px.svg
+[🖼️appraisal2]: https://github.com/appraisal-rb/appraisal2
+[🖼️ruby-lang-i]: https://logos.galtzo.com/assets/images/ruby-lang/avatar-192px.svg
+[🖼️ruby-lang]: https://github.com/ruby-lang
 
 # 🔍️ Appraisal2
 
@@ -37,6 +34,7 @@ and [Joe Ferris](https://github.com/jferris), the original author!
 Appraisal2 adds:
 
 - support for `eval_gemfile`
+- support for [ORE](https://github.com/contriboss/ore-light) as an alternative gem manager (faster than bundler!)
 - support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot's `appraisal`)
   - NOTE: The [setup-ruby GH Action](https://github.com/ruby/setup-ruby) only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI. Compatibility is assumed thanks to [![Enforced Code Style Linter][💎rlts-img]][💎rlts] enforcing the syntax for the oldest supported Ruby, which is Ruby v1.8. File a bug if you find something broken.
 - Support for JRuby 9.4+
@@ -83,6 +81,9 @@ pollute the global namespace, one alternative is
 
 ### 🔒 Secure Installation
 
+<details>
+  <summary>For Medium or High Security Installations</summary>
+
 `appraisal2` is cryptographically signed, and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
 [stone_checksums][💎stone_checksums]. Be sure the gem you install hasn’t been tampered with
 by following the instructions below.
@@ -110,6 +111,8 @@ bundle config set --global trust-policy MediumSecurity
 ```
 
 NOTE: Be prepared to track down certs for signed gems and add them the same way you added mine.
+
+</details>
 
 ## 🔧 Basic Setup
 
@@ -150,6 +153,7 @@ Having so many different use cases means it can be helpful to others to see how 
 | 1 | [omniauth-identity][1-gh]<br>[![Star][1-⭐️i]][1-gh]<br>[![Rank][1-🔢i]][1-🧰] | [![🔒️][1-🔒️i]][1-🔒️]<br>[![un🔒️][1-un🔒️i]][1-un🔒️] | [![Style][1-as⚙️i]][1-as⚙️]<br>[![Coverage][1-ac⚙️i]][1-ac⚙️]<br>[![Svcs][1-sc⚙️i]][1-sc⚙️]<br>[![L-Svcs][1-sl⚙️i]][1-sl⚙️]<br>[![S-Svcs][1-ss⚙️i]][1-ss⚙️]<br>[![U-Svcs][1-su⚙️i]][1-su⚙️]<br>[![A-Svcs][1-sa⚙️i]][1-sa⚙️]<br>[![J-Svcs][1-sj⚙️i]][1-sj⚙️]<br>[![AJ-Svcs][1-saj⚙️i]][1-saj⚙️] | [![Current][1-⏰i]][1-⏰]<br>[![Deps@HEAD][1-👟i]][1-👟] | [![Supported][1-👴i]][1-👴]<br>[![Unsupported][1-u👴i]][1-u👴]<br>[![Legacy][1-l👴i]][1-l👴]<br>[![Ancient][1-a👴i]][1-a👴]<br>[![JRuby][1-ji]][1-j]<br>[![JRuby Ancient][1-ja👴i]][1-ja👴]<br>[![Head][1-🗣️i]][1-🗣️] | ❌  |
 | 2 | [rspec-stubbed_env][2-gh]<br>[![Star][2-⭐️i]][2-gh]<br>[![Rank][2-🔢i]][2-🧰] | [![🔒️][2-🔒️i]][2-🔒️]<br>[![un🔒️][2-un🔒️i]][2-un🔒️] | [![Style][2-as⚙️i]][2-as⚙️]<br>[![Coverage][2-ac⚙️i]][2-ac⚙️]                                                                                                                                                                                                  | [![Current][2-⏰i]][2-⏰]                                | [![Supported][2-👴i]][2-👴]<br>[![Unsupported][2-u👴i]][2-u👴]<br>[![Legacy][2-l👴i]][2-l👴]<br>[![Ancient][2-a👴i]][2-a👴]<br>[![JRuby][2-ji]][2-j]<br>[![Truffle][2-ti]][2-t]<br>[![Head][2-🗣️i]][2-🗣️]           | ❌  |
 | 3 | [silent_stream][3-gh]<br>[![Star][3-⭐️i]][3-gh]<br>[![Rank][3-🔢i]][3-🧰]     | [![🔒️][3-🔒️i]][3-🔒️]<br>[![un🔒️][3-un🔒️i]][3-un🔒️] | [![Style][3-as⚙️i]][3-as⚙️]<br>[![Coverage][3-ac⚙️i]][3-ac⚙️]                                                                                                                                                                                                  | [![Current][3-⏰i]][3-⏰]                                | [![Supported][3-👴i]][3-👴]<br>[![Unsupported][3-u👴i]][3-u👴]<br>[![Legacy][3-l👴i]][3-l👴]<br>[![Ancient][3-a👴i]][3-a👴]<br>[![JRuby][3-ji]][3-j]<br>[![Truffle][3-ti]][3-t]<br>[![Head][3-🗣️i]][3-🗣️]           | ❌  |
+| 4 | [oauth2][4-gh]<br>[![Star][4-⭐️i]][4-gh]<br>[![Rank][4-🔢i]][4-🧰]            | [![🔒️][4-🔒️i]][4-🔒️]<br>[![un🔒️][4-un🔒️i]][4-un🔒️] | [![Style][4-as⚙️i]][4-as⚙️]<br>[![Coverage][4-ac⚙️i]][4-ac⚙️]<br>[![Svcs][4-sc⚙️i]][4-sc⚙️]<br>[![L-Svcs][4-sl⚙️i]][4-sl⚙️]<br>[![S-Svcs][4-ss⚙️i]][4-ss⚙️]<br>[![U-Svcs][4-su⚙️i]][4-su⚙️]<br>[![A-Svcs][4-sa⚙️i]][4-sa⚙️]<br>[![J-Svcs][4-sj⚙️i]][4-sj⚙️]<br>[![AJ-Svcs][4-saj⚙️i]][4-saj⚙️] | [![Current][4-⏰i]][4-⏰]<br>[![Deps@HEAD][4-👟i]][4-👟] | [![Supported][4-👴i]][4-👴]<br>[![Unsupported][4-u👴i]][4-u👴]<br>[![Legacy][4-l👴i]][4-l👴]<br>[![Ancient][4-a👴i]][4-a👴]<br>[![JRuby][4-ji]][4-j]<br>[![JRuby Ancient][4-ja👴i]][4-ja👴]<br>[![Head][4-🗣️i]][4-🗣️] | ❌  |
 
 [1-gh]: https://github.com/omniauth/omniauth-identity
 [1-🧰]: https://www.ruby-toolbox.com/projects/omniauth-identity
@@ -255,6 +259,51 @@ Having so many different use cases means it can be helpful to others to see how 
 [3-🗣️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/heads.yml
 [3-🗣️i]: https://github.com/pboling/silent_stream/actions/workflows/heads.yml/badge.svg
 
+[4-gh]: https://github.com/ruby-oauth/oauth2
+[4-🧰]: https://www.ruby-toolbox.com/projects/oauth2
+[4-⭐️i]: https://img.shields.io/github/stars/ruby-oauth/oauth2
+[4-🔢i]: https://img.shields.io/gem/rd/oauth2.svg
+[4-🔒️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/deps_locked.yml
+[4-🔒️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/deps_locked.yml/badge.svg
+[4-un🔒️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/deps_unlocked.yml
+[4-un🔒️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/deps_unlocked.yml/badge.svg
+[4-as⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/style.yml
+[4-as⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/style.yml/badge.svg
+[4-ac⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/coverage.yml
+[4-ac⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/coverage.yml/badge.svg
+[4-sc⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/current-svc-adapters.yml
+[4-sc⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/current-svc-adapters.yml/badge.svg
+[4-sl⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/legacy-svc-adapters.yml
+[4-sl⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/legacy-svc-adapters.yml/badge.svg
+[4-ss⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/supported-svc-adapters.yml
+[4-ss⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/supported-svc-adapters.yml/badge.svg
+[4-su⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/unsupported-svc-adapters.yml
+[4-su⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported-svc-adapters.yml/badge.svg
+[4-sa⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/ancient-svc-adapters.yml
+[4-sa⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/ancient-svc-adapters.yml/badge.svg
+[4-sj⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/jruby-svc-adapters.yml
+[4-sj⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-svc-adapters.yml/badge.svg
+[4-saj⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/jruby-ancient-svc-adapters.yml
+[4-saj⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-ancient-svc-adapters.yml/badge.svg
+[4-⏰]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/current.yml
+[4-⏰i]: https://github.com/ruby-oauth/oauth2/actions/workflows/current.yml/badge.svg
+[4-j]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/jruby.yml
+[4-ji]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby.yml/badge.svg
+[4-👟]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/current-runtime-heads.yml
+[4-👟i]: https://github.com/ruby-oauth/oauth2/actions/workflows/current-runtime-heads.yml/badge.svg
+[4-👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/supported.yml
+[4-👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/supported.yml/badge.svg
+[4-u👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/unsupported.yml
+[4-u👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml/badge.svg
+[4-l👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/legacy.yml
+[4-l👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/legacy.yml/badge.svg
+[4-a👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/ancient.yml
+[4-a👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml/badge.svg
+[4-ja👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/jruby-ancient.yml
+[4-ja👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-ancient.yml/badge.svg
+[4-🗣️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/heads.yml
+[4-🗣️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/heads.yml/badge.svg
+
 ## ⚒️ Basic Usage
 
 Once you've configured the appraisals you want to use, you need to install the
@@ -279,7 +328,7 @@ your dependencies in quick test runs, but keep running the tests in older
 versions to check for regressions.
 
 In the case that you want to run all the appraisals by default when you run
-`rake`, you can override your default Rake task by put this into your Rakefile:
+`rake`, you can override your default Rake task by putting this into your Rakefile:
 
     if !ENV["APPRAISAL_INITIALIZED"] && ENV.fetch("CI", "false").casecmp("false") == 0
       task :default => :appraisal
@@ -304,6 +353,95 @@ appraisal list                   # List the names of the defined appraisals
 appraisal update [LIST_OF_GEMS]  # Remove all generated gemfiles and lockfiles, resolve, and install dependencies again
 appraisal version                # Display the version and exit
 ```
+
+### Command Options
+
+The `install` and `update` commands support several options:
+
+| Option | Description |
+|--------|-------------|
+| `--gem-manager`, `-g` | Gem manager to use: `bundler` (default) or `ore` |
+| `--jobs`, `-j` | Install gems in parallel using the given number of workers |
+| `--retry` | Retry network and git requests that have failed (default: 1) |
+| `--without` | A space-separated list of groups to skip during installation |
+| `--full-index` | Run bundle install with the full-index argument |
+| `--path` | Install gems in the specified directory |
+
+## 🦀 Using Ore (Alternative Gem Manager)
+
+Appraisal2 supports [ORE](https://github.com/contriboss/ore-light) as an alternative to Bundler
+for dependency resolution and installation. Ore is a fast gem manager written in Go that aims
+to be a drop-in replacement for Bundler.
+
+### Installing Ore
+
+You can install ORE via:
+
+```bash
+# Install ORE Light (no Ruby required for download)
+# Installs to ~/.local/bin by default (no sudo needed)
+curl -fsSL https://raw.githubusercontent.com/contriboss/ore-light/master/scripts/install.sh | bash
+
+# For system-wide installation to /usr/local/bin
+curl -fsSL https://raw.githubusercontent.com/contriboss/ore-light/master/scripts/install.sh | bash -s -- --system
+```
+
+### Using Ore with Appraisal2
+
+To use ORE instead of bundler, pass the `--gem-manager=ore` option:
+
+```bash
+# Install dependencies using ORE
+bundle exec appraisal install --gem-manager=ore
+
+# Update dependencies using ORE
+bundle exec appraisal update --gem-manager=ore
+```
+
+You can also use the short form:
+
+```bash
+bundle exec appraisal install -g ore
+```
+
+### Ore-Specific Options
+
+When using ORE, some options are translated to ORE's equivalents:
+
+| Appraisal Option | Ore Equivalent | Notes                               |
+|------------------|----------------|-------------------------------------|
+| `--jobs=N` | `-workers=N` | Only used when N > 1                |
+| `--path=DIR` | `-vendor=DIR` | Sets the gem installation directory |
+| `--without=GROUPS` | `-without=GROUP1,GROUP2` | Groups are comma-separated in ORE   |
+| `--retry` | *(ignored)* | ORE handles retries internally      |
+| `--full-index` | *(ignored)* | Not applicable to ORE               |
+
+### Example Workflow with ORE
+
+```bash
+# Generate appraisal gemfiles
+bundle exec appraisal generate
+
+# Install dependencies using ORE (faster than bundler)
+bundle exec appraisal install --gem-manager=ore --jobs=4
+
+# Run tests against all appraisals
+bundle exec appraisal rspec
+
+# Update a specific gem using ORE
+bundle exec appraisal update rack --gem-manager=ore
+```
+
+### When to Use Ore
+
+Ore can be particularly beneficial when:
+
+- You have many appraisals and want faster installation
+- You're in a CI environment where installation speed matters
+- You want to take advantage of ORE's parallel resolution capabilities
+
+Note that ORE must be installed separately and available in your PATH.
+If you specify ORE and it is not available, appraisal2 will raise an error.
 
 Under the hood
 --------------
@@ -385,7 +523,7 @@ end
 
 **Appraisal2.root.gemfile**
 ```ruby
-source "https://rubygems.org"
+source "https://gem.coop"
 
 # Appraisal2 Root Gemfile is for running appraisal to generate the Appraisal2 Gemfiles
 # We do not load the standard Gemfile, as it is tailored for local development,
@@ -542,6 +680,8 @@ See [CONTRIBUTING.md][🤝contributing].
 
 [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls]
 
+[![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov]
+
 ### 🪇 Code of Conduct
 
 Everyone interacting with this project's codebases, issue trackers,
@@ -614,7 +754,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
         <a href="https://discord.gg/3qme4XHNKN">
             Galtzo.com
             <picture>
-              <img src="https://github.com/galtzo-floss/shields-badge/raw/main/docs/images/logo/galtzo-floss-logos-wordless.svg?raw=true" alt="Galtzo.com Logo by Aboling0, CC BY-SA 4.0" width="24">
+              <img src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px-blank.svg" alt="Galtzo.com Logo (wordless) by Aboling0, CC BY-SA 4.0" width="24">
             </picture>
         </a>, and Appraisal2 contributors
     </li>
@@ -627,13 +767,13 @@ Having arrived at the bottom of the page, please endure a final supplication.
 The primary maintainer of this gem, Peter Boling, wants
 Ruby to be a great place for people to solve problems, big and small.
 Please consider supporting his efforts via the giant yellow link below,
-or one of smaller ones, depending on button size preference.
+or one of the smaller ones, depending on button size preference.
 
 [![Buy me a latte][🖇buyme-img]][🖇buyme]
 
 [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi] [![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
 
-P.S. If you need help️, or want to say thanks, 👇 Join the Discord.
+P.S. If you need help️ or want to say thanks, 👇 Join the Discord.
 
 [![Live Chat on Discord][✉️discord-invite-img]][✉️discord-invite]
 

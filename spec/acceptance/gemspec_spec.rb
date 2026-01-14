@@ -10,9 +10,9 @@ RSpec.describe "Gemspec" do
     build_gemspec
 
     write_file "Gemfile", <<-GEMFILE.strip_heredoc.rstrip
-      source "https://rubygems.org"
+      source "https://gem.coop"
 
-      gem 'appraisal2', :path => #{PROJECT_ROOT.inspect}
+      gem 'appraisal2', :path => '#{local_appraisal2_path}'
 
       gemspec
     GEMFILE
@@ -28,9 +28,9 @@ RSpec.describe "Gemspec" do
     build_gemspec "specdir"
 
     write_file "Gemfile", <<-GEMFILE.strip_heredoc.rstrip
-      source "https://rubygems.org"
+      source "https://gem.coop"
 
-      gem 'appraisal2', :path => #{PROJECT_ROOT.inspect}
+      gem 'appraisal2', :path => '#{local_appraisal2_path}'
 
       gemspec :path => './specdir'
     GEMFILE

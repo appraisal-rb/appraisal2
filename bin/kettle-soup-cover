@@ -1,0 +1,362 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Combined coverage report script
+# Usage: kettle-soup-cover [options] [coverage.json path]
+#   -d, --detail     Show detailed uncovered line/branch locations
+#   -f, --file FILE  Show details for specific file (partial path/glob match)
+#   -p, --path PATH  Path to coverage.json to read (default: $K_SOUP_COV_DIR/coverage.json)
+#   -n, --num NUM    Max uncovered line/branch details to show per file (default: 20)
+#   -l, --lines      Show only line coverage
+#   -b, --branches   Show only branch coverage
+#   --no-lines       Don't include line coverage
+#   --no-branches    Don't include branch coverage
+#   -h, --help       Show help message
+
+require "json"
+require "optparse"
+require "kettle/soup/cover"
+
+file_filter = nil
+max_details = 20
+show_detail = false
+coverage_path = nil
+explicit_coverage_path = false
+
+opts = OptionParser.new do |opt|
+  opt.banner = "Usage: kettle-soup-cover [options] [coverage.json path]"
+  opt.on("-d", "--detail", "Show detailed uncovered line/branch locations") { show_detail = true }
+  opt.on("-fFILE", "--file=FILE", String, "Show details for specific file (partial path/glob match)") { |v| file_filter = v }
+  opt.on("-pPATH", "--path=PATH", String, "Path to coverage.json to read (default: $K_SOUP_COV_DIR/coverage.json)") do |v|
+    coverage_path = v
+    explicit_coverage_path = true
+  end
+  opt.on("-nNUM", "--num=NUM", Integer, "Max uncovered line/branch details to show per file (default: 20)") do |v|
+    max_details = v
+  end
+  opt.on_tail("-h", "--help", "Show this message") do
+    puts opt
+    exit
+  end
+  opt.on("-l", "--lines", "Show only line coverage") { @show_lines = true }
+  opt.on("-b", "--branches", "Show only branch coverage") { @show_branches = true }
+  opt.on("--no-lines", "Don't include line coverage") { @show_lines = false }
+  opt.on("--no-branches", "Don't include branch coverage") { @show_branches = false }
+end
+
+opts.parse!(ARGV)
+# If a positional arg is present (leftover after parsing) treat it as coverage json path
+coverage_dir = Kettle::Soup::Cover::COVERAGE_DIR
+if ARGV.any?
+  coverage_path ||= ARGV.shift
+  explicit_coverage_path = true
+end
+coverage_path ||= "#{coverage_dir}/coverage.json"
+
+# Helper to match a file path against the provided file filter
+def path_matches_filter?(path, short_path, filter)
+  return true if filter.nil? || filter == ""
+
+  # If filter looks like a glob (contains wildcard chars), use fnmatch.
+  if /[*?\[\]]/.match?(filter)
+    File.fnmatch?(filter, short_path, File::FNM_EXTGLOB) || File.fnmatch?(filter, path, File::FNM_EXTGLOB)
+  else
+    short_path.include?(filter) || path.include?(filter)
+  end
+end
+
+# Fail early if JSON formatter is not active; coverage.json may be stale or missing
+unless explicit_coverage_path || Kettle::Soup::Cover::FORMATTERS.any? { |f| f[:type] == :json }
+  abort <<~MSG
+    Kettle::Soup::Cover is not configured to generate a JSON coverage report.
+    The 'kettle-soup-cover' script requires the json formatter (K_SOUP_COV_FORMATTERS includes "json")
+    so that coverage/coverage.json is available and consistent with the HTML/LCOV/XML output.
+
+    Configure K_SOUP_COV_FORMATTERS to include json:
+      export K_SOUP_COV_FORMATTERS="json,html"
+
+    Or explicitly pass a path to a valid coverage.json generated with json formatter using the -p/--path option or as a positional arg:
+      kettle-soup-cover -p ./coverage/coverage.json
+      kettle-soup-cover ./coverage/coverage.json
+
+    Note: `-f/--file` is a file-filter (partial path/glob match) and is not a path-to-json option.
+  MSG
+end
+
+if Kettle::Soup::Cover::VERBOSE || Kettle::Soup::Cover::DEBUG
+  puts "Using Kettle::Soup::Cover::COVERAGE_DIR=#{coverage_dir}"
+  puts "Using coverage_path=#{coverage_path}"
+  puts "K_SOUP_COV_FORMATTERS=#{Kettle::Soup::Cover::FORMATTERS.map { |f| f[:type].to_s }.join(",")}"
+end
+
+unless File.exist?(coverage_path)
+  puts "Coverage file not found: #{coverage_path}"
+  puts "Run bin/rake coverage first to generate coverage data."
+  exit 1
+end
+
+# If neither -l/--no-lines nor -b/--no-branches provided, show both
+# Otherwise, compute defaults so explicit flags control output
+if @show_lines.nil? && @show_branches.nil?
+  @show_lines = true
+  @show_branches = true
+elsif @show_lines.nil?
+  # show_lines unspecified: derive from show_branches
+  @show_lines = !@show_branches
+elsif @show_branches.nil?
+  # show_branches unspecified: derive from show_lines
+  @show_branches = !@show_lines
+end
+data = JSON.parse(File.read(coverage_path))
+files = data["coverage"]
+
+def collect_line_info(files, file_filter: nil)
+  results = []
+  files.each do |path, info|
+    next unless info.is_a?(Hash)
+    next unless info["lines"]
+
+    lines = info["lines"]
+    total = 0
+    covered = 0
+    uncovered_lines = []
+
+    lines.each_with_index do |hit_count, index|
+      next if hit_count.nil? || hit_count == "ignored"
+
+      line_num = index + 1
+      total += 1
+      if hit_count.to_i > 0
+        covered += 1
+      else
+        uncovered_lines << line_num
+      end
+    end
+
+    uncovered = total - covered
+    next if uncovered == 0
+
+    pct = (total > 0) ? (covered.to_f / total * 100).round(1) : 100.0
+    short_path = path.split("/lib/").last || path.split("/").last(2).join("/")
+
+    results << {
+      uncovered: uncovered,
+      total: total,
+      covered: covered,
+      pct: pct,
+      path: short_path,
+      full_path: path,
+      uncovered_lines: uncovered_lines,
+    }
+  end
+
+  results.select! { |r| path_matches_filter?(r[:full_path], r[:path], file_filter) } if file_filter
+
+  results.sort_by! { |r| -r[:uncovered] }
+  results
+end
+
+def collect_branch_info(files, file_filter: nil)
+  results = []
+  files.each do |path, info|
+    next unless info.is_a?(Hash)
+    next unless info["branches"]
+
+    branches = info["branches"]
+    total = 0
+    covered = 0
+    uncovered_details = []
+
+    if branches.is_a?(Array)
+      branches.each do |branch|
+        next unless branch.is_a?(Hash)
+        next if branch["coverage"] == "ignored"
+
+        total += 1
+        if branch["coverage"].to_i > 0
+          covered += 1
+        else
+          uncovered_details << {
+            condition: branch["type"],
+            cond_line: branch["start_line"],
+            branch: branch["type"],
+            branch_line: branch["start_line"],
+          }
+        end
+      end
+    end
+
+    uncovered = total - covered
+    next if uncovered == 0
+
+    pct = (total > 0) ? (covered.to_f / total * 100).round(1) : 100.0
+    short_path = path.split("/lib/").last || path.split("/").last(2).join("/")
+
+    results << {
+      uncovered: uncovered,
+      total: total,
+      covered: covered,
+      pct: pct,
+      path: short_path,
+      full_path: path,
+      details: uncovered_details.sort_by do |d|
+        d[:branch_line] || 0
+      end,
+    }
+  end
+
+  results.select! { |r| path_matches_filter?(r[:full_path], r[:path], file_filter) } if file_filter
+
+  results.sort_by! { |r| -r[:uncovered] }
+  results
+end
+
+def calculate_line_totals(files, file_filter: nil)
+  total_lines = 0
+  covered_lines = 0
+  file_count = 0
+
+  files.each do |path, info|
+    next unless info.is_a?(Hash)
+    next unless info["lines"]
+    short_path = path.split("/lib/").last || path.split("/").last(2).join("/")
+    next if file_filter && !path_matches_filter?(path, short_path, file_filter)
+
+    file_count += 1
+    info["lines"].each do |hit|
+      next if hit.nil? || hit == "ignored"
+      total_lines += 1
+      covered_lines += 1 if hit.to_i > 0
+    end
+  end
+
+  {total: total_lines, covered: covered_lines, files: file_count}
+end
+
+def calculate_branch_totals(files, file_filter: nil)
+  total_branches = 0
+  covered_branches = 0
+  file_count = 0
+
+  files.each do |path, info|
+    next unless info.is_a?(Hash)
+    next unless info["branches"]
+    short_path = path.split("/lib/").last || path.split("/").last(2).join("/")
+    next if file_filter && !path_matches_filter?(path, short_path, file_filter)
+
+    file_count += 1
+    branches = info["branches"]
+    if branches.is_a?(Hash)
+      branches.each do |_cond, branch_data|
+        next unless branch_data.is_a?(Hash)
+        branch_data.each do |_id, hit_count|
+          next if hit_count == "ignored"
+          total_branches += 1
+          covered_branches += 1 if hit_count.to_i > 0
+        end
+      end
+    elsif branches.is_a?(Array)
+      branches.each do |b|
+        next unless b.is_a?(Hash)
+        next if b["coverage"] == "ignored"
+        total_branches += 1
+        covered_branches += 1 if b["coverage"].to_i > 0
+      end
+    end
+  end
+
+  {total: total_branches, covered: covered_branches, files: file_count}
+end
+
+line_totals = calculate_line_totals(files, file_filter: file_filter)
+branch_totals = calculate_branch_totals(files, file_filter: file_filter)
+
+if @show_lines
+  puts "==== Line coverage ===="
+  line_results = collect_line_info(files, file_filter: file_filter)
+  if line_results.empty?
+    puts "All files fully covered (lines)!"
+  else
+    puts "Files with uncovered (-d to expand) lines (-n #{max_details}; use n 0 for unlimited):"
+    puts "-" * 70
+    line_results.each do |r|
+      puts format("%3d uncovered | %5.1f%% | %s", r[:uncovered], r[:pct], r[:path])
+      next unless show_detail && r[:uncovered_lines].any?
+
+      lines_to_show = r[:uncovered_lines].first(max_details)
+      ranges = []
+      current_range = nil
+      lines_to_show.each do |line|
+        if current_range.nil?
+          current_range = [line, line]
+        elsif line == current_range[1] + 1
+          current_range[1] = line
+        else
+          ranges << current_range
+          current_range = [line, line]
+        end
+      end
+      ranges << current_range if current_range
+      range_strs = ranges.map { |r| (r[0] == r[1]) ? r[0].to_s : "#{r[0]}-#{r[1]}" }
+      puts "      Lines: [#{range_strs.join(", ")}]"
+      puts "      ... and #{r[:uncovered_lines].length - max_details} more" if r[:uncovered_lines].length > max_details
+    end
+    puts "-" * 70
+    total_uncovered = line_results.sum { |r| r[:uncovered] }
+    total_lines = line_totals[:total]
+    total_pct = (total_lines > 0) ? (line_totals[:covered].to_f / total_lines * 100).round(1) : 100.0
+    puts format("Total: %d uncovered lines out of %d (%.1f%% coverage)", total_uncovered, total_lines, total_pct)
+  end
+end
+
+## Summary will be printed at the end of the report
+
+if @show_branches
+  puts "\n==== Branch coverage ===="
+  branch_results = collect_branch_info(files, file_filter: file_filter)
+  if branch_results.empty?
+    puts "All files fully covered (branches)!"
+  else
+    puts "Files with uncovered (-d to expand) branches (-n #{max_details}; use n 0 for unlimited):"
+    puts "-" * 70
+    branch_results.each do |r|
+      puts format("%3d uncovered | %5.1f%% | %s", r[:uncovered], r[:pct], r[:path])
+      next unless show_detail && r[:details].any?
+
+      details_to_show = r[:details].first(max_details)
+      details_to_show.each do |d|
+        puts format(
+          "      Line %3d: %s -> %s branch not taken",
+          d[:branch_line] || d[:cond_line] || 0,
+          d[:condition],
+          d[:branch],
+        )
+      end
+      puts "      ... and #{r[:details].length - max_details} more" if r[:details].length > max_details
+    end
+    puts "-" * 70
+    total_uncovered = branch_results.sum { |r| r[:uncovered] }
+    total_branches = branch_totals[:total]
+    total_pct = (total_branches > 0) ? (branch_totals[:covered].to_f / total_branches * 100).round(1) : 100.0
+    puts format("Total: %d uncovered branches out of %d (%.1f%% coverage)", total_uncovered, total_branches, total_pct)
+  end
+end
+
+# Final summary
+line_totals = calculate_line_totals(files, file_filter: file_filter)
+branch_totals = calculate_branch_totals(files, file_filter: file_filter)
+
+line_pct = if line_totals[:total] > 0
+  (line_totals[:covered].to_f / line_totals[:total] * 100)
+else
+  100.0
+end
+branch_pct = if branch_totals[:total] > 0
+  (branch_totals[:covered].to_f / branch_totals[:total] * 100)
+else
+  100.0
+end
+
+puts "\n==== Summary Report ===="
+puts format("LINE COVERAGE:   %6.2f%% -- %d/%d lines in %d files", line_pct, line_totals[:covered], line_totals[:total], line_totals[:files])
+puts format("BRANCH COVERAGE: %6.2f%% -- %d/%d branches in %d files", branch_pct, branch_totals[:covered], branch_totals[:total], branch_totals[:files])

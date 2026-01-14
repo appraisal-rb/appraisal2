@@ -20,6 +20,12 @@ module Appraisal
       @@single_quotes ||= false
     end
 
+    # Reset class state - useful for testing
+    def self.reset!
+      @@heading = nil
+      @@single_quotes = false
+    end
+
     def self.customize(topper, gemfile)
       return unless topper
 

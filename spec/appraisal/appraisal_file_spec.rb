@@ -10,14 +10,27 @@ require "rspec/matchers/built_in/raise_error"
 RSpec.describe Appraisal::AppraisalFile do
   it "complains when no Appraisals file is found" do
     allow(File).to receive(:exist?).with(/gemfile/i).and_return(true)
+    allow(File).to receive(:read).with(/gemfile/i).and_return("")
     allow(File).to receive(:exist?).with("Appraisals").and_return(false)
     expect { described_class.new }.to raise_error(Appraisal::AppraisalsNotFound)
   end
 
   describe "#customize_gemfiles" do
     before do
-      allow(File).to receive(:exist?).with(anything).and_return(true)
-      allow(IO).to receive(:read).with(anything).and_return("")
+      # Reset Customize class state before each test
+      Appraisal::Customize.reset!
+
+      allow(File).to receive(:exist?).and_call_original
+      allow(File).to receive(:exist?).with("Gemfile").and_return(true)
+      allow(File).to receive(:exist?).with("Appraisals").and_return(true)
+      allow(File).to receive(:read).and_call_original
+      allow(File).to receive(:read).with("Gemfile").and_return("")
+      allow(File).to receive(:read).with("Appraisals").and_return("")
+    end
+
+    after do
+      # Reset Customize class state after each test to avoid polluting other tests
+      Appraisal::Customize.reset!
     end
 
     context "when no arguments are given" do

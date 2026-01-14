@@ -441,4 +441,55 @@ RSpec.describe Appraisal::Gemfile do
       expect(gemfile.load(tmpfile.path)).to include(File.dirname(tmpfile.path))
     end
   end
+
+  describe "#load" do
+    it "does nothing when file does not exist" do
+      gemfile = described_class.new
+      result = gemfile.load("/nonexistent/path/to/Gemfile")
+      expect(result).to be_nil
+      expect(gemfile.to_s).to eq("")
+    end
+  end
+
+  describe "#run" do
+    it "does nothing when definitions is nil" do
+      gemfile = described_class.new
+      result = gemfile.run(nil, __FILE__)
+      expect(result).to be_nil
+      expect(gemfile.to_s).to eq("")
+    end
+
+    it "does nothing when definitions is empty string" do
+      gemfile = described_class.new
+      # Empty string is still falsy for the if check
+      gemfile.run("", __FILE__)
+      expect(gemfile.to_s).to eq("")
+    end
+
+    it "evaluates definitions when provided" do
+      gemfile = described_class.new
+      gemfile.run('gem "test_gem"', __FILE__)
+      expect(gemfile.to_s).to include('gem "test_gem"')
+    end
+  end
+
+  describe "#dup" do
+    it "creates a copy of the gemfile" do
+      gemfile = described_class.new
+      gemfile.gem "original_gem"
+
+      duped = gemfile.dup
+      expect(duped.to_s).to include('gem "original_gem"')
+    end
+
+    it "does not affect the original when modifying the copy" do
+      gemfile = described_class.new
+      gemfile.gem "original_gem"
+
+      duped = gemfile.dup
+      duped.gem "new_gem"
+
+      expect(gemfile.to_s).not_to include("new_gem")
+    end
+  end
 end

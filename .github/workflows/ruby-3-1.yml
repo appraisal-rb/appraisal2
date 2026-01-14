@@ -42,7 +42,7 @@ jobs:
           # Ruby 3.1
           - ruby: "ruby-3.1"
             gemfile: "ruby_3_1"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             rubygems: latest
             bundler: latest
             experimental: false

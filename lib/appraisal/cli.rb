@@ -8,6 +8,12 @@ module Appraisal
     default_task :install
     map ["-v", "--version"] => "version"
 
+    class_option "gem-manager",
+      :aliases => "-g",
+      :type => :string,
+      :default => "bundler",
+      :desc => "Gem manager to use for install/update (bundler or ore)"
+
     class << self
       # Override help command to print out usage
       def help(shell, subcommand = false)
@@ -74,8 +80,9 @@ module Appraisal
     def install
       invoke(:generate, [], {})
 
+      install_options = options.to_h
       AppraisalFile.each do |appraisal|
-        appraisal.install(options)
+        appraisal.install(install_options)
         appraisal.relativize
       end
     end
@@ -94,10 +101,11 @@ module Appraisal
 
     desc "update [LIST_OF_GEMS]", "Remove all generated gemfiles and lockfiles, resolve, and install dependencies again"
     def update(*gems)
-      invoke(:generate, [])
+      invoke(:generate, [], {})
 
+      gem_manager = options["gem-manager"] || options[:gem_manager]
       AppraisalFile.each do |appraisal|
-        appraisal.update(gems)
+        appraisal.update(gems, :gem_manager => gem_manager)
       end
     end
 
