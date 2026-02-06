@@ -9,10 +9,6 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- funding documentation
-- Ruby version compatibility badges for v1.8 - v2.2, v3.4, v4.0
-- Appraisal & CI workflow for ruby v3.4
-
 ### Changed
 
 ### Deprecated
@@ -22,6 +18,19 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 ### Security
+
+## [3.0.2] - 2026-02-06
+
+- TAG: [v3.0.2][3.0.2t]
+- COVERAGE: 77.11% -- 603/782 lines in 27 files
+- BRANCH COVERAGE: 83.96% -- 89/106 branches in 27 files
+- 43.03% documented
+
+### Added
+
+- funding documentation
+- Ruby version compatibility badges for v1.8 - v2.2, v3.4, v4.0
+- Appraisal & CI workflow for ruby v3.4
 
 ## [3.0.1] - 2026-02-06
 
@@ -96,7 +105,9 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.1...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.2...HEAD
+[3.0.2]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.1...v3.0.2
+[3.0.2t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.2
 [3.0.1]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.0...v3.0.1
 [3.0.1t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.1
 [3.0.0]:  https://github.com/appraisal-rb/appraisal2/compare/602cdd9b5f8cb8f36992733422f69312b172f427...v3.0.0
