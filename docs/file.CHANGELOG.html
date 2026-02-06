@@ -64,9 +64,32 @@
 <p>Format: <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,<br>
 Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 
-<h2 id="unreleased"><a href="https://gitlab.com/appraisal-rb/appraisal2/-/compare/v3.0.0...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.1...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
+
+<h3 id="changed">Changed</h3>
+
+<h3 id="deprecated">Deprecated</h3>
+
+<h3 id="removed">Removed</h3>
+
+<h3 id="fixed">Fixed</h3>
+
+<h3 id="security">Security</h3>
+
+<h2 id="301---2026-02-06">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.0...v3.0.1">3.0.1</a> - 2026-02-06</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.1">v3.0.1</a>
+</li>
+  <li>COVERAGE: 77.11% – 603/782 lines in 27 files</li>
+  <li>BRANCH COVERAGE: 83.96% – 89/106 branches in 27 files</li>
+  <li>43.03% documented</li>
+</ul>
+
+<h3 id="added-1">Added</h3>
 
 <ul>
   <li>Support for <a href="https://github.com/contriboss/ore-light">ore-light</a> as an alternative gem manager via <code>--gem-manager=ore</code> CLI option
@@ -109,7 +132,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   <li>CLI configs for RuboCop, RubyGems, YARD, and JRuby (for local development only)</li>
 </ul>
 
-<h3 id="changed">Changed</h3>
+<h3 id="changed-1">Changed</h3>
 
 <ul>
   <li>Improved test isolation for acceptance tests to prevent modification of parent project’s Gemfile.lock
@@ -127,11 +150,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   <li>YARD CLI config switch from custom Kramdown support to yard-fence</li>
 </ul>
 
-<h3 id="deprecated">Deprecated</h3>
-
-<h3 id="removed">Removed</h3>
-
-<h3 id="fixed">Fixed</h3>
+<h3 id="fixed-1">Fixed</h3>
 
 <ul>
   <li>Fixed <code>BundlerAdapter#install</code> not passing <code>gemfile_path</code> to <code>Command.new</code>, which caused bundler to potentially write to the wrong Gemfile.lock when <code>Bundler.with_original_env</code> reset the environment</li>
@@ -139,14 +158,15 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   <li>Fixed Thor <code>invoke(:generate, [])</code> call in <code>update</code> command to pass empty options hash, preventing argument leakage</li>
 </ul>
 
-<h3 id="security">Security</h3>
+<h3 id="security-1">Security</h3>
 
 <ul>
   <li>Ore adapter now uses array-based command construction for <code>Kernel.system</code> calls instead of string interpolation, preventing potential shell injection vulnerabilities</li>
 </ul>
 
 <h2 id="300---2025-07-28">
-<a href="https://gitlab.com/appraisal-rb/appraisal2/-/compare/602cdd9b5f8cb8f36992733422f69312b172f427...v3.0.0">3.0.0</a> - 2025-07-28</h2>
+<a href="https://github.com/appraisal-rb/appraisal2/compare/602cdd9b5f8cb8f36992733422f69312b172f427...v3.0.0">3.0.0</a> - 2025-07-28</h2>
+
 <ul>
   <li>Initial release as a hard fork of <a href="https://github.com/thoughtbot/appraisal/commit/602cdd9b5f8cb8f36992733422f69312b172f427">appraisal v3.0.0.rc1</a> with many improvements - by @pboling
     <ul>
@@ -169,7 +189,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
 </div></div>
 
       <div id="footer">
-  Generated on Fri Feb  6 02:24:52 2026 by
+  Generated on Fri Feb  6 04:24:18 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.1).
 </div>

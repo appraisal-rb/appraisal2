@@ -9,6 +9,25 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.0.1] - 2026-02-06
+
+- TAG: [v3.0.1][3.0.1t]
+- COVERAGE: 77.11% -- 603/782 lines in 27 files
+- BRANCH COVERAGE: 83.96% -- 89/106 branches in 27 files
+- 43.03% documented
+
+### Added
+
 - Support for [ore-light](https://github.com/contriboss/ore-light) as an alternative gem manager via `--gem-manager=ore` CLI option
   - New `GemManager::OreAdapter` class implementing ore-light integration
   - New `GemManager::BundlerAdapter` class (extracted from existing bundler logic)
@@ -51,10 +70,6 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Changed `bundle_without_spec.rb` to use `skip_for` instead of `pending_for` to prevent test setup from running on unsupported Ruby versions (which was polluting the project Gemfile.lock with test gems)
 - YARD CLI config switch from custom Kramdown support to yard-fence
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - Fixed `BundlerAdapter#install` not passing `gemfile_path` to `Command.new`, which caused bundler to potentially write to the wrong Gemfile.lock when `Bundler.with_original_env` reset the environment
@@ -66,6 +81,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Ore adapter now uses array-based command construction for `Kernel.system` calls instead of string interpolation, preventing potential shell injection vulnerabilities
 
 ## [3.0.0] - 2025-07-28
+
 - Initial release as a hard fork of [appraisal v3.0.0.rc1](https://github.com/thoughtbot/appraisal/commit/602cdd9b5f8cb8f36992733422f69312b172f427) with many improvements - by @pboling
   - support for `eval_gemfile`
   - support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot's `appraisal`)
@@ -76,5 +92,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://gitlab.com/appraisal-rb/appraisal2/-/compare/v3.0.0...HEAD
-[3.0.0]:  https://gitlab.com/appraisal-rb/appraisal2/-/compare/602cdd9b5f8cb8f36992733422f69312b172f427...v3.0.0
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.1...HEAD
+[3.0.1]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.0...v3.0.1
+[3.0.1t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.1
+[3.0.0]:  https://github.com/appraisal-rb/appraisal2/compare/602cdd9b5f8cb8f36992733422f69312b172f427...v3.0.0
