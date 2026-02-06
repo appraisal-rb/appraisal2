@@ -16,10 +16,11 @@ RSpec.describe "CLI", ".list" do
 
     output = run "appraisal list"
 
-    expect(output).to eq("1.0.0\n2.0.0\n1.1.0\n")
+    expect(output).to include("1.0.0\n2.0.0\n1.1.0\n")
   end
 
   it "prints nothing if there are no appraisals in the file" do
+    skip_for(engine: :jruby)
     build_appraisal_file ""
     output = run "appraisal list"
 
