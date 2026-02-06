@@ -24,6 +24,10 @@ RSpec.describe "CLI", ".list" do
     build_appraisal_file ""
     output = run "appraisal list"
 
-    expect(output.length).to eq(0)
+    # Filter out Ruby 2.7-3.0 keyword argument warnings from Thor
+    # These warnings appear on Ruby <= 3.0 but not on Ruby >= 3.1
+    filtered_output = output.lines.reject { |line| line.include?("warning:") }.join("\n---\n")
+
+    expect(filtered_output).to eq("")
   end
 end
