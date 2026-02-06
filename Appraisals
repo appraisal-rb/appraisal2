@@ -104,7 +104,7 @@ appraise "ruby-3-3" do
   eval_gemfile("modular/ruby_3_3.gemfile")
 end
 
-appraise "ruby-3-3" do
+appraise "ruby-3-4" do
   eval_gemfile("modular/ruby_3_4.gemfile")
 end
 

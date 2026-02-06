@@ -4,4 +4,4 @@ source "https://gem.coop"
 
 gemspec :path => "../"
 
-eval_gemfile("modular/ruby_3_3.gemfile")
+eval_gemfile("modular/ruby_3_4.gemfile")
