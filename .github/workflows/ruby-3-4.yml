@@ -1,0 +1,66 @@
+---
+name: MRI 3.3
+
+permissions:
+  contents: read
+
+env:
+  K_SOUP_COV_DO: false
+
+on:
+  push:
+    branches:
+      - 'main'
+      - '*-stable'
+    tags:
+      - '!*' # Do not execute on tags
+  pull_request:
+    branches:
+      - '*'
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Tests ${{ matrix.ruby }} gemfiles/${{ matrix.gemfile }}.gemfile ${{ matrix.name_extra || '' }}
+    if: ${{ !contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
+    # NOTE: This does not use the primary Gemfile at all.
+    env: # $BUNDLE_GEMFILE - set at job level, so applies to all steps
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Ruby 3.3
+          - ruby: "ruby-3.4"
+            gemfile: "ruby_3_4"
+            exec_cmd: "rake magic"
+            rubygems: latest
+            bundler: latest
+            experimental: false
+
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Ruby & RubyGems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          rubygems: ${{ matrix.rubygems }}
+          bundler: ${{ matrix.bundler }}
+          bundler-cache: false
+
+      - name: bundle install
+        run: bundle install --gemfile ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
+      - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
+        run: bundle exec --gemfile ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile ${{ matrix.exec_cmd }}

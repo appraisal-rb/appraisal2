@@ -104,6 +104,10 @@ appraise "ruby-3-3" do
   eval_gemfile("modular/ruby_3_3.gemfile")
 end
 
+appraise "ruby-3-3" do
+  eval_gemfile("modular/ruby_3_4.gemfile")
+end
+
 # Only run security audit on the latest version of Ruby
 appraise "audit" do
   eval_gemfile("modular/audit.gemfile")
