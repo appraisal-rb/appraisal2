@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  Exception: Appraisal::AppraisalsNotFound
+  Exception: Appraisal::OreNotAvailableError
   
     &mdash; Documentation by YARD 0.9.38
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="../css/common.css" type="text/css" />
 
 <script type="text/javascript">
-  pathId = "Appraisal::AppraisalsNotFound";
+  pathId = "Appraisal::OreNotAvailableError";
   relpath = '../';
 </script>
 
@@ -36,10 +36,10 @@
       <div id="header">
         <div id="menu">
   
-    <a href="../_index.html">Index (A)</a> &raquo;
+    <a href="../_index.html">Index (O)</a> &raquo;
     <span class='title'><span class='object_link'><a href="../Appraisal.html" title="Appraisal (module)">Appraisal</a></span></span>
      &raquo; 
-    <span class="title">AppraisalsNotFound</span>
+    <span class="title">OreNotAvailableError</span>
   
 </div>
 
@@ -59,7 +59,7 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><h1>Exception: Appraisal::AppraisalsNotFound
+      <div id="content"><h1>Exception: Appraisal::OreNotAvailableError
   
   
   
@@ -69,14 +69,14 @@
   <dl>
     <dt>Inherits:</dt>
     <dd>
-      <span class="inheritName">StandardError</span>
+      <span class="inheritName">ArgumentError</span>
       
         <ul class="fullTree">
           <li>Object</li>
           
-            <li class="next">StandardError</li>
+            <li class="next">ArgumentError</li>
           
-            <li class="next">Appraisal::AppraisalsNotFound</li>
+            <li class="next">Appraisal::OreNotAvailableError</li>
           
         </ul>
         <a href="#" class="inheritanceTree">show all</a>
@@ -103,7 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Raises when Appraisal is unable to locate Appraisals file in the current directory.</p>
+    <p>Raises when ore-light gem manager is requested but not installed.</p>
 
 
   </div>
@@ -174,15 +174,17 @@
       <pre class="lines">
 
 
-6
-7
-8</pre>
+13
+14
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/errors.rb', line 6</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/errors.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_message'>message</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Unable to locate &#39;Appraisals&#39; file in the current directory.</span><span class='tstring_end'>&quot;</span></span>
+  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ore-light is not installed or not in PATH. </span><span class='tstring_end'>&quot;</span></span> \
+    <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Install from: https://github.com/contriboss/ore-light</span><span class='tstring_end'>&quot;</span></span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
