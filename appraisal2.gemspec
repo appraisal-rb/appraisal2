@@ -116,7 +116,6 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  # spec.add_development_dependency("kettle-dev", "~> 1.1", ">= 1.1.60")              # Ruby >= 2.3.0
   spec.add_development_dependency("kettle-dev", "~> 1.2", ">= 1.2.4")              # Ruby >= 2.3.0
 
   # Security
