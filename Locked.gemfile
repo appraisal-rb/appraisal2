@@ -1,0 +1,11 @@
+# frozen_string_literal: true
+
+source "https://gem.coop"
+
+# This gemfile is used by the locked_deps.yml GHA workflow.
+gemspec
+
+eval_gemfile "gemfiles/modular/coverage.gemfile"
+eval_gemfile "gemfiles/modular/style.gemfile"
+eval_gemfile "gemfiles/modular/documentation.gemfile"
+eval_gemfile "gemfiles/modular/x_std_libs.gemfile"

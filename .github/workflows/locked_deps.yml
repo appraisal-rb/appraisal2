@@ -1,0 +1,147 @@
+---
+# Lock/Unlock Deps Pattern
+#
+# Two often conflicting goals resolved!
+#
+#  - unlocked_deps.yml
+#    - All runtime & dev dependencies, but does not have a `gemfiles/*.gemfile.lock` committed
+#    - Uses an Appraisal2 "unlocked_deps" gemfile, and the current MRI Ruby release
+#    - Know when new dependency releases will break local dev with unlocked dependencies
+#    - Broken workflow indicates that new releases of dependencies may not work
+#
+#  - locked_deps.yml
+#    - All runtime & dev dependencies, and has a `Gemfile.lock` committed
+#    - Uses the project's main Gemfile, and the current MRI Ruby release
+#    - Matches what contributors and maintainers use locally for development
+#    - Broken workflow indicates that a new contributor will have a bad time
+#
+name: Deps Locked
+
+permissions:
+  contents: read
+
+env:
+  # Running coverage, but not validating minimum coverage,
+  #   because it would be redundant with the coverage workflow.
+  # Also we can validate all output formats without breaking CodeCov,
+  #   since we aren't submitting these reports anywhere.
+  # Also this locked workflow ensures our tests are properly skipped by lib/tree_haver/rspec/dependency_tags.rb
+  #   when the dependency is not present.
+  K_SOUP_COV_MIN_BRANCH: 10
+  K_SOUP_COV_MIN_LINE: 40
+  K_SOUP_COV_MIN_HARD: false
+  K_SOUP_COV_FORMATTERS: "html,xml,rcov,lcov,json,tty"
+  K_SOUP_COV_DO: true
+  K_SOUP_COV_MULTI_FORMATTERS: true
+  K_SOUP_COV_COMMAND_NAME: "Test Coverage"
+  ORE_DEBUG: true
+
+on:
+  push:
+    branches:
+      - 'main'
+      - '*-stable'
+    tags:
+      - '!*' # Do not execute on tags
+  pull_request:
+    branches:
+      - '*'
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  test:
+    if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    name: Default rake task w/ ${{ matrix.gemfile }}.gemfile.lock ${{ matrix.name_extra || '' }}
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.experimental }}
+    env:
+      # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
+      BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.gemfile }}.gemfile
+      # tree-sitter library paths for FFI/MRI/Rust backend compatibility
+      LD_LIBRARY_PATH: "/usr/local/lib:/usr/lib/x86_64-linux-gnu:/usr/lib"
+      TREE_SITTER_RUNTIME_LIB: "/usr/lib/x86_64-linux-gnu/libtree-sitter.so.0"
+      TREE_SITTER_TOML_PATH: "/usr/local/lib/libtree-sitter-toml.so"
+      # Force Nokogiri to use system libraries instead of bundled ones
+      BUNDLE_FORCE_RUBY_PLATFORM: "false"
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Ruby <whichever version is current, e.g., 3.4 as of 2025-07-12>
+          - ruby: "ruby"
+            exec_cmd: "rake"
+            gemfile: "Locked"
+            rubygems: latest
+            bundler: latest
+            experimental: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install tree-sitter and toml grammar
+        uses: kettle-rb/ts-grammar-action@main
+        with:
+          setup-rust: "true"
+          grammar-toml: "true"
+
+      - name: Setup Ruby & Gems via rv & ore
+        uses: appraisal-rb/setup-ruby-flash@main
+        with:
+          ruby-version: "${{ matrix.ruby }}"
+          rubygems: "${{ matrix.rubygems }}"
+          bundler: "${{ matrix.bundler }}"
+          ore-install: true
+          rv-git-ref: "v0.4.3"
+          ore-git-ref: "v0.21.0"
+          cache-version: "v3"
+
+#      - name: Diagnostic - Compare gemspec formats
+#        run: ruby bin/compare_gemspec_formats
+#
+#      - name: Spy on Bundle Exec Environment
+#        continue-on-error: true
+#        run: |
+#          bundle exec ruby -e "
+#            puts '--- BUNDLE EXEC SPY ---'
+#            puts 'GEM_HOME=' + ENV['GEM_HOME'].to_s
+#            puts 'GEM_PATH=' + ENV['GEM_PATH'].to_s
+#            puts 'BUNDLE_BIN_PATH=' + ENV['BUNDLE_BIN_PATH'].to_s
+#            puts 'RUBYLIB=' + ENV['RUBYLIB'].to_s
+#            puts 'RUBYOPT=' + ENV['RUBYOPT'].to_s
+#            puts 'LOAD_PATH:'
+#            puts \$LOAD_PATH
+#            puts '-----------------------'
+#          "
+#          echo "--- bundle env ---"
+#          bundle env || true
+#          echo "--- ruby gem env ---"
+#          ruby -e "require 'rubygems'; puts 'Gem.dir=' + Gem.dir; puts 'Gem.path=' + Gem.path.join(':')"
+#          echo "--- PRE-FLIGHT bundle env ---"
+#          bundle env || true
+#          echo "--- PRE-FLIGHT ruby gem env ---"
+#          ruby -e "require 'rubygems'; puts 'Gem.dir=' + Gem.dir; puts 'Gem.path=' + Gem.path.join(':')"
+#          echo "--- PRE-FLIGHT bundle check ---"
+#          bundle check || true
+#          echo "--- PRE-FLIGHT bundle exec env snapshot ---"
+#          bundle exec env | sort | grep -E '^(GEM_|BUNDLE_)' || true
+#          echo "--- PRE-FLIGHT bundle exec platform summary ---"
+#          bundle exec ruby -e "require 'bundler'; require 'rubygems'; puts 'Gem.platforms=' + Gem.platforms.join(','); puts 'Gem::Platform.local=' + Gem::Platform.local.to_s; puts 'Bundler.local_platform=' + Bundler.local_platform.to_s; puts 'Bundler.generic_local_platform=' + Bundler.generic_local_platform.to_s; locked = Bundler.definition.instance_variable_get(:@locked_specs); specs = locked.respond_to?(:to_a) ? locked.to_a : Array(locked); missing = []; specs.each do |spec| src = spec.source; begin by_spec = src.specs.search(spec).empty?; rescue; by_spec = true; end; missing << spec if by_spec; end; puts 'locked_specs=' + specs.size.to_s + ' missing_by_spec=' + missing.size.to_s; missing.first(20).each do |spec| stubs = Gem::Specification.stubs.select { |s| s.name == spec.name }.map(&:full_name); puts spec.name + ' locked_platform=' + spec.platform.to_s + ' locked_full=' + spec.full_name + ' installed_stubs=' + stubs.join(','); end" || true
+#          echo "--- PRE-FLIGHT bundle exec locked spec platform check ---"
+#          bundle exec ruby -e "require 'bundler'; names=%w[kettle-dev rake rexml logger]; locked=Bundler.definition.instance_variable_get(:@locked_specs); names.each do |name| spec=locked[name]&.first; unless spec; puts name + ': locked spec missing'; next; end; src=spec.source; by_spec=src.specs.search(spec).size; by_name=src.specs.search([name, spec.version]).size; puts name + ': locked_platform=' + spec.platform.to_s + ' locked_full=' + spec.full_name + ' search(spec)=' + by_spec.to_s + ' search(name,ver)=' + by_name.to_s; end" || true
+#          echo "--- PRE-FLIGHT bundle exec rake detection ---"
+#          bundle exec ruby -e "require 'bundler'; path = Bundler.which('rake'); puts 'Bundler.which(rake)=' + path.to_s; if path && File.exist?(path); puts 'rake shebang=' + File.open(path, 'rb') { |f| f.gets.to_s.strip }; end" || true
+#          echo "--- PRE-FLIGHT bundle exec ruby -S rake ---"
+#          bundle exec ruby -S rake -T || true
+#          echo "--- PRE-FLIGHT bundle exec rake (exec load disabled) ---"
+#          BUNDLE_DISABLE_EXEC_LOAD=1 bundle exec rake -T || true
+
+      - name: Checks the kitchen sink via ${{ matrix.exec_cmd }}
+        run: bundle exec ${{ matrix.exec_cmd }}

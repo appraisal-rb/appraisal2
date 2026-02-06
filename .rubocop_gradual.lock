@@ -1,7 +1,4 @@
 {
-  "lib/appraisal/cli.rb:1948643359": [
-    [124, 5, 410, "Style/MissingRespondToMissing: When using `method_missing`, define `respond_to_missing?`.", 1969529734]
-  ],
   "lib/appraisal/customize.rb:1550549108": [
     [12, 5, 138, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 2682968747],
     [19, 5, 62, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 4082816720],
