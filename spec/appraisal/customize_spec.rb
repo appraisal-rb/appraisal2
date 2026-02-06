@@ -4,6 +4,8 @@ require "appraisal/appraisal"
 require "appraisal/customize"
 
 RSpec.describe Appraisal::Customize do
+  subject { described_class.new }
+
   let(:appraisal) { Appraisal::Appraisal.new("test", "Gemfile") }
   let(:single_line_heading) { "This file was generated with a custom heading!" }
   let(:multi_line_heading) do
@@ -13,7 +15,6 @@ RSpec.describe Appraisal::Customize do
       This file was generated with a custom heading!
     HEADING
   end
-  let(:subject) { described_class.new }
   let(:single_line_subject) do
     described_class.new(:heading => single_line_heading)
   end
@@ -61,10 +62,12 @@ RSpec.describe Appraisal::Customize do
     let(:lockfile_full_path) { "/path/to/project/#{lockfile_relative_path}" }
 
     before do
-      allow(appraisal).to receive(:gemfile_name).and_return(gemfile)
-      allow(appraisal).to receive(:gemfile_path).and_return(gemfile_full_path)
-      allow(appraisal).to receive(:lockfile_path).and_return(lockfile_full_path)
-      allow(appraisal).to receive(:relative_gemfile_path).and_return(gemfile_relative_path)
+      allow(appraisal).to receive_messages(
+        :gemfile_name => gemfile,
+        :gemfile_path => gemfile_full_path,
+        :lockfile_path => lockfile_full_path,
+        :relative_gemfile_path => gemfile_relative_path,
+      )
     end
 
     it "returns nil if no heading is set" do

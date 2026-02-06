@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "CLI", "appraisal update" do
+RSpec.describe "CLI", ".update" do
   before do
     build_gem "dummy2", "1.0.0"
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "CLI", "appraisal version" do
+RSpec.describe "CLI", ".version" do
   context "with version subcommand" do
     it "prints out version string" do
       output = run "appraisal version"

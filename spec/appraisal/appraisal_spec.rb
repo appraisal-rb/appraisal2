@@ -29,7 +29,7 @@ RSpec.describe Appraisal::Appraisal do
     expect(output_file.read).to match(/[^\n]*\n\z/m)
   end
 
-  context "gemfile customization" do
+  context "when customizing gemfile" do
     it "generates a gemfile with a custom heading" do
       heading = "This file was generated with a custom heading!"
       Appraisal::Customize.new(:heading => heading)
@@ -86,13 +86,12 @@ RSpec.describe Appraisal::Appraisal do
     end
   end
 
-  context "parallel installation" do
+  context "when installing in parallel" do
     include SilentStream
 
     before do
       @appraisal = described_class.new("fake", "fake")
-      allow(@appraisal).to receive(:gemfile_path).and_return("/home/test/test directory")
-      allow(@appraisal).to receive(:project_root).and_return(Pathname.new("/home/test"))
+      allow(@appraisal).to receive_messages(:gemfile_path => "/home/test/test directory", :project_root => Pathname.new("/home/test"))
       allow(Appraisal::Command).to receive(:new).and_return(double(:run => true))
       # Stub Bundler.settings[:path] to return nil by default (no custom path set)
       # This prevents the env hash from being added to Command.new calls

@@ -37,3 +37,7 @@ RSpec/Output:
     - 'spec/support/**/*'
     - 'spec/config/**/*'
     - 'spec/fixtures/**/*'
+
+RSpec/SubjectStub:
+  Exclude:
+    - 'spec/appraisal/gem_manager/ore_adapter_spec.rb'

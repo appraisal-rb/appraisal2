@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "CLI", "appraisal generate" do
+RSpec.describe "CLI", ".generate" do
   it "generates the gemfiles" do
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source "https://gem.coop"

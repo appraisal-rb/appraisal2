@@ -224,15 +224,15 @@ RSpec.describe Appraisal::Gemfile do
     expect(gemfile.to_s).to eq fixture_gemfile
   end
 
-  context "excess new line" do
-    context "no contents" do
+  context "with excess new line" do
+    context "with no contents" do
       it "shows empty string" do
         gemfile = described_class.new
         expect(gemfile.to_s).to eq ""
       end
     end
 
-    context "full contents" do
+    context "with full contents" do
       it "does not show newline at end" do
         gemfile = described_class.new
         gemfile.source "source"
@@ -242,7 +242,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    context "no gemspec" do
+    context "without gemspec" do
       it "does not show newline at end" do
         gemfile = described_class.new
         gemfile.source "source"
@@ -252,10 +252,10 @@ RSpec.describe Appraisal::Gemfile do
     end
   end
 
-  context "relative path handling" do
+  context "with relative path handling" do
     before { stub_const("RUBY_VERSION", "1.8.7") }
 
-    context "in :path option" do
+    context "with :path option" do
       it "handles dot path" do
         gemfile = described_class.new
         gemfile.gem "bacon", :path => "."
@@ -278,7 +278,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    context "in :git option" do
+    context "with :git option" do
       it "handles dot git path" do
         gemfile = described_class.new
         gemfile.gem "bacon", :git => "."
@@ -309,7 +309,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    context "in path block" do
+    context "with path block" do
       it "handles dot path" do
         gemfile = described_class.new
 
@@ -353,7 +353,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    context "in git block" do
+    context "with git block" do
       it "handles dot git path" do
         gemfile = described_class.new
 
@@ -411,7 +411,7 @@ RSpec.describe Appraisal::Gemfile do
       end
     end
 
-    context "in gemspec directive" do
+    context "with gemspec directive" do
       it "handles gemspec path" do
         gemfile = described_class.new
         gemfile.gemspec :path => "."
@@ -421,7 +421,7 @@ RSpec.describe Appraisal::Gemfile do
     end
   end
 
-  context "git_source support" do
+  context "with git_source support" do
     before { stub_const("RUBY_VERSION", "1.8.7") }
 
     it "stores git_source declaration and apply it as git option" do

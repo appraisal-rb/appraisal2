@@ -2,7 +2,7 @@
 
 # NOTE: ore-light resolves gems from rubygems.org (not local gems),
 # so we use real gems in these tests rather than the dummy test gems.
-RSpec.describe "CLI with ore", "appraisal update --gem-manager=ore", :ore do
+RSpec.describe "CLI with ore", ".update --gem-manager=ore", :ore do
   before do
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise 'rack_update' do

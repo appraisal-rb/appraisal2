@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "CLI", "appraisal list" do
+RSpec.describe "CLI", ".list" do
   it "prints list of appraisals" do
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise '1.0.0' do

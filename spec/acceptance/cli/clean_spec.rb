@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "CLI", "appraisal clean" do
+RSpec.describe "CLI", ".clean" do
   it "remove all gemfiles from gemfiles directory" do
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise '1.0.0' do

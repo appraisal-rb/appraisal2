@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe "CLI", "appraisal install" do
+RSpec.describe "CLI", ".install" do
   it "raises error when there is no Appraisals file" do
     output = run "appraisal install 2>&1", false
 

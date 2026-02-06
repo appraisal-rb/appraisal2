@@ -40,7 +40,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
   describe "#validate_availability!" do
     context "when ore is available" do
       before do
-        allow(adapter).to receive(:available?).and_return(true)
+        allow(adapter).to receive(:system).with("which ore > /dev/null 2>&1").and_return(true)
       end
 
       it "does not raise an error" do
@@ -50,7 +50,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
 
     context "when ore is not available" do
       before do
-        allow(adapter).to receive(:available?).and_return(false)
+        allow(adapter).to receive(:system).with("which ore > /dev/null 2>&1").and_return(false)
       end
 
       it "raises OreNotAvailableError" do
@@ -61,7 +61,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
 
   describe "#install", :ore do
     before do
-      allow(adapter).to receive(:available?).and_return(true)
+      allow(adapter).to receive(:system).with("which ore > /dev/null 2>&1").and_return(true)
       allow(Bundler).to receive(:with_original_env).and_yield
       allow(Dir).to receive(:chdir).and_yield
       allow(Kernel).to receive(:system).and_return(true)
@@ -144,7 +144,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
 
   describe "#update", :ore do
     before do
-      allow(adapter).to receive(:available?).and_return(true)
+      allow(adapter).to receive(:system).with("which ore > /dev/null 2>&1").and_return(true)
       allow(Bundler).to receive(:with_original_env).and_yield
       allow(Dir).to receive(:chdir).and_yield
       allow(Kernel).to receive(:system).and_return(true)
@@ -166,7 +166,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
 
   context "when ore is not available" do
     before do
-      allow(adapter).to receive(:available?).and_return(false)
+      allow(adapter).to receive(:system).with("which ore > /dev/null 2>&1").and_return(false)
     end
 
     describe "#install" do

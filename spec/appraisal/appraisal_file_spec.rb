@@ -50,7 +50,7 @@ RSpec.describe Appraisal::AppraisalFile do
         end
 
         it "sets the heading" do
-          expect { subject }.to change { Appraisal::Customize.heading }.to("foo")
+          expect { subject }.to change(Appraisal::Customize, :heading).to("foo")
         end
       end
 
@@ -62,7 +62,7 @@ RSpec.describe Appraisal::AppraisalFile do
         end
 
         it "sets the single_quotes" do
-          expect { subject }.to change { Appraisal::Customize.single_quotes }.to(true)
+          expect { subject }.to change(Appraisal::Customize, :single_quotes).to(true)
         end
       end
 

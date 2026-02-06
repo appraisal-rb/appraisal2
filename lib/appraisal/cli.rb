@@ -134,5 +134,12 @@ module Appraisal
         end
       end
     end
+
+    def respond_to_missing?(name, include_private = false)
+      appraisals = AppraisalFile.new.appraisals
+      appraisals.any? { |appraisal| appraisal.name == name.to_s } || super
+    rescue AppraisalsNotFound
+      super
+    end
   end
 end
