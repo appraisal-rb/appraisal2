@@ -9,6 +9,10 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- funding documentation
+- Ruby version compatibility badges for v1.8 - v2.2, v3.4, v4.0
+- Appraisal & CI workflow for ruby v3.4
+
 ### Changed
 
 ### Deprecated
