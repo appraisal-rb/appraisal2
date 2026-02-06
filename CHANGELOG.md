@@ -35,6 +35,8 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - New unit tests for error classes (`AppraisalsNotFound`, `OreNotAvailableError`, `UnknownGemManagerError`)
   - Enhanced `DependencyList` tests with edge cases
   - Enhanced `Gemfile` tests with load/run/dup edge cases
+- Added documentation on hostile takeover of RubyGems
+  - https://dev.to/galtzo/hostile-takeover-of-rubygems-my-thoughts-5hlo
 
 ### Changed
 

@@ -19,6 +19,13 @@
 
 [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi] [![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
 
+<details>
+    <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
+
+I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-takeover-of-rubygems-my-thoughts-5hlo).
+
+</details>
+
 ## 🌻 Synopsis
 
 Appraisal2 integrates with bundler and rake to test your library against
