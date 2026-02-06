@@ -37,6 +37,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Enhanced `Gemfile` tests with load/run/dup edge cases
 - Added documentation on hostile takeover of RubyGems
   - https://dev.to/galtzo/hostile-takeover-of-rubygems-my-thoughts-5hlo
+- CLI configs for RuboCop, RubyGems, YARD, and JRuby (for local development only)
 
 ### Changed
 
@@ -48,6 +49,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Added `BUNDLE_USER_CACHE` isolation to prevent polluting user's gem cache
   - Fixed overly broad `File` stubs in unit tests that interfered with RSpec error formatting
   - Changed `bundle_without_spec.rb` to use `skip_for` instead of `pending_for` to prevent test setup from running on unsupported Ruby versions (which was polluting the project Gemfile.lock with test gems)
+- YARD CLI config switch from custom Kramdown support to yard-fence
 
 ### Deprecated
 
