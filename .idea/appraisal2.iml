@@ -1188,7 +1188,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="kettle-test (v1.0.7) [path][gem]" type="rubylib">
+      <library name="kettle-test (v1.0.9) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -1205,17 +1205,17 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/kettle-test-1.0.7" />
-          <option name="version" value="1.0.7" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/kettle-test-1.0.9" />
+          <option name="version" value="1.0.9" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/kettle-test-1.0.7/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/kettle-test-1.0.7/sig" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/kettle-test-1.0.9/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/kettle-test-1.0.9/sig" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/kettle-test-1.0.7/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/kettle-test-1.0.7/sig" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/kettle-test-1.0.9/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/kettle-test-1.0.9/sig" />
         </SOURCES>
       </library>
     </orderEntry>

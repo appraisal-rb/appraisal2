@@ -898,9 +898,9 @@ P.S. If you need help️ or want to say thanks, 👇 Join the Discord.
 [🚎12-crh-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current-runtime-heads.yml
 [🚎12-crh-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current-runtime-heads.yml/badge.svg
 [🚎13-🔒️-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/deps_locked.yml
-[🚎13-🔒️-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/deps_locked.yml/badge.svg
+[🚎13-🔒️-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/locked_deps.yml/badge.svg
 [🚎14-🔓️-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/deps_unlocked.yml
-[🚎14-🔓️-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/deps_unlocked.yml/badge.svg
+[🚎14-🔓️-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/unlocked_deps.yml/badge.svg
 [💎ruby-2.3i]: https://img.shields.io/badge/Ruby-2.3-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.4i]: https://img.shields.io/badge/Ruby-2.4-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.5i]: https://img.shields.io/badge/Ruby-2.5-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
