@@ -377,6 +377,53 @@ The `install` and `update` commands support several options:
 | `--full-index` | Run bundle install with the full-index argument |
 | `--path` | Install gems in the specified directory |
 
+### Using Commands with Named Appraisals
+
+You can target a specific appraisal when running `install` or `update` commands:
+
+```bash
+# Install dependencies for a specific appraisal
+bundle exec appraisal rails-7 install
+
+# Install a specific appraisal with options
+bundle exec appraisal rails-7 install --gem-manager=ore --jobs=4
+
+# Update gems in a specific appraisal
+bundle exec appraisal rails-7 update
+
+# Update specific gems in a specific appraisal
+bundle exec appraisal rails-7 update rails rack
+
+# Update with gem manager option
+bundle exec appraisal rails-7 update rails --gem-manager=ore
+```
+
+**Important:** When using options with named appraisals, place the appraisal name first, 
+then the command, then any options:
+
+✅ **Correct:**
+```bash
+bundle exec appraisal <APPRAISAL_NAME> install --gem-manager=ore
+bundle exec appraisal <APPRAISAL_NAME> update <GEMS> --gem-manager=ore
+```
+
+❌ **Incorrect:**
+```bash
+bundle exec appraisal install <APPRAISAL_NAME> --gem-manager=ore  # Wrong order
+```
+
+For running other commands (like tests) with a specific appraisal, use:
+
+```bash
+# Run any external command with a specific appraisal's dependencies
+bundle exec appraisal <APPRAISAL_NAME> <COMMAND>
+
+# Examples:
+bundle exec appraisal rails-7 rake test
+bundle exec appraisal rails-7 rspec
+bundle exec appraisal rails-7 rubocop
+```
+
 ## 🦀 Using Ore (Alternative Gem Manager)
 
 Appraisal2 supports [ORE](https://github.com/contriboss/ore-light) as an alternative to Bundler
@@ -432,14 +479,23 @@ When using ORE, some options are translated to ORE's equivalents:
 # Generate appraisal gemfiles
 bundle exec appraisal generate
 
-# Install dependencies using ORE (faster than bundler)
+# Install dependencies for ALL appraisals using ORE (faster than bundler)
 bundle exec appraisal install --gem-manager=ore --jobs=4
+
+# Install dependencies for a SPECIFIC appraisal using ORE
+bundle exec appraisal rails-7 install --gem-manager=ore --jobs=4
 
 # Run tests against all appraisals
 bundle exec appraisal rspec
 
-# Update a specific gem using ORE
+# Run tests against a specific appraisal
+bundle exec appraisal rails-7 rspec
+
+# Update a specific gem in ALL appraisals using ORE
 bundle exec appraisal update rack --gem-manager=ore
+
+# Update a specific gem in ONE appraisal using ORE
+bundle exec appraisal rails-7 update rack --gem-manager=ore
 ```
 
 ### When to Use Ore

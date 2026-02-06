@@ -127,12 +127,82 @@ module Appraisal
       end
 
       if matching_appraisal
-        Command.new(args, :gemfile => matching_appraisal.gemfile_path).run
+        # Check if the first argument is a Thor command (install or update)
+        if args.first == "install"
+          # Extract Thor options from the remaining arguments
+          # Filter out the command name and pass options to install
+          filtered_args = args[1..-1] || []
+          # Parse the options ourselves since Thor isn't parsing them here
+          parsed_options = parse_external_options(filtered_args)
+          
+          matching_appraisal.install(parsed_options)
+          matching_appraisal.relativize
+        elsif args.first == "update"
+          # Extract gems and options
+          filtered_args = args[1..-1] || []
+          gems, parsed_options = extract_gems_and_options(filtered_args)
+          
+          # Convert gem_manager from parsed_options hash to keyword argument
+          gem_manager = parsed_options[:gem_manager]
+          matching_appraisal.update(gems, :gem_manager => gem_manager)
+        else
+          # Run as an external command
+          Command.new(args, :gemfile => matching_appraisal.gemfile_path).run
+        end
       else
         AppraisalFile.each do |appraisal|
           Command.new(ARGV, :gemfile => appraisal.gemfile_path).run
         end
       end
+    end
+
+    def parse_external_options(args)
+      options = {}
+      args.each do |arg|
+        case arg
+        when /^--gem-manager=(.+)$/
+          options[:gem_manager] = Regexp.last_match(1)
+        when /^-g$/
+          # Next arg should be the value
+          idx = args.index(arg)
+          options[:gem_manager] = args[idx + 1] if idx && args[idx + 1]
+        when /^--jobs=(\d+)$/
+          options[:jobs] = Regexp.last_match(1).to_i
+        when /^-j(\d+)$/
+          options[:jobs] = Regexp.last_match(1).to_i
+        when /^--retry=(\d+)$/
+          options[:retry] = Regexp.last_match(1).to_i
+        when /^--without=(.+)$/
+          options[:without] = Regexp.last_match(1)
+        when /^--path=(.+)$/
+          options[:path] = Regexp.last_match(1)
+        when /^--full-index$/
+          options[:full_index] = true
+        end
+      end
+      options
+    end
+
+    def extract_gems_and_options(args)
+      gems = []
+      options = {}
+      
+      args.each do |arg|
+        case arg
+        when /^--gem-manager=(.+)$/
+          options[:gem_manager] = Regexp.last_match(1)
+        when /^-g$/
+          # Next arg should be the value
+          idx = args.index(arg)
+          options[:gem_manager] = args[idx + 1] if idx && args[idx + 1]
+        else
+          # If it's not an option, it's a gem name (unless it's the value after -g)
+          prev_arg = args[args.index(arg) - 1] if args.index(arg) && args.index(arg) > 0
+          gems << arg unless prev_arg == "-g"
+        end
+      end
+      
+      [gems, options]
     end
 
     def respond_to_missing?(name, include_private = false)

@@ -9,13 +9,24 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- New CLI specs for testing named appraisal commands with options
+
 ### Changed
+
+- Improved documentation for using `install` and `update` commands with named appraisals and options
+- Added examples showing correct command order: `appraisal <NAME> install --gem-manager=ore`
+- Enhanced "Using Ore with Appraisal2" section with named appraisal examples
 
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- **BREAKING BUG FIX**: Fixed CLI to properly handle `install` and `update` commands when targeting a specific appraisal with options
+  - Previously `appraisal <NAME> install --gem-manager=ore` would incorrectly try to run the Unix `install` command
+  - Now correctly invokes the appraisal install/update methods with proper option parsing
+  - Fixes error: `/usr/bin/install: unrecognized option '--gem-manager=ore'`
 
 ### Security
 
