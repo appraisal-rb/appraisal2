@@ -20,7 +20,7 @@ RSpec.describe "CLI", ".list" do
   end
 
   it "prints nothing if there are no appraisals in the file" do
-    skip_for(engine: :jruby)
+    skip_for(:engine => :jruby)
     build_appraisal_file ""
     output = run "appraisal list"
 
