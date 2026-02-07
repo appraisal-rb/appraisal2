@@ -366,7 +366,10 @@ appraisal version                # Display the version and exit
 
 ### Command Options
 
-The `install` and `update` commands support several options:
+The `install` and `update` **built-in commands** support several options:
+
+**Important:** These options apply **only** to Appraisal's `install` and `update` commands. 
+They do **not** apply when running external commands like `bundle install` or `bundle update`.
 
 | Option | Description |
 |--------|-------------|
@@ -379,40 +382,42 @@ The `install` and `update` commands support several options:
 
 ### Using Commands with Named Appraisals
 
-You can target a specific appraisal when running `install` or `update` commands:
+#### Using Appraisal's built-in commands with named appraisals
+
+When using Appraisal's `install` or `update` commands with a specific appraisal name, 
+place the appraisal name first, then the command, then any options:
+
+```bash
+# ✅ Correct order: appraisal <NAME> <COMMAND> [OPTIONS]
+bundle exec appraisal rails-7 install --gem-manager=ore
+bundle exec appraisal rails-7 update rails --gem-manager=ore
+bundle exec appraisal rails-7 install --jobs=4
+
+# ❌ Wrong order (won't work)
+bundle exec appraisal install rails-7 --gem-manager=ore  # Wrong order
+```
+
+More examples with Appraisal's built-in commands:
 
 ```bash
 # Install dependencies for a specific appraisal
 bundle exec appraisal rails-7 install
 
-# Install a specific appraisal with options
+# Install with options
 bundle exec appraisal rails-7 install --gem-manager=ore --jobs=4
 
-# Update gems in a specific appraisal
+# Update all gems in a specific appraisal
 bundle exec appraisal rails-7 update
 
 # Update specific gems in a specific appraisal
 bundle exec appraisal rails-7 update rails rack
-
-# Update with gem manager option
-bundle exec appraisal rails-7 update rails --gem-manager=ore
+bundle exec appraisal rails-7 update rails rack --gem-manager=ore
 ```
 
-**Important:** When using options with named appraisals, place the appraisal name first, 
-then the command, then any options:
+#### Running external commands with named appraisals
 
-✅ **Correct:**
-```bash
-bundle exec appraisal <APPRAISAL_NAME> install --gem-manager=ore
-bundle exec appraisal <APPRAISAL_NAME> update <GEMS> --gem-manager=ore
-```
-
-❌ **Incorrect:**
-```bash
-bundle exec appraisal install <APPRAISAL_NAME> --gem-manager=ore  # Wrong order
-```
-
-For running other commands (like tests) with a specific appraisal, use:
+For running external commands (like `rake test`, `rspec`, etc.) with a specific appraisal, 
+the structure is the same: appraisal name first, then the command:
 
 ```bash
 # Run any external command with a specific appraisal's dependencies
@@ -422,7 +427,15 @@ bundle exec appraisal <APPRAISAL_NAME> <COMMAND>
 bundle exec appraisal rails-7 rake test
 bundle exec appraisal rails-7 rspec
 bundle exec appraisal rails-7 rubocop
+
+# Note: External commands do NOT support appraisal options like --gem-manager
+# This doesn't work and will fail:
+bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 ```
+
+**Key difference:**
+- `bundle exec appraisal rails-7 install --gem-manager=ore` ✅ → Uses **Appraisal's** install command with ORE
+- `bundle exec appraisal rails-7 bundle install --gem-manager=ore` ❌ → Tries to run external **bundle** command (which doesn't recognize `--gem-manager`)
 
 ## 🦀 Using Ore (Alternative Gem Manager)
 
@@ -445,21 +458,49 @@ curl -fsSL https://raw.githubusercontent.com/contriboss/ore-light/master/scripts
 
 ### Using Ore with Appraisal2
 
-To use ORE instead of bundler, pass the `--gem-manager=ore` option:
+The `--gem-manager=ore` option works **only** with Appraisal's built-in `install` and `update` commands.
+It does **NOT** work with external commands like `bundle install`.
+
+#### ✅ Using --gem-manager with Appraisal's install/update commands
+
+To use ORE instead of bundler for dependency installation, pass the `--gem-manager=ore` option:
 
 ```bash
-# Install dependencies using ORE
+# Install dependencies for ALL appraisals using ORE
 bundle exec appraisal install --gem-manager=ore
 
-# Update dependencies using ORE
+# Update dependencies for ALL appraisals using ORE
 bundle exec appraisal update --gem-manager=ore
+
+# Install dependencies for a SPECIFIC appraisal using ORE
+bundle exec appraisal <APPRAISAL_NAME> install --gem-manager=ore
+
+# Update dependencies for a SPECIFIC appraisal using ORE
+bundle exec appraisal <APPRAISAL_NAME> update <GEMS> --gem-manager=ore
 ```
 
 You can also use the short form:
 
 ```bash
 bundle exec appraisal install -g ore
+bundle exec appraisal <APPRAISAL_NAME> install -g ore
 ```
+
+#### ❌ Do NOT use --gem-manager with external commands
+
+The `--gem-manager` option **cannot** be used when running external commands like `bundle install`:
+
+```bash
+# ❌ WRONG - Don't try to pass --gem-manager to external commands
+bundle exec appraisal coverage bundle install --gem-manager=ore
+
+# ✅ RIGHT - Use appraisal's install command instead
+bundle exec appraisal coverage install --gem-manager=ore
+```
+
+The difference:
+- `bundle exec appraisal coverage install --gem-manager=ore` → Uses Appraisal's install command with ORE
+- `bundle exec appraisal coverage bundle install --gem-manager=ore` → Tries to run external `bundle install` (which doesn't recognize `--gem-manager`)
 
 ### Ore-Specific Options
 
@@ -485,10 +526,10 @@ bundle exec appraisal install --gem-manager=ore --jobs=4
 # Install dependencies for a SPECIFIC appraisal using ORE
 bundle exec appraisal rails-7 install --gem-manager=ore --jobs=4
 
-# Run tests against all appraisals
+# Run tests against all appraisals (uses dependencies from appraisal gemfiles)
 bundle exec appraisal rspec
 
-# Run tests against a specific appraisal
+# Run tests against a specific appraisal (uses that appraisal's dependencies)
 bundle exec appraisal rails-7 rspec
 
 # Update a specific gem in ALL appraisals using ORE
@@ -497,6 +538,10 @@ bundle exec appraisal update rack --gem-manager=ore
 # Update a specific gem in ONE appraisal using ORE
 bundle exec appraisal rails-7 update rack --gem-manager=ore
 ```
+
+**Note:** When running tests or other external commands, the dependencies are already
+installed from the appraisal's gemfile. You don't need to (and can't) pass `--gem-manager`
+to external commands—it only works with Appraisal's built-in `install` and `update` commands.
 
 ### When to Use Ore
 
@@ -508,6 +553,40 @@ Ore can be particularly beneficial when:
 
 Note that ORE must be installed separately and available in your PATH.
 If you specify ORE and it is not available, appraisal2 will raise an error.
+
+### Troubleshooting ORE/Gem Manager Issues
+
+#### Error: "Unknown switches --gem-manager=ore"
+
+If you see an error like:
+```
+Unknown switches "--gem-manager=ore"
+```
+
+This usually means you're trying to pass `--gem-manager` to an external command instead of 
+Appraisal's built-in command.
+
+❌ **Wrong:**
+```bash
+bundle exec appraisal coverage bundle install --gem-manager=ore
+# Error: "Unknown switches --gem-manager=ore"
+# The --gem-manager flag is being passed to the external 'bundle install' command,
+# which doesn't recognize it.
+```
+
+✅ **Correct:**
+```bash
+bundle exec appraisal coverage install --gem-manager=ore
+# Correct: Uses Appraisal's install command with ORE gem manager
+```
+
+**Key point:** The `--gem-manager` option **only works** with Appraisal's built-in 
+`install` and `update` commands. It cannot be used with external commands like 
+`bundle install`, `bundle update`, or `bundle exec rake/rspec`.
+
+If you need to install dependencies using ORE:
+1. Run `bundle exec appraisal <NAME> install --gem-manager=ore`
+2. Then run your tests: `bundle exec appraisal <NAME> rspec`
 
 Under the hood
 --------------
