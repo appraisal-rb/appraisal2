@@ -162,5 +162,12 @@ RSpec.describe Appraisal::CLI do
       expect(gems).to eq(["rails"])
       expect(options).to eq(:gem_manager => "ore")
     end
+
+    it "handles repeated values correctly (reproducibility test)" do
+      # appraisal rails-7 update ore -g ore
+      gems, options = cli.send(:extract_gems_and_options, ["ore", "-g", "ore"])
+      expect(gems).to eq(["ore"])
+      expect(options).to eq(:gem_manager => "ore")
+    end
   end
 end

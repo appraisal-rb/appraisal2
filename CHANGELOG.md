@@ -31,6 +31,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Previously `appraisal <NAME> install --gem-manager=ore` would incorrectly try to run the Unix `install` command
   - Now correctly invokes the appraisal install/update methods with proper option parsing
   - Fixes error: `/usr/bin/install: unrecognized option '--gem-manager=ore'`
+- Fixed argument parsing in CLI where repeated values could be mis-parsed as gem names instead of option values (e.g., `appraisal <NAME> update ore -g ore`).
 - Improved shell-escaping handling in `Appraisal::Command` and updated acceptance tests to match the more robust output
 - Standardized on `clean_name` (underscores) for gemfile paths across the test suite for consistency
 

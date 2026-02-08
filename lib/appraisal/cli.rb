@@ -171,14 +171,21 @@ module Appraisal
 
     def parse_external_options(args)
       options = {}
-      args.each do |arg|
+      skip_next = false
+
+      args.each_with_index do |arg, index|
+        if skip_next
+          skip_next = false
+          next
+        end
+
         case arg
         when /^--gem-manager=(.+)$/
           options[:gem_manager] = Regexp.last_match(1)
         when /^-g$/
           # Next arg should be the value
-          idx = args.index(arg)
-          options[:gem_manager] = args[idx + 1] if idx && args[idx + 1]
+          options[:gem_manager] = args[index + 1]
+          skip_next = true
         when /^--jobs=(\d+)$/
           options[:jobs] = Regexp.last_match(1).to_i
         when /^-j(\d+)$/
@@ -199,19 +206,29 @@ module Appraisal
     def extract_gems_and_options(args)
       gems = []
       options = {}
+      skip_next = false
 
-      args.each do |arg|
+      args.each_with_index do |arg, index|
+        if skip_next
+          skip_next = false
+          next
+        end
+
         case arg
         when /^--gem-manager=(.+)$/
           options[:gem_manager] = Regexp.last_match(1)
         when /^-g$/
           # Next arg should be the value
-          idx = args.index(arg)
-          options[:gem_manager] = args[idx + 1] if idx && args[idx + 1]
+          options[:gem_manager] = args[index + 1]
+          skip_next = true
+        when /^-/
+          # Other options are not gems, but we don't handle them all here
+          # For now, just skip them to be safe if they start with -
+          # Actually, the original code only handled -g specifically.
+          # If we see another option we don't know, it's probably not a gem name.
+          # But Thor usually handles them. Here we are in method_missing.
         else
-          # If it's not an option, it's a gem name (unless it's the value after -g)
-          prev_arg = args[args.index(arg) - 1] if args.index(arg) && args.index(arg) > 0
-          gems << arg unless prev_arg == "-g"
+          gems << arg
         end
       end
 
