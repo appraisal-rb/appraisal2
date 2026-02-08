@@ -42,18 +42,18 @@ module Appraisal
     end
 
     def ensure_bundler_is_available
-      version = Utils.bundler_version
-      return if system(%(gem list --silent -i bundler -v #{version}))
+      # Check if any version of bundler is available
+      return if system(%(gem list --silent -i bundler))
 
-      puts ">> Reinstall Bundler into #{ENV["GEM_HOME"]}"
-
-      return if system("gem install bundler --version #{version}")
+      puts ">> Bundler not found, attempting to install..."
+      # If that fails, try to install the latest stable version
+      return if system("gem install bundler")
 
       puts
       puts <<-ERROR.rstrip
 Bundler installation failed.
 Please try running:
-  `GEM_HOME="#{ENV["GEM_HOME"]}" gem install bundler --version #{version}`
+  `gem install bundler`
 manually.
       ERROR
       exit(1)

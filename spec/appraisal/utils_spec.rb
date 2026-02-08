@@ -58,13 +58,22 @@ RSpec.describe Appraisal::Utils do
 
   describe ".bundler_version" do
     it "returns the bundler version" do
-      bundler = double("Bundler", :name => "bundler", :version => "a.b.c")
+      bundler = double("Bundler", :name => "bundler", :version => "2.4.22")
       allow(Gem::Specification).to receive(:detect).and_return(bundler)
 
       version = described_class.bundler_version
 
-      expect(version).to eq "a.b.c"
+      expect(version).to eq "2.4.22"
       expect(Gem::Specification).to have_received(:detect)
+    end
+
+    it "returns prerelease versions as-is" do
+      bundler = double("Bundler", :name => "bundler", :version => "4.1.0.dev")
+      allow(Gem::Specification).to receive(:detect).and_return(bundler)
+
+      version = described_class.bundler_version
+
+      expect(version).to eq "4.1.0.dev"
     end
   end
 end

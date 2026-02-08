@@ -27,6 +27,9 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Improved robustness against Bundler installation failures in CI, especially on Ruby HEAD.
+  - `Appraisal::Command` and acceptance tests now only attempt to install Bundler if no version is currently available, avoiding unnecessary and potentially failing version-specific installations.
+  - Removed aggressive Bundler version matching and "downgrading" logic that stripped prerelease suffixes.
 - **BREAKING BUG FIX**: Fixed CLI to properly handle `install` and `update` commands when targeting a specific appraisal with options
   - Previously `appraisal <NAME> install --gem-manager=ore` would incorrectly try to run the Unix `install` command
   - Now correctly invokes the appraisal install/update methods with proper option parsing

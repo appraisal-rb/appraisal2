@@ -229,13 +229,14 @@ module AcceptanceTestHelpers
     # If bundle -v succeeded, output should contain version info
     return if output && output.include?("Bundler version")
 
-    puts <<-WARNING.strip_heredoc.rstrip
-      Reinstall Bundler to #{TMP_GEM_ROOT} as `BUNDLE_DISABLE_SHARED_GEMS`
-      is enabled.
-    WARNING
-    version = Appraisal::Utils.bundler_version
+    # Check if any version of bundler is already installed
+    check_cmd = "gem list --silent -i bundler --install-dir '#{TMP_GEM_ROOT}'"
+    return if run("#{check_cmd} 2>&1", false).include?("true") rescue nil
 
-    run "gem install bundler --version #{version} --install-dir '#{TMP_GEM_ROOT}'"
+    puts ">> Bundler not found in #{TMP_GEM_ROOT}, attempting to install..."
+
+    # Try to install the latest stable version
+    run "gem install bundler --install-dir '#{TMP_GEM_ROOT}'"
   end
 
   def build_default_gemfile

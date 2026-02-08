@@ -64,7 +64,10 @@ module Appraisal
       end
 
       def bundler_version
-        Gem::Specification.detect { |spec| spec.name == "bundler" }.version.to_s
+        spec = Gem::Specification.detect { |s| s.name == "bundler" }
+        return "2.4.22" unless spec # Fallback for very old systems
+
+        spec.version.to_s
       end
     end
   end
