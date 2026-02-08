@@ -19,6 +19,18 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Security
 
+## [3.0.4] - 2026-02-08
+
+- TAG: [v3.0.4][3.0.4t]
+- COVERAGE: 89.67% -- 703/784 lines in 27 files
+- BRANCH COVERAGE: 83.45% -- 121/145 branches in 27 files
+- 43.03% documented
+
+### Changed
+
+- Documentation cleanup
+- Fixed typos in docs
+
 ## [3.0.3] - 2026-02-07
 
 - TAG: [v3.0.3][3.0.3t]
@@ -142,7 +154,9 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.3...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.4...HEAD
+[3.0.4]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.3...v3.0.4
+[3.0.4t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.4
 [3.0.3]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.2...v3.0.3
 [3.0.3t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.3
 [3.0.2]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.1...v3.0.2
