@@ -39,7 +39,7 @@ jobs:
           # truffleruby-24.2 (targets Ruby 3.3 compatibility)
           - ruby: "truffleruby-24.2"
             appraisal: "current"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: default
             bundler: default
@@ -47,7 +47,7 @@ jobs:
           # truffleruby-25.0
           - ruby: "truffleruby-25.0"
             appraisal: "current"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: default
             bundler: default

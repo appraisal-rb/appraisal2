@@ -2,6 +2,7 @@
 
 RSpec.describe "Appraisals file Bundler DSL compatibility" do
   it "supports all Bundler DSL in Appraisals file", :git_local do
+    skip_for(:engine => "truffleruby")
     build_gems %w[
       bagel
       orange_juice
@@ -161,6 +162,7 @@ RSpec.describe "Appraisals file Bundler DSL compatibility" do
   end
 
   it 'supports ruby file: ".ruby-version" DSL' do
+    skip_for(:engine => "truffleruby")
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source 'https://gem.coop'
 

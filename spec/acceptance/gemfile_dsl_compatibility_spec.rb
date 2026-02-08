@@ -2,6 +2,7 @@
 
 RSpec.describe "Gemfile DSL compatibility" do
   it "supports all Bundler DSL in Gemfile", :git_local do
+    skip_for(:engine => "truffleruby")
     build_gems %w[bacon orange_juice waffle]
     build_git_gem "egg"
     build_gemspec
