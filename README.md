@@ -1038,6 +1038,8 @@ P.S. If you need help️ or want to say thanks, 👇 Join the Discord.
 [🚎4-r3.4-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-4.yml/badge.svg
 [🚎5-st-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/style.yml
 [🚎5-st-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/style.yml/badge.svg
+[🚎9-t-wf]: https://github.com/galtzo-floss/simple_column-scopes/actions/workflows/truffle.yml
+[🚎9-t-wfi]: https://github.com/galtzo-floss/simple_column-scopes/actions/workflows/truffle.yml/badge.svg
 [🚎10-j9.4-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/jruby-9-4.yml
 [🚎10-j9.4-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/jruby-9-4.yml/badge.svg
 [🚎11-c-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current.yml
