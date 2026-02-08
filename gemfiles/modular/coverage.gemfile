@@ -16,7 +16,7 @@ platform :mri do
   if ENV.fetch("KETTLE_RB_DEV", "false").casecmp?("true")
     gem "kettle-soup-cover", :path => "../../../kettle-soup-cover"
   else
-    gem "kettle-soup-cover", "~> 1.0", ">= 1.0.11", :require => false
+    gem "kettle-soup-cover", "~> 1.1", ">= 1.1.1", :require => false
   end
 end
 
