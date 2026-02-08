@@ -1,5 +1,5 @@
 ---
-name: JRuby 9.4
+name: JRuby
 
 permissions:
   contents: read

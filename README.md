@@ -13,7 +13,7 @@
 
 - You, possibly
 
-[![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![CodeCov Test Coverage][🔑codecovi♻️]][🔑codecov] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Legacy][🚎4-r3.4-wfi]][🚎4-r3.4-wf] [![CI Legacy][🚎4-r3.3-wfi]][🚎4-r3.3-wf] [![CI Legacy][🚎4-r3.2-wfi]][🚎4-r3.2-wf] [![CI Legacy][🚎4-r3.1-wfi]][🚎4-r3.1-wf] [![CI Legacy][🚎4-r3.0-wfi]][🚎4-r3.0-wf] [![CI Legacy][🚎4-r2.7-wfi]][🚎4-r2.7-wf] [![CI Legacy][🚎4-r2.6-wfi]][🚎4-r2.6-wf] [![CI Legacy][🚎4-r2.5-wfi]][🚎4-r2.5-wf] [![CI Legacy][🚎4-r2.4-wfi]][🚎4-r2.4-wf] [![CI Legacy][🚎4-r2.3-wfi]][🚎4-r2.3-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf]
+[![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![CodeCov Test Coverage][🔑codecovi♻️]][🔑codecov] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Legacy][🚎4-r3.4-wfi]][🚎4-r3.4-wf] [![CI Legacy][🚎4-r3.3-wfi]][🚎4-r3.3-wf] [![CI Legacy][🚎4-r3.2-wfi]][🚎4-r3.2-wf] [![CI Legacy][🚎4-r3.1-wfi]][🚎4-r3.1-wf] [![CI Legacy][🚎4-r3.0-wfi]][🚎4-r3.0-wf] [![CI Legacy][🚎4-r2.7-wfi]][🚎4-r2.7-wf] [![CI Legacy][🚎4-r2.6-wfi]][🚎4-r2.6-wf] [![CI Legacy][🚎4-r2.5-wfi]][🚎4-r2.5-wf] [![CI Legacy][🚎4-r2.4-wfi]][🚎4-r2.4-wf] [![CI Legacy][🚎4-r2.3-wfi]][🚎4-r2.3-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf]
 
 ---
 
@@ -1030,8 +1030,8 @@ P.S. If you need help️ or want to say thanks, 👇 Join the Discord.
 [🚎5-st-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/style.yml/badge.svg
 [🚎9-t-wf]: https://github.com/galtzo-floss/simple_column-scopes/actions/workflows/truffle.yml
 [🚎9-t-wfi]: https://github.com/galtzo-floss/simple_column-scopes/actions/workflows/truffle.yml/badge.svg
-[🚎10-j9.4-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/jruby-9-4.yml
-[🚎10-j9.4-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/jruby-9-4.yml/badge.svg
+[🚎10-j-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/jruby.yml
+[🚎10-j-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/jruby.yml/badge.svg
 [🚎11-c-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current.yml
 [🚎11-c-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current.yml/badge.svg
 [🚎12-crh-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current-runtime-heads.yml
