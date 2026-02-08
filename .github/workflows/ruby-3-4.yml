@@ -1,5 +1,5 @@
 ---
-name: MRI 3.3
+name: MRI 3.4
 
 permissions:
   contents: read
@@ -39,7 +39,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Ruby 3.3
+          # Ruby 3.4
           - ruby: "ruby-3.4"
             gemfile: "ruby_3_4"
             exec_cmd: "rake magic"
