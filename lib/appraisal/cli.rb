@@ -104,7 +104,7 @@ module Appraisal
       invoke(:generate, [], {})
 
       gem_manager = options["gem-manager"] || options[:gem_manager]
-      update_options = gem_manager ? { :gem_manager => gem_manager } : {}
+      update_options = gem_manager ? {:gem_manager => gem_manager} : {}
       AppraisalFile.each do |appraisal|
         appraisal.update(gems, update_options)
       end
@@ -130,7 +130,7 @@ module Appraisal
       if matching_appraisal
         # If no arguments were passed to method_missing, check ARGV
         # This handles cases where Thor doesn't pass arguments
-        actual_args = args.empty? && ARGV.any? ? ARGV.dup : args
+        actual_args = (args.empty? && ARGV.any?) ? ARGV.dup : args
 
         # Check if the first argument is a Thor command (install or update)
         if actual_args.first == "install"

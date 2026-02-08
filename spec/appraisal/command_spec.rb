@@ -49,32 +49,32 @@ RSpec.describe Appraisal::Command do
     let(:gemfile) { "/path/to/Gemfile" }
     let(:run_env) { {"APPRAISAL_INITIALIZED" => "1", "BUNDLE_GEMFILE" => gemfile} }
 
+    let(:command) { described_class.new(command_string, :gemfile => gemfile) }
+
     before do
       allow(Kernel).to receive(:system).and_return(true)
       allow(Bundler).to receive(:with_original_env).and_yield
       allow(Appraisal::Utils).to receive(:bundler_version).and_return("2.0.0")
       # Mock system call for ensure_bundler_is_available (which uses system)
-      allow_any_instance_of(described_class).to receive(:system).and_return(true)
-      allow_any_instance_of(described_class).to receive(:puts)
+      allow(command).to receive(:system).and_return(true)
+      allow(command).to receive(:puts)
     end
 
-    context "by default" do
+    context "with default settings" do
       it "wraps execution in Bundler.with_original_env and ensures bundler is available" do
-        command = described_class.new(command_string, :gemfile => gemfile)
-
         expect(Bundler).to receive(:with_original_env).and_yield
-        expect_any_instance_of(described_class).to receive(:ensure_bundler_is_available)
+        expect(command).to receive(:ensure_bundler_is_available)
 
         command.run
       end
     end
 
     context "when skip_bundle_exec is true" do
-      it "does not wrap execution in Bundler.with_original_env and does not ensure bundler" do
-        command = described_class.new(command_string, :gemfile => gemfile, :skip_bundle_exec => true)
+      let(:command) { described_class.new(command_string, :gemfile => gemfile, :skip_bundle_exec => true) }
 
+      it "does not wrap execution in Bundler.with_original_env and does not ensure bundler" do
         expect(Bundler).not_to receive(:with_original_env)
-        expect_any_instance_of(described_class).not_to receive(:ensure_bundler_is_available)
+        expect(command).not_to receive(:ensure_bundler_is_available)
 
         command.run
       end

@@ -100,7 +100,7 @@ RSpec.describe Appraisal::CLI do
         command_double = instance_double(Appraisal::Command)
         allow(appraisal).to receive(:gemfile_path).and_return("gemfiles/rails-7.gemfile")
 
-        expect(Appraisal::Command).to receive(:new).with(
+        allow(Appraisal::Command).to receive(:new).with(
           ["rake", "test"],
           :gemfile => "gemfiles/rails-7.gemfile",
         ).and_return(command_double)
