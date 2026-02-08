@@ -2345,7 +2345,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="rspec-pending_for (v0.1.19) [path][gem]" type="rubylib">
+      <library name="rspec-pending_for (v0.1.20) [path][gem]" type="rubylib">
         <properties>
           <option name="additionalInfo">
             <AdditionalInfo>
@@ -2362,17 +2362,17 @@
               <option value="lib" />
             </list>
           </option>
-          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/rspec-pending_for-0.1.19" />
-          <option name="version" value="0.1.19" />
+          <option name="url" value="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/rspec-pending_for-0.1.20" />
+          <option name="version" value="0.1.20" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/rspec-pending_for-0.1.19/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/rspec-pending_for-0.1.19/sig" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/rspec-pending_for-0.1.20/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/rspec-pending_for-0.1.20/sig" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/rspec-pending_for-0.1.19/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/rspec-pending_for-0.1.19/sig" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/rspec-pending_for-0.1.20/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/4.0.0/gems/rspec-pending_for-0.1.20/sig" />
         </SOURCES>
       </library>
     </orderEntry>

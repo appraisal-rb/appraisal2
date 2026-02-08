@@ -368,7 +368,7 @@ appraisal version                # Display the version and exit
 
 The `install` and `update` **built-in commands** support several options:
 
-**Important:** These options apply **only** to Appraisal's `install` and `update` commands. 
+**Important:** These options apply **only** to Appraisal's `install` and `update` commands.
 They do **not** apply when running external commands like `bundle install` or `bundle update`.
 
 | Option | Description |
@@ -384,7 +384,7 @@ They do **not** apply when running external commands like `bundle install` or `b
 
 #### Using Appraisal's built-in commands with named appraisals
 
-When using Appraisal's `install` or `update` commands with a specific appraisal name, 
+When using Appraisal's `install` or `update` commands with a specific appraisal name,
 place the appraisal name first, then the command, then any options:
 
 ```bash
@@ -416,7 +416,7 @@ bundle exec appraisal rails-7 update rails rack --gem-manager=ore
 
 #### Running external commands with named appraisals
 
-For running external commands (like `rake test`, `rspec`, etc.) with a specific appraisal, 
+For running external commands (like `rake test`, `rspec`, etc.) with a specific appraisal,
 the structure is the same: appraisal name first, then the command:
 
 ```bash
@@ -560,10 +560,10 @@ If you specify ORE and it is not available, appraisal2 will raise an error.
 
 If you see an error like:
 ```
-Unknown switches "--gem-manager=ore"
+Unknown switches("--gem-manager=ore")
 ```
 
-This usually means you're trying to pass `--gem-manager` to an external command instead of 
+This usually means you're trying to pass `--gem-manager` to an external command instead of
 Appraisal's built-in command.
 
 ❌ **Wrong:**
@@ -580,8 +580,8 @@ bundle exec appraisal coverage install --gem-manager=ore
 # Correct: Uses Appraisal's install command with ORE gem manager
 ```
 
-**Key point:** The `--gem-manager` option **only works** with Appraisal's built-in 
-`install` and `update` commands. It cannot be used with external commands like 
+**Key point:** The `--gem-manager` option **only works** with Appraisal's built-in
+`install` and `update` commands. It cannot be used with external commands like
 `bundle install`, `bundle update`, or `bundle exec rake/rspec`.
 
 If you need to install dependencies using ORE:

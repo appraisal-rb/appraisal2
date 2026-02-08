@@ -1,0 +1,5 @@
+{
+  "spec/appraisal/cli_spec.rb:1057425141": [
+    [89, 9, 26, "RSpec/StubbedMock: Prefer `allow` over `expect` when configuring a response.", 2282300345]
+  ]
+}

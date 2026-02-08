@@ -10,7 +10,8 @@ module Appraisal
     def initialize(command, options = {})
       @gemfile = options[:gemfile]
       @env = options.fetch(:env, {})
-      @command = command_starting_with_bundle(command)
+      @skip_bundle_exec = options.fetch(:skip_bundle_exec, false)
+      @command = @skip_bundle_exec ? command : command_starting_with_bundle(command)
     end
 
     def run

@@ -8,6 +8,7 @@ require "silent_stream"
 
 # RSpec Support
 require "support/dependency_helpers"
+Dir[File.join(__dir__, "support/shared_contexts/**/*.rb")].each { |f| require f }
 
 # RSpec Configs
 require "config/byebug"

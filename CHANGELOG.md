@@ -10,12 +10,16 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - New CLI specs for testing named appraisal commands with options
+- Shared RSpec contexts for mocking gem managers (`BundlerAdapter` and `OreAdapter`) to facilitate faster unit testing
 
 ### Changed
 
 - Improved documentation for using `install` and `update` commands with named appraisals and options
 - Added examples showing correct command order: `appraisal <NAME> install --gem-manager=ore`
 - Enhanced "Using Ore with Appraisal2" section with named appraisal examples
+- Refactored `OreAdapter` to use the `Appraisal::Command` abstraction, unifying command execution across gem managers
+- Enhanced `Appraisal::Command` with a `:skip_bundle_exec` option to support standalone executables like `ore`
+- Significantly optimized unit tests in `cli_spec.rb` and `appraisal_spec.rb` by using gem manager mocks, reducing execution time from seconds to milliseconds
 
 ### Deprecated
 
@@ -27,6 +31,8 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Previously `appraisal <NAME> install --gem-manager=ore` would incorrectly try to run the Unix `install` command
   - Now correctly invokes the appraisal install/update methods with proper option parsing
   - Fixes error: `/usr/bin/install: unrecognized option '--gem-manager=ore'`
+- Improved shell-escaping handling in `Appraisal::Command` and updated acceptance tests to match the more robust output
+- Standardized on `clean_name` (underscores) for gemfile paths across the test suite for consistency
 
 ### Security
 

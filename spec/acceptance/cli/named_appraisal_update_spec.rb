@@ -20,35 +20,35 @@ RSpec.describe "CLI", ".update with named appraisal" do
       output = run "appraisal rails-7 update"
 
       expect(output).to include("bundle update")
-      expect(output).to include("gemfiles/rails-7.gemfile")
+      expect(output).to include("gemfiles/rails_7.gemfile")
     end
 
     it "updates specific gems in the named appraisal" do
       output = run "appraisal rails-7 update dummy"
 
       expect(output).to include("bundle update dummy")
-      expect(output).to include("gemfiles/rails-7.gemfile")
+      expect(output).to include("gemfiles/rails_7.gemfile")
     end
 
     it "accepts --gem-manager option" do
       output = run "appraisal rails-7 update --gem-manager=bundler"
 
       expect(output).to include("bundle update")
-      expect(output).to include("gemfiles/rails-7.gemfile")
+      expect(output).to include("gemfiles/rails_7.gemfile")
     end
 
     it "accepts -g shorthand for gem-manager" do
       output = run "appraisal rails-7 update -g bundler"
 
       expect(output).to include("bundle update")
-      expect(output).to include("gemfiles/rails-7.gemfile")
+      expect(output).to include("gemfiles/rails_7.gemfile")
     end
 
     it "updates specific gems with gem manager option" do
       output = run "appraisal rails-7 update dummy --gem-manager=bundler"
 
       expect(output).to include("bundle update dummy")
-      expect(output).to include("gemfiles/rails-7.gemfile")
+      expect(output).to include("gemfiles/rails_7.gemfile")
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe "CLI", ".update with named appraisal" do
     before do
       build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
         appraise 'rails-7' do
-          gem 'dummy', '~> 1.1'
+          gem 'rake', '~> 13.0'
         end
       APPRAISAL
 
@@ -82,9 +82,10 @@ RSpec.describe "CLI", ".update with named appraisal" do
     it "updates specific gems using ore" do
       skip "ore not available" unless ore_available?
 
-      output = run "appraisal rails-7 update dummy --gem-manager=ore"
+      output = run "appraisal rails-7 update rake --gem-manager=ore"
 
-      expect(output).to include("ore update dummy")
+      expect(output).to include("ore update -gemfile")
+      expect(output).to include("gemfiles/rails_7.gemfile rake")
     end
   end
 end

@@ -28,7 +28,7 @@ RSpec.describe "CLI with ore", ".install --gem-manager=ore", :ore do
       output = run "appraisal install --gem-manager=ore --jobs=2"
 
       expect(output).to include("ore install")
-      expect(output).to include("-workers=2")
+      expect(output).to match(/-workers(=|\\=)2/)
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe "CLI with ore", ".install --gem-manager=ore", :ore do
       output = run "appraisal install --gem-manager=ore --path=vendor/gems"
 
       expect(output).to include("ore install")
-      expect(output).to include("-vendor=")
+      expect(output).to match(/-vendor(=|\\=)/)
       expect(output).to include("vendor/gems")
     end
   end
@@ -59,7 +59,7 @@ RSpec.describe "CLI with ore", ".install --gem-manager=ore", :ore do
       output = run "appraisal install --gem-manager=ore --without='development test'"
 
       expect(output).to include("ore install")
-      expect(output).to include("-without=development,test")
+      expect(output).to match(/-without(=|\\=)development,test/)
     end
   end
 end

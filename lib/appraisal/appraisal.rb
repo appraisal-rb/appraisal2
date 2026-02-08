@@ -84,7 +84,9 @@ module Appraisal
       manager.install(options)
     end
 
-    def update(gems = [], gem_manager: nil)
+    def update(gems = [], options = {})
+      gem_manager = options.delete(:gem_manager) || options.delete("gem_manager") ||
+        options.delete(:"gem-manager") || options.delete("gem-manager")
       manager = GemManager::Factory.create(gemfile_path, project_root, :manager => gem_manager)
       manager.update(gems)
     end
