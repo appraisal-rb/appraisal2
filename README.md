@@ -158,21 +158,21 @@ to commit the \[main\] `Gemfile.lock` for **both** apps **and** gems. It does th
 
 Having so many different use cases means it can be helpful to others to see how you have done your implementation. If you are willing to spend the time documenting, please send a PR to update this table with another Appraisal2-using project, linking to the specific workflows people can check to see how it is done!
 
-| # | gem                                                                           | locked / unlocked deps                                   | analysis / services                                                                                                                                                                                                                                                                            | SemVer / HEAD deps                                     | Rubies                                                                                                                                                                                                                  | os |
-|---|-------------------------------------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----|
-| 1 | [omniauth-identity][1-gh]<br>[![Star][1-⭐️i]][1-gh]<br>[![Rank][1-🔢i]][1-🧰] | [![🔒️][1-🔒️i]][1-🔒️]<br>[![un🔒️][1-un🔒️i]][1-un🔒️] | [![Style][1-as⚙️i]][1-as⚙️]<br>[![Coverage][1-ac⚙️i]][1-ac⚙️]<br>[![Svcs][1-sc⚙️i]][1-sc⚙️]<br>[![L-Svcs][1-sl⚙️i]][1-sl⚙️]<br>[![S-Svcs][1-ss⚙️i]][1-ss⚙️]<br>[![U-Svcs][1-su⚙️i]][1-su⚙️]<br>[![A-Svcs][1-sa⚙️i]][1-sa⚙️]<br>[![J-Svcs][1-sj⚙️i]][1-sj⚙️]<br>[![AJ-Svcs][1-saj⚙️i]][1-saj⚙️] | [![Current][1-⏰i]][1-⏰]<br>[![Deps@HEAD][1-👟i]][1-👟] | [![Supported][1-👴i]][1-👴]<br>[![Unsupported][1-u👴i]][1-u👴]<br>[![Legacy][1-l👴i]][1-l👴]<br>[![Ancient][1-a👴i]][1-a👴]<br>[![JRuby][1-ji]][1-j]<br>[![JRuby Ancient][1-ja👴i]][1-ja👴]<br>[![Head][1-🗣️i]][1-🗣️] | ❌  |
-| 2 | [rspec-stubbed_env][2-gh]<br>[![Star][2-⭐️i]][2-gh]<br>[![Rank][2-🔢i]][2-🧰] | [![🔒️][2-🔒️i]][2-🔒️]<br>[![un🔒️][2-un🔒️i]][2-un🔒️] | [![Style][2-as⚙️i]][2-as⚙️]<br>[![Coverage][2-ac⚙️i]][2-ac⚙️]                                                                                                                                                                                                                                  | [![Current][2-⏰i]][2-⏰]                                | [![Supported][2-👴i]][2-👴]<br>[![Unsupported][2-u👴i]][2-u👴]<br>[![Legacy][2-l👴i]][2-l👴]<br>[![Ancient][2-a👴i]][2-a👴]<br>[![JRuby][2-ji]][2-j]<br>[![Truffle][2-ti]][2-t]<br>[![Head][2-🗣️i]][2-🗣️]             | ❌  |
-| 3 | [silent_stream][3-gh]<br>[![Star][3-⭐️i]][3-gh]<br>[![Rank][3-🔢i]][3-🧰]     | [![🔒️][3-🔒️i]][3-🔒️]<br>[![un🔒️][3-un🔒️i]][3-un🔒️] | [![Style][3-as⚙️i]][3-as⚙️]<br>[![Coverage][3-ac⚙️i]][3-ac⚙️]                                                                                                                                                                                                                                  | [![Current][3-⏰i]][3-⏰]                                | [![Supported][3-👴i]][3-👴]<br>[![Unsupported][3-u👴i]][3-u👴]<br>[![Legacy][3-l👴i]][3-l👴]<br>[![Ancient][3-a👴i]][3-a👴]<br>[![JRuby][3-ji]][3-j]<br>[![Truffle][3-ti]][3-t]<br>[![Head][3-🗣️i]][3-🗣️]             | ❌  |
-| 4 | [oauth2][4-gh]<br>[![Star][4-⭐️i]][4-gh]<br>[![Rank][4-🔢i]][4-🧰]            | [![🔒️][4-🔒️i]][4-🔒️]<br>[![un🔒️][4-un🔒️i]][4-un🔒️] | [![Style][4-as⚙️i]][4-as⚙️]<br>[![Coverage][4-ac⚙️i]][4-ac⚙️]<br>[![Svcs][4-sc⚙️i]][4-sc⚙️]<br>[![L-Svcs][4-sl⚙️i]][4-sl⚙️]<br>[![S-Svcs][4-ss⚙️i]][4-ss⚙️]<br>[![U-Svcs][4-su⚙️i]][4-su⚙️]<br>[![A-Svcs][4-sa⚙️i]][4-sa⚙️]<br>[![J-Svcs][4-sj⚙️i]][4-sj⚙️]<br>[![AJ-Svcs][4-saj⚙️i]][4-saj⚙️] | [![Current][4-⏰i]][4-⏰]<br>[![Deps@HEAD][4-👟i]][4-👟] | [![Supported][4-👴i]][4-👴]<br>[![Unsupported][4-u👴i]][4-u👴]<br>[![Legacy][4-l👴i]][4-l👴]<br>[![Ancient][4-a👴i]][4-a👴]<br>[![JRuby][4-ji]][4-j]<br>[![JRuby Ancient][4-ja👴i]][4-ja👴]<br>[![Head][4-🗣️i]][4-🗣️] | ❌  |
+| # | gem                                                                           | locked / unlocked deps                                   | analysis / services                                                                                                                                                                                                                                                                            | SemVer / HEAD deps                                     | Rubies                                                                                                                                                                                                                  | os                                                           |
+|---|-------------------------------------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
+| 1 | [omniauth-identity][1-gh]<br>[![Star][1-⭐️i]][1-gh]<br>[![Rank][1-🔢i]][1-🧰] | [![🔒️][1-🔒️i]][1-🔒️]<br>[![un🔒️][1-un🔒️i]][1-un🔒️] | [![Style][1-as⚙️i]][1-as⚙️]<br>[![Coverage][1-ac⚙️i]][1-ac⚙️]<br>[![Svcs][1-sc⚙️i]][1-sc⚙️]<br>[![L-Svcs][1-sl⚙️i]][1-sl⚙️]<br>[![S-Svcs][1-ss⚙️i]][1-ss⚙️]<br>[![U-Svcs][1-su⚙️i]][1-su⚙️]<br>[![A-Svcs][1-sa⚙️i]][1-sa⚙️]<br>[![J-Svcs][1-sj⚙️i]][1-sj⚙️]<br>[![AJ-Svcs][1-saj⚙️i]][1-saj⚙️] | [![Current][1-⏰i]][1-⏰]<br>[![Deps@HEAD][1-👟i]][1-👟] | [![Supported][1-👴i]][1-👴]<br>[![Unsupported][1-u👴i]][1-u👴]<br>[![Legacy][1-l👴i]][1-l👴]<br>[![Ancient][1-a👴i]][1-a👴]<br>[![JRuby][1-ji]][1-j]<br>[![JRuby Ancient][1-ja👴i]][1-ja👴]<br>[![Head][1-🗣️i]][1-🗣️] | ❌                                                            |
+| 2 | [rspec-stubbed_env][2-gh]<br>[![Star][2-⭐️i]][2-gh]<br>[![Rank][2-🔢i]][2-🧰] | [![🔒️][2-🔒️i]][2-🔒️]<br>[![un🔒️][2-un🔒️i]][2-un🔒️] | [![Style][2-as⚙️i]][2-as⚙️]<br>[![Coverage][2-ac⚙️i]][2-ac⚙️]                                                                                                                                                                                                                                  | [![Current][2-⏰i]][2-⏰]                                | [![Supported][2-👴i]][2-👴]<br>[![Unsupported][2-u👴i]][2-u👴]<br>[![Legacy][2-l👴i]][2-l👴]<br>[![Ancient][2-a👴i]][2-a👴]<br>[![JRuby][2-ji]][2-j]<br>[![Truffle][2-ti]][2-t]<br>[![Head][2-🗣️i]][2-🗣️]             | ❌                                                            |
+| 3 | [silent_stream][3-gh]<br>[![Star][3-⭐️i]][3-gh]<br>[![Rank][3-🔢i]][3-🧰]     | [![🔒️][3-🔒️i]][3-🔒️]<br>[![un🔒️][3-un🔒️i]][3-un🔒️] | [![Style][3-as⚙️i]][3-as⚙️]<br>[![Coverage][3-ac⚙️i]][3-ac⚙️]                                                                                                                                                                                                                                  | [![Current][3-⏰i]][3-⏰]                                | [![Supported][3-👴i]][3-👴]<br>[![Unsupported][3-u👴i]][3-u👴]<br>[![Legacy][3-l👴i]][3-l👴]<br>[![Ancient][3-a👴i]][3-a👴]<br>[![JRuby][3-ji]][3-j]<br>[![Truffle][3-ti]][3-t]<br>[![Head][3-🗣️i]][3-🗣️]             | ❌                                                            |
+| 4 | [oauth2][4-gh]<br>[![Star][4-⭐️i]][4-gh]<br>[![Rank][4-🔢i]][4-🧰]            | [![🔒️][4-🔒️i]][4-🔒️]<br>[![un🔒️][4-un🔒️i]][4-un🔒️] | [![Style][4-as⚙️i]][4-as⚙️]<br>[![Coverage][4-ac⚙️i]][4-ac⚙️] | [![Current][4-⏰i]][4-⏰]<br>[![Deps@HEAD][4-👟i]][4-👟] | [![Supported][4-👴i]][4-👴]<br>[![Unsupported][4-u👴i]][4-u👴]<br>[![Legacy][4-l👴i]][4-l👴]<br>[![Ancient][4-a👴i]][4-a👴]<br>[![JRuby][4-ji]][4-j]<br>[![Head][4-🗣️i]][4-🗣️] | [![Windows][5-win️i]][5-win️]<br>[![MacOS][5-mac️i]][5-mac️] |
 
 [1-gh]: https://github.com/omniauth/omniauth-identity
 [1-🧰]: https://www.ruby-toolbox.com/projects/omniauth-identity
 [1-⭐️i]: https://img.shields.io/github/stars/omniauth/omniauth-identity
 [1-🔢i]: https://img.shields.io/gem/rd/omniauth-identity.svg
-[1-🔒️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/deps_locked.yml
-[1-🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/deps_locked.yml/badge.svg
-[1-un🔒️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/deps_unlocked.yml
-[1-un🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/deps_unlocked.yml/badge.svg
+[1-🔒️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/locked_deps.yml
+[1-🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/locked_deps.yml/badge.svg
+[1-un🔒️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/unlocked_deps.yml
+[1-un🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/unlocked_deps.yml/badge.svg
 [1-as⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/style.yml
 [1-as⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/style.yml/badge.svg
 [1-ac⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/coverage.yml
@@ -244,10 +244,10 @@ Having so many different use cases means it can be helpful to others to see how 
 [3-🧰]: https://www.ruby-toolbox.com/projects/silent_stream
 [3-⭐️i]: https://img.shields.io/github/stars/pboling/silent_stream
 [3-🔢i]: https://img.shields.io/gem/rd/silent_stream.svg
-[3-🔒️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/deps_locked.yml
-[3-🔒️i]: https://github.com/pboling/silent_stream/actions/workflows/deps_locked.yml/badge.svg
-[3-un🔒️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/deps_unlocked.yml
-[3-un🔒️i]: https://github.com/pboling/silent_stream/actions/workflows/deps_unlocked.yml/badge.svg
+[3-🔒️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/locked_deps.yml
+[3-🔒️i]: https://github.com/pboling/silent_stream/actions/workflows/locked_deps.yml/badge.svg
+[3-un🔒️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/unlocked_deps.yml
+[3-un🔒️i]: https://github.com/pboling/silent_stream/actions/workflows/unlocked_deps.yml/badge.svg
 [3-as⚙️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/style.yml
 [3-as⚙️i]: https://github.com/pboling/silent_stream/actions/workflows/style.yml/badge.svg
 [3-ac⚙️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/coverage.yml
@@ -273,34 +273,20 @@ Having so many different use cases means it can be helpful to others to see how 
 [4-🧰]: https://www.ruby-toolbox.com/projects/oauth2
 [4-⭐️i]: https://img.shields.io/github/stars/ruby-oauth/oauth2
 [4-🔢i]: https://img.shields.io/gem/rd/oauth2.svg
-[4-🔒️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/deps_locked.yml
-[4-🔒️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/deps_locked.yml/badge.svg
-[4-un🔒️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/deps_unlocked.yml
-[4-un🔒️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/deps_unlocked.yml/badge.svg
+[4-🔒️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/locked_deps.yml
+[4-🔒️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/locked_deps.yml/badge.svg
+[4-un🔒️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/unlocked_deps.yml
+[4-un🔒️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/unlocked_deps.yml/badge.svg
 [4-as⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/style.yml
 [4-as⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/style.yml/badge.svg
 [4-ac⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/coverage.yml
 [4-ac⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/coverage.yml/badge.svg
-[4-sc⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/current-svc-adapters.yml
-[4-sc⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/current-svc-adapters.yml/badge.svg
-[4-sl⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/legacy-svc-adapters.yml
-[4-sl⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/legacy-svc-adapters.yml/badge.svg
-[4-ss⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/supported-svc-adapters.yml
-[4-ss⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/supported-svc-adapters.yml/badge.svg
-[4-su⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/unsupported-svc-adapters.yml
-[4-su⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported-svc-adapters.yml/badge.svg
-[4-sa⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/ancient-svc-adapters.yml
-[4-sa⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/ancient-svc-adapters.yml/badge.svg
-[4-sj⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/jruby-svc-adapters.yml
-[4-sj⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-svc-adapters.yml/badge.svg
-[4-saj⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/jruby-ancient-svc-adapters.yml
-[4-saj⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-ancient-svc-adapters.yml/badge.svg
 [4-⏰]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/current.yml
 [4-⏰i]: https://github.com/ruby-oauth/oauth2/actions/workflows/current.yml/badge.svg
 [4-j]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/jruby.yml
 [4-ji]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby.yml/badge.svg
-[4-👟]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/current-runtime-heads.yml
-[4-👟i]: https://github.com/ruby-oauth/oauth2/actions/workflows/current-runtime-heads.yml/badge.svg
+[4-👟]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/dep-heads.yml
+[4-👟i]: https://github.com/ruby-oauth/oauth2/actions/workflows/dep-heads.yml/badge.svg
 [4-👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/supported.yml
 [4-👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/supported.yml/badge.svg
 [4-u👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/unsupported.yml
@@ -309,10 +295,12 @@ Having so many different use cases means it can be helpful to others to see how 
 [4-l👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/legacy.yml/badge.svg
 [4-a👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/ancient.yml
 [4-a👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml/badge.svg
-[4-ja👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/jruby-ancient.yml
-[4-ja👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-ancient.yml/badge.svg
 [4-🗣️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/heads.yml
 [4-🗣️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/heads.yml/badge.svg
+[5-win️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/windows.yml
+[5-win️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/windows.yml/badge.svg
+[5-mac️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/macos.yml
+[5-mac️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/macos.yml/badge.svg
 
 ## ⚒️ Basic Usage
 
