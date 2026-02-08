@@ -129,10 +129,24 @@ module AcceptanceTestHelpers
   end
 
   def setup_gem_path_for_local_install
-    vendor_gem_path = File.join(PROJECT_ROOT, "vendor", "bundle", "ruby", RUBY_VERSION.split(".")[0..1].join(".") + ".0")
-    if File.directory?(vendor_gem_path)
-      ENV["GEM_PATH"] = [vendor_gem_path, ENV["GEM_PATH"]].compact.join(File::PATH_SEPARATOR)
+    # Ensure GEM_PATH includes TMP_GEM_ROOT where we pre-build gems for tests
+    new_gem_paths = [TMP_GEM_ROOT]
+
+    # Also try to include the parent project's vendor bundle if it exists
+    # Standard bundler layout: vendor/bundle/ruby/X.Y.Z
+    vendor_ruby_path = File.join(PROJECT_ROOT, "vendor", "bundle", "ruby")
+    if File.directory?(vendor_ruby_path)
+      # Find the versioned directory (e.g., 4.0.0, 3.3.0, etc.)
+      version_dirs = Dir.entries(vendor_ruby_path).select do |entry|
+        entry =~ /^\d+\.\d+\.\d+/ && File.directory?(File.join(vendor_ruby_path, entry))
+      end
+
+      version_dirs.each do |dir|
+        new_gem_paths << File.join(vendor_ruby_path, dir)
+      end
     end
+
+    ENV["GEM_PATH"] = (new_gem_paths + [ENV["GEM_PATH"]]).compact.reject(&:empty?).join(File::PATH_SEPARATOR)
   end
 
   def clean_vendor_bundle_from_path
@@ -253,7 +267,8 @@ module AcceptanceTestHelpers
       gem 'appraisal2', :path => './appraisal2'
     GEMFILE
 
-    run "bundle install --local"
+    # Try to install and allow fallback to remote if local fails
+    run "bundle install --local || bundle install"
     # Support for binstubs --all was added to bundler's 1-17-stable branch
     #   and released with bundler v1.17.0.pre.2 (2018-10-13)
     # See:

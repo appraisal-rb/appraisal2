@@ -27,6 +27,9 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Improved robustness of acceptance tests in isolated environments, especially on Ruby HEAD.
+  - Updated `setup_gem_path_for_local_install` to correctly include `TMP_GEM_ROOT` and more reliably detect the parent project's `vendor/bundle` gem directory.
+  - Added a fallback to remote installation in `build_default_gemfile` if `bundle install --local` fails, preventing test failures when dependencies are missing from the local cache.
 - Improved robustness against Bundler installation failures in CI, especially on Ruby HEAD.
   - `Appraisal::Command` and acceptance tests now only attempt to install Bundler if no version is currently available, avoiding unnecessary and potentially failing version-specific installations.
   - Removed aggressive Bundler version matching and "downgrading" logic that stripped prerelease suffixes.
