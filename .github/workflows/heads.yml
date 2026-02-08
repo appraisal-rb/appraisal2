@@ -42,7 +42,7 @@ jobs:
           # NOTE: Heads use default rubygems / bundler; their defaults are custom, unreleased, and from the future!
           # ruby-head
           - ruby: "ruby-head"
-            gemfile: "heads"
+            gemfile: "head"
             exec_cmd: "rake magic"
             rubygems: default
             bundler: default
@@ -50,7 +50,7 @@ jobs:
 
 #          # truffleruby-head
 #          - ruby: "truffleruby-head"
-#            gemfile: "heads"
+#            gemfile: "head"
 #            exec_cmd: "rake magic"
 #            rubygems: default
 #            bundler: default
@@ -58,7 +58,7 @@ jobs:
 
           # jruby-head
           - ruby: "jruby-head"
-            gemfile: "heads"
+            gemfile: "head"
             exec_cmd: "rake magic"
             rubygems: default
             bundler: default
