@@ -895,7 +895,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
 
 <ul>
     <li>
-        Copyright (c) 2024-2025 Peter H. Boling, of
+        Copyright (c) 2024 - 2026 Peter H. Boling, of
         <a href="https://discord.gg/3qme4XHNKN">
             Galtzo.com
             <picture>
@@ -903,7 +903,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
             </picture>
         </a>, and Appraisal2 contributors
     </li>
-    <li>Copyright (c) 2010-2013 Joe Ferris and thoughtbot, inc.</li>
+    <li>Copyright (c) 2010 - 2013 Joe Ferris and thoughtbot, inc.</li>
 </ul>
 
 ## 🤑 One more thing
