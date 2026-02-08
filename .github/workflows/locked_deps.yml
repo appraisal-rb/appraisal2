@@ -34,7 +34,6 @@ env:
   K_SOUP_COV_DO: true
   K_SOUP_COV_MULTI_FORMATTERS: true
   K_SOUP_COV_COMMAND_NAME: "Test Coverage"
-  ORE_DEBUG: true
 
 on:
   push:
@@ -99,9 +98,7 @@ jobs:
           rubygems: "${{ matrix.rubygems }}"
           bundler: "${{ matrix.bundler }}"
           ore-install: true
-          rv-git-ref: "v0.4.3"
-          ore-git-ref: "v0.21.0"
-          cache-version: "v3"
+          cache-version: "v1"
 
 #      - name: Diagnostic - Compare gemspec formats
 #        run: ruby bin/compare_gemspec_formats
