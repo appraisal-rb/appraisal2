@@ -84,19 +84,13 @@ module Appraisal
       end
 
       def run_ore_command(command)
-        puts ">> BUNDLE_GEMFILE=#{gemfile_path} #{command.join(" ")}"
-
         # Ore resolves path dependencies relative to the current working directory,
         # not relative to the gemfile location. We need to cd to the gemfile's
         # directory so that relative paths like "../appraisal2" resolve correctly.
         gemfile_dir = File.dirname(gemfile_path)
 
-        Bundler.with_original_env do
-          ENV["BUNDLE_GEMFILE"] = gemfile_path
-          ENV["APPRAISAL_INITIALIZED"] = "1"
-          Dir.chdir(gemfile_dir) do
-            exit(1) unless Kernel.system(*command)
-          end
+        Dir.chdir(gemfile_dir) do
+          Command.new(command, :gemfile => gemfile_path, :skip_bundle_exec => true).run
         end
       end
     end

@@ -10,12 +10,16 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - New CLI specs for testing named appraisal commands with options
+- Shared RSpec contexts for mocking gem managers (`BundlerAdapter` and `OreAdapter`) to facilitate faster unit testing
 
 ### Changed
 
 - Improved documentation for using `install` and `update` commands with named appraisals and options
 - Added examples showing correct command order: `appraisal <NAME> install --gem-manager=ore`
 - Enhanced "Using Ore with Appraisal2" section with named appraisal examples
+- Refactored `OreAdapter` to use the `Appraisal::Command` abstraction, unifying command execution across gem managers
+- Enhanced `Appraisal::Command` with a `:skip_bundle_exec` option to support standalone executables like `ore`. When this option is enabled, `Command` now also skips `Bundler.with_original_env` wrapping and `ensure_bundler_is_available` checks, avoiding unnecessary Bundler overhead.
+- Significantly optimized unit tests in `cli_spec.rb` and `appraisal_spec.rb` by using gem manager mocks, reducing execution time from seconds to milliseconds
 
 ### Deprecated
 
@@ -23,10 +27,19 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Improved robustness of acceptance tests in isolated environments, especially on Ruby HEAD.
+  - Updated `setup_gem_path_for_local_install` to correctly include `TMP_GEM_ROOT` and more reliably detect the parent project's `vendor/bundle` gem directory.
+  - Added a fallback to remote installation in `build_default_gemfile` if `bundle install --local` fails, preventing test failures when dependencies are missing from the local cache.
+- Improved robustness against Bundler installation failures in CI, especially on Ruby HEAD.
+  - `Appraisal::Command` and acceptance tests now only attempt to install Bundler if no version is currently available, avoiding unnecessary and potentially failing version-specific installations.
+  - Removed aggressive Bundler version matching and "downgrading" logic that stripped prerelease suffixes.
 - **BREAKING BUG FIX**: Fixed CLI to properly handle `install` and `update` commands when targeting a specific appraisal with options
   - Previously `appraisal <NAME> install --gem-manager=ore` would incorrectly try to run the Unix `install` command
   - Now correctly invokes the appraisal install/update methods with proper option parsing
   - Fixes error: `/usr/bin/install: unrecognized option '--gem-manager=ore'`
+- Fixed argument parsing in CLI where repeated values could be mis-parsed as gem names instead of option values (e.g., `appraisal <NAME> update ore -g ore`).
+- Improved shell-escaping handling in `Appraisal::Command` and updated acceptance tests to match the more robust output
+- Standardized on `clean_name` (underscores) for gemfile paths across the test suite for consistency
 
 ### Security
 

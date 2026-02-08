@@ -14,11 +14,11 @@ platform :mri do
     home = ENV["HOME"] || Dir.home
     gem "rubocop-lts", :path => "#{home}/src/rubocop-lts/rubocop-lts"
     gem "rubocop-lts-rspec", :path => "#{home}/src/rubocop-lts/rubocop-lts-rspec"
-    gem "rubocop-ruby3_2", :path => "#{home}/src/rubocop-lts/rubocop-ruby3_2"
+    gem "rubocop-ruby1_8", :path => "#{home}/src/rubocop-lts/rubocop-ruby1_8"
     gem "standard-rubocop-lts", :path => "#{home}/src/rubocop-lts/standard-rubocop-lts"
   else
     gem "rubocop-lts", "~> 0.1", ">= 0.1.1" # Style and Linting support for Ruby >= 1.8
     gem "rubocop-rspec", "~> 3.6"
-    gem "rubocop-ruby3_2"
+    gem "rubocop-ruby1_8"
   end
 end

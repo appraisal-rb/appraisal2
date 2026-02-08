@@ -92,9 +92,9 @@ RSpec.describe Appraisal::Appraisal do
     before do
       @appraisal = described_class.new("fake", "fake")
       allow(@appraisal).to receive_messages(:gemfile_path => "/home/test/test directory", :project_root => Pathname.new("/home/test"))
+      # We don't use the shared context here because we want to test the
+      # integration with BundlerAdapter, but we still mock Command.
       allow(Appraisal::Command).to receive(:new).and_return(double(:run => true))
-      # Stub Bundler.settings[:path] to return nil by default (no custom path set)
-      # This prevents the env hash from being added to Command.new calls
       allow(Bundler.settings).to receive(:[]).with(:path).and_return(nil)
     end
 
@@ -106,7 +106,7 @@ RSpec.describe Appraisal::Appraisal do
       end
 
       expect(Appraisal::Command).to have_received(:new).with(
-        "#{bundle_check_command} || #{bundle_single_install_command}",
+        "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory'",
         :gemfile => "/home/test/test directory",
       )
       expect(warning).to include "Please upgrade Bundler"
@@ -118,7 +118,7 @@ RSpec.describe Appraisal::Appraisal do
       @appraisal.install("jobs" => 42)
 
       expect(Appraisal::Command).to have_received(:new).with(
-        "#{bundle_check_command} || #{bundle_parallel_install_command}",
+        "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --jobs=42",
         :gemfile => "/home/test/test directory",
       )
     end
@@ -127,7 +127,7 @@ RSpec.describe Appraisal::Appraisal do
       @appraisal.install("retry" => 3)
 
       expect(Appraisal::Command).to have_received(:new).with(
-        "#{bundle_check_command} || #{bundle_install_command_with_retries}",
+        "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --retry 3",
         :gemfile => "/home/test/test directory",
       )
     end
@@ -136,30 +136,9 @@ RSpec.describe Appraisal::Appraisal do
       @appraisal.install("path" => "vendor/appraisal")
 
       expect(Appraisal::Command).to have_received(:new).with(
-        "#{bundle_check_command} || #{bundle_install_command_with_path}",
+        "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --path /home/test/vendor/appraisal",
         :gemfile => "/home/test/test directory",
       )
-    end
-
-    def bundle_check_command
-      "bundle check --gemfile='/home/test/test directory'"
-    end
-
-    def bundle_single_install_command
-      "bundle install --gemfile='/home/test/test directory'"
-    end
-
-    def bundle_parallel_install_command
-      "bundle install --gemfile='/home/test/test directory' --jobs=42"
-    end
-
-    def bundle_install_command_with_retries
-      "bundle install --gemfile='/home/test/test directory' --retry 3"
-    end
-
-    def bundle_install_command_with_path
-      "bundle install --gemfile='/home/test/test directory' " \
-        "--path /home/test/vendor/appraisal"
     end
   end
 end

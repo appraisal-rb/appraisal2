@@ -4,9 +4,21 @@ require "appraisal/cli"
 require "appraisal/appraisal_file"
 
 RSpec.describe Appraisal::CLI do
+  include_context "with bundler gem manager mocked"
+  include_context "with ore gem manager mocked"
+
   let(:cli) { described_class.new }
   let(:appraisal_file) { instance_double(Appraisal::AppraisalFile) }
-  let(:appraisal) { instance_double(Appraisal::Appraisal, :name => "rails-7") }
+  let(:appraisal) do
+    instance_double(
+      Appraisal::Appraisal,
+      :name => "rails-7",
+      :write_gemfile => true,
+      :install => true,
+      :update => true,
+      :relativize => true,
+    )
+  end
 
   before do
     allow(Appraisal::AppraisalFile).to receive(:new).and_return(appraisal_file)
@@ -16,28 +28,28 @@ RSpec.describe Appraisal::CLI do
   describe "method_missing for named appraisals with install command" do
     context "when appraisal name matches and command is install" do
       it "calls install on the matching appraisal without options" do
-        expect(appraisal).to receive(:install).with({})
+        expect(appraisal).to receive(:install).with(hash_including(:gem_manager => "bundler"))
         expect(appraisal).to receive(:relativize)
 
         cli.send(:method_missing, :"rails-7", "install")
       end
 
       it "calls install with gem_manager option when --gem-manager=ore is provided" do
-        expect(appraisal).to receive(:install).with(:gem_manager => "ore")
+        expect(appraisal).to receive(:install).with(hash_including(:gem_manager => "ore"))
         expect(appraisal).to receive(:relativize)
 
         cli.send(:method_missing, :"rails-7", "install", "--gem-manager=ore")
       end
 
       it "calls install with gem_manager option when -g ore is provided" do
-        expect(appraisal).to receive(:install).with(:gem_manager => "ore")
+        expect(appraisal).to receive(:install).with(hash_including(:gem_manager => "ore"))
         expect(appraisal).to receive(:relativize)
 
         cli.send(:method_missing, :"rails-7", "install", "-g", "ore")
       end
 
       it "calls install with jobs option" do
-        expect(appraisal).to receive(:install).with(:jobs => 4)
+        expect(appraisal).to receive(:install).with(hash_including(:jobs => 4))
         expect(appraisal).to receive(:relativize)
 
         cli.send(:method_missing, :"rails-7", "install", "--jobs=4")
@@ -45,9 +57,11 @@ RSpec.describe Appraisal::CLI do
 
       it "calls install with multiple options" do
         expect(appraisal).to receive(:install).with(
-          :gem_manager => "ore",
-          :jobs => 4,
-          :path => "vendor/bundle",
+          hash_including(
+            :gem_manager => "ore",
+            :jobs => 4,
+            :path => "vendor/bundle",
+          ),
         )
         expect(appraisal).to receive(:relativize)
 
@@ -57,25 +71,25 @@ RSpec.describe Appraisal::CLI do
 
     context "when appraisal name matches and command is update" do
       it "calls update on the matching appraisal without gems or options" do
-        expect(appraisal).to receive(:update).with([], :gem_manager => nil)
+        expect(appraisal).to receive(:update).with([], hash_including(:gem_manager => "bundler"))
 
         cli.send(:method_missing, :"rails-7", "update")
       end
 
       it "calls update with gem_manager option" do
-        expect(appraisal).to receive(:update).with([], :gem_manager => "ore")
+        expect(appraisal).to receive(:update).with([], hash_including(:gem_manager => "ore"))
 
         cli.send(:method_missing, :"rails-7", "update", "--gem-manager=ore")
       end
 
       it "calls update with gem names" do
-        expect(appraisal).to receive(:update).with(["rails", "rack"], :gem_manager => nil)
+        expect(appraisal).to receive(:update).with(["rails", "rack"], hash_including(:gem_manager => "bundler"))
 
         cli.send(:method_missing, :"rails-7", "update", "rails", "rack")
       end
 
       it "calls update with gem names and options" do
-        expect(appraisal).to receive(:update).with(["rails"], :gem_manager => "ore")
+        expect(appraisal).to receive(:update).with(["rails"], hash_including(:gem_manager => "ore"))
 
         cli.send(:method_missing, :"rails-7", "update", "rails", "--gem-manager=ore")
       end
@@ -86,7 +100,7 @@ RSpec.describe Appraisal::CLI do
         command_double = instance_double(Appraisal::Command)
         allow(appraisal).to receive(:gemfile_path).and_return("gemfiles/rails-7.gemfile")
 
-        expect(Appraisal::Command).to receive(:new).with(
+        allow(Appraisal::Command).to receive(:new).with(
           ["rake", "test"],
           :gemfile => "gemfiles/rails-7.gemfile",
         ).and_return(command_double)
@@ -146,6 +160,13 @@ RSpec.describe Appraisal::CLI do
     it "handles -g shorthand correctly" do
       gems, options = cli.send(:extract_gems_and_options, ["rails", "-g", "ore"])
       expect(gems).to eq(["rails"])
+      expect(options).to eq(:gem_manager => "ore")
+    end
+
+    it "handles repeated values correctly (reproducibility test)" do
+      # appraisal rails-7 update ore -g ore
+      gems, options = cli.send(:extract_gems_and_options, ["ore", "-g", "ore"])
+      expect(gems).to eq(["ore"])
       expect(options).to eq(:gem_manager => "ore")
     end
   end

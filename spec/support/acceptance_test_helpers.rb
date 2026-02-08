@@ -129,10 +129,24 @@ module AcceptanceTestHelpers
   end
 
   def setup_gem_path_for_local_install
-    vendor_gem_path = File.join(PROJECT_ROOT, "vendor", "bundle", "ruby", RUBY_VERSION.split(".")[0..1].join(".") + ".0")
-    if File.directory?(vendor_gem_path)
-      ENV["GEM_PATH"] = [vendor_gem_path, ENV["GEM_PATH"]].compact.join(File::PATH_SEPARATOR)
+    # Ensure GEM_PATH includes TMP_GEM_ROOT where we pre-build gems for tests
+    new_gem_paths = [TMP_GEM_ROOT]
+
+    # Also try to include the parent project's vendor bundle if it exists
+    # Standard bundler layout: vendor/bundle/ruby/X.Y.Z
+    vendor_ruby_path = File.join(PROJECT_ROOT, "vendor", "bundle", "ruby")
+    if File.directory?(vendor_ruby_path)
+      # Find the versioned directory (e.g., 4.0.0, 3.3.0, etc.)
+      version_dirs = Dir.entries(vendor_ruby_path).select do |entry|
+        entry =~ /^\d+\.\d+\.\d+/ && File.directory?(File.join(vendor_ruby_path, entry))
+      end
+
+      version_dirs.each do |dir|
+        new_gem_paths << File.join(vendor_ruby_path, dir)
+      end
     end
+
+    ENV["GEM_PATH"] = (new_gem_paths + [ENV["GEM_PATH"]]).compact.reject(&:empty?).join(File::PATH_SEPARATOR)
   end
 
   def clean_vendor_bundle_from_path
@@ -229,13 +243,18 @@ module AcceptanceTestHelpers
     # If bundle -v succeeded, output should contain version info
     return if output && output.include?("Bundler version")
 
-    puts <<-WARNING.strip_heredoc.rstrip
-      Reinstall Bundler to #{TMP_GEM_ROOT} as `BUNDLE_DISABLE_SHARED_GEMS`
-      is enabled.
-    WARNING
-    version = Appraisal::Utils.bundler_version
+    # Check if any version of bundler is already installed
+    check_cmd = "gem list --silent -i bundler --install-dir '#{TMP_GEM_ROOT}'"
+    begin
+      return if run("#{check_cmd} 2>&1", false).include?("true")
+    rescue
+      nil
+    end
 
-    run "gem install bundler --version #{version} --install-dir '#{TMP_GEM_ROOT}'"
+    puts ">> Bundler not found in #{TMP_GEM_ROOT}, attempting to install..."
+
+    # Try to install the latest stable version
+    run "gem install bundler --install-dir '#{TMP_GEM_ROOT}'"
   end
 
   def build_default_gemfile
@@ -248,7 +267,8 @@ module AcceptanceTestHelpers
       gem 'appraisal2', :path => './appraisal2'
     GEMFILE
 
-    run "bundle install --local"
+    # Try to install and allow fallback to remote if local fails
+    run "bundle install --local || bundle install"
     # Support for binstubs --all was added to bundler's 1-17-stable branch
     #   and released with bundler v1.17.0.pre.2 (2018-10-13)
     # See:

@@ -13,7 +13,7 @@
 
 - You, possibly
 
-[![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![Depfu][🔑depfui♻️]][🔑depfu] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf]
+[![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Legacy][🚎4-r3.4-wfi]][🚎4-r3.4-wf] [![CI Legacy][🚎4-r3.3-wfi]][🚎4-r3.3-wf] [![CI Legacy][🚎4-r3.2-wfi]][🚎4-r3.2-wf] [![CI Legacy][🚎4-r3.1-wfi]][🚎4-r3.1-wf] [![CI Legacy][🚎4-r3.0-wfi]][🚎4-r3.0-wf] [![CI Legacy][🚎4-r2.7-wfi]][🚎4-r2.7-wf] [![CI Legacy][🚎4-r2.6-wfi]][🚎4-r2.6-wf] [![CI Legacy][🚎4-r2.5-wfi]][🚎4-r2.5-wf] [![CI Legacy][🚎4-r2.4-wfi]][🚎4-r2.4-wf] [![CI Legacy][🚎4-r2.3-wfi]][🚎4-r2.3-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf]
 
 ---
 
@@ -54,7 +54,7 @@ Appraisal2 adds:
 | Tokens to Remember      | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace]                                                                                                                                                                                                                                                                                                                                                                          |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Works with JRuby        | [![JRuby 9.4 Compat][💎jruby-9.4i]][🚎10-j9.4-wf] [![JRuby 10.0 Compat][💎jruby-c-i]][🚎11-c-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]                                                                                                                                                                                                                                                                                                                   |
-| Works with Truffle Ruby | [![Truffle Ruby 24.1 Compat][💎truby-c-i]][🚎11-c-wf]                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Works with Truffle Ruby | ![Truffle Ruby 22.3 Compat][💎truby-22.3i] ![Truffle Ruby 23.1 Compat][💎truby-23.1i] <br/> [![Truffle Ruby 24.2 Compat][💎truby-24.2i]][🚎9-t-wf] [![Truffle Ruby 25.0 Compat][💎truby-25.0i]][🚎9-t-wf] [![Truffle Ruby 33.0 Compat][💎truby-c-i]][🚎11-c-wf]                                                                                                                                                                                                     |
 | Works with MRI Ruby 4   | [![Ruby 4.0 Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]                                                                                                                                                                                                                                                                                                                                                                          |
 | Works with MRI Ruby 3   | [![Ruby 3.0 Compat][💎ruby-3.0i]][🚎4-r3.0-wf] [![Ruby 3.1 Compat][💎ruby-3.1i]][🚎4-r3.1-wf] [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎4-r3.2-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎4-r3.3-wf] [![Ruby 3.4 Compat][💎ruby-3.4i]][🚎4-r3.4-wf]                                                                                                                                                                                                                          |
 | Works with MRI Ruby 2   | ![Ruby 2.0 Compat][💎ruby-2.0i] ![Ruby 2.1 Compat][💎ruby-2.1i] ![Ruby 2.2 Compat][💎ruby-2.2i] <br> [![Ruby 2.3 Compat][💎ruby-2.3i]][🚎1-r2.3-wf] [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎1-r2.4-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎1-r2.5-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎1-r2.6-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎1-r2.7-wf]                                                                                                                     |
@@ -366,7 +366,10 @@ appraisal version                # Display the version and exit
 
 ### Command Options
 
-The `install` and `update` commands support several options:
+The `install` and `update` **built-in commands** support several options:
+
+**Important:** These options apply **only** to Appraisal's `install` and `update` commands.
+They do **not** apply when running external commands like `bundle install` or `bundle update`.
 
 | Option | Description |
 |--------|-------------|
@@ -379,40 +382,42 @@ The `install` and `update` commands support several options:
 
 ### Using Commands with Named Appraisals
 
-You can target a specific appraisal when running `install` or `update` commands:
+#### Using Appraisal's built-in commands with named appraisals
+
+When using Appraisal's `install` or `update` commands with a specific appraisal name,
+place the appraisal name first, then the command, then any options:
+
+```bash
+# ✅ Correct order: appraisal <NAME> <COMMAND> [OPTIONS]
+bundle exec appraisal rails-7 install --gem-manager=ore
+bundle exec appraisal rails-7 update rails --gem-manager=ore
+bundle exec appraisal rails-7 install --jobs=4
+
+# ❌ Wrong order (won't work)
+bundle exec appraisal install rails-7 --gem-manager=ore  # Wrong order
+```
+
+More examples with Appraisal's built-in commands:
 
 ```bash
 # Install dependencies for a specific appraisal
 bundle exec appraisal rails-7 install
 
-# Install a specific appraisal with options
+# Install with options
 bundle exec appraisal rails-7 install --gem-manager=ore --jobs=4
 
-# Update gems in a specific appraisal
+# Update all gems in a specific appraisal
 bundle exec appraisal rails-7 update
 
 # Update specific gems in a specific appraisal
 bundle exec appraisal rails-7 update rails rack
-
-# Update with gem manager option
-bundle exec appraisal rails-7 update rails --gem-manager=ore
+bundle exec appraisal rails-7 update rails rack --gem-manager=ore
 ```
 
-**Important:** When using options with named appraisals, place the appraisal name first, 
-then the command, then any options:
+#### Running external commands with named appraisals
 
-✅ **Correct:**
-```bash
-bundle exec appraisal <APPRAISAL_NAME> install --gem-manager=ore
-bundle exec appraisal <APPRAISAL_NAME> update <GEMS> --gem-manager=ore
-```
-
-❌ **Incorrect:**
-```bash
-bundle exec appraisal install <APPRAISAL_NAME> --gem-manager=ore  # Wrong order
-```
-
-For running other commands (like tests) with a specific appraisal, use:
+For running external commands (like `rake test`, `rspec`, etc.) with a specific appraisal,
+the structure is the same: appraisal name first, then the command:
 
 ```bash
 # Run any external command with a specific appraisal's dependencies
@@ -422,7 +427,15 @@ bundle exec appraisal <APPRAISAL_NAME> <COMMAND>
 bundle exec appraisal rails-7 rake test
 bundle exec appraisal rails-7 rspec
 bundle exec appraisal rails-7 rubocop
+
+# Note: External commands do NOT support appraisal options like --gem-manager
+# This doesn't work and will fail:
+bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 ```
+
+**Key difference:**
+- `bundle exec appraisal rails-7 install --gem-manager=ore` ✅ → Uses **Appraisal's** install command with ORE
+- `bundle exec appraisal rails-7 bundle install --gem-manager=ore` ❌ → Tries to run external **bundle** command (which doesn't recognize `--gem-manager`)
 
 ## 🦀 Using Ore (Alternative Gem Manager)
 
@@ -445,21 +458,49 @@ curl -fsSL https://raw.githubusercontent.com/contriboss/ore-light/master/scripts
 
 ### Using Ore with Appraisal2
 
-To use ORE instead of bundler, pass the `--gem-manager=ore` option:
+The `--gem-manager=ore` option works **only** with Appraisal's built-in `install` and `update` commands.
+It does **NOT** work with external commands like `bundle install`.
+
+#### ✅ Using --gem-manager with Appraisal's install/update commands
+
+To use ORE instead of bundler for dependency installation, pass the `--gem-manager=ore` option:
 
 ```bash
-# Install dependencies using ORE
+# Install dependencies for ALL appraisals using ORE
 bundle exec appraisal install --gem-manager=ore
 
-# Update dependencies using ORE
+# Update dependencies for ALL appraisals using ORE
 bundle exec appraisal update --gem-manager=ore
+
+# Install dependencies for a SPECIFIC appraisal using ORE
+bundle exec appraisal <APPRAISAL_NAME> install --gem-manager=ore
+
+# Update dependencies for a SPECIFIC appraisal using ORE
+bundle exec appraisal <APPRAISAL_NAME> update <GEMS> --gem-manager=ore
 ```
 
 You can also use the short form:
 
 ```bash
 bundle exec appraisal install -g ore
+bundle exec appraisal <APPRAISAL_NAME> install -g ore
 ```
+
+#### ❌ Do NOT use --gem-manager with external commands
+
+The `--gem-manager` option **cannot** be used when running external commands like `bundle install`:
+
+```bash
+# ❌ WRONG - Don't try to pass --gem-manager to external commands
+bundle exec appraisal coverage bundle install --gem-manager=ore
+
+# ✅ RIGHT - Use appraisal's install command instead
+bundle exec appraisal coverage install --gem-manager=ore
+```
+
+The difference:
+- `bundle exec appraisal coverage install --gem-manager=ore` → Uses Appraisal's install command with ORE
+- `bundle exec appraisal coverage bundle install --gem-manager=ore` → Tries to run external `bundle install` (which doesn't recognize `--gem-manager`)
 
 ### Ore-Specific Options
 
@@ -485,10 +526,10 @@ bundle exec appraisal install --gem-manager=ore --jobs=4
 # Install dependencies for a SPECIFIC appraisal using ORE
 bundle exec appraisal rails-7 install --gem-manager=ore --jobs=4
 
-# Run tests against all appraisals
+# Run tests against all appraisals (uses dependencies from appraisal gemfiles)
 bundle exec appraisal rspec
 
-# Run tests against a specific appraisal
+# Run tests against a specific appraisal (uses that appraisal's dependencies)
 bundle exec appraisal rails-7 rspec
 
 # Update a specific gem in ALL appraisals using ORE
@@ -497,6 +538,10 @@ bundle exec appraisal update rack --gem-manager=ore
 # Update a specific gem in ONE appraisal using ORE
 bundle exec appraisal rails-7 update rack --gem-manager=ore
 ```
+
+**Note:** When running tests or other external commands, the dependencies are already
+installed from the appraisal's gemfile. You don't need to (and can't) pass `--gem-manager`
+to external commands—it only works with Appraisal's built-in `install` and `update` commands.
 
 ### When to Use Ore
 
@@ -508,6 +553,40 @@ Ore can be particularly beneficial when:
 
 Note that ORE must be installed separately and available in your PATH.
 If you specify ORE and it is not available, appraisal2 will raise an error.
+
+### Troubleshooting ORE/Gem Manager Issues
+
+#### Error: "Unknown switches --gem-manager=ore"
+
+If you see an error like:
+```
+Unknown switches("--gem-manager=ore")
+```
+
+This usually means you're trying to pass `--gem-manager` to an external command instead of
+Appraisal's built-in command.
+
+❌ **Wrong:**
+```bash
+bundle exec appraisal coverage bundle install --gem-manager=ore
+# Error: "Unknown switches --gem-manager=ore"
+# The --gem-manager flag is being passed to the external 'bundle install' command,
+# which doesn't recognize it.
+```
+
+✅ **Correct:**
+```bash
+bundle exec appraisal coverage install --gem-manager=ore
+# Correct: Uses Appraisal's install command with ORE gem manager
+```
+
+**Key point:** The `--gem-manager` option **only works** with Appraisal's built-in
+`install` and `update` commands. It cannot be used with external commands like
+`bundle install`, `bundle update`, or `bundle exec rake/rspec`.
+
+If you need to install dependencies using ORE:
+1. Run `bundle exec appraisal <NAME> install --gem-manager=ore`
+2. Then run your tests: `bundle exec appraisal <NAME> rspec`
 
 Under the hood
 --------------
@@ -816,7 +895,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
 
 <ul>
     <li>
-        Copyright (c) 2024-2025 Peter H. Boling, of
+        Copyright (c) 2024 - 2026 Peter H. Boling, of
         <a href="https://discord.gg/3qme4XHNKN">
             Galtzo.com
             <picture>
@@ -824,7 +903,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
             </picture>
         </a>, and Appraisal2 contributors
     </li>
-    <li>Copyright (c) 2010-2013 Joe Ferris and thoughtbot, inc.</li>
+    <li>Copyright (c) 2010 - 2013 Joe Ferris and thoughtbot, inc.</li>
 </ul>
 
 ## 🤑 One more thing
@@ -921,8 +1000,6 @@ P.S. If you need help️ or want to say thanks, 👇 Join the Discord.
 [🔑codecovi♻️]: https://codecov.io/gh/appraisal-rb/appraisal2/branch/main/graph/badge.svg?token=0X5VEW9USD
 [🔑coveralls]: https://coveralls.io/github/appraisal-rb/appraisal2?branch=main
 [🔑coveralls-img]: https://coveralls.io/repos/github/appraisal-rb/appraisal2/badge.svg?branch=main
-[🔑depfu]: https://depfu.com/github/appraisal-rb/appraisal2?project_id=67033
-[🔑depfui♻️]: https://badges.depfu.com/badges/b5344eec8b60c9e72bd9145ff53cd07b/count.svg
 [🖐codeQL]: https://github.com/appraisal-rb/appraisal2/security/code-scanning
 [🖐codeQL-img]: https://github.com/appraisal-rb/appraisal2/actions/workflows/codeql-analysis.yml/badge.svg
 [🚎1-r2.3-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-3.yml
@@ -939,6 +1016,16 @@ P.S. If you need help️ or want to say thanks, 👇 Join the Discord.
 [🚎2-cov-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/coverage.yml/badge.svg
 [🚎3-hd-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/heads.yml
 [🚎3-hd-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/heads.yml/badge.svg
+[🚎4-r2.3-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-3.yml
+[🚎4-r2.3-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-3.yml/badge.svg
+[🚎4-r2.4-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-4.yml
+[🚎4-r2.4-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-4.yml/badge.svg
+[🚎4-r2.5-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-5.yml
+[🚎4-r2.5-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-5.yml/badge.svg
+[🚎4-r2.6-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-6.yml
+[🚎4-r2.6-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-6.yml/badge.svg
+[🚎4-r2.7-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-7.yml
+[🚎4-r2.7-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-7.yml/badge.svg
 [🚎4-r3.0-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-0.yml
 [🚎4-r3.0-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-0.yml/badge.svg
 [🚎4-r3.1-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-1.yml
@@ -951,6 +1038,8 @@ P.S. If you need help️ or want to say thanks, 👇 Join the Discord.
 [🚎4-r3.4-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-4.yml/badge.svg
 [🚎5-st-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/style.yml
 [🚎5-st-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/style.yml/badge.svg
+[🚎9-t-wf]: https://github.com/galtzo-floss/simple_column-scopes/actions/workflows/truffle.yml
+[🚎9-t-wfi]: https://github.com/galtzo-floss/simple_column-scopes/actions/workflows/truffle.yml/badge.svg
 [🚎10-j9.4-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/jruby-9-4.yml
 [🚎10-j9.4-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/jruby-9-4.yml/badge.svg
 [🚎11-c-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current.yml
@@ -977,6 +1066,10 @@ P.S. If you need help️ or want to say thanks, 👇 Join the Discord.
 [💎ruby-3.3i]: https://img.shields.io/badge/Ruby-3.3-CC342D?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-c-i]: https://img.shields.io/badge/Ruby-current-CC342D?style=for-the-badge&logo=ruby&logoColor=green
 [💎ruby-headi]: https://img.shields.io/badge/Ruby-HEAD-CC342D?style=for-the-badge&logo=ruby&logoColor=blue
+[💎truby-22.3i]: https://img.shields.io/badge/Truffle_Ruby-22.3_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-23.1i]: https://img.shields.io/badge/Truffle_Ruby-23.1_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-24.2i]: https://img.shields.io/badge/Truffle_Ruby-24.2-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-25.0i]: https://img.shields.io/badge/Truffle_Ruby-25.0-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-c-i]: https://img.shields.io/badge/Truffle_Ruby-current-34BCB1?style=for-the-badge&logo=ruby&logoColor=green
 [💎truby-headi]: https://img.shields.io/badge/Truffle_Ruby-HEAD-34BCB1?style=for-the-badge&logo=ruby&logoColor=blue
 [💎jruby-9.4i]: https://img.shields.io/badge/JRuby-9.4-FBE742?style=for-the-badge&logo=ruby&logoColor=red
