@@ -811,6 +811,8 @@ See [CONTRIBUTING.md][🤝contributing].
 
 ### Code Coverage
 
+[![Coverage Graph][🔑codecov-g♻️]][🔑codecov]
+
 [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls]
 
 [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov]
@@ -1106,17 +1108,3 @@ P.S. If you need help️ or want to say thanks, 👇 Join the Discord.
 [💎rlts]: https://github.com/rubocop-lts/rubocop-lts
 [💎rlts-img]: https://img.shields.io/badge/code_style_%26_linting-rubocop--lts-34495e.svg?plastic&logo=ruby&logoColor=white
 [💎d-in-dvcs]: https://railsbling.com/posts/dvcs/put_the_d_in_dvcs/
-
-<details>
-  <summary>
-    Disabled Badges
-  </summary>
-
-Badges for failing services.
-Bug reports filed.
-Once fixed, these should look much nicer.
-
-[![CodeCov Test Coverage][🔑codecovi♻️]][🔑codecov]
-[![Coverage Graph][🔑codecov-g♻️]][🔑codecov]
-
-</details>
