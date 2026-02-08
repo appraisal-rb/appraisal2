@@ -231,7 +231,11 @@ module AcceptanceTestHelpers
 
     # Check if any version of bundler is already installed
     check_cmd = "gem list --silent -i bundler --install-dir '#{TMP_GEM_ROOT}'"
-    return if run("#{check_cmd} 2>&1", false).include?("true") rescue nil
+    begin
+      return if run("#{check_cmd} 2>&1", false).include?("true")
+    rescue
+      nil
+    end
 
     puts ">> Bundler not found in #{TMP_GEM_ROOT}, attempting to install..."
 
