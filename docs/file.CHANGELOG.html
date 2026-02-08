@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: CHANGELOG
+  
+    &mdash; Documentation by YARD 0.9.38
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "CHANGELOG";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: CHANGELOG</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="changelog">Changelog</h1>
+
+<p>This file documents all notable changes to this project.</p>
+
+<p>Format: <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,<br>
+Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+
+<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.3...HEAD">Unreleased</a></h2>
+
+<h3 id="added">Added</h3>
+
+<h3 id="changed">Changed</h3>
+
+<h3 id="deprecated">Deprecated</h3>
+
+<h3 id="removed">Removed</h3>
+
+<h3 id="fixed">Fixed</h3>
+
+<h3 id="security">Security</h3>
+
+<h2 id="303---2026-02-07">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.2...v3.0.3">3.0.3</a> - 2026-02-07</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.3">v3.0.3</a>
+</li>
+  <li>COVERAGE: 89.67% – 703/784 lines in 27 files</li>
+  <li>BRANCH COVERAGE: 83.45% – 121/145 branches in 27 files</li>
+  <li>43.03% documented</li>
+</ul>
+
+<h3 id="added-1">Added</h3>
+
+<ul>
+  <li>New CLI specs for testing named appraisal commands with options</li>
+  <li>Shared RSpec contexts for mocking gem managers (<code>BundlerAdapter</code> and <code>OreAdapter</code>) to facilitate faster unit testing</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
+
+<ul>
+  <li>Improved documentation for using <code>install</code> and <code>update</code> commands with named appraisals and options</li>
+  <li>Added examples showing correct command order: <code>appraisal &lt;NAME&gt; install --gem-manager=ore</code>
+</li>
+  <li>Enhanced “Using Ore with Appraisal2” section with named appraisal examples</li>
+  <li>Refactored <code>OreAdapter</code> to use the <code>Appraisal::Command</code> abstraction, unifying command execution across gem managers</li>
+  <li>Enhanced <code>Appraisal::Command</code> with a <code>:skip_bundle_exec</code> option to support standalone executables like <code>ore</code>. When this option is enabled, <code>Command</code> now also skips <code>Bundler.with_original_env</code> wrapping and <code>ensure_bundler_is_available</code> checks, avoiding unnecessary Bundler overhead.</li>
+  <li>Significantly optimized unit tests in <code>cli_spec.rb</code> and <code>appraisal_spec.rb</code> by using gem manager mocks, reducing execution time from seconds to milliseconds</li>
+</ul>
+
+<h3 id="fixed-1">Fixed</h3>
+
+<ul>
+  <li>Improved robustness of acceptance tests in isolated environments, especially on Ruby HEAD.
+    <ul>
+      <li>Updated <code>setup_gem_path_for_local_install</code> to correctly include <code>TMP_GEM_ROOT</code> and more reliably detect the parent project’s <code>vendor/bundle</code> gem directory.</li>
+      <li>Added a fallback to remote installation in <code>build_default_gemfile</code> if <code>bundle install --local</code> fails, preventing test failures when dependencies are missing from the local cache.</li>
+    </ul>
+  </li>
+  <li>Improved robustness against Bundler installation failures in CI, especially on Ruby HEAD.
+    <ul>
+      <li>
+<code>Appraisal::Command</code> and acceptance tests now only attempt to install Bundler if no version is currently available, avoiding unnecessary and potentially failing version-specific installations.</li>
+      <li>Removed aggressive Bundler version matching and “downgrading” logic that stripped prerelease suffixes.</li>
+    </ul>
+  </li>
+  <li>
+<strong>BREAKING BUG FIX</strong>: Fixed CLI to properly handle <code>install</code> and <code>update</code> commands when targeting a specific appraisal with options
+    <ul>
+      <li>Previously <code>appraisal &lt;NAME&gt; install --gem-manager=ore</code> would incorrectly try to run the Unix <code>install</code> command</li>
+      <li>Now correctly invokes the appraisal install/update methods with proper option parsing</li>
+      <li>Fixes error: <code>/usr/bin/install: unrecognized option '--gem-manager=ore'</code>
+</li>
+    </ul>
+  </li>
+  <li>Fixed argument parsing in CLI where repeated values could be mis-parsed as gem names instead of option values (e.g., <code>appraisal &lt;NAME&gt; update ore -g ore</code>).</li>
+  <li>Improved shell-escaping handling in <code>Appraisal::Command</code> and updated acceptance tests to match the more robust output</li>
+  <li>Standardized on <code>clean_name</code> (underscores) for gemfile paths across the test suite for consistency</li>
+</ul>
+
+<h2 id="302---2026-02-06">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.1...v3.0.2">3.0.2</a> - 2026-02-06</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.2">v3.0.2</a>
+</li>
+  <li>COVERAGE: 77.11% – 603/782 lines in 27 files</li>
+  <li>BRANCH COVERAGE: 83.96% – 89/106 branches in 27 files</li>
+  <li>43.03% documented</li>
+</ul>
+
+<h3 id="added-2">Added</h3>
+
+<ul>
+  <li>funding documentation</li>
+  <li>Ruby version compatibility badges for v1.8 - v2.2, v3.4, v4.0</li>
+  <li>Appraisal &amp; CI workflow for ruby v3.4</li>
+</ul>
+
+<h2 id="301---2026-02-06">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.0...v3.0.1">3.0.1</a> - 2026-02-06</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.1">v3.0.1</a>
+</li>
+  <li>COVERAGE: 77.11% – 603/782 lines in 27 files</li>
+  <li>BRANCH COVERAGE: 83.96% – 89/106 branches in 27 files</li>
+  <li>43.03% documented</li>
+</ul>
+
+<h3 id="added-3">Added</h3>
+
+<ul>
+  <li>Support for <a href="https://github.com/contriboss/ore-light">ore-light</a> as an alternative gem manager via <code>--gem-manager=ore</code> CLI option
+    <ul>
+      <li>New <code>GemManager::OreAdapter</code> class implementing ore-light integration</li>
+      <li>New <code>GemManager::BundlerAdapter</code> class (extracted from existing bundler logic)</li>
+      <li>New <code>GemManager::Factory</code> class for creating gem manager adapters</li>
+      <li>New <code>GemManager::Base</code> abstract base class defining the gem manager interface</li>
+      <li>New <code>OreNotAvailableError</code> and <code>UnknownGemManagerError</code> error classes</li>
+      <li>Acceptance tests for ore install and update commands (tagged with <code>:ore</code> metadata for conditional execution)</li>
+      <li>Unit tests for all gem manager adapter classes</li>
+      <li>README documentation for ore usage, including installation, CLI options, and example workflows</li>
+    </ul>
+  </li>
+  <li>New <code>-g</code> / <code>--gem-manager</code> CLI option to select gem manager (bundler or ore) for install/update commands</li>
+  <li>New <code>Appraisal::Customize.reset!</code> class method to reset customization state (useful for testing)</li>
+  <li>Improved test coverage from 66.7% to 76.4% line coverage, 61.5% to 77.4% branch coverage
+    <ul>
+      <li>New unit tests for <code>BundlerDSL</code> class (including APPRAISAL_INDENTER variations)</li>
+      <li>New unit tests for <code>Command</code> class</li>
+      <li>New unit tests for <code>Conditional</code> class</li>
+      <li>New unit tests for <code>Source</code> class</li>
+      <li>New unit tests for <code>Git</code> class</li>
+      <li>New unit tests for <code>Path</code> class</li>
+      <li>New unit tests for <code>OrderedHash</code> class</li>
+      <li>New unit tests for <code>Dependency</code> class</li>
+      <li>New unit tests for <code>Group</code> class</li>
+      <li>New unit tests for <code>Platform</code> class</li>
+      <li>New unit tests for <code>GemManager::Factory</code> class</li>
+      <li>New unit tests for error classes (<code>AppraisalsNotFound</code>, <code>OreNotAvailableError</code>, <code>UnknownGemManagerError</code>)</li>
+      <li>Enhanced <code>DependencyList</code> tests with edge cases</li>
+      <li>Enhanced <code>Gemfile</code> tests with load/run/dup edge cases</li>
+    </ul>
+  </li>
+  <li>Added documentation on hostile takeover of RubyGems
+    <ul>
+      <li>https://dev.to/galtzo/hostile-takeover-of-rubygems-my-thoughts-5hlo</li>
+    </ul>
+  </li>
+  <li>CLI configs for RuboCop, RubyGems, YARD, and JRuby (for local development only)</li>
+</ul>
+
+<h3 id="changed-2">Changed</h3>
+
+<ul>
+  <li>Improved test isolation for acceptance tests to prevent modification of parent project’s Gemfile.lock
+    <ul>
+      <li>Added <code>BUNDLE_APP_CONFIG</code> isolation to prevent reading/writing parent’s <code>.bundle/config</code>
+</li>
+      <li>Added explicit <code>BUNDLE_GEMFILE</code> prefix to all bundle commands in tests</li>
+      <li>Added <code>BUNDLE_LOCKFILE</code> environment variable to explicitly control where lockfiles are written</li>
+      <li>Set <code>BUNDLE_IGNORE_FUNDING_REQUESTS</code> and <code>BUNDLE_DISABLE_SHARED_GEMS</code> for cleaner test output</li>
+      <li>Added <code>BUNDLE_USER_CACHE</code> isolation to prevent polluting user’s gem cache</li>
+      <li>Fixed overly broad <code>File</code> stubs in unit tests that interfered with RSpec error formatting</li>
+      <li>Changed <code>bundle_without_spec.rb</code> to use <code>skip_for</code> instead of <code>pending_for</code> to prevent test setup from running on unsupported Ruby versions (which was polluting the project Gemfile.lock with test gems)</li>
+    </ul>
+  </li>
+  <li>YARD CLI config switch from custom Kramdown support to yard-fence</li>
+</ul>
+
+<h3 id="fixed-2">Fixed</h3>
+
+<ul>
+  <li>Fixed <code>BundlerAdapter#install</code> not passing <code>gemfile_path</code> to <code>Command.new</code>, which caused bundler to potentially write to the wrong Gemfile.lock when <code>Bundler.with_original_env</code> reset the environment</li>
+  <li>Fixed ore-light adapter path resolution: ore now runs from the gemfile’s directory so relative path dependencies resolve correctly (ore resolves paths relative to working directory, not gemfile location)</li>
+  <li>Fixed Thor <code>invoke(:generate, [])</code> call in <code>update</code> command to pass empty options hash, preventing argument leakage</li>
+</ul>
+
+<h3 id="security-1">Security</h3>
+
+<ul>
+  <li>Ore adapter now uses array-based command construction for <code>Kernel.system</code> calls instead of string interpolation, preventing potential shell injection vulnerabilities</li>
+</ul>
+
+<h2 id="300---2025-07-28">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/602cdd9b5f8cb8f36992733422f69312b172f427...v3.0.0">3.0.0</a> - 2025-07-28</h2>
+
+<ul>
+  <li>Initial release as a hard fork of <a href="https://github.com/thoughtbot/appraisal/commit/602cdd9b5f8cb8f36992733422f69312b172f427">appraisal v3.0.0.rc1</a> with many improvements - by @pboling
+    <ul>
+      <li>support for <code>eval_gemfile</code>
+</li>
+      <li>support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot’s <code>appraisal</code>)
+        <ul>
+          <li>NOTE: The <a href="https://github.com/ruby/setup-ruby">setup-ruby GH Action</a> only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI. Compatibility is assumed thanks to <a href="https://github.com/rubocop-lts/rubocop-lts"><img src="https://img.shields.io/badge/code_style_%26_linting-rubocop--lts-34495e.svg?plastic&amp;logo=ruby&amp;logoColor=white" alt="Enforced Code Style Linter"></a> enforcing the syntax for the oldest supported Ruby, which is Ruby v1.8. File a bug if you find something broken.</li>
+        </ul>
+      </li>
+      <li>Support for JRuby 9.4+</li>
+      <li>updated and improved documentation</li>
+      <li>maintainability tracked with QLTY.sh and the reek gem</li>
+      <li>code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem</li>
+      <li>other minor fixes and improvements</li>
+    </ul>
+  </li>
+</ul>
+
+</div></div>
+
+      <div id="footer">
+  Generated on Sat Feb  7 21:52:22 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.38 (ruby-4.0.1).
+</div>
+
+    </div>
+  </body>
+</html>

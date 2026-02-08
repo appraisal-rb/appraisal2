@@ -9,6 +9,25 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.0.3] - 2026-02-07
+
+- TAG: [v3.0.3][3.0.3t]
+- COVERAGE: 89.67% -- 703/784 lines in 27 files
+- BRANCH COVERAGE: 83.45% -- 121/145 branches in 27 files
+- 43.03% documented
+
+### Added
+
 - New CLI specs for testing named appraisal commands with options
 - Shared RSpec contexts for mocking gem managers (`BundlerAdapter` and `OreAdapter`) to facilitate faster unit testing
 
@@ -20,10 +39,6 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Refactored `OreAdapter` to use the `Appraisal::Command` abstraction, unifying command execution across gem managers
 - Enhanced `Appraisal::Command` with a `:skip_bundle_exec` option to support standalone executables like `ore`. When this option is enabled, `Command` now also skips `Bundler.with_original_env` wrapping and `ensure_bundler_is_available` checks, avoiding unnecessary Bundler overhead.
 - Significantly optimized unit tests in `cli_spec.rb` and `appraisal_spec.rb` by using gem manager mocks, reducing execution time from seconds to milliseconds
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -40,8 +55,6 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Fixed argument parsing in CLI where repeated values could be mis-parsed as gem names instead of option values (e.g., `appraisal <NAME> update ore -g ore`).
 - Improved shell-escaping handling in `Appraisal::Command` and updated acceptance tests to match the more robust output
 - Standardized on `clean_name` (underscores) for gemfile paths across the test suite for consistency
-
-### Security
 
 ## [3.0.2] - 2026-02-06
 
@@ -129,7 +142,9 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.2...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.3...HEAD
+[3.0.3]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.2...v3.0.3
+[3.0.3t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.3
 [3.0.2]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.1...v3.0.2
 [3.0.2t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.2
 [3.0.1]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.0...v3.0.1
