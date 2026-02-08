@@ -18,7 +18,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Added examples showing correct command order: `appraisal <NAME> install --gem-manager=ore`
 - Enhanced "Using Ore with Appraisal2" section with named appraisal examples
 - Refactored `OreAdapter` to use the `Appraisal::Command` abstraction, unifying command execution across gem managers
-- Enhanced `Appraisal::Command` with a `:skip_bundle_exec` option to support standalone executables like `ore`
+- Enhanced `Appraisal::Command` with a `:skip_bundle_exec` option to support standalone executables like `ore`. When this option is enabled, `Command` now also skips `Bundler.with_original_env` wrapping and `ensure_bundler_is_available` checks, avoiding unnecessary Bundler overhead.
 - Significantly optimized unit tests in `cli_spec.rb` and `appraisal_spec.rb` by using gem manager mocks, reducing execution time from seconds to milliseconds
 
 ### Deprecated

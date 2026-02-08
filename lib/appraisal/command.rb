@@ -17,21 +17,29 @@ module Appraisal
     def run
       run_env = test_environment.merge(env)
 
-      Bundler.with_original_env do
-        ensure_bundler_is_available
-        announce
-
-        ENV["BUNDLE_GEMFILE"] = gemfile
-        ENV["APPRAISAL_INITIALIZED"] = "1"
-        run_env.each_pair do |key, value|
-          ENV[key] = value
+      if @skip_bundle_exec
+        execute(run_env)
+      else
+        Bundler.with_original_env do
+          ensure_bundler_is_available
+          execute(run_env)
         end
-
-        exit(1) unless Kernel.system(command_as_string)
       end
     end
 
     private
+
+    def execute(run_env)
+      announce
+
+      ENV["BUNDLE_GEMFILE"] = gemfile
+      ENV["APPRAISAL_INITIALIZED"] = "1"
+      run_env.each_pair do |key, value|
+        ENV[key] = value
+      end
+
+      exit(1) unless Kernel.system(command_as_string)
+    end
 
     def ensure_bundler_is_available
       version = Utils.bundler_version
@@ -70,8 +78,10 @@ manually.
     def command_starting_with_bundle(original_command)
       if command_starts_with_bundle?(original_command)
         original_command
-      else
+      elsif original_command.is_a?(Array)
         %w[bundle exec] + original_command
+      else
+        "bundle exec #{original_command}"
       end
     end
 

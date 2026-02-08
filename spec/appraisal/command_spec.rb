@@ -44,12 +44,40 @@ RSpec.describe Appraisal::Command do
     end
   end
 
-  describe "command_as_string (via internal behavior)" do
-    it "converts array command to shellwords string" do
-      command = described_class.new(["rake", "test", "with spaces"])
+  describe "#run" do
+    let(:command_string) { "rake test" }
+    let(:gemfile) { "/path/to/Gemfile" }
+    let(:run_env) { {"APPRAISAL_INITIALIZED" => "1", "BUNDLE_GEMFILE" => gemfile} }
 
-      # We test this indirectly through the announce method behavior
-      expect(command.command).to eq(["bundle", "exec", "rake", "test", "with spaces"])
+    before do
+      allow(Kernel).to receive(:system).and_return(true)
+      allow(Bundler).to receive(:with_original_env).and_yield
+      allow(Appraisal::Utils).to receive(:bundler_version).and_return("2.0.0")
+      # Mock system call for ensure_bundler_is_available (which uses system)
+      allow_any_instance_of(described_class).to receive(:system).and_return(true)
+      allow_any_instance_of(described_class).to receive(:puts)
+    end
+
+    context "by default" do
+      it "wraps execution in Bundler.with_original_env and ensures bundler is available" do
+        command = described_class.new(command_string, :gemfile => gemfile)
+
+        expect(Bundler).to receive(:with_original_env).and_yield
+        expect_any_instance_of(described_class).to receive(:ensure_bundler_is_available)
+
+        command.run
+      end
+    end
+
+    context "when skip_bundle_exec is true" do
+      it "does not wrap execution in Bundler.with_original_env and does not ensure bundler" do
+        command = described_class.new(command_string, :gemfile => gemfile, :skip_bundle_exec => true)
+
+        expect(Bundler).not_to receive(:with_original_env)
+        expect_any_instance_of(described_class).not_to receive(:ensure_bundler_is_available)
+
+        command.run
+      end
     end
   end
 end
