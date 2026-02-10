@@ -19,7 +19,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Security
 
-## [3.0.4] - 2026-02-08
+## [3.0.4] - 2026-02-10
 
 - TAG: [v3.0.4][3.0.4t]
 - COVERAGE: 89.67% -- 703/784 lines in 27 files
