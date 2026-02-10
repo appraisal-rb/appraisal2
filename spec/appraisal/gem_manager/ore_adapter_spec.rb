@@ -63,7 +63,6 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
     before do
       allow(adapter).to receive(:system).with("which ore > /dev/null 2>&1").and_return(true)
       allow(Bundler).to receive(:with_original_env).and_yield
-      allow(Dir).to receive(:chdir).and_yield
       allow(Appraisal::Command).to receive(:new).and_return(double(:run => true))
       allow(adapter).to receive(:puts)
       # Simulate lockfile exists by default

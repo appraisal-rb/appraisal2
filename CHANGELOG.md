@@ -54,6 +54,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Removed `Dir.chdir` into `gemfiles/` directory before running `ore` commands.
 - Improved robustness of acceptance tests in isolated environments, especially on Ruby HEAD.
   - Updated `setup_gem_path_for_local_install` to correctly include `TMP_GEM_ROOT` and more reliably detect the parent project's `vendor/bundle` gem directory.
   - Added a fallback to remote installation in `build_default_gemfile` if `bundle install --local` fails, preventing test failures when dependencies are missing from the local cache.
