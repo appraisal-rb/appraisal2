@@ -791,6 +791,63 @@ test:
 Notice that we are running an rspec suite. You can customize your testing
 command in the `override` section and use your favourite one.
 
+## 🦷 FLOSS Funding
+
+While appraisal-rb tools are free (libre) software, the project would benefit immensely from some funding.
+Raising a monthly budget of... "dollars" would make the project more sustainable.
+
+We welcome both individual and corporate sponsors\! We also offer a
+wide array of funding channels to account for your preferences
+(although currently [Open Collective][🖇osc] is our preferred funding platform).
+
+**If you're working in a company that's making significant use of appraisal-rb tools we'd
+appreciate it if you suggest to your company to become a appraisal-rb sponsor.**
+
+You can support the development of appraisal-rb tools via
+[GitHub Sponsors][🖇sponsor],
+[Liberapay][⛳liberapay],
+[PayPal][🖇paypal],
+[Open Collective][🖇osc]
+and [Tidelift][🏙️entsup-tidelift].
+
+| 📍 NOTE                                                                                                                                                                                                              |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| If doing a sponsorship in the form of donation is problematic for your company <br/> from an accounting standpoint, we'd recommend the use of Tidelift, <br/> where you can get a support-like subscription instead. |
+
+### Open Collective for Individuals
+
+Support us with a monthly donation and help us continue our activities. \[[Become a backer][🖇osc-backers]\]
+
+NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day, automatically.
+
+<!-- OPENCOLLECTIVE-INDIVIDUALS:START -->
+No backers yet. Be the first!
+<!-- OPENCOLLECTIVE-INDIVIDUALS:END -->
+
+### Open Collective for Organizations
+
+Become a sponsor and get your logo on our README on GitHub with a link to your site. \[[Become a sponsor][🖇osc-sponsors]\]
+
+NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day, automatically.
+
+<!-- OPENCOLLECTIVE-ORGANIZATIONS:START -->
+No sponsors yet. Be the first!
+<!-- OPENCOLLECTIVE-ORGANIZATIONS:END -->
+
+[kettle-readme-backers]: https://github.com/appraisal-rb/appraisal2/blob/main/exe/kettle-readme-backers
+
+### Another way to support open-source
+
+I’m driven by a passion to foster a thriving open-source community – a space where people can tackle complex problems, no matter how small. Revitalizing libraries that have fallen into disrepair, and building new libraries focused on solving real-world challenges, are my passions. I was recently affected by layoffs, and the tech jobs market is unwelcoming. I’m reaching out here because your support would significantly aid my efforts to provide for my family, and my farm (11 🐔 chickens, 2 🐶 dogs, 3 🐰 rabbits, 8 🐈‍ cats).
+
+If you work at a company that uses my work, please encourage them to support me as a corporate sponsor. My work on gems you use might show up in `bundle fund`.
+
+I’m developing a new library, [floss\_funding][🖇floss-funding-gem], designed to empower open-source developers like myself to get paid for the work we do, in a sustainable way. Please give it a look.
+
+**[Floss-Funding.dev][🖇floss-funding.dev]: 👉️ No network calls. 👉️ No tracking. 👉️ No oversight. 👉️ Minimal crypto hashing. 💡 Easily disabled nags**
+
+[![OpenCollective Backers][🖇osc-backers-i]][🖇osc-backers] [![OpenCollective Sponsors][🖇osc-sponsors-i]][🖇osc-sponsors] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Donate on PayPal][🖇paypal-img]][🖇paypal] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate to my FLOSS efforts at ko-fi.com][🖇kofi-img]][🖇kofi] [![Donate to my FLOSS efforts using Patreon][🖇patreon-img]][🖇patreon]
+
 ## 🔐 Security
 
 See [SECURITY.md][🔐security].
@@ -828,7 +885,10 @@ chat rooms and mailing lists agrees to follow the [![Contributor Covenant 2.1][�
 
 Made with [contributors-img][🖐contrib-rocks].
 
-## ⭐️ Star History
+Also see GitLab Contributors: <https://gitlab.com/appraisal-rb/appraisal2/-/graphs/main>
+
+<details>
+    <summary>⭐️ Star History</summary>
 
 <a href="https://star-history.com/#appraisal-rb/appraisal2&Date">
  <picture>
@@ -838,6 +898,8 @@ Made with [contributors-img][🖐contrib-rocks].
  </picture>
 </a>
 
+</details>
+
 ## 📌 Versioning
 
 This Library adheres to [![Semantic Versioning 2.0.0][📌semver-img]][📌semver].
@@ -846,25 +908,12 @@ Specifically, if a minor or patch version is released that breaks backward compa
 a new version should be immediately released that restores compatibility.
 Breaking changes to the public API will only be introduced with new major versions.
 
-### 📌 Is "Platform Support" part of the public API?
+> dropping support for a platform is both obviously and objectively a breaking change <br/>
+> —Jordan Harband ([@ljharb](https://github.com/ljharb), maintainer of SemVer) [in SemVer issue 716][📌semver-breaking]
 
-Yes.  But I'm obligated to include notes...
-
-SemVer should, but doesn't explicitly, say that dropping support for specific Platforms
-is a *breaking change* to an API.
-It is obvious to many, but not all, and since the spec is silent, the bike shedding is endless.
-
-> dropping support for a platform is both obviously and objectively a breaking change
-
-- Jordan Harband (@ljharb, maintainer of SemVer) [in SemVer issue 716][📌semver-breaking]
-
-To get a better understanding of how SemVer is intended to work over a project's lifetime,
-read this article from the creator of SemVer:
-
-- ["Major Version Numbers are Not Sacred"][📌major-versions-not-sacred]
-
-As a result of this policy, and the interpretive lens used by the maintainer,
-you can (and should) specify a dependency on these libraries using
+I understand that policy doesn't work universally ("exceptions to every rule\!"),
+but it is the policy here.
+As such, in many cases it is good to specify a dependency on this library using
 the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
 
 For example:
@@ -872,6 +921,19 @@ For example:
 ```ruby
 spec.add_dependency("appraisal2", "~> 3.0")
 ```
+
+<details markdown="1">
+<summary>📌 Is "Platform Support" part of the public API? More details inside.</summary>
+
+SemVer should, IMO, but doesn't explicitly, say that dropping support for specific Platforms
+is a *breaking change* to an API, and for that reason the bike shedding is endless.
+
+To get a better understanding of how SemVer is intended to work over a project's lifetime,
+read this article from the creator of SemVer:
+
+- ["Major Version Numbers are Not Sacred"][📌major-versions-not-sacred]
+
+</details>
 
 See [CHANGELOG.md][📌changelog] for a list of releases.
 
@@ -896,38 +958,62 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
     <li>Copyright (c) 2010 - 2013 Joe Ferris and thoughtbot, inc.</li>
 </ul>
 
-## 🤑 One more thing
+## 🤑 A request for help
 
-Having arrived at the bottom of the page, please endure a final supplication.
-The primary maintainer of this gem, Peter Boling, wants
-Ruby to be a great place for people to solve problems, big and small.
-Please consider supporting his efforts via the giant yellow link below,
-or one of the smaller ones, depending on button size preference.
+Maintainers have teeth and need to pay their dentists.
+After getting laid off in an RIF in March, and encountering difficulty finding a new one,
+I began spending most of my time building open source tools.
+I'm hoping to be able to pay for my kids' health insurance this month,
+so if you value the work I am doing, I need your support.
+Please consider sponsoring me or the project.
 
-[![Buy me a latte][🖇buyme-img]][🖇buyme]
+To join the community or get help 👇️ Join the Discord.
 
-[![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi] [![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
+[![Live Chat on Discord][✉️discord-invite-img-ftb]][🖼️galtzo-discord]
 
-P.S. If you need help️ or want to say thanks, 👇 Join the Discord.
+To say "thanks!" ☝️ Join the Discord or 👇️ send money.
 
-[![Live Chat on Discord][✉️discord-invite-img]][✉️discord-invite]
+[![Sponsor appraisal-rb/appraisal2 on Open Source Collective][🖇osc-all-bottom-img]][🖇osc] 💌 [![Sponsor me on GitHub Sponsors][🖇sponsor-bottom-img]][🖇sponsor] 💌 [![Sponsor me on Liberapay][⛳liberapay-bottom-img]][⛳liberapay] 💌 [![Donate on PayPal][🖇paypal-bottom-img]][🖇paypal]
 
-[⛳liberapay-img]: https://img.shields.io/liberapay/goal/pboling.svg?logo=liberapay
+### Please give the project a star ⭐ ♥.
+
+Thanks for RTFM. ☺️
+
+[⛳liberapay-img]: https://img.shields.io/liberapay/goal/pboling.svg?logo=liberapay&color=a51611&style=flat
+[⛳liberapay-bottom-img]: https://img.shields.io/liberapay/goal/pboling.svg?style=for-the-badge&logo=liberapay&color=a51611
 [⛳liberapay]: https://liberapay.com/pboling/donate
+[🖇osc-all-img]: https://img.shields.io/opencollective/all/appraisal-rb
+[🖇osc-sponsors-img]: https://img.shields.io/opencollective/sponsors/appraisal-rb
+[🖇osc-backers-img]: https://img.shields.io/opencollective/backers/appraisal-rb
+[🖇osc-backers]: https://opencollective.com/appraisal-rb#backer
+[🖇osc-backers-i]: https://opencollective.com/appraisal-rb/backers/badge.svg?style=flat
+[🖇osc-sponsors]: https://opencollective.com/appraisal-rb#sponsor
+[🖇osc-sponsors-i]: https://opencollective.com/appraisal-rb/sponsors/badge.svg?style=flat
+[🖇osc-all-bottom-img]: https://img.shields.io/opencollective/all/appraisal-rb?style=for-the-badge
+[🖇osc-sponsors-bottom-img]: https://img.shields.io/opencollective/sponsors/appraisal-rb?style=for-the-badge
+[🖇osc-backers-bottom-img]: https://img.shields.io/opencollective/backers/appraisal-rb?style=for-the-badge
+[🖇osc]: https://opencollective.com/appraisal-rb
 [🖇sponsor-img]: https://img.shields.io/badge/Sponsor_Me!-pboling.svg?style=social&logo=github
+[🖇sponsor-bottom-img]: https://img.shields.io/badge/Sponsor_Me!-pboling-blue?style=for-the-badge&logo=github
 [🖇sponsor]: https://github.com/sponsors/pboling
-[🖇polar-img]: https://img.shields.io/badge/polar-donate-yellow.svg
+[🖇polar-img]: https://img.shields.io/badge/polar-donate-a51611.svg?style=flat
 [🖇polar]: https://polar.sh/pboling
-[🖇kofi-img]: https://img.shields.io/badge/a_more_different_coffee-✓-yellow.svg
+[🖇kofi-img]: https://img.shields.io/badge/ko--fi-%E2%9C%93-a51611.svg?style=flat
 [🖇kofi]: https://ko-fi.com/O5O86SNP4
-[🖇patreon-img]: https://img.shields.io/badge/patreon-donate-yellow.svg
+[🖇patreon-img]: https://img.shields.io/badge/patreon-donate-a51611.svg?style=flat
 [🖇patreon]: https://patreon.com/galtzo
-[🖇buyme-small-img]: https://img.shields.io/badge/buy_me_a_coffee-✓-yellow.svg?style=flat
+[🖇buyme-small-img]: https://img.shields.io/badge/buy_me_a_coffee-%E2%9C%93-a51611.svg?style=flat
 [🖇buyme-img]: https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20latte&emoji=&slug=pboling&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff
 [🖇buyme]: https://www.buymeacoffee.com/pboling
+[🖇paypal-img]: https://img.shields.io/badge/donate-paypal-a51611.svg?style=flat&logo=paypal
+[🖇paypal-bottom-img]: https://img.shields.io/badge/donate-paypal-a51611.svg?style=for-the-badge&logo=paypal&color=0A0A0A
+[🖇paypal]: https://www.paypal.com/paypalme/peterboling
+[🖇floss-funding.dev]: https://floss-funding.dev
+[🖇floss-funding-gem]: https://github.com/galtzo-floss/floss_funding
 [✉️discord-invite]: https://discord.gg/3qme4XHNKN
-[✉️discord-invite-img]: https://img.shields.io/discord/1373797679469170758?style=for-the-badge
-
+[✉️discord-invite-img-ftb]: https://img.shields.io/discord/1373797679469170758?style=for-the-badge&logo=discord
+[✉️ruby-friends-img]: https://img.shields.io/badge/daily.dev-%F0%9F%92%8E_Ruby_Friends-0A0A0A?style=for-the-badge&logo=dailydotdev&logoColor=white
+[✉️ruby-friends]: https://app.daily.dev/squads/rubyfriends
 [✇bundle-group-pattern]: https://gist.github.com/pboling/4564780
 [⛳️gem-namespace]: https://github.com/appraisal-rb/appraisal2
 [⛳️namespace-img]: https://img.shields.io/badge/namespace-Appraisal-brightgreen.svg?style=flat&logo=ruby&logoColor=white

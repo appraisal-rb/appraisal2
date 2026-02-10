@@ -104,4 +104,103 @@ Once you’re happy with it send a pull request.</p>
 <pre class="code language-console"><code class="language-console">bundle exec reek &gt; REEK
 </code></pre>
 
-<h2 id="run-tests">Ru
+<h2 id="run-tests">Run Tests</h2>
+
+<p>To run all tests against the current Ruby release:</p>
+
+<pre class="code language-console"><code class="language-console">bundle exec rake act
+</code></pre>
+
+<p>Or the equivalent:</p>
+
+<pre class="code language-console"><code class="language-console">act -W &#39;.github/workflows/current.yml&#39;
+</code></pre>
+<p>NOTE: Because there are so many workflows, running <code>act</code> naked might grind your machine to a halt.</p>
+
+<h2 id="lint-it">Lint It</h2>
+
+<p>Run all the default tasks, which includes running the gradually autocorrecting linter, <code>rubocop-gradual</code>.</p>
+
+<pre class="code language-console"><code class="language-console">bundle exec rake
+</code></pre>
+
+<p>Or just run the linter.</p>
+
+<pre class="code language-console"><code class="language-console">bundle exec rake rubocop_gradual:autocorrect
+</code></pre>
+
+<h2 id="contributors">Contributors</h2>
+
+<p>Your picture could be here!</p>
+
+<p><a href="https://github.com/appraisal-rb/appraisal2/graphs/contributors"><img src="https://contrib.rocks/image?repo=appraisal-rb/appraisal2" alt="Contributors"></a></p>
+
+<p>Made with <a href="https://contrib.rocks">contributors-img</a>.</p>
+
+<p>Also see GitLab Contributors: <a href="https://gitlab.com/appraisal-rb/appraisal2/-/graphs/main">https://gitlab.com/appraisal-rb/appraisal2/-/graphs/main</a></p>
+
+<h2 id="for-maintainers">For Maintainers</h2>
+
+<h3 id="one-time-per-maintainer-setup">One-time, Per-maintainer, Setup</h3>
+
+<p><strong>IMPORTANT</strong>: If you want to sign the build you create,<br>
+your public key for signing gems will need to be picked up by the line in the<br>
+<code>gemspec</code> defining the <code>spec.cert_chain</code> (check the relevant ENV variables there).<br>
+All releases to RubyGems.org will be signed.<br>
+See: <a href="https://guides.rubygems.org/security/#building-gems">RubyGems Security Guide</a></p>
+
+<p>NOTE: To build without signing the gem you must set <code>SKIP_GEM_SIGNING</code> to some value in your environment.</p>
+
+<h3 id="to-release-a-new-version">To release a new version:</h3>
+
+<ol>
+  <li>Run <code>bin/setup &amp;&amp; bin/rake</code> as a tests, coverage, &amp; linting sanity check</li>
+  <li>Update the version number in <code>version.rb</code>, and ensure <code>CHANGELOG.md</code> reflects changes</li>
+  <li>Run <code>bin/setup &amp;&amp; bin/rake</code> again as a secondary check, and to update <code>Gemfile.lock</code>
+</li>
+  <li>Run <code>git commit -am "🔖 Prepare release v&lt;VERSION&gt;"</code> to commit the changes</li>
+  <li>Run <code>git push</code> to trigger the final CI pipeline before release, &amp; merge PRs
+    <ul>
+      <li>NOTE: Remember to <a href="https://github.com/appraisal-rb/appraisal2/actions">check the build</a>!</li>
+    </ul>
+  </li>
+  <li>Run <code>export GIT_TRUNK_BRANCH_NAME="$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)" &amp;&amp; echo $GIT_TRUNK_BRANCH_NAME</code>
+</li>
+  <li>Run <code>git checkout $GIT_TRUNK_BRANCH_NAME</code>
+</li>
+  <li>Run <code>git pull origin $GIT_TRUNK_BRANCH_NAME</code> to ensure you will release the latest trunk code</li>
+  <li>Set <code>SOURCE_DATE_EPOCH</code> so <code>rake build</code> and <code>rake release</code> use same timestamp, and generate same checksums
+    <ul>
+      <li>Run <code>export SOURCE_DATE_EPOCH=$EPOCHSECONDS &amp;&amp; echo $SOURCE_DATE_EPOCH</code>
+</li>
+      <li>If the echo above has no output, then it didn’t work.</li>
+      <li>Note that you’ll need the <code>zsh/datetime</code> module, if running <code>zsh</code>.</li>
+      <li>In older versions of <code>bash</code> you can use <code>date +%s</code> instead, i.e. <code>export SOURCE_DATE_EPOCH=$(date +%s) &amp;&amp; echo $SOURCE_DATE_EPOCH</code>
+</li>
+    </ul>
+  </li>
+  <li>Run <code>bundle exec rake build</code>
+</li>
+  <li>Run <code>bin/gem_checksums</code> (more context <a href="https://github.com/rubygems/rubygems/pull/6022">1</a>, <a href="https://github.com/rubygems/guides/pull/325">2</a>)<br>
+to create SHA-256 and SHA-512 checksums. This functionality is provided by the <code>stone_checksums</code><br>
+<a href="https://github.com/pboling/stone_checksums">gem</a>.
+    <ul>
+      <li>Checksums will be committed automatically by the script, but not pushed</li>
+    </ul>
+  </li>
+  <li>Run <code>bundle exec rake release</code> which will create a git tag for the version,<br>
+push git commits and tags, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>
+</li>
+</ol>
+
+</div></div>
+
+      <div id="footer">
+  Generated on Tue Feb 10 00:10:28 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.38 (ruby-4.0.1).
+</div>
+
+    </div>
+  </body>
+</html>
