@@ -4217,5 +4217,6 @@
         </excluded>
       </library>
     </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v4.0.6, mise: 4.0.1) [gem]" level="application" />
   </component>
 </module>

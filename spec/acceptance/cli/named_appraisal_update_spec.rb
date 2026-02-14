@@ -56,7 +56,7 @@ RSpec.describe "CLI", ".update with named appraisal" do
     before do
       build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
         appraise 'rails-7' do
-          gem 'rake', '~> 13.0'
+          gem 'status_tag', '~> 0.2'
         end
       APPRAISAL
 
@@ -82,10 +82,10 @@ RSpec.describe "CLI", ".update with named appraisal" do
     it "updates specific gems using ore" do
       skip "ore not available" unless ore_available?
 
-      output = run "appraisal rails-7 update rake --gem-manager=ore"
+      output = run "appraisal rails-7 update status_tag --gem-manager=ore"
 
       expect(output).to include("ore update -gemfile")
-      expect(output).to include("gemfiles/rails_7.gemfile rake")
+      expect(output).to include("gemfiles/rails_7.gemfile status_tag")
     end
   end
 end

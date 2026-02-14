@@ -99,6 +99,7 @@ and <a href="https://github.com/jferris">Joe Ferris</a>, the original author!</p
 <ul>
   <li>support for <code>eval_gemfile</code>
 </li>
+  <li>support for caching gems across appraisals in CI workflows by setting <code>BUNDLE_PATH</code> in env</li>
   <li>support for <a href="https://github.com/contriboss/ore-light">ORE</a> as an alternative gem manager (faster than bundler!)
     <ul>
       <li>For easy setup in <strong>Gitea</strong> <a href="https://docs.gitea.com/usage/actions/overview">Actions</a>, <strong>Forgejo</strong> <a href="https://forgejo.org/docs/next/admin/actions/">Actions</a>, <strong>Codeberg</strong> <a href="https://docs.codeberg.org/ci/actions/">Actions</a>, or <strong>GitHub</strong> <a href="https://github.com/marketplace/actions/setup-ruby-with-rv-and-ore">Actions</a> check out <a href="https://github.com/appraisal-rb/setup-ruby-flash">appraisal-rb/setup-ruby-flash</a>
@@ -111,6 +112,8 @@ and <a href="https://github.com/jferris">Joe Ferris</a>, the original author!</p
     </ul>
   </li>
   <li>Support for JRuby 9.4+</li>
+  <li>Support for Truffle Ruby 22.3+</li>
+  <li>Support for MRI Ruby 4+</li>
   <li>updated and improved documentation</li>
   <li>many other fixes and improvements. See <a href="file.CHANGELOG.html" title="CHANGELOG">CHANGELOG</a> for details.</li>
 </ul>
@@ -1159,7 +1162,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Tue Feb 10 00:12:44 2026 by
+  Generated on Sat Feb 14 00:00:59 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.1).
 </div>

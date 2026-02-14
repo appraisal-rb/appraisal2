@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
-# NOTE: ore-light resolves gems from rubygems.org (not local gems),
-# so we use real gems in these tests rather than the dummy test gems.
 RSpec.describe "CLI with ore", ".update --gem-manager=ore", :ore do
   before do
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
-      appraise 'rack_update' do
-        gem 'rack', '~> 2.2.0'
+      appraise 'ore_update' do
+        gem 'status_tag', '~> 0.2'
       end
     APPRAISAL
 
-    # Install first using bundler (ore requires existing lockfile for update)
+    # This is the update test, so initial install is via bundler, so we don't have a dependency between
+    # ore install and ore update
     run "appraisal install"
   end
 

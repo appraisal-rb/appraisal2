@@ -68,6 +68,10 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
 
 <h3 id="added">Added</h3>
 
+<ul>
+  <li>Documentation of <code>BUNDLE_PATH</code> for caching gems</li>
+</ul>
+
 <h3 id="changed">Changed</h3>
 
 <h3 id="deprecated">Deprecated</h3>
@@ -75,6 +79,15 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
 <h3 id="removed">Removed</h3>
 
 <h3 id="fixed">Fixed</h3>
+
+<ul>
+  <li>Restore support for <code>BUNDLE_PATH</code> environment variable which regressed in  <code>v3.0.3</code>
+    <ul>
+      <li>
+<code>BUNDLE_PATH</code> is explicitly preserved to support CI environments that rely on it for gem caching.</li>
+    </ul>
+  </li>
+</ul>
 
 <h3 id="security">Security</h3>
 
@@ -287,7 +300,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
 </div></div>
 
       <div id="footer">
-  Generated on Tue Feb 10 00:12:44 2026 by
+  Generated on Sat Feb 14 00:00:59 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.1).
 </div>

@@ -15,12 +15,18 @@ module Appraisal
     end
 
     def run
+      # Capture BUNDLE_PATH from the current environment before with_original_env scrubs it
+      bundle_path = ENV["BUNDLE_PATH"]
       run_env = test_environment.merge(env)
 
       if @skip_bundle_exec
         execute(run_env)
       else
+        # This will wipe out BUNDLE_* variables
         Bundler.with_original_env do
+          # Restore BUNDLE_PATH if it was set
+          # BUNDLE_PATH is often used for caching between appraisals
+          ENV["BUNDLE_PATH"] = bundle_path if bundle_path
           ensure_bundler_is_available
           execute(run_env)
         end

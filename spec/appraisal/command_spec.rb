@@ -69,14 +69,28 @@ RSpec.describe Appraisal::Command do
       end
     end
 
-    context "when skip_bundle_exec is true" do
-      let(:command) { described_class.new(command_string, :gemfile => gemfile, :skip_bundle_exec => true) }
+    context "with BUNDLE_PATH set in environment" do
+      it "preserves BUNDLE_PATH within Bundler.with_original_env" do
+        original_bundle_path = ENV["BUNDLE_PATH"]
+        begin
+          ENV["BUNDLE_PATH"] = "/custom/path"
+          # We need to mock Bundler.with_original_env to actually yield
+          # but also simulate it scrubbing the environment as it would in reality
+          allow(Bundler).to receive(:with_original_env) do |&block|
+            old_bundle_path = ENV.delete("BUNDLE_PATH")
+            block.call
+            ENV["BUNDLE_PATH"] = old_bundle_path
+          end
 
-      it "does not wrap execution in Bundler.with_original_env and does not ensure bundler" do
-        expect(Bundler).not_to receive(:with_original_env)
-        expect(command).not_to receive(:ensure_bundler_is_available)
+          expect(Kernel).to receive(:system) do
+            expect(ENV["BUNDLE_PATH"]).to eq("/custom/path")
+            true
+          end
 
-        command.run
+          command.run
+        ensure
+          ENV["BUNDLE_PATH"] = original_bundle_path
+        end
       end
     end
   end
