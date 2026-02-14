@@ -82,10 +82,10 @@ RSpec.describe "CLI", ".update with named appraisal" do
     it "updates specific gems using ore" do
       skip "ore not available" unless ore_available?
 
-      output = run "appraisal rails-7 update rake --gem-manager=ore"
+      output = run "appraisal rails-7 update status_tag --gem-manager=ore"
 
       expect(output).to include("ore update -gemfile")
-      expect(output).to include("gemfiles/rails_7.gemfile rake")
+      expect(output).to include("gemfiles/rails_7.gemfile status_tag")
     end
   end
 end

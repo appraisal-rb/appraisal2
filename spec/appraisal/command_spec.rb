@@ -71,24 +71,26 @@ RSpec.describe Appraisal::Command do
 
     context "with BUNDLE_PATH set in environment" do
       it "preserves BUNDLE_PATH within Bundler.with_original_env" do
-        ENV["BUNDLE_PATH"] = "/custom/path"
+        original_bundle_path = ENV["BUNDLE_PATH"]
+        begin
+          ENV["BUNDLE_PATH"] = "/custom/path"
+          # We need to mock Bundler.with_original_env to actually yield
+          # but also simulate it scrubbing the environment as it would in reality
+          allow(Bundler).to receive(:with_original_env) do |&block|
+            old_bundle_path = ENV.delete("BUNDLE_PATH")
+            block.call
+            ENV["BUNDLE_PATH"] = old_bundle_path
+          end
 
-        # We need to mock Bundler.with_original_env to actually yield
-        # but also simulate it scrubbing the environment as it would in reality
-        allow(Bundler).to receive(:with_original_env) do |&block|
-          old_bundle_path = ENV.delete("BUNDLE_PATH")
-          block.call
-          ENV["BUNDLE_PATH"] = old_bundle_path
+          expect(Kernel).to receive(:system) do
+            expect(ENV["BUNDLE_PATH"]).to eq("/custom/path")
+            true
+          end
+
+          command.run
+        ensure
+          ENV["BUNDLE_PATH"] = original_bundle_path
         end
-
-        expect(Kernel).to receive(:system) do
-          expect(ENV["BUNDLE_PATH"]).to eq("/custom/path")
-          true
-        end
-
-        command.run
-
-        ENV.delete("BUNDLE_PATH")
       end
     end
   end

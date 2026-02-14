@@ -5,7 +5,7 @@
 RSpec.describe "CLI with ore", ".update --gem-manager=ore", :ore do
   before do
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
-      appraise 'rack_update' do
+      appraise 'ore_update' do
         gem 'status_tag', '~> 0.2'
       end
     APPRAISAL
