@@ -56,7 +56,7 @@ RSpec.describe "CLI", ".update with named appraisal" do
     before do
       build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
         appraise 'rails-7' do
-          gem 'rake', '~> 13.0'
+          gem 'status_tag', '~> 0.2'
         end
       APPRAISAL
 

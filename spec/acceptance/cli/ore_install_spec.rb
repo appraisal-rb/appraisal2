@@ -5,8 +5,8 @@
 RSpec.describe "CLI with ore", ".install --gem-manager=ore", :ore do
   it "installs the dependencies using ore" do
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
-      appraise 'rack_1' do
-        gem 'rack', '~> 2.2.0'
+      appraise 'via_ore' do
+          gem 'status_tag', '~> 0.2'
       end
     APPRAISAL
 
@@ -14,14 +14,14 @@ RSpec.describe "CLI with ore", ".install --gem-manager=ore", :ore do
 
     expect(output).to include("ore lock")
     expect(output).to include("ore install")
-    expect(file("gemfiles/rack_1.gemfile.lock")).to be_exists
+    expect(file("gemfiles/via_ore.gemfile.lock")).to be_exists
   end
 
   context "with jobs option" do
     it "passes -workers flag to ore" do
       build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
-        appraise 'rack_workers' do
-          gem 'rack', '~> 2.2.0'
+        appraise 'ore_workers' do
+          gem 'status_tag', '~> 0.2'
         end
       APPRAISAL
 
@@ -35,8 +35,8 @@ RSpec.describe "CLI with ore", ".install --gem-manager=ore", :ore do
   context "with path option" do
     it "passes -vendor flag to ore" do
       build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
-        appraise 'rack_vendor' do
-          gem 'rack', '~> 2.2.0'
+        appraise 'ore_vendor' do
+          gem 'status_tag', '~> 0.2'
         end
       APPRAISAL
 
@@ -51,8 +51,8 @@ RSpec.describe "CLI with ore", ".install --gem-manager=ore", :ore do
   context "with without option" do
     it "passes -without flag to ore with comma-separated groups" do
       build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
-        appraise 'rack_without' do
-          gem 'rack', '~> 2.2.0'
+        appraise 'ore_without' do
+          gem 'status_tag', '~> 0.2'
         end
       APPRAISAL
 

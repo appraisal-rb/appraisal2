@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe "Bundle with custom path" do
-  let(:gem_name) { "rack" }
+  let(:gem_name) { "include_with_respect" }
   let(:path) { "vendor/bundle" }
 
   shared_examples "gemfile dependencies are satisfied" do
