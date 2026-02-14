@@ -13,7 +13,7 @@ GIT
 PATH
   remote: .
   specs:
-    appraisal2 (3.0.4)
+    appraisal2 (3.0.5)
       bundler (>= 1.17.3)
       rake (>= 10)
       thor (>= 0.14)

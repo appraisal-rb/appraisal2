@@ -9,8 +9,6 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Documentation of `BUNDLE_PATH` for caching gems
-
 ### Changed
 
 ### Deprecated
@@ -19,10 +17,23 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+### Security
+
+## [3.0.5] - 2026-02-14
+
+- TAG: [v3.0.5][3.0.5t]
+- COVERAGE: 89.67% -- 703/784 lines in 27 files
+- BRANCH COVERAGE: 82.99% -- 122/147 branches in 27 files
+- 43.03% documented
+
+### Added
+
+- Documentation of `BUNDLE_PATH` for caching gems
+
+### Fixed
+
 - Restore support for `BUNDLE_PATH` environment variable which regressed in  `v3.0.3`
   - `BUNDLE_PATH` is explicitly preserved to support CI environments that rely on it for gem caching.
-
-### Security
 
 ## [3.0.4] - 2026-02-10
 
@@ -160,7 +171,9 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.4...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.5...HEAD
+[3.0.5]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.4...v3.0.5
+[3.0.5t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.5
 [3.0.4]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.3...v3.0.4
 [3.0.4t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.4
 [3.0.3]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.2...v3.0.3
