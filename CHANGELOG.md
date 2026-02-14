@@ -9,6 +9,8 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Documentation of `BUNDLE_PATH` for caching gems
+
 ### Changed
 
 ### Deprecated
@@ -16,6 +18,9 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Removed
 
 ### Fixed
+
+- Restore support for `BUNDLE_PATH` environment variable which regressed in  `v3.0.3`
+  - `BUNDLE_PATH` is explicitly preserved to support CI environments that rely on it for gem caching.
 
 ### Security
 
