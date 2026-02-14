@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# NOTE: ore-light resolves gems from rubygems.org (not local gems),
-# so we use real gems in these tests rather than the dummy test gems.
 RSpec.describe "CLI with ore", ".install --gem-manager=ore", :ore do
   it "installs the dependencies using ore" do
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
