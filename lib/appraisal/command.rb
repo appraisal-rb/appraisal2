@@ -5,6 +5,24 @@ require "shellwords"
 module Appraisal
   # Executes commands with a clean environment
   class Command
+    # BUNDLE_* environment variables that must be preserved for proper bundler operation
+    # and test isolation. These are preserved when using with_bundler_env to ensure:
+    # - Bundler version switching works (BUNDLE_GEMFILE)
+    # - Test isolation is maintained (BUNDLE_APP_CONFIG, BUNDLE_LOCKFILE, etc.)
+    # - User settings are respected (BUNDLE_PATH, BUNDLE_USER_CACHE, etc.)
+    PRESERVED_BUNDLE_VARS = %w[
+      BUNDLE_GEMFILE
+      BUNDLE_LOCKFILE
+      BUNDLE_APP_CONFIG
+      BUNDLE_PATH
+      BUNDLE_BIN_PATH
+      BUNDLE_USER_CONFIG
+      BUNDLE_USER_CACHE
+      BUNDLE_USER_PLUGIN
+      BUNDLE_IGNORE_FUNDING_REQUESTS
+      BUNDLE_DISABLE_SHARED_GEMS
+    ].freeze
+
     attr_reader :command, :env, :gemfile
 
     def initialize(command, options = {})
@@ -36,23 +54,27 @@ module Appraisal
 
     private
 
-    # Provide a clean environment while preserving bundler's version switching capability.
+    # Provide a clean environment while preserving bundler's version switching capability
+    # and test isolation settings.
+    #
     # This is similar to Bundler's with_original_env but more selective about which
-    # BUNDLE_* variables to remove, allowing auto-version-switching to work.
+    # BUNDLE_* variables to remove. See PRESERVED_BUNDLE_VARS for the list of variables
+    # that are preserved and why.
+    #
+    # Without preserving these, bundler could read/write global config (~/.bundle) or
+    # the wrong lockfile, breaking test isolation and user expectations.
     def with_bundler_env
       # Save current environment
       backup_env = ENV.to_h
 
       begin
-        # Create a clean environment from the original (pre-bundler) state
-        # but preserve BUNDLE_GEMFILE which is critical for bundler's auto-switching
+        # Start with clean environment (pre-bundler state)
         clean_env = Bundler.original_env.to_h
 
-        # Restore BUNDLE_GEMFILE if it was set - bundler needs this to auto-switch versions
-        clean_env["BUNDLE_GEMFILE"] = backup_env["BUNDLE_GEMFILE"] if backup_env["BUNDLE_GEMFILE"]
-
-        # Restore BUNDLE_PATH if it was set - commonly used for gem caching between appraisals
-        clean_env["BUNDLE_PATH"] = backup_env["BUNDLE_PATH"] if backup_env["BUNDLE_PATH"]
+        # Restore critical BUNDLE_* variables from backup
+        PRESERVED_BUNDLE_VARS.each do |var|
+          clean_env[var] = backup_env[var] if backup_env[var]
+        end
 
         # Replace environment with our clean version
         ENV.replace(clean_env)

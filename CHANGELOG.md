@@ -29,9 +29,17 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Support bundler's automatic version switching for modern bundler versions (2.2+)
-  - Bundler now automatically installs and switches to the version specified in `Gemfile.lock` (or other custom lockfile) (via `BUNDLED WITH`)
-  - Previously, `with_original_env` would strip the `BUNDLE_GEMFILE` environment variable, preventing bundler from detecting version mismatches and auto-switching
-  - Now uses selective environment restoration that preserves critical bundler variables (`BUNDLE_GEMFILE`, `BUNDLE_PATH`) while still isolating from parent bundler state
+  - Bundler now automatically installs and switches to the version specified in `Gemfile.lock` (or appraisal lockfiles) via `BUNDLED WITH`
+  - Previously, `with_original_env` would strip ALL `BUNDLE_*` environment variables, preventing bundler from detecting version mismatches and breaking test isolation
+  - Now uses selective environment restoration that preserves critical bundler variables while still isolating from parent bundler state:
+    - `BUNDLE_GEMFILE` - Required for bundler version switching
+    - `BUNDLE_LOCKFILE` - Ensures correct lockfile is used
+    - `BUNDLE_APP_CONFIG` - Prevents writing to global ~/.bundle config
+    - `BUNDLE_PATH` - Preserves gem installation path
+    - `BUNDLE_BIN_PATH` - Preserves bundler executable path
+    - `BUNDLE_USER_CONFIG`, `BUNDLE_USER_CACHE`, `BUNDLE_USER_PLUGIN` - User-specific settings
+    - `BUNDLE_IGNORE_FUNDING_REQUESTS`, `BUNDLE_DISABLE_SHARED_GEMS` - Configuration flags
+  - Without preserving these variables, bundler could read/write global config or wrong lockfiles, breaking test isolation
   - This fix maintains backward compatibility with legacy bundler versions while enabling version switching for modern bundler
 
 ### Security
