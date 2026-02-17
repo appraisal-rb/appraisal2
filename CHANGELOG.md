@@ -9,6 +9,17 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Test for bundler version switching with pre-existing appraisal lockfiles
+  - Added acceptance test that verifies bundler version switching works correctly when `gemfiles/*.gemfile.lock` specifies a different bundler version (via `BUNDLED WITH`)
+  - Uses dynamic bundler versions based on current Ruby version for compatibility across all supported Ruby versions (2.3 through 4.0+):
+    - Ruby 2.3, 2.4, 2.5 → bundler 2.3.27
+    - Ruby 2.6, 2.7 → bundler 2.4.22
+    - Ruby 3.0 → bundler 2.5.23
+    - Ruby 3.1 → bundler 2.6.9
+    - Ruby 3.2 → bundler 2.7.2
+    - Ruby 3.3, 3.4, 4.0+ → bundler 4.0.5
+  - Each version is compatible with the Ruby version but not a default, ensuring consistent version switching behavior across all CI runs
+
 ### Changed
 
 ### Deprecated
@@ -18,7 +29,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Fixed
 
 - Support bundler's automatic version switching for modern bundler versions (2.2+)
-  - Bundler now automatically installs and switches to the version specified in `Gemfile.lock` (via `BUNDLED WITH`)
+  - Bundler now automatically installs and switches to the version specified in `Gemfile.lock` (or other custom lockfile) (via `BUNDLED WITH`)
   - Previously, `with_original_env` would strip the `BUNDLE_GEMFILE` environment variable, preventing bundler from detecting version mismatches and auto-switching
   - Now uses selective environment restoration that preserves critical bundler variables (`BUNDLE_GEMFILE`, `BUNDLE_PATH`) while still isolating from parent bundler state
   - This fix maintains backward compatibility with legacy bundler versions while enabling version switching for modern bundler
