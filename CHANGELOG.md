@@ -33,13 +33,14 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - Previously, `with_original_env` would strip ALL `BUNDLE_*` environment variables, preventing bundler from detecting version mismatches and breaking test isolation
   - Now uses selective environment restoration that preserves critical bundler variables while still isolating from parent bundler state:
     - `BUNDLE_GEMFILE` - Required for bundler version switching
-    - `BUNDLE_LOCKFILE` - Ensures correct lockfile is used
     - `BUNDLE_APP_CONFIG` - Prevents writing to global ~/.bundle config
     - `BUNDLE_PATH` - Preserves gem installation path
     - `BUNDLE_BIN_PATH` - Preserves bundler executable path
     - `BUNDLE_USER_CONFIG`, `BUNDLE_USER_CACHE`, `BUNDLE_USER_PLUGIN` - User-specific settings
     - `BUNDLE_IGNORE_FUNDING_REQUESTS`, `BUNDLE_DISABLE_SHARED_GEMS` - Configuration flags
-  - Without preserving these variables, bundler could read/write global config or wrong lockfiles, breaking test isolation
+  - `BUNDLE_LOCKFILE` is intentionally NOT preserved because bundler automatically infers lockfile from `BUNDLE_GEMFILE` (e.g., foo.gemfile → foo.gemfile.lock)
+    - Preserving it would force all appraisals to use the same lockfile, breaking per-gemfile lockfiles
+  - Without preserving these variables, bundler could read/write global config or break per-gemfile isolation
   - This fix maintains backward compatibility with legacy bundler versions while enabling version switching for modern bundler
 
 ### Security

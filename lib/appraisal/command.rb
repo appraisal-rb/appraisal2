@@ -8,11 +8,15 @@ module Appraisal
     # BUNDLE_* environment variables that must be preserved for proper bundler operation
     # and test isolation. These are preserved when using with_bundler_env to ensure:
     # - Bundler version switching works (BUNDLE_GEMFILE)
-    # - Test isolation is maintained (BUNDLE_APP_CONFIG, BUNDLE_LOCKFILE, etc.)
+    # - Test isolation is maintained (BUNDLE_APP_CONFIG, etc.)
     # - User settings are respected (BUNDLE_PATH, BUNDLE_USER_CACHE, etc.)
+    #
+    # NOTE: BUNDLE_LOCKFILE is NOT preserved because:
+    # - Bundler automatically infers lockfile from BUNDLE_GEMFILE (e.g., foo.gemfile -> foo.gemfile.lock)
+    # - Forcing BUNDLE_LOCKFILE breaks appraisal's ability to create per-gemfile lockfiles
+    # - Each appraisal needs its own lockfile, not the root Gemfile.lock
     PRESERVED_BUNDLE_VARS = %w[
       BUNDLE_GEMFILE
-      BUNDLE_LOCKFILE
       BUNDLE_APP_CONFIG
       BUNDLE_PATH
       BUNDLE_BIN_PATH
