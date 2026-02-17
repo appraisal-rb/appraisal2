@@ -138,7 +138,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
 
       # Pre-create the gemfile with the appropriate bundler version
       write_file "gemfiles/bundler_locked.gemfile", <<-GEMFILE.strip_heredoc
-        source "https://rubygems.org"
+        source "https://gem.coop"
 
         gem "dummy", "1.0.0"
         gem "bundler", "#{locked_bundler_version}"
@@ -147,7 +147,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
       # Pre-create the lockfile with the bundler version specified
       write_file "gemfiles/bundler_locked.gemfile.lock", <<-LOCK.strip_heredoc
         GEM
-          remote: https://rubygems.org/
+          remote: https://gem.coop/
           specs:
             dummy (1.0.0)
 
