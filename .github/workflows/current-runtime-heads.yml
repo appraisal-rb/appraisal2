@@ -43,7 +43,7 @@ jobs:
         include:
           # Ruby <whichever version is current, e.g., 3.4 as of 2025-07-12>
           - ruby: "ruby"
-            gemfile: "dep-heads"
+            gemfile: "dep_heads"
             exec_cmd: "rake magic"
             rubygems: latest
             bundler: latest
@@ -51,7 +51,7 @@ jobs:
 
           # truffleruby <whichever version is current, e.g., 24.1 as of 2025-07-12>
           - ruby: "truffleruby"
-            gemfile: "dep-heads"
+            gemfile: "dep_heads"
             exec_cmd: "rake magic"
             rubygems: default
             bundler: default
@@ -59,7 +59,7 @@ jobs:
 
           # jruby <whichever version is current, e.g., 10.0 (targets Ruby 3.4 compatibility) as of 2025-07-12>
           - ruby: "jruby"
-            gemfile: "dep-heads"
+            gemfile: "dep_heads"
             exec_cmd: "rake magic"
             rubygems: default
             bundler: default
