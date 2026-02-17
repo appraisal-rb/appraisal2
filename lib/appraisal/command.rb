@@ -15,18 +15,19 @@ module Appraisal
     end
 
     def run
-      # Capture BUNDLE_PATH from the current environment before with_original_env scrubs it
-      bundle_path = ENV["BUNDLE_PATH"]
       run_env = test_environment.merge(env)
 
       if @skip_bundle_exec
         execute(run_env)
       else
-        # This will wipe out BUNDLE_* variables
-        Bundler.with_original_env do
-          # Restore BUNDLE_PATH if it was set
-          # BUNDLE_PATH is often used for caching between appraisals
-          ENV["BUNDLE_PATH"] = bundle_path if bundle_path
+        # For bundler version switching to work in modern bundler (2.2+),
+        # we need to preserve certain BUNDLE_* environment variables.
+        # However, we still need to isolate from the parent's bundler state
+        # to avoid conflicts.
+        #
+        # Solution: Use a selective environment approach instead of with_original_env,
+        # which strips all BUNDLE_* variables and breaks version switching.
+        with_bundler_env do
           ensure_bundler_is_available
           execute(run_env)
         end
@@ -34,6 +35,34 @@ module Appraisal
     end
 
     private
+
+    # Provide a clean environment while preserving bundler's version switching capability.
+    # This is similar to Bundler's with_original_env but more selective about which
+    # BUNDLE_* variables to remove, allowing auto-version-switching to work.
+    def with_bundler_env
+      # Save current environment
+      backup_env = ENV.to_h
+
+      begin
+        # Create a clean environment from the original (pre-bundler) state
+        # but preserve BUNDLE_GEMFILE which is critical for bundler's auto-switching
+        clean_env = Bundler.original_env.to_h
+
+        # Restore BUNDLE_GEMFILE if it was set - bundler needs this to auto-switch versions
+        clean_env["BUNDLE_GEMFILE"] = backup_env["BUNDLE_GEMFILE"] if backup_env["BUNDLE_GEMFILE"]
+
+        # Restore BUNDLE_PATH if it was set - commonly used for gem caching between appraisals
+        clean_env["BUNDLE_PATH"] = backup_env["BUNDLE_PATH"] if backup_env["BUNDLE_PATH"]
+
+        # Replace environment with our clean version
+        ENV.replace(clean_env)
+
+        yield
+      ensure
+        # Always restore the full environment
+        ENV.replace(backup_env)
+      end
+    end
 
     def execute(run_env)
       announce

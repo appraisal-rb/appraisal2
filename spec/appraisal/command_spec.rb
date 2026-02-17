@@ -62,10 +62,13 @@ RSpec.describe Appraisal::Command do
 
     context "with default settings" do
       it "wraps execution in Bundler.with_original_env and ensures bundler is available" do
-        expect(Bundler).to receive(:with_original_env).and_yield
-        expect(command).to receive(:ensure_bundler_is_available)
+        allow(command).to receive(:with_bundler_env).and_yield
+        allow(command).to receive(:ensure_bundler_is_available)
 
         command.run
+
+        expect(command).to have_received(:with_bundler_env)
+        expect(command).to have_received(:ensure_bundler_is_available)
       end
     end
 

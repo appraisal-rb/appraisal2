@@ -17,6 +17,12 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 
+- Support bundler's automatic version switching for modern bundler versions (2.2+)
+  - Bundler now automatically installs and switches to the version specified in `Gemfile.lock` (via `BUNDLED WITH`)
+  - Previously, `with_original_env` would strip the `BUNDLE_GEMFILE` environment variable, preventing bundler from detecting version mismatches and auto-switching
+  - Now uses selective environment restoration that preserves critical bundler variables (`BUNDLE_GEMFILE`, `BUNDLE_PATH`) while still isolating from parent bundler state
+  - This fix maintains backward compatibility with legacy bundler versions while enabling version switching for modern bundler
+
 ### Security
 
 ## [3.0.5] - 2026-02-14
