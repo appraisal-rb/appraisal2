@@ -167,6 +167,8 @@ RSpec.describe "CLI", ".install with named appraisal" do
     end
 
     it "respects bundler version specified in appraisal gemfile.lock" do
+      skip_for(:engine => "jruby", :reason => "Hi, I'm JRuby, and I'm different")
+      skip_for(:engine => "truffleruby", :reason => "Upgrading bundler on Truffleruby is not a thing")
       # This test verifies that bundler version switching works correctly
       # when an appraisal's lockfile specifies a different bundler version.
       # The system may have a different version of bundler active, but
