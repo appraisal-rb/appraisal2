@@ -17,8 +17,10 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     - Ruby 3.0 → bundler 2.5.23
     - Ruby 3.1 → bundler 2.6.9
     - Ruby 3.2 → bundler 2.7.2
-    - Ruby 3.3, 3.4, 4.0+ → bundler 4.0.5
-  - Each version is compatible with the Ruby version but not a default, ensuring consistent version switching behavior across all CI runs
+    - Ruby 3.3 → bundler 4.0.3
+    - Ruby 3.4 → bundler 4.0.4
+    - Ruby 4.0+ → bundler 4.0.5
+  - Versions are chosen to be different from common CI defaults, ensuring version switching is actually tested on each run
 
 ### Changed
 

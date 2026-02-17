@@ -124,24 +124,27 @@ RSpec.describe "CLI", ".install with named appraisal" do
         "3.1" => "2.6.9",
         # Ruby 3.2
         "3.2" => "2.7.2",
-        # Ruby 3.3, 3.4, 4.0+
+        # Ruby 3.3, 3.4, 4.0
         "3.3" => "4.0.3",
         "3.4" => "4.0.4",
+        "4.0" => "4.0.5",
       }
 
       # Get the current Ruby version (major.minor)
       ruby_version = "#{RUBY_VERSION.split(".")[0]}.#{RUBY_VERSION.split(".")[1]}"
 
       # Look up the bundler version for this Ruby version
-      # Default to 4.0.5 for Ruby 4.0+ or if matrix lookup is a miss
-      locked_bundler_version = bundler_version_for_ruby.fetch(ruby_version, "4.0.5")
+      # Default to 4.0.3 for unknown Ruby versions (4.0.3 is less likely to be system default than 4.0.5 or 4.0.6)
+      locked_bundler_version = bundler_version_for_ruby.fetch(ruby_version, "4.0.3")
 
       # Pre-create the gemfile with the appropriate bundler version
+      # Note: We DO NOT include bundler as a gem dependency here.
+      # The bundler version is specified only in BUNDLED WITH in the lockfile,
+      # which tells bundler what version was used to generate the lockfile.
       write_file "gemfiles/bundler_locked.gemfile", <<-GEMFILE.strip_heredoc
         source "https://gem.coop"
 
         gem "dummy", "1.0.0"
-        gem "bundler", "#{locked_bundler_version}"
       GEMFILE
 
       # Pre-create the lockfile with the bundler version specified
@@ -156,7 +159,6 @@ RSpec.describe "CLI", ".install with named appraisal" do
           x86_64-linux
 
         DEPENDENCIES
-          bundler (= #{locked_bundler_version})
           dummy (= 1.0.0)
 
         BUNDLED WITH
