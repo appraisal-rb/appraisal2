@@ -61,26 +61,59 @@ module Appraisal
     # Provide a clean environment while preserving bundler's version switching capability
     # and test isolation settings.
     #
-    # This is similar to Bundler's with_original_env but more selective about which
-    # BUNDLE_* variables to remove. See PRESERVED_BUNDLE_VARS for the list of variables
-    # that are preserved and why.
+    # Instead of using Bundler.original_env (which removes all bundler activation state),
+    # we selectively remove only the variables that cause conflicts, while preserving
+    # the test isolation and user settings that have been carefully configured.
     #
-    # Without preserving these, bundler could read/write global config (~/.bundle) or
-    # the wrong lockfile, breaking test isolation and user expectations.
+    # This allows bundler to detect and switch versions based on BUNDLED WITH in lockfiles.
     def with_bundler_env
-      # Save current environment
+      # Variables that should be REMOVED to avoid bundler activation conflicts
+      # These are bundler's internal state from the current Ruby process
+      vars_to_remove = %w[
+        BUNDLER_SETUP
+        BUNDLER_VERSION
+      ]
+
+      # Variables that should be REMOVED if they point to the current appraisal2 setup
+      # (to avoid bundler being confused about which gemfile is active)
+      bundler_state_vars = %w[
+        RUBYOPT
+        RUBYLIB
+      ]
+
       backup_env = ENV.to_h
 
       begin
-        # Start with clean environment (pre-bundler state)
-        clean_env = Bundler.original_env.to_h
+        # Start with current environment (preserves all test isolation and user settings)
+        clean_env = backup_env.to_h
 
-        # Restore critical BUNDLE_* variables from backup
-        PRESERVED_BUNDLE_VARS.each do |var|
-          clean_env[var] = backup_env[var] if backup_env[var]
+        # Remove bundler's internal activation state
+        vars_to_remove.each { |var| clean_env.delete(var) }
+
+        # Remove bundler path manipulation from RUBYOPT and RUBYLIB to let
+        # the subprocess bundler work cleanly with the target gemfile
+        if clean_env["RUBYOPT"]
+          rubyopt = clean_env["RUBYOPT"].split(" ")
+          rubyopt.reject! { |opt| opt.include?("bundler/setup") }
+          if rubyopt.empty?
+            clean_env.delete("RUBYOPT")
+          else
+            clean_env["RUBYOPT"] = rubyopt.join(" ")
+          end
         end
 
-        # Replace environment with our clean version
+        if clean_env["RUBYLIB"]
+          rubylib = clean_env["RUBYLIB"].split(File::PATH_SEPARATOR)
+          # Remove bundler's lib directory
+          rubylib.reject! { |path| path.include?("bundler") }
+          if rubylib.empty?
+            clean_env.delete("RUBYLIB")
+          else
+            clean_env["RUBYLIB"] = rubylib.join(File::PATH_SEPARATOR)
+          end
+        end
+
+        # Replace environment
         ENV.replace(clean_env)
 
         yield

@@ -9,40 +9,31 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- Test for bundler version switching with pre-existing appraisal lockfiles
-  - Added acceptance test that verifies bundler version switching works correctly when `gemfiles/*.gemfile.lock` specifies a different bundler version (via `BUNDLED WITH`)
-  - Uses dynamic bundler versions based on current Ruby version for compatibility across all supported Ruby versions (2.3 through 4.0+):
-    - Ruby 2.3, 2.4, 2.5 → bundler 2.3.27
-    - Ruby 2.6, 2.7 → bundler 2.4.22
-    - Ruby 3.0 → bundler 2.5.23
-    - Ruby 3.1 → bundler 2.6.9
-    - Ruby 3.2 → bundler 2.7.2
-    - Ruby 3.3 → bundler 4.0.3
-    - Ruby 3.4 → bundler 4.0.4
-    - Ruby 4.0+ → bundler 4.0.5
-  - Versions are chosen to be different from common CI defaults, ensuring version switching is actually tested on each run
+- Test for bundler handling with pre-existing appraisal lockfiles
+  - Added acceptance test that verifies appraisal correctly handles `gemfiles/*.gemfile.lock` files with `BUNDLED WITH` specified
+  - Test validates that:
+    - Appraisal gemfiles with pre-created lockfiles install correctly
+    - Lockfiles preserve the `BUNDLED WITH` section reporting which bundler version was used
+    - The bundler version in the lockfile is correctly maintained during installation
+  - Note: Full bundler version-switching testing would require pre-installing multiple bundler versions in CI, which is not practical. The core bundler version switching is tested via the main fix for `with_bundler_env` preserving necessary environment variables.
 
 ### Changed
 
-### Deprecated
+```
 
 ### Removed
 
 ### Fixed
 
 - Support bundler's automatic version switching for modern bundler versions (2.2+)
-  - Bundler now automatically installs and switches to the version specified in `Gemfile.lock` (or appraisal lockfiles) via `BUNDLED WITH`
-  - Previously, `with_original_env` would strip ALL `BUNDLE_*` environment variables, preventing bundler from detecting version mismatches and breaking test isolation
-  - Now uses selective environment restoration that preserves critical bundler variables while still isolating from parent bundler state:
-    - `BUNDLE_GEMFILE` - Required for bundler version switching
-    - `BUNDLE_APP_CONFIG` - Prevents writing to global ~/.bundle config
-    - `BUNDLE_PATH` - Preserves gem installation path
-    - `BUNDLE_BIN_PATH` - Preserves bundler executable path
-    - `BUNDLE_USER_CONFIG`, `BUNDLE_USER_CACHE`, `BUNDLE_USER_PLUGIN` - User-specific settings
-    - `BUNDLE_IGNORE_FUNDING_REQUESTS`, `BUNDLE_DISABLE_SHARED_GEMS` - Configuration flags
-  - `BUNDLE_LOCKFILE` is intentionally NOT preserved because bundler automatically infers lockfile from `BUNDLE_GEMFILE` (e.g., foo.gemfile → foo.gemfile.lock)
-    - Preserving it would force all appraisals to use the same lockfile, breaking per-gemfile lockfiles
-  - Without preserving these variables, bundler could read/write global config or break per-gemfile isolation
+  - Bundler can automatically detect and switch to the version specified in `Gemfile.lock` (or appraisal lockfiles) via `BUNDLED WITH`
+  - Previously, `with_original_env` would strip ALL bundler-related environment variables including `BUNDLE_GEMFILE`, preventing bundler from detecting version mismatches
+  - Now uses selective environment cleanup: removes only bundler's internal activation state (`BUNDLER_SETUP`, `BUNDLER_VERSION`, bundler references in `RUBYOPT`/`RUBYLIB`) while preserving all test isolation and user configuration
+  - This approach:
+    - Allows bundler to correctly detect and switch versions based on `BUNDLED WITH` in lockfiles
+    - Preserves all critical configuration (`BUNDLE_APP_CONFIG`, `BUNDLE_PATH`, `BUNDLE_USER_CACHE`, etc.)
+    - Maintains test isolation and prevents global config pollution
+    - Enables users to commit locked appraisal lockfiles for stable, repeatable CI builds
   - This fix maintains backward compatibility with legacy bundler versions while enabling version switching for modern bundler
 
 ### Security

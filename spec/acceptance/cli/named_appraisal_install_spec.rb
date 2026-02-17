@@ -171,18 +171,20 @@ RSpec.describe "CLI", ".install with named appraisal" do
     it "respects bundler version specified in appraisal gemfile.lock" do
       skip_for(:engine => "jruby", :reason => "Hi, I'm JRuby, and I'm different")
       skip_for(:engine => "truffleruby", :reason => "Upgrading bundler on Truffleruby is not a thing")
-      # This test verifies that bundler version switching works correctly
-      # when an appraisal's lockfile specifies a different bundler version.
-      # The system may have a different version of bundler active, but
-      # appraisal should be able to install and work with the locked version.
+      # This test verifies that appraisal can handle lockfiles with BUNDLED WITH specified,
+      # and that the bundler version is preserved/respected through the install process.
+      # This is critical for users who commit their appraisal lockfiles to ensure stable,
+      # repeatable builds in CI.
       output = run "appraisal bundler-locked install"
 
       expect(output).to include("bundle install")
       expect(output).to include("gemfiles/bundler_locked.gemfile")
       expect(file("gemfiles/bundler_locked.gemfile.lock")).to be_exists
-      # Verify the lockfile still has the bundler version specified
-      expect(content_of("gemfiles/bundler_locked.gemfile.lock")).to include("BUNDLED WITH")
-      expect(content_of("gemfiles/bundler_locked.gemfile.lock")).to include(@locked_bundler_version)
+      
+      # The lockfile should maintain the BUNDLED WITH version specified
+      lockfile_content = content_of("gemfiles/bundler_locked.gemfile.lock")
+      expect(lockfile_content).to include("BUNDLED WITH")
+      expect(lockfile_content).to include(@locked_bundler_version)
     end
   end
 end
