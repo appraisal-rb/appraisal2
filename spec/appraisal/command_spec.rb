@@ -60,7 +60,7 @@ RSpec.describe Appraisal::Command do
     end
 
     context "with default settings" do
-      it "wraps execution in Bundler.with_original_env and ensures bundler is available" do
+      it "wraps execution in with_bundler_env and ensures bundler is available" do
         allow(command).to receive(:with_bundler_env).and_yield
         allow(command).to receive(:ensure_bundler_is_available)
 
