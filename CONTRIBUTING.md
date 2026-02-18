@@ -7,7 +7,7 @@ the [code of conduct][🤝conduct].
 To submit a patch, please fork the project and create a patch with tests.
 Once you're happy with it send a pull request.
 
-We [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] so if you make changes, remember to update it.
+Remember to [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] if you make changes.
 
 ## You can help!
 
@@ -32,6 +32,23 @@ NOTE: Run tests with `act` to have confidence they will pass in CI.
       Also, because the spec run makes many changes to local bundle config,
       many specs will fail locally in subsequent runs unless run via `act`.
       The spec suite is not idempotent.  This is a goal for the future, if you'd like to work on it.
+
+## Appraisals
+
+From time to time the [appraisal2][🚎appraisal2] gemfiles in `gemfiles/` will need to be updated.
+They are created and updated with the commands:
+
+```console
+bin/rake appraisal:update
+```
+
+If you need to reset all gemfiles/*.gemfile.lock files:
+
+```console
+bin/rake appraisal:reset
+```
+
+When adding an appraisal to CI, check the [runner tool cache][🏃‍♂️runner-tool-cache] to see which runner to use.
 
 ## The Reek List
 
@@ -86,37 +103,49 @@ Also see GitLab Contributors: [https://gitlab.com/appraisal-rb/appraisal2/-/grap
 
 ### One-time, Per-maintainer, Setup
 
-**IMPORTANT**: If you want to sign the build you create,
-your public key for signing gems will need to be picked up by the line in the
+**IMPORTANT**: To sign a build,
+a public key for signing gems will need to be picked up by the line in the
 `gemspec` defining the `spec.cert_chain` (check the relevant ENV variables there).
-All releases to RubyGems.org will be signed.
+All releases are signed releases.
 See: [RubyGems Security Guide][🔒️rubygems-security-guide]
 
 NOTE: To build without signing the gem you must set `SKIP_GEM_SIGNING` to some value in your environment.
 
 ### To release a new version:
 
-1. Run `bin/setup && bin/rake` as a tests, coverage, & linting sanity check
+#### Automated process
+
+1. Update version.rb to contain the correct version-to-be-released.
+2. Run `bundle exec kettle-changelog`.
+3. Run `bundle exec kettle-release`.
+4. Stay awake and monitor the release process for any errors, and answer any prompts.
+
+#### Manual process
+
+1. Run `bin/setup && bin/rake` as a "test, coverage, & linting" sanity check
 2. Update the version number in `version.rb`, and ensure `CHANGELOG.md` reflects changes
 3. Run `bin/setup && bin/rake` again as a secondary check, and to update `Gemfile.lock`
 4. Run `git commit -am "🔖 Prepare release v<VERSION>"` to commit the changes
-5. Run `git push` to trigger the final CI pipeline before release, & merge PRs
-    - NOTE: Remember to [check the build][🧪build]!
+5. Run `git push` to trigger the final CI pipeline before release, and merge PRs
+    - NOTE: Remember to [check the build][🧪build].
 6. Run `export GIT_TRUNK_BRANCH_NAME="$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)" && echo $GIT_TRUNK_BRANCH_NAME`
 7. Run `git checkout $GIT_TRUNK_BRANCH_NAME`
-8. Run `git pull origin $GIT_TRUNK_BRANCH_NAME` to ensure you will release the latest trunk code
-9. Set `SOURCE_DATE_EPOCH` so `rake build` and `rake release` use same timestamp, and generate same checksums
+8. Run `git pull origin $GIT_TRUNK_BRANCH_NAME` to ensure latest trunk code
+9. Optional for older Bundler (< 2.7.0): Set `SOURCE_DATE_EPOCH` so `rake build` and `rake release` use the same timestamp and generate the same checksums
+    - If your Bundler is >= 2.7.0, you can skip this; builds are reproducible by default.
     - Run `export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH`
     - If the echo above has no output, then it didn't work.
-    - Note that you'll need the `zsh/datetime` module, if running `zsh`.
+    - Note: `zsh/datetime` module is needed, if running `zsh`.
     - In older versions of `bash` you can use `date +%s` instead, i.e. `export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
 10. Run `bundle exec rake build`
 11. Run `bin/gem_checksums` (more context [1][🔒️rubygems-checksums-pr], [2][🔒️rubygems-guides-pr])
     to create SHA-256 and SHA-512 checksums. This functionality is provided by the `stone_checksums`
     [gem][💎stone_checksums].
-    - Checksums will be committed automatically by the script, but not pushed
-12. Run `bundle exec rake release` which will create a git tag for the version,
-    push git commits and tags, and push the `.gem` file to [rubygems.org][💎rubygems]
+    - The script automatically commits but does not push the checksums
+12. Sanity check the SHA256, comparing with the output from the `bin/gem_checksums` command:
+    - `sha256sum pkg/<gem name>-<version>.gem`
+13. Run `bundle exec rake release` which will create a git tag for the version,
+    push git commits and tags, and push the `.gem` file to the gem host configured in the gemspec.
 
 [🚎src-main]: https://gitlab.com/appraisal-rb/appraisal2
 [🧪build]: https://github.com/appraisal-rb/appraisal2/actions
@@ -125,7 +154,7 @@ NOTE: To build without signing the gem you must set `SKIP_GEM_SIGNING` to some v
 [🖐contributors]: https://github.com/appraisal-rb/appraisal2/graphs/contributors
 [🚎contributors-gl]: https://gitlab.com/appraisal-rb/appraisal2/-/graphs/main
 [🖐contributors-img]: https://contrib.rocks/image?repo=appraisal-rb/appraisal2
-[💎rubygems]: https://rubygems.org
+[💎gem-coop]: https://gem.coop
 [🔒️rubygems-security-guide]: https://guides.rubygems.org/security/#building-gems
 [🔒️rubygems-checksums-pr]: https://github.com/rubygems/rubygems/pull/6022
 [🔒️rubygems-guides-pr]: https://github.com/rubygems/guides/pull/325
@@ -134,3 +163,5 @@ NOTE: To build without signing the gem you must set `SKIP_GEM_SIGNING` to some v
 [📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat
 [✉️discord-invite]: https://discord.gg/3qme4XHNKN
 [✉️discord-invite-img]: https://img.shields.io/discord/1373797679469170758?style=for-the-badge
+[🚎appraisal2]: https://github.com/appraisal-rb/appraisal2
+[🏃‍♂️runner-tool-cache]: https://github.com/ruby/ruby-builder/releases/tag/toolcache

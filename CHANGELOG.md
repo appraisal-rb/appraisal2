@@ -9,13 +9,34 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-### Changed
+- Test for bundler handling with pre-existing appraisal lockfiles
+  - Added acceptance test that verifies appraisal correctly handles `gemfiles/*.gemfile.lock` files with `BUNDLED WITH` specified
+  - Test validates that:
+    - Appraisal gemfiles with pre-created lockfiles install correctly
+    - Lockfiles preserve the `BUNDLED WITH` section reporting which bundler version was used
+    - The bundler version in the lockfile is correctly maintained during installation
+  - Note: Multi-version bundler switching in CI would require pre-installing multiple bundler versions; coverage is limited to lockfile preservation and environment handling.
 
-### Deprecated
+### Changed
 
 ### Removed
 
 ### Fixed
+
+- Restore bundler's automatic version switching for modern bundler versions (2.2+)
+  - Bundler can detect and switch to the version specified in `Gemfile.lock` (or appraisal lockfiles) via `BUNDLED WITH`
+  - Previously, `with_original_env` stripped all bundler-related variables, preventing bundler from detecting version mismatches and breaking test isolation
+  - Now uses `with_bundler_env` with selective cleanup:
+    - Starts from `Bundler.original_env` when available
+    - Preserves critical bundler and isolation variables (for example: `BUNDLE_GEMFILE`, `BUNDLE_APP_CONFIG`, `BUNDLE_PATH`, `BUNDLE_USER_CACHE`)
+    - Removes `BUNDLER_SETUP` and `BUNDLER_VERSION` activation markers
+    - Removes `bundler/setup` from `RUBYOPT` to prevent auto-activation in subprocesses
+    - Prevents `BUNDLE_LOCKFILE` lockfile pollution of subprocesses so per-gemfile lockfiles are created correctly
+  - This approach:
+    - Lets subprocess bundler start fresh and process the target gemfile cleanly
+    - Preserves test isolation and prevents global config pollution
+    - Enables committing appraisal lockfiles with specific bundler versions for stable, repeatable builds
+  - This fix maintains backward compatibility with all bundler versions
 
 ### Security
 

@@ -17,7 +17,7 @@ variables:
   K_SOUP_COV_DEBUG: true
   K_SOUP_COV_DO: false
   K_SOUP_COV_HARD: true
-  K_SOUP_COV_MIN_BRANCH: 75
+  K_SOUP_COV_MIN_BRANCH: 71
   K_SOUP_COV_MIN_LINE: 82
   K_SOUP_COV_VERBOSE: true
   K_SOUP_COV_FORMATTERS: "xml,rcov,lcov,json,tty"

@@ -53,7 +53,6 @@ RSpec.describe Appraisal::Command do
 
     before do
       allow(Kernel).to receive(:system).and_return(true)
-      allow(Bundler).to receive(:with_original_env).and_yield
       allow(Appraisal::Utils).to receive(:bundler_version).and_return("2.0.0")
       # Mock system call for ensure_bundler_is_available (which uses system)
       allow(command).to receive(:system).and_return(true)
@@ -61,35 +60,45 @@ RSpec.describe Appraisal::Command do
     end
 
     context "with default settings" do
-      it "wraps execution in Bundler.with_original_env and ensures bundler is available" do
-        expect(Bundler).to receive(:with_original_env).and_yield
-        expect(command).to receive(:ensure_bundler_is_available)
+      it "wraps execution in with_bundler_env and ensures bundler is available" do
+        allow(command).to receive(:with_bundler_env).and_yield
+        allow(command).to receive(:ensure_bundler_is_available)
 
         command.run
+
+        expect(command).to have_received(:with_bundler_env)
+        expect(command).to have_received(:ensure_bundler_is_available)
       end
     end
 
     context "with BUNDLE_PATH set in environment" do
-      it "preserves BUNDLE_PATH within Bundler.with_original_env" do
+      it "preserves BUNDLE_PATH and strips bundler activation markers" do
         original_bundle_path = ENV["BUNDLE_PATH"]
+        original_rubyopt = ENV["RUBYOPT"]
+        original_bundler_setup = ENV["BUNDLER_SETUP"]
+        original_bundler_version = ENV["BUNDLER_VERSION"]
         begin
           ENV["BUNDLE_PATH"] = "/custom/path"
-          # We need to mock Bundler.with_original_env to actually yield
-          # but also simulate it scrubbing the environment as it would in reality
-          allow(Bundler).to receive(:with_original_env) do |&block|
-            old_bundle_path = ENV.delete("BUNDLE_PATH")
-            block.call
-            ENV["BUNDLE_PATH"] = old_bundle_path
-          end
+          ENV["RUBYOPT"] = "-rbundler/setup -W0"
+          ENV["BUNDLER_SETUP"] = "1"
+          ENV["BUNDLER_VERSION"] = "4.0.3"
+
+          allow(Bundler).to receive(:original_env).and_return({})
 
           expect(Kernel).to receive(:system) do
             expect(ENV["BUNDLE_PATH"]).to eq("/custom/path")
+            expect(ENV["BUNDLER_SETUP"]).to be_nil
+            expect(ENV["BUNDLER_VERSION"]).to be_nil
+            expect(ENV["RUBYOPT"]).to eq("-W0")
             true
           end
 
           command.run
         ensure
           ENV["BUNDLE_PATH"] = original_bundle_path
+          ENV["RUBYOPT"] = original_rubyopt
+          ENV["BUNDLER_SETUP"] = original_bundler_setup
+          ENV["BUNDLER_VERSION"] = original_bundler_version
         end
       end
     end
