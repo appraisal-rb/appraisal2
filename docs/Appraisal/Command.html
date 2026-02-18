@@ -541,7 +541,8 @@ and test isolation. These are preserved when using with_bundler_env to ensure:</
 59
 60
 61
-62</pre>
+62
+63</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 44</span>
@@ -561,6 +562,7 @@ and test isolation. These are preserved when using with_bundler_env to ensure:</
 </span>    <span class='comment'># which strips all BUNDLE_* variables and breaks version switching.
 </span>    <span class='id identifier rubyid_with_bundler_env'>with_bundler_env</span> <span class='kw'>do</span>
       <span class='id identifier rubyid_ensure_bundler_is_available'>ensure_bundler_is_available</span>
+      <span class='id identifier rubyid_ensure_locked_bundler_is_available'>ensure_locked_bundler_is_available</span>
       <span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_run_env'>run_env</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
   <span class='kw'>end</span>
@@ -575,7 +577,7 @@ and test isolation. These are preserved when using with_bundler_env to ensure:</
 </div>
 
       <div id="footer">
-  Generated on Tue Feb 17 17:27:41 2026 by
+  Generated on Tue Feb 17 19:48:03 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.1).
 </div>

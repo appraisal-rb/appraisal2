@@ -102,7 +102,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
           <li>Preserves critical bundler and isolation variables (for example: <code>BUNDLE_GEMFILE</code>, <code>BUNDLE_APP_CONFIG</code>, <code>BUNDLE_PATH</code>, <code>BUNDLE_USER_CACHE</code>)</li>
           <li>Removes <code>BUNDLER_SETUP</code> and <code>BUNDLER_VERSION</code> activation markers</li>
           <li>Removes <code>bundler/setup</code> from <code>RUBYOPT</code> to prevent auto-activation in subprocesses</li>
-          <li>Does not preserve <code>BUNDLE_LOCKFILE</code> so per-gemfile lockfiles are created correctly</li>
+          <li>Prevents <code>BUNDLE_LOCKFILE</code> lockfile pollution of subprocesses so per-gemfile lockfiles are created correctly</li>
         </ul>
       </li>
       <li>This approach:
@@ -356,7 +356,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
 </div></div>
 
       <div id="footer">
-  Generated on Tue Feb 17 17:27:41 2026 by
+  Generated on Tue Feb 17 19:48:03 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.1).
 </div>
