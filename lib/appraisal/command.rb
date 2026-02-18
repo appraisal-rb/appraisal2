@@ -79,6 +79,9 @@ module Appraisal
           backup_env.to_h
         end
 
+        # Avoid leaking a global BUNDLE_LOCKFILE into subprocesses.
+        clean_env.delete("BUNDLE_LOCKFILE")
+
         preserved_vars = PRESERVED_BUNDLE_VARS + PRESERVED_RUNTIME_VARS
 
         preserved_vars.each do |var|

@@ -31,7 +31,7 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     - Preserves critical bundler and isolation variables (for example: `BUNDLE_GEMFILE`, `BUNDLE_APP_CONFIG`, `BUNDLE_PATH`, `BUNDLE_USER_CACHE`)
     - Removes `BUNDLER_SETUP` and `BUNDLER_VERSION` activation markers
     - Removes `bundler/setup` from `RUBYOPT` to prevent auto-activation in subprocesses
-    - Does not preserve `BUNDLE_LOCKFILE` so per-gemfile lockfiles are created correctly
+    - Prevents `BUNDLE_LOCKFILE` lockfile pollution of subprocesses so per-gemfile lockfiles are created correctly
   - This approach:
     - Lets subprocess bundler start fresh and process the target gemfile cleanly
     - Preserves test isolation and prevents global config pollution
