@@ -180,7 +180,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
       expect(output).to include("bundle install")
       expect(output).to include("gemfiles/bundler_locked.gemfile")
       expect(file("gemfiles/bundler_locked.gemfile.lock")).to be_exists
-      
+
       # The lockfile should maintain the BUNDLED WITH version specified
       lockfile_content = content_of("gemfiles/bundler_locked.gemfile.lock")
       expect(lockfile_content).to include("BUNDLED WITH")

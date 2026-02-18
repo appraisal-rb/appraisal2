@@ -69,39 +69,50 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
 <h3 id="added">Added</h3>
 
 <ul>
-  <li>Test for bundler version switching with pre-existing appraisal lockfiles
+  <li>Test for bundler handling with pre-existing appraisal lockfiles
     <ul>
-      <li>Added acceptance test that verifies bundler version switching works correctly when <code>gemfiles/*.gemfile.lock</code> specifies a different bundler version (via <code>BUNDLED WITH</code>)</li>
-      <li>Uses dynamic bundler versions based on current Ruby version for compatibility across all supported Ruby versions (2.3 through 4.0+):
+      <li>Added acceptance test that verifies appraisal correctly handles <code>gemfiles/*.gemfile.lock</code> files with <code>BUNDLED WITH</code> specified</li>
+      <li>Test validates that:
         <ul>
-          <li>Ruby 2.3, 2.4, 2.5 → bundler 2.3.27</li>
-          <li>Ruby 2.6, 2.7 → bundler 2.4.22</li>
-          <li>Ruby 3.0 → bundler 2.5.23</li>
-          <li>Ruby 3.1 → bundler 2.6.9</li>
-          <li>Ruby 3.2 → bundler 2.7.2</li>
-          <li>Ruby 3.3, 3.4, 4.0+ → bundler 4.0.5</li>
+          <li>Appraisal gemfiles with pre-created lockfiles install correctly</li>
+          <li>Lockfiles preserve the <code>BUNDLED WITH</code> section reporting which bundler version was used</li>
+          <li>The bundler version in the lockfile is correctly maintained during installation</li>
         </ul>
       </li>
-      <li>Each version is compatible with the Ruby version but not a default, ensuring consistent version switching behavior across all CI runs</li>
+      <li>Note: Multi-version bundler switching in CI would require pre-installing multiple bundler versions; coverage is limited to lockfile preservation and environment handling.</li>
     </ul>
   </li>
 </ul>
 
 <h3 id="changed">Changed</h3>
 
-<h3 id="deprecated">Deprecated</h3>
-
 <h3 id="removed">Removed</h3>
 
 <h3 id="fixed">Fixed</h3>
 
 <ul>
-  <li>Support bundler’s automatic version switching for modern bundler versions (2.2+)
+  <li>Restore bundler’s automatic version switching for modern bundler versions (2.2+)
     <ul>
-      <li>Bundler now automatically installs and switches to the version specified in <code>Gemfile.lock</code> (or other custom lockfile) (via <code>BUNDLED WITH</code>)</li>
-      <li>Previously, <code>with_original_env</code> would strip the <code>BUNDLE_GEMFILE</code> environment variable, preventing bundler from detecting version mismatches and auto-switching</li>
-      <li>Now uses selective environment restoration that preserves critical bundler variables (<code>BUNDLE_GEMFILE</code>, <code>BUNDLE_PATH</code>) while still isolating from parent bundler state</li>
-      <li>This fix maintains backward compatibility with legacy bundler versions while enabling version switching for modern bundler</li>
+      <li>Bundler can detect and switch to the version specified in <code>Gemfile.lock</code> (or appraisal lockfiles) via <code>BUNDLED WITH</code>
+</li>
+      <li>Previously, <code>with_original_env</code> stripped all bundler-related variables, preventing bundler from detecting version mismatches and breaking test isolation</li>
+      <li>Now uses <code>with_bundler_env</code> with selective cleanup:
+        <ul>
+          <li>Starts from <code>Bundler.original_env</code> when available</li>
+          <li>Preserves critical bundler and isolation variables (for example: <code>BUNDLE_GEMFILE</code>, <code>BUNDLE_APP_CONFIG</code>, <code>BUNDLE_PATH</code>, <code>BUNDLE_USER_CACHE</code>)</li>
+          <li>Removes <code>BUNDLER_SETUP</code> and <code>BUNDLER_VERSION</code> activation markers</li>
+          <li>Removes <code>bundler/setup</code> from <code>RUBYOPT</code> to prevent auto-activation in subprocesses</li>
+          <li>Does not preserve <code>BUNDLE_LOCKFILE</code> so per-gemfile lockfiles are created correctly</li>
+        </ul>
+      </li>
+      <li>This approach:
+        <ul>
+          <li>Lets subprocess bundler start fresh and process the target gemfile cleanly</li>
+          <li>Preserves test isolation and prevents global config pollution</li>
+          <li>Enables committing appraisal lockfiles with specific bundler versions for stable, repeatable builds</li>
+        </ul>
+      </li>
+      <li>This fix maintains backward compatibility with all bundler versions</li>
     </ul>
   </li>
 </ul>
@@ -345,7 +356,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
 </div></div>
 
       <div id="footer">
-  Generated on Tue Feb 17 04:53:55 2026 by
+  Generated on Tue Feb 17 17:27:41 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.1).
 </div>

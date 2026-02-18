@@ -5,6 +5,8 @@ require "shellwords"
 module Appraisal
   # Executes commands with a clean environment
   class Command
+    attr_reader :command, :env, :gemfile
+
     # BUNDLE_* environment variables that must be preserved for proper bundler operation
     # and test isolation. These are preserved when using with_bundler_env to ensure:
     # - Bundler version switching works (BUNDLE_GEMFILE)
@@ -27,7 +29,10 @@ module Appraisal
       BUNDLE_DISABLE_SHARED_GEMS
     ].freeze
 
-    attr_reader :command, :env, :gemfile
+    PRESERVED_RUNTIME_VARS = %w[
+      PATH
+      GEM_PATH
+    ].freeze
 
     def initialize(command, options = {})
       @gemfile = options[:gemfile]
@@ -61,64 +66,40 @@ module Appraisal
     # Provide a clean environment while preserving bundler's version switching capability
     # and test isolation settings.
     #
-    # Instead of using Bundler.original_env (which removes all bundler activation state),
-    # we selectively remove only the variables that cause conflicts, while preserving
-    # the test isolation and user settings that have been carefully configured.
-    #
-    # This allows bundler to detect and switch versions based on BUNDLED WITH in lockfiles.
+    # The current Ruby process has bundler activated, which adds bundler/setup to RUBYOPT.
+    # When we run a subprocess, we need to remove that activation so the subprocess bundler
+    # can start fresh. However, we keep all test isolation variables intact.
     def with_bundler_env
-      # Variables that should be REMOVED to avoid bundler activation conflicts
-      # These are bundler's internal state from the current Ruby process
-      vars_to_remove = %w[
-        BUNDLER_SETUP
-        BUNDLER_VERSION
-      ]
-
-      # Variables that should be REMOVED if they point to the current appraisal2 setup
-      # (to avoid bundler being confused about which gemfile is active)
-      bundler_state_vars = %w[
-        RUBYOPT
-        RUBYLIB
-      ]
-
       backup_env = ENV.to_h
 
       begin
-        # Start with current environment (preserves all test isolation and user settings)
-        clean_env = backup_env.to_h
-
-        # Remove bundler's internal activation state
-        vars_to_remove.each { |var| clean_env.delete(var) }
-
-        # Remove bundler path manipulation from RUBYOPT and RUBYLIB to let
-        # the subprocess bundler work cleanly with the target gemfile
-        if clean_env["RUBYOPT"]
-          rubyopt = clean_env["RUBYOPT"].split(" ")
-          rubyopt.reject! { |opt| opt.include?("bundler/setup") }
-          if rubyopt.empty?
-            clean_env.delete("RUBYOPT")
-          else
-            clean_env["RUBYOPT"] = rubyopt.join(" ")
-          end
+        clean_env = if Bundler.respond_to?(:original_env)
+          Bundler.original_env.to_h
+        else
+          backup_env.to_h
         end
 
-        if clean_env["RUBYLIB"]
-          rubylib = clean_env["RUBYLIB"].split(File::PATH_SEPARATOR)
-          # Remove bundler's lib directory
-          rubylib.reject! { |path| path.include?("bundler") }
-          if rubylib.empty?
-            clean_env.delete("RUBYLIB")
-          else
-            clean_env["RUBYLIB"] = rubylib.join(File::PATH_SEPARATOR)
-          end
+        preserved_vars = PRESERVED_BUNDLE_VARS + PRESERVED_RUNTIME_VARS
+
+        preserved_vars.each do |var|
+          clean_env[var] = backup_env[var] if backup_env[var]
         end
 
-        # Replace environment
+        # Remove bundler/setup from RUBYOPT so subprocess doesn't auto-load bundler
+        if backup_env["RUBYOPT"]
+          rubyopt = backup_env["RUBYOPT"].split(" ")
+          rubyopt.reject! { |opt| opt == "-rbundler/setup" || opt.include?("bundler/setup") }
+          clean_env["RUBYOPT"] = rubyopt.join(" ") unless rubyopt.empty?
+        end
+
+        # Remove bundler activation markers from the subprocess environment
+        clean_env.delete("BUNDLER_SETUP")
+        clean_env.delete("BUNDLER_VERSION")
+
         ENV.replace(clean_env)
 
         yield
       ensure
-        # Always restore the full environment
         ENV.replace(backup_env)
       end
     end

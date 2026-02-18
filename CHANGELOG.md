@@ -15,26 +15,28 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     - Appraisal gemfiles with pre-created lockfiles install correctly
     - Lockfiles preserve the `BUNDLED WITH` section reporting which bundler version was used
     - The bundler version in the lockfile is correctly maintained during installation
-  - Note: Full bundler version-switching testing would require pre-installing multiple bundler versions in CI, which is not practical. The core bundler version switching is tested via the main fix for `with_bundler_env` preserving necessary environment variables.
+  - Note: Multi-version bundler switching in CI would require pre-installing multiple bundler versions; coverage is limited to lockfile preservation and environment handling.
 
 ### Changed
-
-```
 
 ### Removed
 
 ### Fixed
 
-- Support bundler's automatic version switching for modern bundler versions (2.2+)
-  - Bundler can automatically detect and switch to the version specified in `Gemfile.lock` (or appraisal lockfiles) via `BUNDLED WITH`
-  - Previously, `with_original_env` would strip ALL bundler-related environment variables including `BUNDLE_GEMFILE`, preventing bundler from detecting version mismatches
-  - Now uses selective environment cleanup: removes only bundler's internal activation state (`BUNDLER_SETUP`, `BUNDLER_VERSION`, bundler references in `RUBYOPT`/`RUBYLIB`) while preserving all test isolation and user configuration
+- Restore bundler's automatic version switching for modern bundler versions (2.2+)
+  - Bundler can detect and switch to the version specified in `Gemfile.lock` (or appraisal lockfiles) via `BUNDLED WITH`
+  - Previously, `with_original_env` stripped all bundler-related variables, preventing bundler from detecting version mismatches and breaking test isolation
+  - Now uses `with_bundler_env` with selective cleanup:
+    - Starts from `Bundler.original_env` when available
+    - Preserves critical bundler and isolation variables (for example: `BUNDLE_GEMFILE`, `BUNDLE_APP_CONFIG`, `BUNDLE_PATH`, `BUNDLE_USER_CACHE`)
+    - Removes `BUNDLER_SETUP` and `BUNDLER_VERSION` activation markers
+    - Removes `bundler/setup` from `RUBYOPT` to prevent auto-activation in subprocesses
+    - Does not preserve `BUNDLE_LOCKFILE` so per-gemfile lockfiles are created correctly
   - This approach:
-    - Allows bundler to correctly detect and switch versions based on `BUNDLED WITH` in lockfiles
-    - Preserves all critical configuration (`BUNDLE_APP_CONFIG`, `BUNDLE_PATH`, `BUNDLE_USER_CACHE`, etc.)
-    - Maintains test isolation and prevents global config pollution
-    - Enables users to commit locked appraisal lockfiles for stable, repeatable CI builds
-  - This fix maintains backward compatibility with legacy bundler versions while enabling version switching for modern bundler
+    - Lets subprocess bundler start fresh and process the target gemfile cleanly
+    - Preserves test isolation and prevents global config pollution
+    - Enables committing appraisal lockfiles with specific bundler versions for stable, repeatable builds
+  - This fix maintains backward compatibility with all bundler versions
 
 ### Security
 
