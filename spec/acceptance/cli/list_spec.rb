@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe "CLI", ".list" do
-  it "prints list of appraisals" do
+  it "prints list of appraisals", :check_output do
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise '1.0.0' do
         gem 'dummy', '1.0.0'
@@ -19,7 +19,7 @@ RSpec.describe "CLI", ".list" do
     expect(output).to include("1.0.0\n2.0.0\n1.1.0\n")
   end
 
-  it "prints nothing if there are no appraisals in the file" do
+  it "prints nothing if there are no appraisals in the file", :check_output do
     skip_for(:engine => :jruby)
     build_appraisal_file ""
     output = run "appraisal list"

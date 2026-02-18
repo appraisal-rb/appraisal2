@@ -64,9 +64,32 @@
 <p>Format: <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,<br>
 Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 
-<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.5...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.6...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
+
+<h3 id="changed">Changed</h3>
+
+<h3 id="deprecated">Deprecated</h3>
+
+<h3 id="removed">Removed</h3>
+
+<h3 id="fixed">Fixed</h3>
+
+<h3 id="security">Security</h3>
+
+<h2 id="306---2026-02-17">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.5...v3.0.6">3.0.6</a> - 2026-02-17</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.6">v3.0.6</a>
+</li>
+  <li>COVERAGE: 88.34% – 727/823 lines in 27 files</li>
+  <li>BRANCH COVERAGE: 76.05% – 127/167 branches in 27 files</li>
+  <li>43.11% documented</li>
+</ul>
+
+<h3 id="added-1">Added</h3>
 
 <ul>
   <li>Test for bundler handling with pre-existing appraisal lockfiles
@@ -84,11 +107,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   </li>
 </ul>
 
-<h3 id="changed">Changed</h3>
-
-<h3 id="removed">Removed</h3>
-
-<h3 id="fixed">Fixed</h3>
+<h3 id="fixed-1">Fixed</h3>
 
 <ul>
   <li>Restore bundler’s automatic version switching for modern bundler versions (2.2+)
@@ -117,8 +136,6 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   </li>
 </ul>
 
-<h3 id="security">Security</h3>
-
 <h2 id="305---2026-02-14">
 <a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.4...v3.0.5">3.0.5</a> - 2026-02-14</h2>
 
@@ -130,13 +147,13 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-1">Added</h3>
+<h3 id="added-2">Added</h3>
 
 <ul>
   <li>Documentation of <code>BUNDLE_PATH</code> for caching gems</li>
 </ul>
 
-<h3 id="fixed-1">Fixed</h3>
+<h3 id="fixed-2">Fixed</h3>
 
 <ul>
   <li>Restore support for <code>BUNDLE_PATH</code> environment variable which regressed in  <code>v3.0.3</code>
@@ -176,7 +193,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-2">Added</h3>
+<h3 id="added-3">Added</h3>
 
 <ul>
   <li>New CLI specs for testing named appraisal commands with options</li>
@@ -195,7 +212,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   <li>Significantly optimized unit tests in <code>cli_spec.rb</code> and <code>appraisal_spec.rb</code> by using gem manager mocks, reducing execution time from seconds to milliseconds</li>
 </ul>
 
-<h3 id="fixed-2">Fixed</h3>
+<h3 id="fixed-3">Fixed</h3>
 
 <ul>
   <li>Removed <code>Dir.chdir</code> into <code>gemfiles/</code> directory before running <code>ore</code> commands.</li>
@@ -237,7 +254,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-3">Added</h3>
+<h3 id="added-4">Added</h3>
 
 <ul>
   <li>funding documentation</li>
@@ -256,7 +273,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-4">Added</h3>
+<h3 id="added-5">Added</h3>
 
 <ul>
   <li>Support for <a href="https://github.com/contriboss/ore-light">ore-light</a> as an alternative gem manager via <code>--gem-manager=ore</code> CLI option
@@ -317,7 +334,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
   <li>YARD CLI config switch from custom Kramdown support to yard-fence</li>
 </ul>
 
-<h3 id="fixed-3">Fixed</h3>
+<h3 id="fixed-4">Fixed</h3>
 
 <ul>
   <li>Fixed <code>BundlerAdapter#install</code> not passing <code>gemfile_path</code> to <code>Command.new</code>, which caused bundler to potentially write to the wrong Gemfile.lock when <code>Bundler.with_original_env</code> reset the environment</li>
@@ -356,7 +373,7 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
 </div></div>
 
       <div id="footer">
-  Generated on Tue Feb 17 19:48:03 2026 by
+  Generated on Tue Feb 17 22:03:54 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.1).
 </div>

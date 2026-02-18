@@ -1,5 +1,5 @@
 if ENV["CI"].nil? && ENV.fetch("DEBUG", "false").casecmp("true") == 0
-  ENV["VERBOSE"] = "true"
+  # ENV["VERBOSE"] = "true"
   ruby_version = Gem::Version.new(RUBY_VERSION)
   if ruby_version < Gem::Version.new("2.7")
     # Use byebug in code

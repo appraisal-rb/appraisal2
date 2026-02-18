@@ -9,6 +9,25 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.0.6] - 2026-02-17
+
+- TAG: [v3.0.6][3.0.6t]
+- COVERAGE: 88.34% -- 727/823 lines in 27 files
+- BRANCH COVERAGE: 76.05% -- 127/167 branches in 27 files
+- 43.11% documented
+
+### Added
+
 - Test for bundler handling with pre-existing appraisal lockfiles
   - Added acceptance test that verifies appraisal correctly handles `gemfiles/*.gemfile.lock` files with `BUNDLED WITH` specified
   - Test validates that:
@@ -16,10 +35,6 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     - Lockfiles preserve the `BUNDLED WITH` section reporting which bundler version was used
     - The bundler version in the lockfile is correctly maintained during installation
   - Note: Multi-version bundler switching in CI would require pre-installing multiple bundler versions; coverage is limited to lockfile preservation and environment handling.
-
-### Changed
-
-### Removed
 
 ### Fixed
 
@@ -37,8 +52,6 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     - Preserves test isolation and prevents global config pollution
     - Enables committing appraisal lockfiles with specific bundler versions for stable, repeatable builds
   - This fix maintains backward compatibility with all bundler versions
-
-### Security
 
 ## [3.0.5] - 2026-02-14
 
@@ -192,7 +205,9 @@ Versioning: [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.5...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.6...HEAD
+[3.0.6]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.5...v3.0.6
+[3.0.6t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.6
 [3.0.5]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.4...v3.0.5
 [3.0.5t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.5
 [3.0.4]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.3...v3.0.4
