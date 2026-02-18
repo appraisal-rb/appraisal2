@@ -6,6 +6,7 @@ permissions:
 
 env:
   K_SOUP_COV_DO: false
+  KETTLE_TEST_SILENT: false
 
 on:
   push:

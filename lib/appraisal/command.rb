@@ -56,6 +56,7 @@ module Appraisal
         # which strips all BUNDLE_* variables and breaks version switching.
         with_bundler_env do
           ensure_bundler_is_available
+          ensure_locked_bundler_is_available
           execute(run_env)
         end
       end
@@ -135,6 +136,46 @@ Please try running:
 manually.
       ERROR
       exit(1)
+    end
+
+    def ensure_locked_bundler_is_available
+      # Bundler 2.2+ already switches to the lockfile version automatically.
+      # Only install the locked version as a fallback for older Bundler releases.
+      return if bundler_handles_lockfile_version?
+
+      locked_version = locked_bundler_version
+      return unless locked_version
+
+      return if system(%(gem list --silent -i bundler -v "#{locked_version}"))
+
+      puts ">> Bundler #{locked_version} not found, attempting to install..."
+      return if system("gem install bundler -v #{Shellwords.escape(locked_version)} --no-document")
+
+      puts
+      puts <<-ERROR.rstrip
+Bundler #{locked_version} installation failed.
+Please try running:
+  `gem install bundler -v #{locked_version}`
+manually.
+      ERROR
+      exit(1)
+    end
+
+    def bundler_handles_lockfile_version?
+      return false unless defined?(Bundler::VERSION)
+
+      Gem::Version.new(Bundler::VERSION) >= Gem::Version.new("2.2.0")
+    end
+
+    def locked_bundler_version
+      return unless gemfile
+
+      lockfile_path = "#{gemfile}.lock"
+      return unless File.exist?(lockfile_path)
+
+      lockfile_content = File.read(lockfile_path)
+      match = lockfile_content.match(/BUNDLED WITH\s*\n\s*([^\s]+)/)
+      match && match[1]
     end
 
     def announce

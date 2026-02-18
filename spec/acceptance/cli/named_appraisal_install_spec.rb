@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "appraisal/version"
+
 RSpec.describe "CLI", ".install with named appraisal" do
   context "when targeting a specific appraisal" do
     before do
@@ -144,26 +146,29 @@ RSpec.describe "CLI", ".install with named appraisal" do
       write_file "gemfiles/bundler_locked.gemfile", <<-GEMFILE.strip_heredoc
         source "https://gem.coop"
 
+        gem "appraisal2", :path => "../appraisal2"
         gem "dummy", "1.0.0"
       GEMFILE
 
-      # Pre-create the lockfile with the bundler version specified
-      write_file "gemfiles/bundler_locked.gemfile.lock", <<-LOCK.strip_heredoc
-        GEM
-          remote: https://gem.coop/
-          specs:
-            dummy (1.0.0)
+      run "BUNDLE_LOCKFILE=gemfiles/bundler_locked.gemfile.lock bundle install --gemfile 'gemfiles/bundler_locked.gemfile'"
 
-        PLATFORMS
-          ruby
-          x86_64-linux
+      lockfile_path = file("gemfiles/bundler_locked.gemfile.lock")
+      lockfile_content = lockfile_path.read
+      bundled_with = lockfile_content[/BUNDLED WITH\s*\n\s*([^\s]+)/, 1]
 
-        DEPENDENCIES
-          dummy (= 1.0.0)
+      decrement_patch = lambda do |version|
+        parts = version.to_s.split(".")
+        return version unless parts.last =~ /^\d+$/
+        patch = parts.last.to_i
+        return version if patch.zero?
 
-        BUNDLED WITH
-           #{locked_bundler_version}
-      LOCK
+        parts[-1] = (patch - 1).to_s
+        parts.join(".")
+      end
+
+      locked_bundler_version = decrement_patch.call(bundled_with || locked_bundler_version)
+      lockfile_content.sub!(/(BUNDLED WITH\s*\n\s*)([^\s]+)/, "\\1#{locked_bundler_version}")
+      lockfile_path.write(lockfile_content)
 
       @locked_bundler_version = locked_bundler_version
     end
