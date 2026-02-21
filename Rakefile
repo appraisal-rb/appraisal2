@@ -33,7 +33,6 @@ begin
 
   desc("Set SimpleCov command name for remaining specs")
   task(:set_coverage_command_name) do
-    ENV["COVERAGE_GEMS"] = "true"
     ENV["K_SOUP_COV_COMMAND_NAME"] = "Test Coverage"
   end
   Rake::Task[:magic].enhance([:set_coverage_command_name])
