@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Updated local generated funding environment metadata to use the
+  `appraisal-rb` OpenCollective handle.
+
 ### Deprecated
 
 ### Removed
