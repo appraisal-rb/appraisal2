@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Rendered generated `LICENSE.md` copyright notice lines as a Markdown list.
+
 ### Security
 
 ## [3.0.7] - 2026-06-04

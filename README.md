@@ -435,7 +435,7 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2018 Jared Beck
 - Copyright (c) 2018, 2020, 2023-2024 Nick Charlton
 - Copyright (c) 2020 Brian Hawley
-- Copyright (c) 2020, 2024 David Rodríguez
+- Copyright (c) 2020 David Rodríguez
 - Copyright (c) 2020 James Ebentier
 - Copyright (c) 2021, 2024 Nicolas Rodriguez
 - Copyright (c) 2022 André Arko
@@ -689,7 +689,7 @@ Thanks for RTFM. ☺️
 | Package | appraisal2 |
 | Description | 🔍️ Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals." |
 | Homepage | https://github.com/pboling/appraisal2 |
-| Source | https://github.com/pboling/appraisal2/tree/v3.0.6 |
+| Source | https://github.com/pboling/appraisal2/tree/v3.0.7 |
 | License | `MIT` |
 | Funding | https://github.com/sponsors/pboling, https://issuehunt.io/u/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/appraisal-rb, https://patreon.com/galtzo, https://polar.sh/pboling, https://thanks.dev/u/gh/pboling, https://tidelift.com/funding/github/rubygems/appraisal2, https://www.buymeacoffee.com/pboling |
 <!-- kettle-jem:metadata:end -->
