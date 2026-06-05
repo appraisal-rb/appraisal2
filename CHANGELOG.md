@@ -28,6 +28,16 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Fixed CI failures on older Bundler by preserving Bundler-generated
+  `bin/bundle` test binstubs for Bundler versions that reject custom bundle
+  wrappers.
+- Fixed Ruby 3.0 and 3.1 appraisal stdlib gemfiles so they do not load
+  conflicting `erb` version constraints.
+- Fixed TruffleRuby 23.1 CI bootstrapping by routing that workflow through the
+  Ruby 3.2 appraisal Gemfile, which applies the `json` ceiling only on
+  TruffleRuby 23.1, and by running the test command directly once that Gemfile
+  is active.
+
 ### Security
 
 ## [3.0.7] - 2026-06-04

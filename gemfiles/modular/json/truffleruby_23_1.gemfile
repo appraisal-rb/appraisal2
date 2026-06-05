@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+if RUBY_ENGINE == "truffleruby" && RUBY_ENGINE_VERSION.start_with?("23.1")
+  # json 2.19.x currently fails to build against TruffleRuby 23.1's C API.
+  gem "json", "< 2.19"
+end
