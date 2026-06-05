@@ -21,7 +21,6 @@ module Appraisal
       "BUNDLE_GEMFILE",
       "BUNDLE_APP_CONFIG",
       "BUNDLE_PATH",
-      "BUNDLE_BIN_PATH",
       "BUNDLE_USER_CONFIG",
       "BUNDLE_USER_CACHE",
       "BUNDLE_USER_PLUGIN",
@@ -47,8 +46,8 @@ module Appraisal
       if @skip_bundle_exec
         execute(run_env)
       else
-        # For bundler version switching to work in modern bundler (2.2+),
-        # we need to preserve certain BUNDLE_* environment variables.
+        # For bundler version switching to work reliably, we need to preserve
+        # the appraisal Gemfile while avoiding the active parent Bundler process.
         # However, we still need to isolate from the parent's bundler state
         # to avoid conflicts.
         #
@@ -64,8 +63,8 @@ module Appraisal
 
     private
 
-    # Provide a clean environment while preserving bundler's version switching capability
-    # and test isolation settings.
+    # Provide a clean environment while preserving Bundler's version switching
+    # inputs and test isolation settings.
     #
     # The current Ruby process has bundler activated, which adds bundler/setup to RUBYOPT.
     # When we run a subprocess, we need to remove that activation so the subprocess bundler
@@ -96,7 +95,10 @@ module Appraisal
           clean_env["RUBYOPT"] = rubyopt.join(" ") unless rubyopt.empty?
         end
 
-        # Remove bundler activation markers from the subprocess environment
+        # Remove Bundler activation markers from the subprocess environment.
+        # BUNDLE_BIN_PATH pins the already-active Bundler executable, so keeping
+        # it would bypass the BUNDLED WITH version selected below.
+        clean_env.delete("BUNDLE_BIN_PATH")
         clean_env.delete("BUNDLER_SETUP")
         clean_env.delete("BUNDLER_VERSION")
 
@@ -112,6 +114,9 @@ module Appraisal
       announce
 
       ENV["BUNDLE_GEMFILE"] = gemfile
+      if (bundler_version = locked_bundler_version)
+        ENV["BUNDLER_VERSION"] = bundler_version
+      end
       ENV["APPRAISAL_INITIALIZED"] = "1"
       run_env.each_pair do |key, value|
         ENV[key] = value
@@ -139,10 +144,6 @@ manually.
     end
 
     def ensure_locked_bundler_is_available
-      # Bundler 2.2+ already switches to the lockfile version automatically.
-      # Only install the locked version as a fallback for older Bundler releases.
-      return if bundler_handles_lockfile_version?
-
       locked_version = locked_bundler_version
       return unless locked_version
 
@@ -159,12 +160,6 @@ Please try running:
 manually.
       ERROR
       exit(1)
-    end
-
-    def bundler_handles_lockfile_version?
-      return false unless defined?(Bundler::VERSION)
-
-      Gem::Version.new(Bundler::VERSION) >= Gem::Version.new("2.2.0")
     end
 
     def locked_bundler_version

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "tmpdir"
+
 require "appraisal/command"
 
 RSpec.describe Appraisal::Command do
@@ -99,6 +101,44 @@ RSpec.describe Appraisal::Command do
           ENV["RUBYOPT"] = original_rubyopt
           ENV["BUNDLER_SETUP"] = original_bundler_setup
           ENV["BUNDLER_VERSION"] = original_bundler_version
+        end
+      end
+    end
+
+    context "with a locked appraisal Bundler version" do
+      it "installs and selects the Bundler version from the appraisal lockfile" do
+        Dir.mktmpdir("appraisal-command-lock") do |dir|
+          gemfile = File.join(dir, "locked.gemfile")
+          File.write(gemfile, %(source "https://gem.coop"\n))
+          File.write("#{gemfile}.lock", <<~LOCKFILE)
+            GEM
+              remote: https://gem.coop/
+              specs:
+
+            PLATFORMS
+              ruby
+
+            DEPENDENCIES
+
+            BUNDLED WITH
+               4.0.5
+          LOCKFILE
+
+          locked_command = described_class.new(command_string, :gemfile => gemfile)
+          allow(locked_command).to receive(:system).and_return(true)
+          allow(locked_command).to receive(:puts)
+          allow(Bundler).to receive(:original_env).and_return({})
+
+          expect(locked_command).to receive(:system).with(%(gem list --silent -i bundler)).and_return(true)
+          expect(locked_command).to receive(:system).with(%(gem list --silent -i bundler -v "4.0.5")).and_return(true)
+          expect(Kernel).to receive(:system) do
+            expect(ENV["BUNDLE_GEMFILE"]).to eq(gemfile)
+            expect(ENV["BUNDLER_VERSION"]).to eq("4.0.5")
+            expect(ENV["BUNDLE_BIN_PATH"]).to be_nil
+            true
+          end
+
+          locked_command.run
         end
       end
     end
