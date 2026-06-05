@@ -423,9 +423,9 @@ module AcceptanceTestHelpers
     words = part.split(" ")
     index = words.index("bundle")
     return part unless index
-    return part if words[index + 1].to_s.start_with?("_")
+    return part if words.any? { |word| word.start_with?("BUNDLER_VERSION=") }
 
-    words[index] = "bundle _#{version}_"
+    words.insert(index, "BUNDLER_VERSION=#{version}")
     words.join(" ")
   end
 end

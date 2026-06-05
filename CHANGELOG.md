@@ -28,6 +28,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Fixed acceptance test Bundler pinning so CI uses `BUNDLER_VERSION` instead of
+  RubyGems `_version_` selector arguments that staged `bin/bundle` binstubs do
+  not support.
+
 ### Security
 
 ## [3.0.7] - 2026-06-05
