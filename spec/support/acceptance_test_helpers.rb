@@ -16,6 +16,7 @@ module AcceptanceTestHelpers
     "RUBYOPT",
     "BUNDLE_PATH",
     "BUNDLE_BIN_PATH",
+    "BUNDLER_VERSION",
     "BUNDLE_GEMFILE",
     "BUNDLE_LOCKFILE",
     "BUNDLER_SETUP",
@@ -75,6 +76,7 @@ module AcceptanceTestHelpers
     # Save all bundler variables plus PATH and the isolation variables we set
     vars_to_save = BUNDLER_ENVIRONMENT_VARIABLES + [
       "PATH",
+      "HOME",
       "BUNDLE_IGNORE_FUNDING_REQUESTS",
       "BUNDLE_DISABLE_SHARED_GEMS",
       "GEM_PATH",
@@ -103,6 +105,13 @@ module AcceptanceTestHelpers
   def setup_isolated_bundler_environment
     # Ensure the test directory exists
     FileUtils.mkdir_p(current_directory)
+
+    # Some installers still derive cache paths from HOME. Keep those writes
+    # inside the per-worker stage directory so parallel tests do not share
+    # ~/.bundle/compact_index state.
+    test_home_dir = File.join(current_directory, ".home")
+    FileUtils.mkdir_p(test_home_dir)
+    ENV["HOME"] = test_home_dir
 
     # Create an isolated .bundle directory within the test directory
     # This prevents bundler from reading or writing to the parent project's .bundle/config
@@ -151,7 +160,7 @@ module AcceptanceTestHelpers
       end
     end
 
-    ENV["GEM_PATH"] = (new_gem_paths + [ENV["GEM_PATH"]]).compact.reject(&:empty?).join(File::PATH_SEPARATOR)
+    ENV["GEM_PATH"] = (new_gem_paths + Gem.path + [ENV["GEM_PATH"]]).compact.reject(&:empty?).uniq.join(File::PATH_SEPARATOR)
   end
 
   def clean_vendor_bundle_from_path
@@ -376,6 +385,8 @@ module AcceptanceTestHelpers
           puts "DEBUG: appraisal binstub exists? #{File.exist?(appraisal_bin)}"
         end
 
+        command = command_with_test_bundler(command)
+
         # Capture both stdout and stderr
         output = `#{command} 2>&1`
         exitstatus = $?.exitstatus
@@ -397,6 +408,25 @@ module AcceptanceTestHelpers
         ENV["BUNDLE_APP_CONFIG"] = original_bundle_app_config
       end
     end
+  end
+
+  def command_with_test_bundler(command)
+    version = ENV["APPRAISAL_TEST_BUNDLER_VERSION"].to_s
+    return command if version.empty?
+
+    command.split(" || ").map do |part|
+      command_part_with_test_bundler(part, version)
+    end.join(" || ")
+  end
+
+  def command_part_with_test_bundler(part, version)
+    words = part.split(" ")
+    index = words.index("bundle")
+    return part unless index
+    return part if words[index + 1].to_s.start_with?("_")
+
+    words[index] = "bundle _#{version}_"
+    words.join(" ")
   end
 end
 
