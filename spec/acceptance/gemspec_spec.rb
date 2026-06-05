@@ -65,11 +65,7 @@ RSpec.describe "Gemspec" do
   end
 
   def build_gemspec(path = ".")
-    begin
-      Dir.mkdir("tmp/stage/#{path}")
-    rescue StandardError
-      nil
-    end
+    FileUtils.mkdir_p(File.join(current_directory, path))
 
     write_file File.join(path, "gemspec_project.gemspec"), <<-GEMSPEC.strip_heredoc.rstrip
       Gem::Specification.new do |s|

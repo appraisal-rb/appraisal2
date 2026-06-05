@@ -25,11 +25,7 @@ RSpec.describe "eval_gemfile" do
   end
 
   def build_modular_gemfile
-    begin
-      Dir.mkdir("tmp/stage/gemfiles")
-    rescue
-      nil
-    end
+    FileUtils.mkdir_p(File.join(current_directory, "gemfiles"))
 
     write_file File.join("gemfiles", "im_with_dummy"), <<-GEMFILE
       # No source needed because this is a modular gemfile intended to be loaded into another gemfile,
@@ -61,11 +57,7 @@ RSpec.describe "eval_gemfile" do
   end
 
   def build_gemspec(path = ".")
-    begin
-      Dir.mkdir("tmp/stage/#{path}")
-    rescue
-      nil
-    end
+    FileUtils.mkdir_p(File.join(current_directory, path))
 
     write_file File.join(path, "gemspec_project.gemspec"), <<-GEMSPEC
       Gem::Specification.new do |s|

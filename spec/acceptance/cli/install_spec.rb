@@ -45,7 +45,7 @@ RSpec.describe "CLI", ".install" do
 
     build_git_gem("uri_dummy")
     uri_dummy_path = "#{current_directory}/uri_dummy"
-    FileUtils.symlink(File.absolute_path("tmp/build/uri_dummy"), uri_dummy_path)
+    FileUtils.symlink(File.join(TMP_GEM_BUILD, "uri_dummy"), uri_dummy_path)
 
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise '1.0.0' do

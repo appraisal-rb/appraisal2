@@ -78,6 +78,8 @@ module AcceptanceTestHelpers
       BUNDLE_IGNORE_FUNDING_REQUESTS
       BUNDLE_DISABLE_SHARED_GEMS
       GEM_PATH
+      APPRAISAL_TEST_BUNDLER_VERSION
+      APPRAISAL_TEST_SYSTEM_GEM_PATH
     ]
 
     vars_to_save.each do |key|
@@ -126,6 +128,9 @@ module AcceptanceTestHelpers
     test_cache_dir = File.join(current_directory, ".bundle", "cache")
     FileUtils.mkdir_p(test_cache_dir)
     ENV["BUNDLE_USER_CACHE"] = test_cache_dir
+
+    ENV["APPRAISAL_TEST_BUNDLER_VERSION"] = test_bundler_version
+    ENV["APPRAISAL_TEST_SYSTEM_GEM_PATH"] = Gem.path.join(File::PATH_SEPARATOR)
   end
 
   def setup_gem_path_for_local_install
@@ -160,6 +165,7 @@ module AcceptanceTestHelpers
   def add_binstub_path
     # Add the test directory's bin folder to PATH using absolute path
     test_bin_path = File.join(current_directory, "bin")
+    install_test_bundle_wrapper(test_bin_path)
     ENV["PATH"] = "#{test_bin_path}:#{ENV["PATH"]}"
   end
 
@@ -217,7 +223,7 @@ module AcceptanceTestHelpers
   private
 
   def current_directory
-    File.expand_path("tmp/stage", PROJECT_ROOT)
+    TMP_STAGE_ROOT
   end
 
   def write_file(filename, content)
@@ -236,15 +242,10 @@ module AcceptanceTestHelpers
   end
 
   def ensure_bundler_is_available
-    # Check if bundle is available - the run method will not raise on error
-    # because we pass false, so we need to check the output
-    output = run "bundle -v 2>&1", false
-
-    # If bundle -v succeeded, output should contain version info
-    return if output && output.include?("Bundler version")
+    return if in_test_directory { system("bundle -v > /dev/null 2>&1") }
 
     # Check if any version of bundler is already installed
-    check_cmd = "gem list --silent -i bundler --install-dir '#{TMP_GEM_ROOT}'"
+    check_cmd = "gem list --silent -i bundler"
     begin
       return if run("#{check_cmd} 2>&1", false).include?("true")
     rescue
@@ -275,6 +276,9 @@ module AcceptanceTestHelpers
     #   - https://github.com/rubygems/bundler/pull/6450
     #   - https://github.com/rubygems/bundler/commit/9d59fa41ef43aaccc6cf867a69a49648510c4df7#diff-06572a96a58dc510037d5efa622f9bec8519bc1beab13c9f251e97e657a9d4edR10
     run "bundle binstubs --all"
+    test_bin_path = File.join(current_directory, "bin")
+    install_test_bundle_wrapper(test_bin_path)
+    install_test_binstub_gem_path_prelude(test_bin_path)
   end
 
   def copy_appraisal2_to_test_directory
@@ -299,6 +303,56 @@ module AcceptanceTestHelpers
 
   # Constant for use in heredocs - returns the path as a string suitable for Gemfile
   APPRAISAL2_GEM_PATH = "./appraisal2"
+
+  def test_bundler_version
+    if defined?(Bundler::VERSION)
+      Bundler::VERSION
+    else
+      Gem.loaded_specs.fetch("bundler").version.to_s
+    end
+  end
+
+  def install_test_bundle_wrapper(bin_path)
+    FileUtils.mkdir_p(bin_path)
+    bundle_path = File.join(bin_path, "bundle")
+    File.write(bundle_path, <<-RUBY.strip_heredoc)
+      #!/usr/bin/env ruby
+      version = ENV.fetch("APPRAISAL_TEST_BUNDLER_VERSION")
+      gem_path = [ENV["GEM_PATH"], ENV["APPRAISAL_TEST_SYSTEM_GEM_PATH"]].compact.reject(&:empty?).join(File::PATH_SEPARATOR)
+      unless gem_path.empty?
+        ENV["GEM_PATH"] = gem_path
+        Gem.clear_paths
+        Gem.use_paths(ENV["GEM_HOME"], gem_path.split(File::PATH_SEPARATOR))
+      end
+      gem "bundler", version
+      load Gem.bin_path("bundler", "bundle", version)
+    RUBY
+    FileUtils.chmod("+x", bundle_path)
+  end
+
+  def install_test_binstub_gem_path_prelude(bin_path)
+    Dir[File.join(bin_path, "*")].each do |binstub|
+      next unless File.file?(binstub)
+      next if File.basename(binstub) == "bundle"
+
+      contents = File.read(binstub)
+      next if contents.include?("APPRAISAL_TEST_SYSTEM_GEM_PATH")
+
+      contents.sub!(
+        "require \"rubygems\"\n",
+        <<-RUBY.strip_heredoc
+          require "rubygems"
+          gem_path = [ENV["GEM_PATH"], ENV["APPRAISAL_TEST_SYSTEM_GEM_PATH"]].compact.reject(&:empty?).join(File::PATH_SEPARATOR)
+          unless gem_path.empty?
+            ENV["GEM_PATH"] = gem_path
+            Gem.clear_paths
+            Gem.use_paths(ENV["GEM_HOME"], gem_path.split(File::PATH_SEPARATOR))
+          end
+        RUBY
+      )
+      File.write(binstub, contents)
+    end
+  end
 
   def in_test_directory(&block)
     FileUtils.mkdir_p current_directory

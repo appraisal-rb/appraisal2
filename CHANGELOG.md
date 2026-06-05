@@ -60,6 +60,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Fixed local `kettle-test` acceptance spec isolation so parallel workers use
+  process-specific Bundler, gem build, and stage directories instead of
+  deleting each other's temporary workspaces.
+
 ### Security
 
 ## [3.0.6] - 2026-02-17
