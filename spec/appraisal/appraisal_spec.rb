@@ -107,7 +107,7 @@ RSpec.describe Appraisal::Appraisal do
 
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory'",
-        :gemfile => "/home/test/test directory",
+        :gemfile => "/home/test/test directory"
       )
       expect(warning).to include "Please upgrade Bundler"
     end
@@ -119,7 +119,7 @@ RSpec.describe Appraisal::Appraisal do
 
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --jobs=42",
-        :gemfile => "/home/test/test directory",
+        :gemfile => "/home/test/test directory"
       )
     end
 
@@ -128,7 +128,7 @@ RSpec.describe Appraisal::Appraisal do
 
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --retry 3",
-        :gemfile => "/home/test/test directory",
+        :gemfile => "/home/test/test directory"
       )
     end
 
@@ -137,7 +137,7 @@ RSpec.describe Appraisal::Appraisal do
 
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --path /home/test/vendor/appraisal",
-        :gemfile => "/home/test/test directory",
+        :gemfile => "/home/test/test directory"
       )
     end
   end

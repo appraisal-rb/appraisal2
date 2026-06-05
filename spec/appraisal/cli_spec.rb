@@ -16,7 +16,7 @@ RSpec.describe Appraisal::CLI do
       :write_gemfile => true,
       :install => true,
       :update => true,
-      :relativize => true,
+      :relativize => true
     )
   end
 
@@ -60,8 +60,8 @@ RSpec.describe Appraisal::CLI do
           hash_including(
             :gem_manager => "ore",
             :jobs => 4,
-            :path => "vendor/bundle",
-          ),
+            :path => "vendor/bundle"
+          )
         )
         expect(appraisal).to receive(:relativize)
 
@@ -102,7 +102,7 @@ RSpec.describe Appraisal::CLI do
 
         allow(Appraisal::Command).to receive(:new).with(
           ["rake", "test"],
-          :gemfile => "gemfiles/rails-7.gemfile",
+          :gemfile => "gemfiles/rails-7.gemfile"
         ).and_return(command_double)
         expect(command_double).to receive(:run)
 
@@ -147,7 +147,7 @@ RSpec.describe Appraisal::CLI do
 
     it "extracts options without gem names" do
       gems, options = cli.send(:extract_gems_and_options, ["--gem-manager=ore"])
-      expect(gems).to eq([])
+      expect(gems).to be_empty
       expect(options).to eq(:gem_manager => "ore")
     end
 

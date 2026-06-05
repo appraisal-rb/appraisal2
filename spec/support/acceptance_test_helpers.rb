@@ -12,17 +12,17 @@ module AcceptanceTestHelpers
   extend ActiveSupport::Concern
   include DependencyHelpers
 
-  BUNDLER_ENVIRONMENT_VARIABLES = %w[
-    RUBYOPT
-    BUNDLE_PATH
-    BUNDLE_BIN_PATH
-    BUNDLE_GEMFILE
-    BUNDLE_LOCKFILE
-    BUNDLER_SETUP
-    BUNDLE_APP_CONFIG
-    BUNDLE_USER_CONFIG
-    BUNDLE_USER_CACHE
-    BUNDLE_USER_PLUGIN
+  BUNDLER_ENVIRONMENT_VARIABLES = [
+    "RUBYOPT",
+    "BUNDLE_PATH",
+    "BUNDLE_BIN_PATH",
+    "BUNDLE_GEMFILE",
+    "BUNDLE_LOCKFILE",
+    "BUNDLER_SETUP",
+    "BUNDLE_APP_CONFIG",
+    "BUNDLE_USER_CONFIG",
+    "BUNDLE_USER_CACHE",
+    "BUNDLE_USER_PLUGIN"
   ].freeze
 
   included do
@@ -73,13 +73,13 @@ module AcceptanceTestHelpers
     @original_environment_variables = {}
 
     # Save all bundler variables plus PATH and the isolation variables we set
-    vars_to_save = BUNDLER_ENVIRONMENT_VARIABLES + %w[
-      PATH
-      BUNDLE_IGNORE_FUNDING_REQUESTS
-      BUNDLE_DISABLE_SHARED_GEMS
-      GEM_PATH
-      APPRAISAL_TEST_BUNDLER_VERSION
-      APPRAISAL_TEST_SYSTEM_GEM_PATH
+    vars_to_save = BUNDLER_ENVIRONMENT_VARIABLES + [
+      "PATH",
+      "BUNDLE_IGNORE_FUNDING_REQUESTS",
+      "BUNDLE_DISABLE_SHARED_GEMS",
+      "GEM_PATH",
+      "APPRAISAL_TEST_BUNDLER_VERSION",
+      "APPRAISAL_TEST_SYSTEM_GEM_PATH"
     ]
 
     vars_to_save.each do |key|
@@ -397,7 +397,7 @@ module AcceptanceTestHelpers
         end
 
         # Capture both stdout and stderr
-        output = %x(#{command} 2>&1)
+        output = `#{command} 2>&1`
         exitstatus = $?.exitstatus
 
         puts output if ENV["VERBOSE"]

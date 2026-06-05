@@ -25,7 +25,7 @@ RSpec.describe "Appraisal errors" do
   end
 
   describe Appraisal::UnknownGemManagerError do
-    subject(:error) { described_class.new("unknown_manager", %w[bundler ore]) }
+    subject(:error) { described_class.new("unknown_manager", ["bundler", "ore"]) }
 
     describe "#message" do
       it "returns the expected message with manager name" do

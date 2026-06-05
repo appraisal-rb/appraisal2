@@ -75,7 +75,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
       expect(Appraisal::Command).to have_received(:new).with(
         ["ore", "install", "-lockfile=#{gemfile_path}.lock"],
         :gemfile => gemfile_path,
-        :skip_bundle_exec => true,
+        :skip_bundle_exec => true
       )
     end
 
@@ -90,12 +90,12 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
         expect(Appraisal::Command).to have_received(:new).with(
           ["ore", "lock", "-gemfile", gemfile_path],
           :gemfile => gemfile_path,
-          :skip_bundle_exec => true,
+          :skip_bundle_exec => true
         ).ordered
         expect(Appraisal::Command).to have_received(:new).with(
           ["ore", "install", "-lockfile=#{gemfile_path}.lock"],
           :gemfile => gemfile_path,
-          :skip_bundle_exec => true,
+          :skip_bundle_exec => true
         ).ordered
       end
     end
@@ -107,7 +107,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
         expect(Appraisal::Command).to have_received(:new).with(
           ["ore", "install", "-workers=4", "-lockfile=#{gemfile_path}.lock"],
           :gemfile => gemfile_path,
-          :skip_bundle_exec => true,
+          :skip_bundle_exec => true
         )
       end
 
@@ -117,7 +117,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
         expect(Appraisal::Command).to have_received(:new).with(
           ["ore", "install", "-lockfile=#{gemfile_path}.lock"],
           :gemfile => gemfile_path,
-          :skip_bundle_exec => true,
+          :skip_bundle_exec => true
         )
       end
     end
@@ -129,7 +129,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
         expect(Appraisal::Command).to have_received(:new).with(
           ["ore", "install", "-lockfile=#{gemfile_path}.lock"],
           :gemfile => gemfile_path,
-          :skip_bundle_exec => true,
+          :skip_bundle_exec => true
         )
       end
     end
@@ -141,7 +141,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
         expect(Appraisal::Command).to have_received(:new).with(
           ["ore", "install", "-without=development,test", "-lockfile=#{gemfile_path}.lock"],
           :gemfile => gemfile_path,
-          :skip_bundle_exec => true,
+          :skip_bundle_exec => true
         )
       end
 
@@ -151,7 +151,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
         expect(Appraisal::Command).to have_received(:new).with(
           ["ore", "install", "-lockfile=#{gemfile_path}.lock"],
           :gemfile => gemfile_path,
-          :skip_bundle_exec => true,
+          :skip_bundle_exec => true
         )
       end
     end
@@ -163,7 +163,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
         expect(Appraisal::Command).to have_received(:new).with(
           ["ore", "install", "-vendor=/home/test/vendor/bundle", "-lockfile=#{gemfile_path}.lock"],
           :gemfile => gemfile_path,
-          :skip_bundle_exec => true,
+          :skip_bundle_exec => true
         )
       end
     end
@@ -175,7 +175,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
         expect(Appraisal::Command).to have_received(:new).with(
           ["ore", "install", "-workers=4", "-vendor=/home/test/vendor/bundle", "-lockfile=#{gemfile_path}.lock"],
           :gemfile => gemfile_path,
-          :skip_bundle_exec => true,
+          :skip_bundle_exec => true
         )
       end
     end
@@ -196,7 +196,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
       expect(Appraisal::Command).to have_received(:new).with(
         ["ore", "update", "-gemfile", gemfile_path],
         :gemfile => gemfile_path,
-        :skip_bundle_exec => true,
+        :skip_bundle_exec => true
       )
     end
 
@@ -206,7 +206,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
       expect(Appraisal::Command).to have_received(:new).with(
         ["ore", "update", "-gemfile", gemfile_path, "rack", "rails"],
         :gemfile => gemfile_path,
-        :skip_bundle_exec => true,
+        :skip_bundle_exec => true
       )
     end
   end

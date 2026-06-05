@@ -22,7 +22,7 @@ RSpec.describe Appraisal::GemManager::Base do
     it "raises NotImplementedError" do
       expect { base.install }.to raise_error(
         NotImplementedError,
-        "Appraisal::GemManager::Base#install must be implemented",
+        "Appraisal::GemManager::Base#install must be implemented"
       )
     end
   end
@@ -31,7 +31,7 @@ RSpec.describe Appraisal::GemManager::Base do
     it "raises NotImplementedError" do
       expect { base.update }.to raise_error(
         NotImplementedError,
-        "Appraisal::GemManager::Base#update must be implemented",
+        "Appraisal::GemManager::Base#update must be implemented"
       )
     end
   end
@@ -40,7 +40,7 @@ RSpec.describe Appraisal::GemManager::Base do
     it "raises NotImplementedError" do
       expect { base.name }.to raise_error(
         NotImplementedError,
-        "Appraisal::GemManager::Base#name must be implemented",
+        "Appraisal::GemManager::Base#name must be implemented"
       )
     end
   end
@@ -49,7 +49,7 @@ RSpec.describe Appraisal::GemManager::Base do
     it "raises NotImplementedError" do
       expect { base.available? }.to raise_error(
         NotImplementedError,
-        "Appraisal::GemManager::Base#available? must be implemented",
+        "Appraisal::GemManager::Base#available? must be implemented"
       )
     end
   end

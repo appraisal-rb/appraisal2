@@ -10,7 +10,7 @@ module Appraisal
     class Factory
       ADAPTERS = {
         "bundler" => BundlerAdapter,
-        "ore" => OreAdapter,
+        "ore" => OreAdapter
       }.freeze
 
       DEFAULT_MANAGER = "bundler"

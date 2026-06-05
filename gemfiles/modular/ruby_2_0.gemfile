@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 gem "activesupport", "~> 4.2.7"
-gem "rack", "~> 1.6.5"
 gem "benchmark", "~> 0.3"
+gem "rack", "~> 1.6.5"
 
 eval_gemfile("thor/r2/v1.2.gemfile")
 

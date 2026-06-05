@@ -17,21 +17,21 @@ module Appraisal
     # - Bundler automatically infers lockfile from BUNDLE_GEMFILE (e.g., foo.gemfile -> foo.gemfile.lock)
     # - Forcing BUNDLE_LOCKFILE breaks appraisal's ability to create per-gemfile lockfiles
     # - Each appraisal needs its own lockfile, not the root Gemfile.lock
-    PRESERVED_BUNDLE_VARS = %w[
-      BUNDLE_GEMFILE
-      BUNDLE_APP_CONFIG
-      BUNDLE_PATH
-      BUNDLE_BIN_PATH
-      BUNDLE_USER_CONFIG
-      BUNDLE_USER_CACHE
-      BUNDLE_USER_PLUGIN
-      BUNDLE_IGNORE_FUNDING_REQUESTS
-      BUNDLE_DISABLE_SHARED_GEMS
+    PRESERVED_BUNDLE_VARS = [
+      "BUNDLE_GEMFILE",
+      "BUNDLE_APP_CONFIG",
+      "BUNDLE_PATH",
+      "BUNDLE_BIN_PATH",
+      "BUNDLE_USER_CONFIG",
+      "BUNDLE_USER_CACHE",
+      "BUNDLE_USER_PLUGIN",
+      "BUNDLE_IGNORE_FUNDING_REQUESTS",
+      "BUNDLE_DISABLE_SHARED_GEMS"
     ].freeze
 
-    PRESERVED_RUNTIME_VARS = %w[
-      PATH
-      GEM_PATH
+    PRESERVED_RUNTIME_VARS = [
+      "PATH",
+      "GEM_PATH"
     ].freeze
 
     def initialize(command, options = {})
@@ -198,7 +198,7 @@ manually.
       if command_starts_with_bundle?(original_command)
         original_command
       elsif original_command.is_a?(Array)
-        %w[bundle exec] + original_command
+        ["bundle", "exec"] + original_command
       else
         "bundle exec #{original_command}"
       end
@@ -217,7 +217,7 @@ manually.
 
       {
         "GEM_HOME" => ENV["GEM_HOME"],
-        "GEM_PATH" => "",
+        "GEM_PATH" => ""
       }
     end
   end

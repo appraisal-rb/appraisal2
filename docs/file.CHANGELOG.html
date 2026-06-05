@@ -6,13 +6,13 @@
 <title>
   File: CHANGELOG
   
-    &mdash; Documentation by YARD 0.9.38
+    &mdash; Documentation by YARD 0.9.44
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "CHANGELOG";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -59,22 +61,70 @@
 
       <div id="content"><div id='filecontents'><h1 id="changelog">Changelog</h1>
 
-<p>This file documents all notable changes to this project.</p>
+<p><a href="https://semver.org/spec/v2.0.0.html"><img src="https://img.shields.io/badge/semver-2.0.0-FFDD67.svg?style=flat" alt="SemVer 2.0.0"></a> <a href="https://keepachangelog.com/en/1.0.0/"><img src="https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat" alt="Keep-A-Changelog 1.0.0"></a></p>
 
-<p>Format: <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,<br>
-Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<p>All notable changes to this project will be documented in this file.</p>
+
+<p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,<br>
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>,<br>
+and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
+Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.6...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
+<ul>
+  <li>Added <code>Appraisal2::Version</code> / <code>Appraisal2::VERSION</code> constants backed by<br>
+<code>version_gem</code>, including an RBS signature for the version namespace.</li>
+  <li>Added appraisal and CI coverage for runtime dependency HEADs, templating<br>
+self-tests, license scanning, Open Collective backer updates, and<br>
+per-engine/per-version Ruby workflows.</li>
+  <li>Added generated local-development support files, including <code>mise.toml</code>,<br>
+<code>.env.local.example</code>, StructuredMerge git driver configuration, and refreshed<br>
+contributor/operator guides.</li>
+</ul>
+
 <h3 id="changed">Changed</h3>
+
+<ul>
+  <li>Refreshed project automation and CI templates with the current <code>kettle-jem</code><br>
+template output.</li>
+  <li>CI now runs appraisals through <code>Appraisal.root.gemfile</code>, installs each<br>
+appraisal with retry handling, and uses <code>kettle-test</code> as the default test<br>
+runner.</li>
+  <li>Runtime dependency matrix handling now includes extracted stdlib gem<br>
+appraisals for <code>erb</code>, <code>mutex_m</code>, and <code>stringio</code>, with version-specific<br>
+stdlib gemfiles selected by the active Ruby version.</li>
+  <li>Development tooling floors were refreshed, including <code>kettle-dev</code> 2.x,<br>
+<code>kettle-test</code> 2.x, <code>kettle-soup-cover</code> 2.x, <code>gitmoji-regex</code> 2.x, current<br>
+documentation gems, and <code>turbo_tests2</code> as the default test runner.</li>
+  <li>Gem metadata now uses the generated <code>licenses</code> field, GitHub source,<br>
+changelog, bug tracker, wiki, and funding URLs, and a generated version-gem<br>
+loader in the gemspec.</li>
+  <li>Documentation was refreshed for contributor setup, local environment<br>
+variables, appraisal maintenance, test execution, RuboCop Gradual, Reek, and<br>
+generated project automation.</li>
+</ul>
 
 <h3 id="deprecated">Deprecated</h3>
 
 <h3 id="removed">Removed</h3>
 
+<ul>
+  <li>Removed the Ruby 2.3 CI appraisal/workflow and replaced dashed Ruby workflow<br>
+filenames with dotted Ruby-version workflow names.</li>
+  <li>Removed the legacy CodeQL and Discord notifier workflows from the generated<br>
+workflow set.</li>
+</ul>
+
 <h3 id="fixed">Fixed</h3>
+
+<ul>
+  <li>Fixed local <code>kettle-test</code> acceptance spec isolation so parallel workers use<br>
+process-specific Bundler, gem build, and stage directories instead of<br>
+deleting each other’s temporary workspaces.</li>
+</ul>
 
 <h3 id="security">Security</h3>
 
@@ -373,9 +423,9 @@ Versioning: <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a
 </div></div>
 
       <div id="footer">
-  Generated on Tue Feb 17 22:03:54 2026 by
+  Generated on Thu Jun  4 20:37:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.38 (ruby-4.0.1).
+  0.9.44 (ruby-4.0.5).
 </div>
 
     </div>

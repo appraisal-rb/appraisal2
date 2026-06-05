@@ -3,19 +3,19 @@
 RSpec.describe "Appraisals file Bundler DSL compatibility" do
   it "supports all Bundler DSL in Appraisals file", :git_local do
     skip_for(:engine => "truffleruby")
-    build_gems %w[
-      bagel
-      orange_juice
-      milk
-      waffle
-      coffee
-      ham
-      sausage
-      pancake
-      rotten_egg
-      mayonnaise
+    build_gems [
+      "bagel",
+      "orange_juice",
+      "milk",
+      "waffle",
+      "coffee",
+      "ham",
+      "sausage",
+      "pancake",
+      "rotten_egg",
+      "mayonnaise"
     ]
-    build_git_gems %w[egg croissant pain_au_chocolat omelette]
+    build_git_gems ["egg", "croissant", "pain_au_chocolat", "omelette"]
 
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source 'https://gem.coop'

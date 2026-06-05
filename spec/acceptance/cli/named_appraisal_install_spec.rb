@@ -129,7 +129,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
         # Ruby 3.3, 3.4, 4.0
         "3.3" => "4.0.3",
         "3.4" => "4.0.4",
-        "4.0" => "4.0.5",
+        "4.0" => "4.0.5"
       }
 
       # Get the current Ruby version (major.minor)

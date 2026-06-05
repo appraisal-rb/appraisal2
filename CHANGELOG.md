@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.0.7] - 2026-06-04
+
+- TAG: [v3.0.7][3.0.7t]
+- COVERAGE: 88.57% -- 736/831 lines in 28 files
+- BRANCH COVERAGE: 76.05% -- 127/167 branches in 28 files
+- 42.69% documented
+
+### Added
+
 - Added `Appraisal2::Version` / `Appraisal2::VERSION` constants backed by
   `version_gem`, including an RBS signature for the version namespace.
 - Added appraisal and CI coverage for runtime dependency HEADs, templating
@@ -49,8 +68,6 @@ Please file a bug if you notice a violation of semantic versioning.
   variables, appraisal maintenance, test execution, RuboCop Gradual, Reek, and
   generated project automation.
 
-### Deprecated
-
 ### Removed
 
 - Removed the Ruby 2.3 CI appraisal/workflow and replaced dashed Ruby workflow
@@ -63,8 +80,6 @@ Please file a bug if you notice a violation of semantic versioning.
 - Fixed local `kettle-test` acceptance spec isolation so parallel workers use
   process-specific Bundler, gem build, and stage directories instead of
   deleting each other's temporary workspaces.
-
-### Security
 
 ## [3.0.6] - 2026-02-17
 
@@ -252,7 +267,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.6...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.7...HEAD
+[3.0.7]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.6...v3.0.7
+[3.0.7t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.7
 [3.0.6]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.5...v3.0.6
 [3.0.6t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.6
 [3.0.5]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.4...v3.0.5

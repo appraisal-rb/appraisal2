@@ -3,7 +3,7 @@
 module DependencyHelpers
   DEFAULT_OPTS = {
     :skip_build => false,
-    :skip_install => false,
+    :skip_install => false
   }.freeze
   # @param opts [String, Hash] version string, or options hash
   # @option :skip_build [Boolean, nil] skip running gem build, default is false
@@ -64,12 +64,12 @@ module DependencyHelpers
 
       unless skip_build
         puts "building gem: #{gem_name} #{version}" if ENV["VERBOSE"]
-        %x(gem build #{gemspec} #{redirect})
+        `gem build #{gemspec} #{redirect}`
       end
 
       unless skip_install
         puts "installing gem: #{gem_name} #{version}" if ENV["VERBOSE"]
-        %x(gem install -lN #{gem_name}-#{version}.gem -v #{version} #{redirect})
+        `gem install -lN #{gem_name}-#{version}.gem -v #{version} #{redirect}`
       end
 
       puts "" if ENV["VERBOSE"]
@@ -88,12 +88,12 @@ module DependencyHelpers
       # Since we are already inside _gem_dir, we do not need to chdir.
       puts "initializing git repo for gem: #{gem_name} #{version}" if ENV["VERBOSE"]
       # Set up our clone of the bare git repository, and push our gem into it
-      %x(git init . --initial-branch=main #{redirect})
-      %x(git config user.email "appraisal@thoughtbot.com" #{redirect})
-      %x(git config user.name "Appraisal" #{redirect})
-      %x(git config commit.gpgsign false #{redirect})
-      %x(git add . #{redirect})
-      %x(git commit --all --no-verify --message "initial commit" #{redirect})
+      `git init . --initial-branch=main #{redirect}`
+      `git config user.email "appraisal@thoughtbot.com" #{redirect}`
+      `git config user.name "Appraisal" #{redirect}`
+      `git config commit.gpgsign false #{redirect}`
+      `git add . #{redirect}`
+      `git commit --all --no-verify --message "initial commit" #{redirect}`
     end
 
     # Cleanup Bundler cache path manually for now

@@ -21,7 +21,7 @@ RSpec.describe Appraisal::Utils do
       arguments = [:foo, {:bar => {:baz => "ball"}}]
 
       expect(described_class.format_arguments(arguments)).to eq(
-        ':foo, :bar => { :baz => "ball" }',
+        ':foo, :bar => { :baz => "ball" }'
       )
     end
 
