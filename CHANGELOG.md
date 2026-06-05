@@ -20,14 +20,43 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Added `Appraisal2::Version` / `Appraisal2::VERSION` constants backed by
+  `version_gem`, including an RBS signature for the version namespace.
+- Added appraisal and CI coverage for runtime dependency HEADs, templating
+  self-tests, license scanning, Open Collective backer updates, and
+  per-engine/per-version Ruby workflows.
+- Added generated local-development support files, including `mise.toml`,
+  `.env.local.example`, StructuredMerge git driver configuration, and refreshed
+  contributor/operator guides.
+
 ### Changed
 
 - Refreshed project automation and CI templates with the current `kettle-jem`
   template output.
+- CI now runs appraisals through `Appraisal.root.gemfile`, installs each
+  appraisal with retry handling, and uses `kettle-test` as the default test
+  runner.
+- Runtime dependency matrix handling now includes extracted stdlib gem
+  appraisals for `erb`, `mutex_m`, and `stringio`, with version-specific
+  stdlib gemfiles selected by the active Ruby version.
+- Development tooling floors were refreshed, including `kettle-dev` 2.x,
+  `kettle-test` 2.x, `kettle-soup-cover` 2.x, `gitmoji-regex` 2.x, current
+  documentation gems, and `turbo_tests2` as the default test runner.
+- Gem metadata now uses the generated `licenses` field, GitHub source,
+  changelog, bug tracker, wiki, and funding URLs, and a generated version-gem
+  loader in the gemspec.
+- Documentation was refreshed for contributor setup, local environment
+  variables, appraisal maintenance, test execution, RuboCop Gradual, Reek, and
+  generated project automation.
 
 ### Deprecated
 
 ### Removed
+
+- Removed the Ruby 2.3 CI appraisal/workflow and replaced dashed Ruby workflow
+  filenames with dotted Ruby-version workflow names.
+- Removed the legacy CodeQL and Discord notifier workflows from the generated
+  workflow set.
 
 ### Fixed
 
