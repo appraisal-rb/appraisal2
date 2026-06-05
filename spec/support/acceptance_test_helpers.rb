@@ -165,7 +165,6 @@ module AcceptanceTestHelpers
   def add_binstub_path
     # Add the test directory's bin folder to PATH using absolute path
     test_bin_path = File.join(current_directory, "bin")
-    install_test_bundle_wrapper(test_bin_path) if test_bundle_wrapper_required?
     ENV["PATH"] = "#{test_bin_path}:#{ENV["PATH"]}"
   end
 
@@ -277,7 +276,6 @@ module AcceptanceTestHelpers
     #   - https://github.com/rubygems/bundler/commit/9d59fa41ef43aaccc6cf867a69a49648510c4df7#diff-06572a96a58dc510037d5efa622f9bec8519bc1beab13c9f251e97e657a9d4edR10
     run "bundle binstubs --all"
     test_bin_path = File.join(current_directory, "bin")
-    install_test_bundle_wrapper(test_bin_path) if test_bundle_wrapper_required?
     install_test_binstub_gem_path_prelude(test_bin_path)
   end
 
@@ -310,28 +308,6 @@ module AcceptanceTestHelpers
     else
       Gem.loaded_specs.fetch("bundler").version.to_s
     end
-  end
-
-  def test_bundle_wrapper_required?
-    Gem::Version.new(test_bundler_version) >= Gem::Version.new("2.2.0")
-  end
-
-  def install_test_bundle_wrapper(bin_path)
-    FileUtils.mkdir_p(bin_path)
-    bundle_path = File.join(bin_path, "bundle")
-    File.write(bundle_path, <<-RUBY.strip_heredoc)
-      #!/usr/bin/env ruby
-      version = ENV.fetch("APPRAISAL_TEST_BUNDLER_VERSION")
-      gem_path = [ENV["GEM_PATH"], ENV["APPRAISAL_TEST_SYSTEM_GEM_PATH"]].compact.reject(&:empty?).join(File::PATH_SEPARATOR)
-      unless gem_path.empty?
-        ENV["GEM_PATH"] = gem_path
-        Gem.clear_paths
-        Gem.use_paths(ENV["GEM_HOME"], gem_path.split(File::PATH_SEPARATOR))
-      end
-      gem "bundler", version
-      load Gem.bin_path("bundler", "bundle", version)
-    RUBY
-    FileUtils.chmod("+x", bundle_path)
   end
 
   def install_test_binstub_gem_path_prelude(bin_path)

@@ -28,9 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Fixed CI failures on older Bundler by preserving Bundler-generated
-  `bin/bundle` test binstubs for Bundler versions that reject custom bundle
-  wrappers.
+- Fixed CI failures by preserving Bundler-generated `bin/bundle` test binstubs
+  instead of replacing them with custom bundle wrappers.
 - Fixed Ruby 3.0 and 3.1 appraisal stdlib gemfiles so they do not load
   conflicting `erb` version constraints.
 - Fixed TruffleRuby 23.1 CI bootstrapping by routing that workflow through the
