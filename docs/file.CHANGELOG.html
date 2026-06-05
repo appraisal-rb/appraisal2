@@ -84,14 +84,14 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="security">Security</h3>
 
-<h2 id="307---2026-06-04">
-<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.6...v3.0.7">3.0.7</a> - 2026-06-04</h2>
+<h2 id="307---2026-06-05">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.6...v3.0.7">3.0.7</a> - 2026-06-05</h2>
 
 <ul>
   <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.7">v3.0.7</a>
 </li>
-  <li>COVERAGE: 88.57% – 736/831 lines in 28 files</li>
-  <li>BRANCH COVERAGE: 76.05% – 127/167 branches in 28 files</li>
+  <li>COVERAGE: 89.69% – 748/834 lines in 28 files</li>
+  <li>BRANCH COVERAGE: 80.61% – 133/165 branches in 28 files</li>
   <li>42.69% documented</li>
 </ul>
 
@@ -135,8 +135,12 @@ generated project automation.</li>
 <ul>
   <li>Removed the Ruby 2.3 CI appraisal/workflow and replaced dashed Ruby workflow<br>
 filenames with dotted Ruby-version workflow names.</li>
-  <li>Removed the legacy CodeQL and Discord notifier workflows from the generated<br>
-workflow set.</li>
+  <li>
+    <p>Removed the legacy CodeQL and Discord notifier workflows from the generated<br>
+workflow set.</p>
+  </li>
+  <li>Removed the stale duplicate Runtime Deps @ HEAD workflow that bypassed the<br>
+generated <code>dep-heads</code> appraisal workflow.</li>
 </ul>
 
 <h3 id="fixed-1">Fixed</h3>
@@ -150,6 +154,21 @@ deleting each other’s temporary workspaces.</p>
   <li>
     <p>Rendered generated <code>LICENSE.md</code> copyright notice lines as a Markdown list.</p>
   </li>
+  <li>Fixed appraisal install commands so lockfiles with <code>BUNDLED WITH</code> install and<br>
+select that Bundler version instead of rewriting the lockfile with the parent<br>
+process Bundler.</li>
+  <li>Fixed local acceptance test isolation so <code>kettle-test</code> workers do not mix<br>
+Bundler versions or share user-level installer cache state.</li>
+  <li>Fixed JRuby 9.2 CI bootstrapping by installing RubyGems 3.3.27 and Bundler<br>
+2.3.27 instead of using the default JRuby toolchain versions.</li>
+  <li>Fixed CI failures by preserving Bundler-generated <code>bin/bundle</code> test binstubs<br>
+instead of replacing them with custom bundle wrappers.</li>
+  <li>Fixed Ruby 3.0 and 3.1 appraisal stdlib gemfiles so they do not load<br>
+conflicting <code>erb</code> version constraints.</li>
+  <li>Fixed TruffleRuby 23.1 CI bootstrapping by routing that workflow through the<br>
+Ruby 3.2 appraisal Gemfile, which applies the <code>json</code> ceiling only on<br>
+TruffleRuby 23.1, and by running the test command directly once that Gemfile<br>
+is active.</li>
 </ul>
 
 <h2 id="306---2026-02-17">
@@ -447,7 +466,7 @@ deleting each other’s temporary workspaces.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Thu Jun  4 21:08:04 2026 by
+  Generated on Fri Jun  5 00:42:56 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

@@ -151,7 +151,6 @@ and test isolation. These are preserved when using with_bundler_env to ensure:</
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>BUNDLE_GEMFILE</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>BUNDLE_APP_CONFIG</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>BUNDLE_PATH</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-  <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>BUNDLE_BIN_PATH</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>BUNDLE_USER_CONFIG</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>BUNDLE_USER_CACHE</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>BUNDLE_USER_PLUGIN</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
@@ -353,15 +352,15 @@ and test isolation. These are preserved when using with_bundler_env to ensure:</
       <pre class="lines">
 
 
+36
 37
 38
 39
 40
-41
-42</pre>
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@gemfile</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:gemfile</span><span class='rbracket'>]</span>
@@ -527,6 +526,7 @@ and test isolation. These are preserved when using with_bundler_env to ensure:</
       <pre class="lines">
 
 
+43
 44
 45
 46
@@ -549,7 +549,7 @@ and test isolation. These are preserved when using with_bundler_env to ensure:</
 63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
   <span class='id identifier rubyid_run_env'>run_env</span> <span class='op'>=</span> <span class='id identifier rubyid_test_environment'>test_environment</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
@@ -557,14 +557,15 @@ and test isolation. These are preserved when using with_bundler_env to ensure:</
   <span class='kw'>if</span> <span class='ivar'>@skip_bundle_exec</span>
     <span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_run_env'>run_env</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='comment'># For bundler version switching to work in modern bundler (2.2+),
-</span>    <span class='comment'># we need to preserve certain BUNDLE_* environment variables.
+    <span class='comment'># For bundler version switching to work reliably, we need to preserve
+</span>    <span class='comment'># the appraisal Gemfile while avoiding the active parent Bundler process.
 </span>    <span class='comment'># However, we still need to isolate from the parent&#39;s bundler state
 </span>    <span class='comment'># to avoid conflicts.
 </span>    <span class='comment'>#
 </span>    <span class='comment'># Solution: Use a selective environment approach instead of with_original_env,
 </span>    <span class='comment'># which strips all BUNDLE_* variables and breaks version switching.
 </span>    <span class='id identifier rubyid_with_bundler_env'>with_bundler_env</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_apply_run_env'>apply_run_env</span><span class='lparen'>(</span><span class='id identifier rubyid_run_env'>run_env</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_ensure_bundler_is_available'>ensure_bundler_is_available</span>
       <span class='id identifier rubyid_ensure_locked_bundler_is_available'>ensure_locked_bundler_is_available</span>
       <span class='id identifier rubyid_execute'>execute</span><span class='lparen'>(</span><span class='id identifier rubyid_run_env'>run_env</span><span class='rparen'>)</span>
@@ -581,7 +582,7 @@ and test isolation. These are preserved when using with_bundler_env to ensure:</
 </div>
 
       <div id="footer">
-  Generated on Thu Jun  4 21:08:04 2026 by
+  Generated on Fri Jun  5 00:42:56 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

@@ -26,34 +26,15 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Removed
 
-- Removed the stale duplicate Runtime Deps @ HEAD workflow that bypassed the
-  generated `dep-heads` appraisal workflow.
-
 ### Fixed
-
-- Fixed appraisal install commands so lockfiles with `BUNDLED WITH` install and
-  select that Bundler version instead of rewriting the lockfile with the parent
-  process Bundler.
-- Fixed local acceptance test isolation so `kettle-test` workers do not mix
-  Bundler versions or share user-level installer cache state.
-- Fixed JRuby 9.2 CI bootstrapping by installing RubyGems 3.3.27 and Bundler
-  2.3.27 instead of using the default JRuby toolchain versions.
-- Fixed CI failures by preserving Bundler-generated `bin/bundle` test binstubs
-  instead of replacing them with custom bundle wrappers.
-- Fixed Ruby 3.0 and 3.1 appraisal stdlib gemfiles so they do not load
-  conflicting `erb` version constraints.
-- Fixed TruffleRuby 23.1 CI bootstrapping by routing that workflow through the
-  Ruby 3.2 appraisal Gemfile, which applies the `json` ceiling only on
-  TruffleRuby 23.1, and by running the test command directly once that Gemfile
-  is active.
 
 ### Security
 
-## [3.0.7] - 2026-06-04
+## [3.0.7] - 2026-06-05
 
 - TAG: [v3.0.7][3.0.7t]
-- COVERAGE: 88.57% -- 736/831 lines in 28 files
-- BRANCH COVERAGE: 76.05% -- 127/167 branches in 28 files
+- COVERAGE: 89.69% -- 748/834 lines in 28 files
+- BRANCH COVERAGE: 80.61% -- 133/165 branches in 28 files
 - 42.69% documented
 
 ### Added
@@ -94,6 +75,9 @@ Please file a bug if you notice a violation of semantic versioning.
 - Removed the legacy CodeQL and Discord notifier workflows from the generated
   workflow set.
 
+- Removed the stale duplicate Runtime Deps @ HEAD workflow that bypassed the
+  generated `dep-heads` appraisal workflow.
+
 ### Fixed
 
 - Fixed local `kettle-test` acceptance spec isolation so parallel workers use
@@ -101,6 +85,22 @@ Please file a bug if you notice a violation of semantic versioning.
   deleting each other's temporary workspaces.
 
 - Rendered generated `LICENSE.md` copyright notice lines as a Markdown list.
+
+- Fixed appraisal install commands so lockfiles with `BUNDLED WITH` install and
+  select that Bundler version instead of rewriting the lockfile with the parent
+  process Bundler.
+- Fixed local acceptance test isolation so `kettle-test` workers do not mix
+  Bundler versions or share user-level installer cache state.
+- Fixed JRuby 9.2 CI bootstrapping by installing RubyGems 3.3.27 and Bundler
+  2.3.27 instead of using the default JRuby toolchain versions.
+- Fixed CI failures by preserving Bundler-generated `bin/bundle` test binstubs
+  instead of replacing them with custom bundle wrappers.
+- Fixed Ruby 3.0 and 3.1 appraisal stdlib gemfiles so they do not load
+  conflicting `erb` version constraints.
+- Fixed TruffleRuby 23.1 CI bootstrapping by routing that workflow through the
+  Ruby 3.2 appraisal Gemfile, which applies the `json` ceiling only on
+  TruffleRuby 23.1, and by running the test command directly once that Gemfile
+  is active.
 
 ## [3.0.6] - 2026-02-17
 
