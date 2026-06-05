@@ -198,7 +198,7 @@ Your picture could be here!
 
 Made with [contributors-img][🖐contrib-rocks].
 
-Also see GitLab Contributors: [https://gitlab.com/pboling/appraisal2/-/graphs/main][🚎contributors-gl]
+Also see GitLab Contributors: [https://gitlab.com/appraisal-rb/appraisal2/-/graphs/main][🚎contributors-gl]
 
 ## For Maintainers
 
@@ -249,15 +249,15 @@ NOTE: To build without signing the gem set `SKIP_GEM_SIGNING` to any value in th
 14. Run `bundle exec rake release` which will create a git tag for the version,
     push git commits and tags, and push the `.gem` file to the gem host configured in the gemspec.
 
-[📜src-gl]: https://gitlab.com/pboling/appraisal2
-[📜src-cb]: https://codeberg.org/pboling/appraisal2
-[📜src-gh]: https://github.com/pboling/appraisal2
-[🧪build]: https://github.com/pboling/appraisal2/actions
-[🤝conduct]: https://github.com/pboling/appraisal2/blob/main/CODE_OF_CONDUCT.md
+[📜src-gl]: https://gitlab.com/appraisal-rb/appraisal2
+[📜src-cb]: https://codeberg.org/appraisal-rb/appraisal2
+[📜src-gh]: https://github.com/appraisal-rb/appraisal2
+[🧪build]: https://github.com/appraisal-rb/appraisal2/actions
+[🤝conduct]: https://github.com/appraisal-rb/appraisal2/blob/main/CODE_OF_CONDUCT.md
 [🖐contrib-rocks]: https://contrib.rocks
-[🖐contributors]: https://github.com/pboling/appraisal2/graphs/contributors
-[🚎contributors-gl]: https://gitlab.com/pboling/appraisal2/-/graphs/main
-[🖐contributors-img]: https://contrib.rocks/image?repo=pboling/appraisal2
+[🖐contributors]: https://github.com/appraisal-rb/appraisal2/graphs/contributors
+[🚎contributors-gl]: https://gitlab.com/appraisal-rb/appraisal2/-/graphs/main
+[🖐contributors-img]: https://contrib.rocks/image?repo=appraisal-rb/appraisal2
 [💎gem-coop]: https://gem.coop
 [🔒️rubygems-security-guide]: https://guides.rubygems.org/security/#building-gems
 [🔒️rubygems-checksums-pr]: https://github.com/rubygems/rubygems/pull/6022

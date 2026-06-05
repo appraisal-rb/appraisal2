@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = "🔍️ Find out what your Ruby gems are worth"
   spec.description = '🔍️ Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals."'
-  spec.homepage = "https://github.com/pboling/appraisal2"
+  spec.homepage = "https://github.com/appraisal-rb/appraisal2"
   spec.licenses = ["MIT"]
   spec.required_ruby_version = ">= 1.8.7"
 

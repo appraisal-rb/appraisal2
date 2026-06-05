@@ -12,9 +12,9 @@ authors:
     orcid: 'https://orcid.org/0009-0008-8519-441X'
 identifiers:
   - type: url
-    value: 'https://github.com/pboling/appraisal2'
+    value: 'https://github.com/appraisal-rb/appraisal2'
     description: "appraisal2"
-repository-code: 'https://github.com/pboling/appraisal2'
+repository-code: 'https://github.com/appraisal-rb/appraisal2'
 abstract: >-
   appraisal2
 license: See license file

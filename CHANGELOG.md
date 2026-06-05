@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Fixed generated project metadata and README links to use the `appraisal-rb`
+  organization derived from the gemspec homepage instead of `pboling`.
 - Fixed acceptance test Bundler pinning so CI uses `BUNDLER_VERSION` instead of
   RubyGems `_version_` selector arguments that staged `bin/bundle` binstubs do
   not support.
