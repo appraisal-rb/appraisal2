@@ -26,6 +26,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Removed
 
+- Removed the stale duplicate Runtime Deps @ HEAD workflow that bypassed the
+  generated `dep-heads` appraisal workflow.
+
 ### Fixed
 
 - Fixed JRuby 9.2 CI bootstrapping by installing RubyGems 3.3.27 and Bundler
