@@ -54,6 +54,7 @@ module Appraisal
         # Solution: Use a selective environment approach instead of with_original_env,
         # which strips all BUNDLE_* variables and breaks version switching.
         with_bundler_env do
+          apply_run_env(run_env)
           ensure_bundler_is_available
           ensure_locked_bundler_is_available
           execute(run_env)
@@ -123,6 +124,12 @@ module Appraisal
       end
 
       exit(1) unless Kernel.system(command_as_string)
+    end
+
+    def apply_run_env(run_env)
+      run_env.each_pair do |key, value|
+        ENV[key] = value
+      end
     end
 
     def ensure_bundler_is_available

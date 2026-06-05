@@ -110,27 +110,35 @@ RSpec.describe Appraisal::Command do
         Dir.mktmpdir("appraisal-command-lock") do |dir|
           gemfile = File.join(dir, "locked.gemfile")
           File.write(gemfile, %(source "https://gem.coop"\n))
-          File.write("#{gemfile}.lock", <<~LOCKFILE)
-            GEM
-              remote: https://gem.coop/
-              specs:
+          File.write("#{gemfile}.lock", [
+            "GEM",
+            "  remote: https://gem.coop/",
+            "  specs:",
+            "",
+            "PLATFORMS",
+            "  ruby",
+            "",
+            "DEPENDENCIES",
+            "",
+            "BUNDLED WITH",
+            "   4.0.5",
+            ""
+          ].join("\n"))
+          gem_home = File.join(dir, "gems")
 
-            PLATFORMS
-              ruby
-
-            DEPENDENCIES
-
-            BUNDLED WITH
-               4.0.5
-          LOCKFILE
-
-          locked_command = described_class.new(command_string, :gemfile => gemfile)
+          locked_command = described_class.new(command_string, :gemfile => gemfile, :env => {"GEM_HOME" => gem_home, "GEM_PATH" => ""})
           allow(locked_command).to receive(:system).and_return(true)
           allow(locked_command).to receive(:puts)
           allow(Bundler).to receive(:original_env).and_return({})
 
-          expect(locked_command).to receive(:system).with(%(gem list --silent -i bundler)).and_return(true)
-          expect(locked_command).to receive(:system).with(%(gem list --silent -i bundler -v "4.0.5")).and_return(true)
+          allow(locked_command).to receive(:system).with(%(gem list --silent -i bundler)) do
+            expect(ENV["GEM_HOME"]).to eq(gem_home)
+            true
+          end
+          allow(locked_command).to receive(:system).with(%(gem list --silent -i bundler -v "4.0.5")) do
+            expect(ENV["GEM_HOME"]).to eq(gem_home)
+            true
+          end
           expect(Kernel).to receive(:system) do
             expect(ENV["BUNDLE_GEMFILE"]).to eq(gemfile)
             expect(ENV["BUNDLER_VERSION"]).to eq("4.0.5")
@@ -139,6 +147,9 @@ RSpec.describe Appraisal::Command do
           end
 
           locked_command.run
+
+          expect(locked_command).to have_received(:system).with(%(gem list --silent -i bundler))
+          expect(locked_command).to have_received(:system).with(%(gem list --silent -i bundler -v "4.0.5"))
         end
       end
     end

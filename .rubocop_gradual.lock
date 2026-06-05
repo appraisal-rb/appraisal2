@@ -8,14 +8,14 @@
     [235, 16, 37, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 4245153878],
     [247, 16, 34, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 3462565144]
   ],
-  "spec/appraisal/command_spec.rb:1464941113": [
-    [81, 11, 35, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 2170279131],
-    [82, 11, 38, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 536362671],
-    [83, 11, 26, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 1290931372],
-    [84, 11, 32, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 396917143],
-    [98, 11, 41, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 2675341381],
-    [99, 11, 33, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 238990725],
-    [100, 11, 45, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 845493701],
-    [101, 11, 49, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 1760233061]
+  "spec/appraisal/command_spec.rb:1201660009": [
+    [83, 11, 35, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 2170279131],
+    [84, 11, 38, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 536362671],
+    [85, 11, 26, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 1290931372],
+    [86, 11, 32, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 396917143],
+    [100, 11, 41, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 2675341381],
+    [101, 11, 33, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 238990725],
+    [102, 11, 45, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 845493701],
+    [103, 11, 49, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 1760233061]
   ]
 }
