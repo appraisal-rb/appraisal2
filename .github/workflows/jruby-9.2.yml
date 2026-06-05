@@ -40,8 +40,8 @@ jobs:
           - ruby: "jruby-9.2"
             appraisal: "ruby-2-5"
             exec_cmd: "kettle-test"
-            rubygems: default
-            bundler: default
+            rubygems: 3.3.27
+            bundler: 2.3.27
 
     steps:
       - name: Checkout

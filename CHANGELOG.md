@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Fixed JRuby 9.2 CI bootstrapping by installing RubyGems 3.3.27 and Bundler
+  2.3.27 instead of using the default JRuby toolchain versions.
 - Fixed CI failures by preserving Bundler-generated `bin/bundle` test binstubs
   instead of replacing them with custom bundle wrappers.
 - Fixed Ruby 3.0 and 3.1 appraisal stdlib gemfiles so they do not load
