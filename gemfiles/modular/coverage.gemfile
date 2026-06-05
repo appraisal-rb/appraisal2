@@ -2,23 +2,13 @@
 
 # We run code coverage on the latest version of Ruby only.
 
-if ENV.fetch("KETTLE_RB_DEV", "false").casecmp?("true")
-  gem "kettle-dev", :path => "../../../kettle-dev"
-  gem "kettle-test", :path => "../../../kettle-test"
-else
-  # Otherwise rely on gemspec...
-  # gem "kettle-dev"
-  # gem "kettle-test"
-end
-
-# Coverage
-platform :mri do
-  if ENV.fetch("KETTLE_RB_DEV", "false").casecmp?("true")
-    gem "kettle-soup-cover", :path => "../../../kettle-soup-cover"
-  else
-    gem "kettle-soup-cover", "~> 1.1", ">= 1.1.1", :require => false
+# Set KETTLE_RB_DEV=true for local development with path-based dependencies.
+# When false (default / CI), remote released gems are used.
+if ENV.fetch("KETTLE_RB_DEV", "false").casecmp("false").zero?
+  # Coverage (remote/released)
+  platform :mri do
+    gem "kettle-soup-cover", "~> 2.0", ">= 2.0.1", require: false
   end
+else
+  eval_gemfile "coverage_local.gemfile"
 end
-
-# Banish the annoying warning from simplecov-rcov
-gem "cgi", "~> 0.5.1"

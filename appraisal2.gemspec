@@ -1,20 +1,26 @@
 # frozen_string_literal: true
 
-# NOTE: Disable this RuboCop rule to use RUBY_VERSION to determine how to get the gem's version
-# rubocop:disable Gemspec/RubyVersionGlobalsUsage
+# kettle-jem:freeze
+# To retain chunks of comments & code during kettle-jem templating:
+# Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).
+# kettle-jem will then preserve content between those markers across template runs.
+# kettle-jem:unfreeze
+
 gem_version =
-  if RUBY_VERSION >= "3.1"
-    # Loading version into an anonymous module allows version.rb to get code coverage from SimpleCov!
+  if Gem.ruby_version >= Gem::Version.new("3.1")
+    # Loading Version into an anonymous module allows version.rb to get code coverage from SimpleCov!
     # See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-2630782358
-    Module.new.tap { |mod| Kernel.load("lib/appraisal/version.rb", mod) }::Appraisal::VERSION
+    # See: https://github.com/panorama-ed/memo_wise/pull/397
+    Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/appraisal2/version.rb", mod) }::Appraisal2::Version::VERSION
   else
-    # TODO: Remove this hack once support for Ruby 3.0 and below is removed
-    Kernel.load("lib/appraisal/version.rb")
-    g_ver = Appraisal::VERSION
-    Appraisal.send(:remove_const, :VERSION)
-    g_ver
+    # NOTE: Use __FILE__ or __dir__ until removal of Ruby 1.x support
+    # __dir__ introduced in Ruby 1.9.1
+    # lib = File.expand_path("../lib", __FILE__)
+    lib = File.expand_path("lib", __dir__)
+    $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+    require "appraisal2/version"
+    Appraisal2::Version::VERSION
   end
-# rubocop:enable Gemspec/RubyVersionGlobalsUsage
 
 Gem::Specification.new do |spec|
   spec.name = "appraisal2"
@@ -22,9 +28,15 @@ Gem::Specification.new do |spec|
   spec.authors = ["Peter Boling", "Joe Ferris", "Prem Sichanugrist"]
   spec.email = ["galtzo@floss.com"]
 
+  spec.summary = "🔍️ Find out what your Ruby gems are worth"
+  spec.description = '🔍️ Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals."'
+  spec.homepage = "https://github.com/pboling/appraisal2"
+  spec.licenses = ["MIT"]
+  spec.required_ruby_version = ">= 1.8.7"
+
   # Linux distros often package gems and securely certify them independent
   #   of the official RubyGem certification process. Allowed via ENV["SKIP_GEM_SIGNING"]
-  # Ref: https://gitlab.com/oauth-xx/version_gem/-/issues/3
+  # Ref: https://gitlab.com/ruby-oauth/version_gem/-/issues/3
   # Hence, only enable signing if `SKIP_GEM_SIGNING` is not set in ENV.
   # See CONTRIBUTING.md
   unless ENV.include?("SKIP_GEM_SIGNING")
@@ -40,109 +52,113 @@ Gem::Specification.new do |spec|
     end
   end
 
-  spec.summary = "Find out what your Ruby gems are worth"
-  spec.description = 'Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals."'
-  gh_mirror = "https://github.com/appraisal-rb/#{spec.name}"
-  gl_homepage = "https://gitlab.com/appraisal-rb/#{spec.name}"
-  spec.homepage = gl_homepage
-  spec.license = "MIT"
-  spec.required_ruby_version = ">= 1.8.7"
-
-  spec.metadata["homepage_uri"] = "https://#{spec.name}.galtzo.com/"
-  spec.metadata["source_code_uri"] = "#{gh_mirror}/releases/tag/v#{spec.version}"
-  spec.metadata["changelog_uri"] = "#{gl_homepage}/-/blob/v#{spec.version}/CHANGELOG.md"
-  spec.metadata["bug_tracker_uri"] = "#{gl_homepage}/-/issues"
+  spec.metadata["homepage_uri"] = "https://appraisal2.galtzo.com"
+  spec.metadata["source_code_uri"] = "#{spec.homepage}/tree/v#{spec.version}"
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/v#{spec.version}/CHANGELOG.md"
+  spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
   spec.metadata["documentation_uri"] = "https://www.rubydoc.info/gems/#{spec.name}/#{spec.version}"
-  spec.metadata["wiki_uri"] = "#{gl_homepage}/-/wiki"
   spec.metadata["funding_uri"] = "https://github.com/sponsors/pboling"
+  spec.metadata["wiki_uri"] = "#{spec.homepage}/wiki"
   spec.metadata["news_uri"] = "https://www.railsbling.com/tags/#{spec.name}"
   spec.metadata["discord_uri"] = "https://discord.gg/3qme4XHNKN"
   spec.metadata["rubygems_mfa_required"] = "true"
 
+  enumerate_package_files = lambda do |root|
+    Dir.glob(File.join(root, "**", "*"), File::FNM_DOTMATCH).select do |path|
+      File.file?(path) && ![".", ".."].include?(File.basename(path))
+    end
+  end
+
   # Specify which files are part of the released package.
-  spec.files = Dir[
-    # Splats (alphabetical)
-    "lib/**/*.rb",
+  spec.files = [
+    # Code / tasks / data (NOTE: exe/ is specified via spec.bindir and spec.executables below)
+    *enumerate_package_files.call("lib"),
+    # Executables and executable support scripts
+    *enumerate_package_files.call("exe"),
+    # Public certs for gem signing
+    *enumerate_package_files.call("certs"),
+    # Signatures
+    *enumerate_package_files.call("sig")
   ]
+
   # Automatically included with gem package, no need to list again in files.
   spec.extra_rdoc_files = Dir[
     # Files (alphabetical)
     "CHANGELOG.md",
+    "CITATION.cff",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
-    "LICENSE.txt",
+    "FUNDING.md",
+    "LICENSE.md",
     "README.md",
-    "SECURITY.md",
+    "RUBOCOP.md",
+    "SECURITY.md"
   ]
   spec.rdoc_options += [
     "--title",
     "#{spec.name} - #{spec.summary}",
     "--main",
-    "CHANGELOG.md",
-    "CODE_OF_CONDUCT.md",
-    "CONTRIBUTING.md",
-    "LICENSE.txt",
     "README.md",
-    "SECURITY.md",
+    "--exclude",
+    "^sig/",
     "--line-numbers",
     "--inline-source",
-    "--quiet",
+    "--quiet"
   ]
-  spec.require_paths = ["lib"]
-  # bin/ is scripts, in any available language, for development of this specific gem
-  # exe/ is for ruby scripts that will ship with this gem to be used by other tools
   spec.bindir = "exe"
-  # files listed are relative paths from bindir above.
+  # Listed files are the relative paths from bindir above.
   spec.executables = [
     "appraisal",
   ]
 
+# kettle-jem:freeze
+# To retain chunks of comments & code during kettle-jem templating:
+# Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).
+# kettle-jem will then preserve content between those markers across template runs.
+# kettle-jem:unfreeze
+
+  spec.require_paths = ["lib"]
+
+  # Utilities
   spec.add_dependency("bundler", ">= 1.17.3")  # Last version supporting Ruby 1.8.7
   spec.add_dependency("rake", ">= 10")         # Last version supporting Ruby 1.8.7
   spec.add_dependency("thor", ">= 0.14")       # Last version supporting Ruby 1.8.7 && Rails 3
+  spec.add_dependency("version_gem", "~> 1.0", ">= 1.0.10")              # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
-  #       visibility and discoverability on RubyGems.org.
+  #       visibility and discoverability.
   #       However, development dependencies in gemspec will install on
   #       all versions of Ruby that will run in CI.
-  #       This gem, and its runtime dependencies, will install on Ruby down to 1.8.7.
-  #       This gem, and its development dependencies, will install on Ruby down to 2.3.x.
-  #       This is because in CI easy installation of Ruby, via setup-ruby, is for >= 2.3.
+  #       This gem, and its gemspec runtime dependencies, will install on Ruby down to 1.8.7.
+  #       This gem, and its gemspec development dependencies, will install on Ruby down to 2.4.
   #       Thus, dev dependencies in gemspec must have
   #
-  #       required_ruby_version ">= 2.3" (or lower)
+  #       required_ruby_version ">= 2.4" (or lower)
   #
   #       Development dependencies that require strictly newer Ruby versions should be in a "gemfile",
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 1.2", ">= 1.2.4")              # Ruby >= 2.3.0
+  spec.add_development_dependency("kettle-dev", "~> 2.0", ">= 2.0.8")      # ruby >= 2.4
 
   # Security
-  spec.add_development_dependency("bundler-audit", "~> 0.9.2")                      # ruby >= 2.0.0
+  spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
 
   # Tasks
-  spec.add_development_dependency("rake", "~> 13.0")                                # ruby >= 2.2.0
 
   # Debugging
   spec.add_development_dependency("require_bench", "~> 1.0", ">= 1.0.4")            # ruby >= 2.2.0
 
   # Testing
-  spec.add_development_dependency("activesupport", ">= 3.2.21")
-  spec.add_development_dependency("kettle-test", "~> 1.0", ">= 1.0.10")              # Ruby >= 2.3.0
-  spec.add_development_dependency("rspec", "~> 3.13")                               # Ruby >= 0
-  spec.add_development_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")  # Ruby >= 1.8.7
-  spec.add_development_dependency("rspec_junit_formatter", "~> 0.6")                # Ruby >= 2.3.0, for GitLab Test Result Parsing
-  spec.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.20")       # Ruby >= 1.8.7
-  spec.add_development_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.4")        # Ruby >= 1.8.7
-  spec.add_development_dependency("silent_stream", "~> 1.0", ">= 1.0.12")           # Ruby >= 2.3.0
+  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.3")             # ruby >= 2.4
+  spec.add_development_dependency("turbo_tests2", "~> 3.1", ">= 3.1.1")            # ruby >= 2.4.0, default kettle-test runner
 
-  # Release Tasks
+  # Releasing
   spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
-  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.3")          # Ruby >= 2.2.0
+  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.3")          # ruby >= 2.2.0
 
   # Git integration (optional)
-  # The 'git' gem is optional; toml-merge falls back to shelling out to `git` if it is not present.
+  # The 'git' gem is optional; appraisal2 falls back to shelling out to `git` if it is not present.
   # The current release of the git gem depends on activesupport, which makes it too heavy to depend on directly
   # spec.add_dependency("git", ">= 1.19.1")                               # ruby >= 2.3
 
@@ -151,7 +167,7 @@ Gem::Specification.new do |spec|
   # This means we have no choice but to use the erb that shipped with Ruby 2.3
   # /opt/hostedtoolcache/Ruby/2.3.8/x64/lib/ruby/gems/2.3.0/gems/erb-2.2.2/lib/erb.rb:670:in `prepare_trim_mode': undefined method `match?' for "-":String (NoMethodError)
   # spec.add_development_dependency("erb", ">= 2.2")                                  # ruby >= 2.3.0, not SemVer, old rubies get dropped in a patch.
-  spec.add_development_dependency("gitmoji-regex", "~> 1.0", ">= 1.0.3")            # ruby >= 2.3.0
+  spec.add_development_dependency("gitmoji-regex", "~> 2.0", ">= 2.0.1")            # ruby >= 2.4
 
   # HTTP recording for deterministic specs
   # In Ruby 3.5 (HEAD) the CGI library has been pared down, so we also need to depend on gem "cgi" for ruby@head
@@ -159,4 +175,11 @@ Gem::Specification.new do |spec|
   # See: https://github.com/vcr/vcr/issues/1057
   # spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
   # spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
+  spec.add_development_dependency("activesupport", ">= 3.2.21")
+  spec.add_development_dependency("rspec", "~> 3.13")                               # Ruby >= 0
+  spec.add_development_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")  # Ruby >= 1.8.7
+  spec.add_development_dependency("rspec_junit_formatter", "~> 0.6")                # Ruby >= 2.3.0, for GitLab Test Result Parsing
+  spec.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.20")       # Ruby >= 1.8.7
+  spec.add_development_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.4")        # Ruby >= 1.8.7
+  spec.add_development_dependency("silent_stream", "~> 1.0", ">= 1.0.12")           # Ruby >= 2.3.0
 end

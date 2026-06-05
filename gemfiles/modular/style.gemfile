@@ -1,24 +1,27 @@
 # frozen_string_literal: true
 
-gem "reek", "~> 6.5"
+# To retain during kettle-jem templating:
+#     kettle-jem:freeze
+#     # ... your code
+#     kettle-jem:unfreeze
+#
+
+# Style tasks run on the latest Ruby; RuboCop-LTS selects the compatibility
+# rules for the configured Ruby floor independently from task dependency floors.
+
+gem "reek", "~> 6.5", ">= 6.5.0"
 
 platform :mri do
-  # We run rubocop on the latest version of Ruby,
-  #   but in support of the oldest supported version of Ruby
+  gem "rubocop-on-rbs", "~> 2.0", ">= 2.0.0"        # ruby >= 3.2.0
   # gem "rubocop", "~> 1.73", ">= 1.73.2" # constrained by standard
   gem "rubocop-packaging", "~> 0.6", ">= 0.6.0"
-  gem "standard", ">= 1.50"
-  gem "rubocop-on-rbs", "~> 1.8" # ruby >= 3.1.0
+  gem "standard", "~> 1.54", ">= 1.54.0"
 
-  if ENV.fetch("RUBOCOP_LTS_LOCAL", "false").casecmp("true").zero?
-    home = ENV["HOME"] || Dir.home
-    gem "rubocop-lts", :path => "#{home}/src/rubocop-lts/rubocop-lts"
-    gem "rubocop-lts-rspec", :path => "#{home}/src/rubocop-lts/rubocop-lts-rspec"
-    gem "rubocop-ruby1_8", :path => "#{home}/src/rubocop-lts/rubocop-ruby1_8"
-    gem "standard-rubocop-lts", :path => "#{home}/src/rubocop-lts/standard-rubocop-lts"
+  if ENV.fetch("RUBOCOP_LTS_LOCAL", "false").casecmp("false").zero?
+    gem "rubocop-lts", "~> 0.3", ">= 0.3.0"
+    gem "rubocop-lts-rspec", "~> 1.0", ">= 1.0.3"
+    gem "rubocop-ruby1_8", "~> 2.0", ">= 2.0.2"
   else
-    gem "rubocop-lts", "~> 0.1", ">= 0.1.1" # Style and Linting support for Ruby >= 1.8
-    gem "rubocop-rspec", "~> 3.6"
-    gem "rubocop-ruby1_8"
+    eval_gemfile("style_local.gemfile")
   end
 end

@@ -14,6 +14,8 @@
 
 variables:
   BUNDLE_INSTALL_FLAGS: "--quiet --jobs=$(nproc) --retry=3"
+  BUNDLE_FROZEN: "false" # No lockfile!
+  BUNDLE_GEMFILE: Appraisal.root.gemfile
   K_SOUP_COV_DEBUG: true
   K_SOUP_COV_DO: false
   K_SOUP_COV_HARD: true
@@ -75,6 +77,8 @@ ruby-ruby3_1:
   variables:
     RUBYGEMS_VERSION: "3.6.9"
     BUNDLE_GEMFILE: gemfiles/ruby_3_1.gemfile
+    APPRAISAL: ruby-3-1
+    K_SOUP_COV_DO: false
   <<: *test_definition-legacy
   parallel:
     matrix:
@@ -84,6 +88,8 @@ ruby-ruby3_0:
   variables:
     RUBYGEMS_VERSION: "3.5.23"
     BUNDLE_GEMFILE: gemfiles/ruby_3_0.gemfile
+    APPRAISAL: ruby-3-0
+    K_SOUP_COV_DO: false
   <<: *test_definition-legacy
   parallel:
     matrix:
@@ -93,6 +99,8 @@ ruby-ruby2_7:
   variables:
     RUBYGEMS_VERSION: "3.4.22"
     BUNDLE_GEMFILE: gemfiles/ruby_2_7.gemfile
+    APPRAISAL: ruby-2-7
+    K_SOUP_COV_DO: false
   <<: *test_definition-legacy
   parallel:
     matrix:

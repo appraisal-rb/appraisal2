@@ -1,2 +1,3 @@
-eval_gemfile "../../logger/r2.3/v1.5.gemfile"
-eval_gemfile "../../uri/r2.4/v0.gemfile"
+eval_gemfile "../../erb/r2.6/v2.2.gemfile"
+eval_gemfile "../../mutex_m/r2.4/v0.1.gemfile"
+eval_gemfile "../../stringio/r2.4/v0.0.2.gemfile"

@@ -6,8 +6,6 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
-# CodeStream ignored files
-/codestream.xml
 
 # Zencoder local files
 /zencoder/chats
@@ -40,8 +38,7 @@
 # /misc.xml
 
 # Commit: VCS local mappings can be regenerated (optional). Comment to share settings.
-/vcs.xml
+# /vcs.xml
 
 # Commit: Dictionary files (local spellcheck customizations)
 # /dictionaries/
-

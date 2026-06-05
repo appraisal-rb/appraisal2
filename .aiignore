@@ -7,9 +7,13 @@
 *.tmp
 
 # or folders
+.devcontainer/
+.qlty/
+.yardoc/
 dist/
 build/
 out/
-.yardoc/
-.bundle/
+coverage/
+docs/
 pkg/
+results/

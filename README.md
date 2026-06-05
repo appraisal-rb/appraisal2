@@ -1,32 +1,25 @@
-[![Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-i]][🖼️galtzo-discord] [![Appraisal2 Logo by Aboling0, CC BY-SA 4.0][🖼️appraisal2-i]][🖼️appraisal2] [![ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5][🖼️ruby-lang-i]][🖼️ruby-lang]
-
-[🖼️galtzo-i]: https://logos.galtzo.com/assets/images/galtzo-floss/avatar-192px.svg
-[🖼️galtzo-discord]: https://discord.gg/3qme4XHNKN
-[🖼️appraisal2-i]: https://logos.galtzo.com/assets/images/appraisal-rb/appraisal2/avatar-192px.svg
-[🖼️appraisal2]: https://github.com/appraisal-rb/appraisal2
-[🖼️ruby-lang-i]: https://logos.galtzo.com/assets/images/ruby-lang/avatar-192px.svg
-[🖼️ruby-lang]: https://github.com/ruby-lang
+<a href="https://github.com/pboling"><img alt="pboling Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/pboling/avatar-128px.svg" width="14%" align="right"/></a>
 
 # 🔍️ Appraisal2
 
-> Find out what my gems are worth!
+[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
 
-- You, possibly
-
-[![Version][👽versioni]][👽version] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![CodeCov Test Coverage][🔑codecovi♻️]][🔑codecov] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Legacy][🚎4-r3.4-wfi]][🚎4-r3.4-wf] [![CI Legacy][🚎4-r3.3-wfi]][🚎4-r3.3-wf] [![CI Legacy][🚎4-r3.2-wfi]][🚎4-r3.2-wf] [![CI Legacy][🚎4-r3.1-wfi]][🚎4-r3.1-wf] [![CI Legacy][🚎4-r3.0-wfi]][🚎4-r3.0-wf] [![CI Legacy][🚎4-r2.7-wfi]][🚎4-r2.7-wf] [![CI Legacy][🚎4-r2.6-wfi]][🚎4-r2.6-wf] [![CI Legacy][🚎4-r2.5-wfi]][🚎4-r2.5-wf] [![CI Legacy][🚎4-r2.4-wfi]][🚎4-r2.4-wf] [![CI Legacy][🚎4-r2.3-wfi]][🚎4-r2.3-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf]
+`if ci_badges.map(&:color).detect { it != "green"}` ☝️ [let me know][✉️discord-invite], as I may have missed the [discord notification][✉️discord-invite].
 
 ---
 
-[![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi] [![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
+`if ci_badges.map(&:color).all? { it == "green"}` 👇️ send money so I can do more of this. FLOSS maintenance is now my full-time job.
+
+[![OpenCollective Backers][🖇osc-backers-i]][🖇osc-backers] [![OpenCollective Sponsors][🖇osc-sponsors-i]][🖇osc-sponsors] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Donate on PayPal][🖇paypal-img]][🖇paypal] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate at ko-fi.com][🖇kofi-img]][🖇kofi]
 
 <details>
-    <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
+ <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
 
 I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-takeover-of-rubygems-my-thoughts-5hlo).
 
 </details>
 
-## 🌻 Synopsis
+## 🌻 Synopsis <a href="https://discord.gg/3qme4XHNKN"><img alt="Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px.svg" width="8%" align="right"/></a> <a href="https://ruby-toolbox.com"><img alt="ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5" src="https://logos.galtzo.com/assets/images/ruby-lang/avatar-128px.svg" width="8%" align="right"/></a>
 
 Appraisal2 integrates with bundler and rake to test your library against
 different versions of dependencies in repeatable scenarios called "appraisals."
@@ -54,258 +47,90 @@ Appraisal2 adds:
 
 ## 💡 Info you can shake a stick at
 
-| Tokens to Remember      | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace]                                                                                                                                                                                                                                                                                                                                                                          |
-|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Works with JRuby        | [![JRuby 9.4 Compat][💎jruby-9.4i]][🚎10-j-wf] [![JRuby 10.0 Compat][💎jruby-c-i]][🚎11-c-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]                                                                                                                                                                                                                                                                                                                      |
-| Works with Truffle Ruby | ![Truffle Ruby 22.3 Compat][💎truby-22.3i] ![Truffle Ruby 23.1 Compat][💎truby-23.1i] <br/> [![Truffle Ruby 24.2 Compat][💎truby-24.2i]][🚎9-t-wf] [![Truffle Ruby 25.0 Compat][💎truby-25.0i]][🚎9-t-wf] [![Truffle Ruby 33.0 Compat][💎truby-c-i]][🚎11-c-wf]                                                                                                                                                                                                     |
-| Works with MRI Ruby 4   | [![Ruby 4.0 Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]                                                                                                                                                                                                                                                                                                                                                                          |
-| Works with MRI Ruby 3   | [![Ruby 3.0 Compat][💎ruby-3.0i]][🚎4-r3.0-wf] [![Ruby 3.1 Compat][💎ruby-3.1i]][🚎4-r3.1-wf] [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎4-r3.2-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎4-r3.3-wf] [![Ruby 3.4 Compat][💎ruby-3.4i]][🚎4-r3.4-wf]                                                                                                                                                                                                                          |
-| Works with MRI Ruby 2   | ![Ruby 2.0 Compat][💎ruby-2.0i] ![Ruby 2.1 Compat][💎ruby-2.1i] ![Ruby 2.2 Compat][💎ruby-2.2i] <br> [![Ruby 2.3 Compat][💎ruby-2.3i]][🚎1-r2.3-wf] [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎1-r2.4-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎1-r2.5-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎1-r2.6-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎1-r2.7-wf]                                                                                                                     |
-| Works with MRI Ruby 1   | ![Ruby 1.8 Compat][💎ruby-1.8i] ![Ruby 1.9 Compat][💎ruby-1.9i]                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Source                  | [![Source on GitLab.com][📜src-gl-img]][📜src-gl] [![Source on CodeBerg.org][📜src-cb-img]][📜src-cb] [![Source on Github.com][📜src-gh-img]][📜src-gh] [![The best SHA: dQw4w9WgXcQ!][🧮kloc-img]][🧮kloc]                                                                                                                                                                                                                                                         |
-| Documentation           | [![Current release on RubyDoc.info][📜docs-cr-rd-img]][🚎yard-current] [![YARD on Galtzo.com][📜docs-head-rd-img]][🚎yard-head] [![BDFL Blog][🚂bdfl-blog-img]][🚂bdfl-blog] [![Wiki][📜wiki-img]][📜wiki]                                                                                                                                                                                                                                                          |
-| Compliance              | [![License: MIT][📄license-img]][📄license-ref] [![📄ilo-declaration-img]][📄ilo-declaration] [![Security Policy][🔐security-img]][🔐security] [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver]                                                                                                                                                                                                                    |
-| Style                   | [![Enforced Code Style Linter][💎rlts-img]][💎rlts] [![Keep-A-Changelog 1.0.0][📗keep-changelog-img]][📗keep-changelog] [![Gitmoji Commits][📌gitmoji-img]][📌gitmoji]                                                                                                                                                                                                                                                                                              |
-| Support                 | [![Join Me on Daily.dev's RubyFriends][✉️ruby-friends-img]][✉️ruby-friends] [![Live Chat on Discord][✉️discord-invite-img-ftb]][🖼️galtzo-discord] [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork] [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]                                                                                                                                      |
-| Enterprise Support      | [![Get help from me on Tidelift][🏙️entsup-tidelift-img]][🏙️entsup-tidelift]<br/>💡Subscribe for support guarantees covering _all_ FLOSS dependencies!<br/>💡Tidelift is part of [Sonar][🏙️entsup-tidelift-sonar]!<br/>💡Tidelift pays maintainers to maintain the software you depend on!<br/>📊`@`Pointy Haired Boss: An [enterprise support][🏙️entsup-tidelift] subscription is "[never gonna let you down][🧮kloc]", and *supports* open source maintainers! |
-| Comrade BDFL 🎖️        | [![Follow Me on LinkedIn][💖🖇linkedin-img]][💖🖇linkedin] [![Follow Me on Ruby.Social][💖🐘ruby-mast-img]][💖🐘ruby-mast] [![Follow Me on Bluesky][💖🦋bluesky-img]][💖🦋bluesky] [![Contact BDFL][🚂bdfl-contact-img]][🚂bdfl-contact] [![My technical writing][💖💁🏼‍♂️devto-img]][💖💁🏼‍♂️devto]                                                                                                                                                              |
-| `...` 💖                | [![Find Me on WellFound:][💖✌️wellfound-img]][💖✌️wellfound] [![Find Me on CrunchBase][💖💲crunchbase-img]][💖💲crunchbase] [![My LinkTree][💖🌳linktree-img]][💖🌳linktree] [![More About Me][💖💁🏼‍♂️aboutme-img]][💖💁🏼‍♂️aboutme] [🧊][💖🧊berg] [🐙][💖🐙hub]  [🛖][💖🛖hut] [🧪][💖🧪lab]                                                                                                                                                                   |
+| Tokens to Remember | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace] |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Works with JRuby | [![JRuby 9.2 Compat][💎jruby-9.2i]][🚎jruby-9.2-wf] [![JRuby 9.3 Compat][💎jruby-9.3i]][🚎jruby-9.3-wf] <br/> [![JRuby 9.4 Compat][💎jruby-9.4i]][🚎jruby-9.4-wf] [![JRuby current Compat][💎jruby-c-i]][🚎10-j-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]|
+| Works with Truffle Ruby | [![Truffle Ruby 22.3 Compat][💎truby-22.3i]][🚎truby-22.3-wf] [![Truffle Ruby 23.0 Compat][💎truby-23.0i]][🚎truby-23.0-wf] [![Truffle Ruby 23.1 Compat][💎truby-23.1i]][🚎truby-23.1-wf] <br/> [![Truffle Ruby 24.2 Compat][💎truby-24.2i]][🚎truby-24.2-wf] [![Truffle Ruby 25.0 Compat][💎truby-25.0i]][🚎truby-25.0-wf] [![Truffle Ruby current Compat][💎truby-c-i]][🚎9-t-wf]|
+| Works with MRI Ruby 4 | [![Ruby 4.0 Compat][💎ruby-4.0i]][🚎11-c-wf] [![Ruby current Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]|
+| Works with MRI Ruby 3 | [![Ruby 3.0 Compat][💎ruby-3.0i]][🚎ruby-3.0-wf] [![Ruby 3.1 Compat][💎ruby-3.1i]][🚎ruby-3.1-wf] [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎ruby-3.2-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎ruby-3.3-wf] [![Ruby 3.4 Compat][💎ruby-3.4i]][🚎ruby-3.4-wf]|
+| Works with MRI Ruby 2 | ![Ruby 2.0 Compat][💎ruby-2.0i] ![Ruby 2.1 Compat][💎ruby-2.1i] ![Ruby 2.2 Compat][💎ruby-2.2i] <br/> [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎ruby-2.4-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎ruby-2.5-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎ruby-2.6-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎ruby-2.7-wf]|
+| Works with MRI Ruby 1 | ![Ruby 1.9 Compat][💎ruby-1.9i]|
+| Support & Community | [![Join Me on Daily.dev's RubyFriends][✉️ruby-friends-img]][✉️ruby-friends] [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork] [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor] |
+| Source | [![Source on GitLab.com][📜src-gl-img]][📜src-gl] [![Source on CodeBerg.org][📜src-cb-img]][📜src-cb] [![Source on Github.com][📜src-gh-img]][📜src-gh] [![The best SHA: dQw4w9WgXcQ!][🧮kloc-img]][🧮kloc] |
+| Documentation | [![Current release on RubyDoc.info][📜docs-cr-rd-img]][🚎yard-current] [![YARD on Galtzo.com][📜docs-head-rd-img]][🚎yard-head] [![Maintainer Blog][🚂maint-blog-img]][🚂maint-blog] [![GitLab Wiki][📜gl-wiki-img]][📜gl-wiki] [![GitHub Wiki][📜gh-wiki-img]][📜gh-wiki] |
+| Compliance | [![License: MIT][📄license-img]][📄license] [![Apache license compatibility: Category A][📄license-compat-img]][📄license-compat] [![📄ilo-declaration-img]][📄ilo-declaration] [![Security Policy][🔐security-img]][🔐security] [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver] |
+| Style | [![Enforced Code Style Linter][💎rlts-img]][💎rlts] [![Keep-A-Changelog 1.0.0][📗keep-changelog-img]][📗keep-changelog] [![Gitmoji Commits][📌gitmoji-img]][📌gitmoji] [![Compatibility appraised by: appraisal2][💎appraisal2-img]][💎appraisal2] |
+| Maintainer 🎖️ | [![Follow Me on LinkedIn][💖🖇linkedin-img]][💖🖇linkedin] [![Follow Me on Ruby.Social][💖🐘ruby-mast-img]][💖🐘ruby-mast] [![Follow Me on Bluesky][💖🦋bluesky-img]][💖🦋bluesky] [![Contact Maintainer][🚂maint-contact-img]][🚂maint-contact] [![My technical writing][💖💁🏼‍♂️devto-img]][💖💁🏼‍♂️devto] |
+| `...` 💖 | [![Find Me on WellFound:][💖✌️wellfound-img]][💖✌️wellfound] [![Find Me on CrunchBase][💖💲crunchbase-img]][💖💲crunchbase] [![My LinkTree][💖🌳linktree-img]][💖🌳linktree] [![More About Me][💖💁🏼‍♂️aboutme-img]][💖💁🏼‍♂️aboutme] [🧊][💖🧊berg] [🐙][💖🐙hub] [🛖][💖🛖hut] [🧪][💖🧪lab] |
+
+### Compatibility
+
+Compatible with MRI Ruby 1.8.7+, and concordant releases of JRuby, and TruffleRuby.
+CI workflows and Appraisals are generated for MRI Ruby 2.4+.
+This test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml` and
+may be higher than the gem's runtime compatibility floor when legacy Rubies are
+not practical for the current toolchain.
+
+| 🚚 _Amazing_ test matrix was brought to you by | 🔎 appraisal2 🔎 and the color 💚 green 💚 |
+|------------------------------------------------|--------------------------------------------------------|
+| 👟 Check it out! | ✨ [github.com/appraisal-rb/appraisal2][💎appraisal2] ✨ |
+
+### Federated DVCS
+
+<details markdown="1">
+ <summary>Find this repo on federated forges (Coming soon!)</summary>
+
+| Federated [DVCS][💎d-in-dvcs] Repository | Status | Issues | PRs | Wiki | CI | Discussions |
+|-------------------------------------------------|-----------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
+| 🧪 [pboling/appraisal2 on GitLab][📜src-gl] | The Truth | [💚][🤝gl-issues] | [💚][🤝gl-pulls] | [💚][📜gl-wiki] | 🐭 Tiny Matrix | ➖ |
+| 🧊 [pboling/appraisal2 on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate]) | [💚][🤝cb-issues] | [💚][🤝cb-pulls] | ➖ | ⭕️ No Matrix | ➖ |
+| 🐙 [pboling/appraisal2 on GitHub][📜src-gh] | Another Mirror | [💚][🤝gh-issues] | [💚][🤝gh-pulls] | [💚][📜gh-wiki] | 💯 Full Matrix | [💚][gh-discussions] |
+| 🎮️ [Discord Server][✉️discord-invite] | [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] | [Let's][✉️discord-invite] | [talk][✉️discord-invite] | [about][✉️discord-invite] | [this][✉️discord-invite] | [library!][✉️discord-invite] |
+
+</details>
+
+[gh-discussions]: https://github.com/pboling/appraisal2/discussions
+
+### Enterprise Support [![Tidelift](https://tidelift.com/badges/package/rubygems/appraisal2)](https://tidelift.com/subscription/pkg/rubygems-appraisal2?utm_source=rubygems-appraisal2&utm_medium=referral&utm_campaign=readme)
+
+Available as part of the Tidelift Subscription.
+
+<details markdown="1">
+ <summary>Need enterprise-level guarantees?</summary>
+
+The maintainers of this and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source packages you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact packages you use.
+
+[![Get help from me on Tidelift][🏙️entsup-tidelift-img]][🏙️entsup-tidelift]
+
+- 💡Subscribe for support guarantees covering _all_ your FLOSS dependencies
+- 💡Tidelift is part of [Sonar][🏙️entsup-tidelift-sonar]
+- 💡Tidelift pays maintainers to maintain the software you depend on!<br/>📊`@`Pointy Haired Boss: An [enterprise support][🏙️entsup-tidelift] subscription is "[never gonna let you down][🧮kloc]", and *supports* open source maintainers
+
+Alternatively:
+
+- [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite]
+- [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork]
+- [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]
+
+</details>
 
 ## ✨ Installation
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add appraisal2
+```console
+bundle add appraisal2
+```
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install appraisal2
-
-### In a RubyGem library
-
-In your package's `.gemspec`:
-
-    spec.add_development_dependency "appraisal2"
-
-Note that gems must be bundled in the global namespace. Bundling gems to a
-local location or vendoring plugins is not fully supported. If you do not want to
-pollute the global namespace, one alternative is
-[RVM's Gemsets](http://rvm.io/gemsets).
-
-### 🔒 Secure Installation
-
-<details>
-  <summary>For Medium or High Security Installations</summary>
-
-`appraisal2` is cryptographically signed, and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
-[stone_checksums][💎stone_checksums]. Be sure the gem you install hasn’t been tampered with
-by following the instructions below.
-
-Add my public key (if you haven’t already, expires 2045-04-29) as a trusted certificate:
-
 ```console
-gem cert --add <(curl -Ls https://raw.github.com/appraisal-rb/appraisal2/main/certs/pboling.pem)
+gem install appraisal2
 ```
 
-You only need to do that once.  Then proceed to install with:
+## ⚙️ Configuration
 
-```console
-gem install appraisal2 -P MediumSecurity
-```
-
-The `MediumSecurity` trust profile will verify signed gems, but allow the installation of unsigned dependencies.
-
-This is necessary because not all of `appraisal2`’s dependencies are signed, so we cannot use `HighSecurity`.
-
-If you want to up your security game full-time:
-
-```console
-bundle config set --global trust-policy MediumSecurity
-```
-
-NOTE: Be prepared to track down certs for signed gems and add them the same way you added mine.
-
-</details>
-
-## 🔧 Basic Setup
-
-Setting up appraisal2 requires an `Appraisals` file (similar to a `Gemfile`) in
-your project root, named "Appraisals" (note the case), and some slight changes
-to your project's `Rakefile`.
-
-An `Appraisals` file consists of several appraisal definitions. An appraisal
-definition is simply a list of gem dependencies. For example, to test with a
-few versions of Rails:
-
-    appraise "rails-3" do
-      gem "rails", "3.2.14"
-    end
-
-    appraise "rails-4" do
-      gem "rails", "4.0.0"
-    end
-
-The dependencies in your `Appraisals` file are combined with dependencies in
-your `Gemfile`, so you don't need to repeat anything that's the same for each
-appraisal. If something is specified in both the Gemfile and an appraisal, the
-version from the appraisal takes precedence.
-
-### Examples of usage in the wild
-
-Appraisal2 can be setup to achieve many different things, from testing against
-different versions of services, like MySQL, Redis, or Memcached, and their drivers,
-different versions of gems, different platforms, and running different types of validations
-which each require a distinct set of gems.
-It can also help developers to follow the [official recommendation](https://github.com/rubygems/bundler-site/pull/501) (since 2017) of the bundler team,
-to commit the \[main\] `Gemfile.lock` for **both** apps **and** gems. It does this by giving you alternate gemfiles that won't have their `gemfiles/*.gemfile.lock` committed, so you can simply commit the main one without breaking CI.
-
-Having so many different use cases means it can be helpful to others to see how you have done your implementation. If you are willing to spend the time documenting, please send a PR to update this table with another Appraisal2-using project, linking to the specific workflows people can check to see how it is done!
-
-| # | gem                                                                           | locked / unlocked deps                                   | analysis / services                                                                                                                                                                                                                                                                            | SemVer / HEAD deps                                     | Rubies                                                                                                                                                                                                                  | os                                                           |
-|---|-------------------------------------------------------------------------------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|
-| 1 | [omniauth-identity][1-gh]<br>[![Star][1-⭐️i]][1-gh]<br>[![Rank][1-🔢i]][1-🧰] | [![🔒️][1-🔒️i]][1-🔒️]<br>[![un🔒️][1-un🔒️i]][1-un🔒️] | [![Style][1-as⚙️i]][1-as⚙️]<br>[![Coverage][1-ac⚙️i]][1-ac⚙️]<br>[![Svcs][1-sc⚙️i]][1-sc⚙️]<br>[![L-Svcs][1-sl⚙️i]][1-sl⚙️]<br>[![S-Svcs][1-ss⚙️i]][1-ss⚙️]<br>[![U-Svcs][1-su⚙️i]][1-su⚙️]<br>[![A-Svcs][1-sa⚙️i]][1-sa⚙️]<br>[![J-Svcs][1-sj⚙️i]][1-sj⚙️]<br>[![AJ-Svcs][1-saj⚙️i]][1-saj⚙️] | [![Current][1-⏰i]][1-⏰]<br>[![Deps@HEAD][1-👟i]][1-👟] | [![Supported][1-👴i]][1-👴]<br>[![Unsupported][1-u👴i]][1-u👴]<br>[![Legacy][1-l👴i]][1-l👴]<br>[![Ancient][1-a👴i]][1-a👴]<br>[![JRuby][1-ji]][1-j]<br>[![JRuby Ancient][1-ja👴i]][1-ja👴]<br>[![Head][1-🗣️i]][1-🗣️] | ❌                                                            |
-| 2 | [rspec-stubbed_env][2-gh]<br>[![Star][2-⭐️i]][2-gh]<br>[![Rank][2-🔢i]][2-🧰] | [![🔒️][2-🔒️i]][2-🔒️]<br>[![un🔒️][2-un🔒️i]][2-un🔒️] | [![Style][2-as⚙️i]][2-as⚙️]<br>[![Coverage][2-ac⚙️i]][2-ac⚙️]                                                                                                                                                                                                                                  | [![Current][2-⏰i]][2-⏰]                                | [![Supported][2-👴i]][2-👴]<br>[![Unsupported][2-u👴i]][2-u👴]<br>[![Legacy][2-l👴i]][2-l👴]<br>[![Ancient][2-a👴i]][2-a👴]<br>[![JRuby][2-ji]][2-j]<br>[![Truffle][2-ti]][2-t]<br>[![Head][2-🗣️i]][2-🗣️]             | ❌                                                            |
-| 3 | [silent_stream][3-gh]<br>[![Star][3-⭐️i]][3-gh]<br>[![Rank][3-🔢i]][3-🧰]     | [![🔒️][3-🔒️i]][3-🔒️]<br>[![un🔒️][3-un🔒️i]][3-un🔒️] | [![Style][3-as⚙️i]][3-as⚙️]<br>[![Coverage][3-ac⚙️i]][3-ac⚙️]                                                                                                                                                                                                                                  | [![Current][3-⏰i]][3-⏰]                                | [![Supported][3-👴i]][3-👴]<br>[![Unsupported][3-u👴i]][3-u👴]<br>[![Legacy][3-l👴i]][3-l👴]<br>[![Ancient][3-a👴i]][3-a👴]<br>[![JRuby][3-ji]][3-j]<br>[![Truffle][3-ti]][3-t]<br>[![Head][3-🗣️i]][3-🗣️]             | ❌                                                            |
-| 4 | [oauth2][4-gh]<br>[![Star][4-⭐️i]][4-gh]<br>[![Rank][4-🔢i]][4-🧰]            | [![🔒️][4-🔒️i]][4-🔒️]<br>[![un🔒️][4-un🔒️i]][4-un🔒️] | [![Style][4-as⚙️i]][4-as⚙️]<br>[![Coverage][4-ac⚙️i]][4-ac⚙️] | [![Current][4-⏰i]][4-⏰]<br>[![Deps@HEAD][4-👟i]][4-👟] | [![Supported][4-👴i]][4-👴]<br>[![Unsupported][4-u👴i]][4-u👴]<br>[![Legacy][4-l👴i]][4-l👴]<br>[![Ancient][4-a👴i]][4-a👴]<br>[![JRuby][4-ji]][4-j]<br>[![Head][4-🗣️i]][4-🗣️] | [![Windows][5-win️i]][5-win️]<br>[![MacOS][5-mac️i]][5-mac️] |
-
-[1-gh]: https://github.com/omniauth/omniauth-identity
-[1-🧰]: https://www.ruby-toolbox.com/projects/omniauth-identity
-[1-⭐️i]: https://img.shields.io/github/stars/omniauth/omniauth-identity
-[1-🔢i]: https://img.shields.io/gem/rd/omniauth-identity.svg
-[1-🔒️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/locked_deps.yml
-[1-🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/locked_deps.yml/badge.svg
-[1-un🔒️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/unlocked_deps.yml
-[1-un🔒️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/unlocked_deps.yml/badge.svg
-[1-as⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/style.yml
-[1-as⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/style.yml/badge.svg
-[1-ac⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/coverage.yml
-[1-ac⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/coverage.yml/badge.svg
-[1-sc⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current-svc-adapters.yml
-[1-sc⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current-svc-adapters.yml/badge.svg
-[1-sl⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/legacy-svc-adapters.yml
-[1-sl⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/legacy-svc-adapters.yml/badge.svg
-[1-ss⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/supported-svc-adapters.yml
-[1-ss⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/supported-svc-adapters.yml/badge.svg
-[1-su⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/unsupported-svc-adapters.yml
-[1-su⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/unsupported-svc-adapters.yml/badge.svg
-[1-sa⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/ancient-svc-adapters.yml
-[1-sa⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/ancient-svc-adapters.yml/badge.svg
-[1-sj⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/jruby-svc-adapters.yml
-[1-sj⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/jruby-svc-adapters.yml/badge.svg
-[1-saj⚙️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/jruby-ancient-svc-adapters.yml
-[1-saj⚙️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/jruby-ancient-svc-adapters.yml/badge.svg
-[1-⏰]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current.yml
-[1-⏰i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current.yml/badge.svg
-[1-j]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/jruby.yml
-[1-ji]: https://github.com/omniauth/omniauth-identity/actions/workflows/jruby.yml/badge.svg
-[1-👟]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/current-runtime-heads.yml
-[1-👟i]: https://github.com/omniauth/omniauth-identity/actions/workflows/current-runtime-heads.yml/badge.svg
-[1-👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/supported.yml
-[1-👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/supported.yml/badge.svg
-[1-u👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/unsupported.yml
-[1-u👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/unsupported.yml/badge.svg
-[1-l👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/legacy.yml
-[1-l👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/legacy.yml/badge.svg
-[1-a👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/ancient.yml
-[1-a👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/ancient.yml/badge.svg
-[1-ja👴]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/jruby-ancient.yml
-[1-ja👴i]: https://github.com/omniauth/omniauth-identity/actions/workflows/jruby-ancient.yml/badge.svg
-[1-🗣️]: https://github.com/omniauth/omniauth-identity/blob/main/.github/workflows/heads.yml
-[1-🗣️i]: https://github.com/omniauth/omniauth-identity/actions/workflows/heads.yml/badge.svg
-[1-gh]: https://github.com/omniauth/omniauth-identity
-
-[2-gh]: https://github.com/pboling/rspec-stubbed_env
-[2-🧰]: https://www.ruby-toolbox.com/projects/rspec-stubbed_env
-[2-⭐️i]: https://img.shields.io/github/stars/pboling/rspec-stubbed_env
-[2-🔢i]: https://img.shields.io/gem/rd/rspec-stubbed_env.svg
-[2-🔒️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/deps_locked.yml
-[2-🔒️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/deps_locked.yml/badge.svg
-[2-un🔒️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/deps_unlocked.yml
-[2-un🔒️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/deps_unlocked.yml/badge.svg
-[2-as⚙️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/style.yml
-[2-as⚙️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/style.yml/badge.svg
-[2-ac⚙️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/coverage.yml
-[2-ac⚙️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/coverage.yml/badge.svg
-[2-⏰]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/current.yml
-[2-⏰i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/current.yml/badge.svg
-[2-j]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/jruby.yml
-[2-ji]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/jruby.yml/badge.svg
-[2-t]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/truffle.yml
-[2-ti]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/truffle.yml/badge.svg
-[2-👴]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/supported.yml
-[2-👴i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/supported.yml/badge.svg
-[2-u👴]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/unsupported.yml
-[2-u👴i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/unsupported.yml/badge.svg
-[2-l👴]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/legacy.yml
-[2-l👴i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/legacy.yml/badge.svg
-[2-a👴]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/ancient.yml
-[2-a👴i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/ancient.yml/badge.svg
-[2-🗣️]: https://github.com/pboling/rspec-stubbed_env/blob/main/.github/workflows/heads.yml
-[2-🗣️i]: https://github.com/pboling/rspec-stubbed_env/actions/workflows/heads.yml/badge.svg
-
-[3-gh]: https://github.com/pboling/silent_stream
-[3-🧰]: https://www.ruby-toolbox.com/projects/silent_stream
-[3-⭐️i]: https://img.shields.io/github/stars/pboling/silent_stream
-[3-🔢i]: https://img.shields.io/gem/rd/silent_stream.svg
-[3-🔒️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/locked_deps.yml
-[3-🔒️i]: https://github.com/pboling/silent_stream/actions/workflows/locked_deps.yml/badge.svg
-[3-un🔒️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/unlocked_deps.yml
-[3-un🔒️i]: https://github.com/pboling/silent_stream/actions/workflows/unlocked_deps.yml/badge.svg
-[3-as⚙️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/style.yml
-[3-as⚙️i]: https://github.com/pboling/silent_stream/actions/workflows/style.yml/badge.svg
-[3-ac⚙️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/coverage.yml
-[3-ac⚙️i]: https://github.com/pboling/silent_stream/actions/workflows/coverage.yml/badge.svg
-[3-⏰]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/current.yml
-[3-⏰i]: https://github.com/pboling/silent_stream/actions/workflows/current.yml/badge.svg
-[3-j]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/jruby.yml
-[3-ji]: https://github.com/pboling/silent_stream/actions/workflows/jruby.yml/badge.svg
-[3-t]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/truffle.yml
-[3-ti]: https://github.com/pboling/silent_stream/actions/workflows/truffle.yml/badge.svg
-[3-👴]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/supported.yml
-[3-👴i]: https://github.com/pboling/silent_stream/actions/workflows/supported.yml/badge.svg
-[3-u👴]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/unsupported.yml
-[3-u👴i]: https://github.com/pboling/silent_stream/actions/workflows/unsupported.yml/badge.svg
-[3-l👴]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/legacy.yml
-[3-l👴i]: https://github.com/pboling/silent_stream/actions/workflows/legacy.yml/badge.svg
-[3-a👴]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/ancient.yml
-[3-a👴i]: https://github.com/pboling/silent_stream/actions/workflows/ancient.yml/badge.svg
-[3-🗣️]: https://github.com/pboling/silent_stream/blob/master/.github/workflows/heads.yml
-[3-🗣️i]: https://github.com/pboling/silent_stream/actions/workflows/heads.yml/badge.svg
-
-[4-gh]: https://github.com/ruby-oauth/oauth2
-[4-🧰]: https://www.ruby-toolbox.com/projects/oauth2
-[4-⭐️i]: https://img.shields.io/github/stars/ruby-oauth/oauth2
-[4-🔢i]: https://img.shields.io/gem/rd/oauth2.svg
-[4-🔒️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/locked_deps.yml
-[4-🔒️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/locked_deps.yml/badge.svg
-[4-un🔒️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/unlocked_deps.yml
-[4-un🔒️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/unlocked_deps.yml/badge.svg
-[4-as⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/style.yml
-[4-as⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/style.yml/badge.svg
-[4-ac⚙️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/coverage.yml
-[4-ac⚙️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/coverage.yml/badge.svg
-[4-⏰]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/current.yml
-[4-⏰i]: https://github.com/ruby-oauth/oauth2/actions/workflows/current.yml/badge.svg
-[4-j]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/jruby.yml
-[4-ji]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby.yml/badge.svg
-[4-👟]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/dep-heads.yml
-[4-👟i]: https://github.com/ruby-oauth/oauth2/actions/workflows/dep-heads.yml/badge.svg
-[4-👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/supported.yml
-[4-👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/supported.yml/badge.svg
-[4-u👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/unsupported.yml
-[4-u👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml/badge.svg
-[4-l👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/legacy.yml
-[4-l👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/legacy.yml/badge.svg
-[4-a👴]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/ancient.yml
-[4-a👴i]: https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml/badge.svg
-[4-🗣️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/heads.yml
-[4-🗣️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/heads.yml/badge.svg
-[5-win️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/windows.yml
-[5-win️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/windows.yml/badge.svg
-[5-mac️]: https://github.com/ruby-oauth/oauth2/blob/main/.github/workflows/macos.yml
-[5-mac️i]: https://github.com/ruby-oauth/oauth2/actions/workflows/macos.yml/badge.svg
-
-## ⚒️ Basic Usage
+## 🔧 Basic Usage
 
 Once you've configured the appraisals you want to use, you need to install the
 dependencies for each appraisal:
@@ -428,398 +253,32 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 - `bundle exec appraisal rails-7 install --gem-manager=ore` ✅ → Uses **Appraisal's** install command with ORE
 - `bundle exec appraisal rails-7 bundle install --gem-manager=ore` ❌ → Tries to run external **bundle** command (which doesn't recognize `--gem-manager`)
 
-## 🦀 Using Ore (Alternative Gem Manager)
-
-Appraisal2 supports [ORE](https://github.com/contriboss/ore-light) as an alternative to Bundler
-for dependency resolution and installation. Ore is a fast gem manager written in Go that aims
-to be a drop-in replacement for Bundler.
-
-### Installing Ore
-
-You can install ORE via:
-
-```bash
-# Install ORE Light (no Ruby required for download)
-# Installs to ~/.local/bin by default (no sudo needed)
-curl -fsSL https://raw.githubusercontent.com/contriboss/ore-light/master/scripts/install.sh | bash
-
-# For system-wide installation to /usr/local/bin
-curl -fsSL https://raw.githubusercontent.com/contriboss/ore-light/master/scripts/install.sh | bash -s -- --system
-```
-
-### Using Ore with Appraisal2
-
-The `--gem-manager=ore` option works **only** with Appraisal's built-in `install` and `update` commands.
-It does **NOT** work with external commands like `bundle install`.
-
-#### ✅ Using --gem-manager with Appraisal's install/update commands
-
-To use ORE instead of bundler for dependency installation, pass the `--gem-manager=ore` option:
-
-```bash
-# Install dependencies for ALL appraisals using ORE
-bundle exec appraisal install --gem-manager=ore
-
-# Update dependencies for ALL appraisals using ORE
-bundle exec appraisal update --gem-manager=ore
-
-# Install dependencies for a SPECIFIC appraisal using ORE
-bundle exec appraisal <APPRAISAL_NAME> install --gem-manager=ore
-
-# Update dependencies for a SPECIFIC appraisal using ORE
-bundle exec appraisal <APPRAISAL_NAME> update <GEMS> --gem-manager=ore
-```
-
-You can also use the short form:
-
-```bash
-bundle exec appraisal install -g ore
-bundle exec appraisal <APPRAISAL_NAME> install -g ore
-```
-
-#### ❌ Do NOT use --gem-manager with external commands
-
-The `--gem-manager` option **cannot** be used when running external commands like `bundle install`:
-
-```bash
-# ❌ WRONG - Don't try to pass --gem-manager to external commands
-bundle exec appraisal coverage bundle install --gem-manager=ore
-
-# ✅ RIGHT - Use appraisal's install command instead
-bundle exec appraisal coverage install --gem-manager=ore
-```
-
-The difference:
-- `bundle exec appraisal coverage install --gem-manager=ore` → Uses Appraisal's install command with ORE
-- `bundle exec appraisal coverage bundle install --gem-manager=ore` → Tries to run external `bundle install` (which doesn't recognize `--gem-manager`)
-
-### Ore-Specific Options
-
-When using ORE, some options are translated to ORE's equivalents:
-
-| Appraisal Option | Ore Equivalent | Notes                               |
-|------------------|----------------|-------------------------------------|
-| `--jobs=N` | `-workers=N` | Only used when N > 1                |
-| `--path=DIR` | `-vendor=DIR` | Sets the gem installation directory |
-| `--without=GROUPS` | `-without=GROUP1,GROUP2` | Groups are comma-separated in ORE   |
-| `--retry` | *(ignored)* | ORE handles retries internally      |
-| `--full-index` | *(ignored)* | Not applicable to ORE               |
-
-### Example Workflow with ORE
-
-```bash
-# Generate appraisal gemfiles
-bundle exec appraisal generate
-
-# Install dependencies for ALL appraisals using ORE (faster than bundler)
-bundle exec appraisal install --gem-manager=ore --jobs=4
-
-# Install dependencies for a SPECIFIC appraisal using ORE
-bundle exec appraisal rails-7 install --gem-manager=ore --jobs=4
-
-# Run tests against all appraisals (uses dependencies from appraisal gemfiles)
-bundle exec appraisal rspec
-
-# Run tests against a specific appraisal (uses that appraisal's dependencies)
-bundle exec appraisal rails-7 rspec
-
-# Update a specific gem in ALL appraisals using ORE
-bundle exec appraisal update rack --gem-manager=ore
-
-# Update a specific gem in ONE appraisal using ORE
-bundle exec appraisal rails-7 update rack --gem-manager=ore
-```
-
-**Note:** When running tests or other external commands, the dependencies are already
-installed from the appraisal's gemfile. You don't need to (and can't) pass `--gem-manager`
-to external commands—it only works with Appraisal's built-in `install` and `update` commands.
-
-### When to Use Ore
-
-Ore can be particularly beneficial when:
-
-- You have many appraisals and want faster installation
-- You're in a CI environment where installation speed matters
-- You want to take advantage of ORE's parallel resolution capabilities
-
-Note that ORE must be installed separately and available in your PATH.
-If you specify ORE and it is not available, appraisal2 will raise an error.
-
-### Troubleshooting ORE/Gem Manager Issues
-
-#### Error: "Unknown switches --gem-manager=ore"
-
-If you see an error like:
-```
-Unknown switches("--gem-manager=ore")
-```
-
-This usually means you're trying to pass `--gem-manager` to an external command instead of
-Appraisal's built-in command.
-
-❌ **Wrong:**
-```bash
-bundle exec appraisal coverage bundle install --gem-manager=ore
-# Error: "Unknown switches --gem-manager=ore"
-# The --gem-manager flag is being passed to the external 'bundle install' command,
-# which doesn't recognize it.
-```
-
-✅ **Correct:**
-```bash
-bundle exec appraisal coverage install --gem-manager=ore
-# Correct: Uses Appraisal's install command with ORE gem manager
-```
-
-**Key point:** The `--gem-manager` option **only works** with Appraisal's built-in
-`install` and `update` commands. It cannot be used with external commands like
-`bundle install`, `bundle update`, or `bundle exec rake/rspec`.
-
-If you need to install dependencies using ORE:
-1. Run `bundle exec appraisal <NAME> install --gem-manager=ore`
-2. Then run your tests: `bundle exec appraisal <NAME> rspec`
-
-Under the hood
---------------
-
-Running `appraisal install` generates a Gemfile for each appraisal by combining
-your root Gemfile with the specific requirements for each appraisal. These are
-stored in the `gemfiles` directory, and should be added to version control to
-ensure that versions within constraints of the Gemfile are always used.
-
-When you prefix a command with `appraisal`, the command is run with the
-appropriate Gemfile for that appraisal, ensuring the correct dependencies
-are used.
-
-Sharing Modular Gemfiles between Appraisals
--------
-
-_New in appraisal2_ (not possible in thoughtbot's appraisal)
-
-It is common for Appraisals to duplicate sets of gems, and sometimes it
-makes sense to DRY this up into a shared, modular, gemfile.
-In a scenario where you do not load your main Gemfile in your Appraisals,
-but you want to declare your various gem sets for e.g.
-`%w(coverage test documentation audit)` once each, you can re-use the same
-modular gemfiles for local development by referencing them from the main
-Gemfile.
-
-To do this, use the `eval_gemfile` declaration within the necessary
-`appraise` block in your `Appraisals` file, which will behave the same as
-`eval_gemfile` does in a normal Gemfile.
-
-### Example Usage
-
-You could put your modular gemfiles in the `gemfiles` directory, or nest
-them in `gemfiles/modular/*`, which will be used for this example.
-
-**Gemfile**
-```ruby
-eval_gemfile "gemfiles/modular/audit.gemfile"
-```
-
-**gemfiles/modular/audit.gemfile**
-```ruby
-# Many gems are dropping support for Ruby < 3.1,
-#   so we only want to run our security audit in CI on Ruby 3.1+
-gem "bundler-audit", "~> 0.9.2"
-# And other security audit gems...
-```
-
-**Appraisals**
-```ruby
-appraise "ruby-2-7" do
-  gem "dummy"
-end
-
-appraise "ruby-3-0" do
-  gem "dummy"
-end
-
-appraise "ruby-3-1" do
-  gem "dummy"
-  eval_gemfile "modular/audit.gemfile"
-end
-
-appraise "ruby-3-2" do
-  gem "dummy"
-  eval_gemfile "modular/audit.gemfile"
-end
-
-appraise "ruby-3-3" do
-  gem "dummy"
-  eval_gemfile "modular/audit.gemfile"
-end
-
-appraise "ruby-3-4" do
-  gem "dummy"
-  eval_gemfile "modular/audit.gemfile"
-end
-```
-
-**Appraisal2.root.gemfile**
-```ruby
-source "https://gem.coop"
-
-# Appraisal2 Root Gemfile is for running appraisal to generate the Appraisal2 Gemfiles
-# We do not load the standard Gemfile, as it is tailored for local development,
-#   while appraisals are tailored for CI.
-
-gemspec
-
-gem "appraisal2"
-```
-
-Now when you need to update your appraisals:
-```shell
-BUNDLE_GEMFILE=Appraisal2.root.gemfile bundle exec appraisal update
-```
-
-### Removing Gems using Appraisal2
-
-It is common while managing multiple Gemfiles for dependencies to become deprecated and no
-longer necessary, meaning they need to be removed from the Gemfile for a specific `appraisal`.
-To do this, use the `remove_gem` declaration within the necessary `appraise` block in your
-`Appraisals` file.
-
-#### Example Usage
-
-**Gemfile**
-```ruby
-gem "rails", "~> 4.2"
-
-group :test do
-  gem "rspec", "~> 4.0"
-  gem "test_after_commit"
-end
-```
-
-**Appraisals**
-```ruby
-appraise "rails-5" do
-  gem "rails", "~> 5.2"
-
-  group :test do
-    remove_gem "test_after_commit"
-  end
-end
-```
-
-Using the `Appraisals` file defined above, this is what the resulting `Gemfile` will look like:
-```ruby
-gem "rails", "~> 5.2"
-
-group :test do
-  gem "rspec", "~> 4.0"
-end
-```
-
-### Customization
-
-It is possible to customize the generated Gemfiles by adding a `customize_gemfiles` block to
-your `Appraisals` file. The block must contain a hash of key/value pairs. Currently supported
-customizations include:
-- heading: a string that by default adds "# This file was generated by Appraisal2" to the top of each Gemfile, (the string will be commented for you)
-- single_quotes: a boolean that controls if strings are single quoted in each Gemfile, defaults to false
-
-You can also provide variables for substitution in the heading, based on each appraisal. Currently supported variables:
-- `%{appraisal}`: Becomes the name of each appraisal, e.g. `rails-3`
-- `%{gemfile}`: Becomes the filename of each gemfile, e.g. `rails-3.gemfile`
-- `%{gemfile_path}`: Becomes the full path of each gemfile, e.g. `/path/to/project/gemfiles/rails-3.gemfile`
-- `%{lockfile}`: Becomes the filename of each lockfile, e.g. `rails-3.gemfile.lock`
-- `%{lockfile_path}`: Becomes the full path of each lockfile, e.g. `/path/to/project/gemfiles/rails-3.gemfile.lock`
-- `%{relative_gemfile_path}`: Becomes the relative path of each gemfile, e.g. `gemfiles/rails-3.gemfile`
-- `%{relative_lockfile_path}`: Becomes the relative path of each lockfile, e.g. `gemfiles/rails-3.gemfile.lock`
-
-#### Example Usage
-
-**Appraisals**
-```ruby
-customize_gemfiles do
-  {
-    :single_quotes => true,
-    :heading => <<-HEADING,
-frozen_string_literal: true
-
-`%{gemfile}` has been generated by Appraisal2, do NOT modify it or `%{lockfile}` directly!
-Make the changes to the "%{appraisal}" block in `Appraisals` instead. See the conventions at https://example.com/
-    HEADING
-  }
-end
-
-appraise "rails-3" do
-  gem "rails", "3.2.14"
-end
-```
-
-Using the `Appraisals` file defined above, this is what the resulting `Gemfile` will look like:
-```ruby
-# frozen_string_literal: true
-
-# `rails-3.gemfile` has been generated by Appraisal2, do NOT modify it or `rails-3.gemfile.lock` directly!
-# Make the changes to the "rails-3" block in `Appraisals` instead. See the conventions at https://example.com/
-
-gem "rails", "3.2.14"
-```
-
-### Version Control
-
-When using Appraisal2, we recommend you check in the Gemfiles that Appraisal2
-generates within the gemfiles directory, but exclude the lockfiles there
-(`*.gemfile.lock`). The Gemfiles are useful when running your tests against a
-continuous integration server.
-
-Additionally, the Bundler team [officially recommends](https://github.com/rubygems/bundler-site/pull/501)
-committing the main `Gemfile.lock` for **both** gems **and** libraries.
-
-### Circle CI Integration
-
-In Circle CI you can override the default testing behavior.
-You can configure Appraisal2 to execute your tests.
-
-In order to this you can put the following configuration in your circle.yml file:
-
-```yml
-dependencies:
-  post:
-    - bundle exec appraisal install
-test:
-  pre:
-    - bundle exec appraisal rake db:create
-    - bundle exec appraisal rake db:migrate
-  override:
-    - bundle exec appraisal rspec
-```
-
-Notice that we are running an rspec suite. You can customize your testing
-command in the `override` section and use your favourite one.
-
 ## 🦷 FLOSS Funding
 
-While appraisal-rb tools are free (libre) software, the project would benefit immensely from some funding.
+While pboling tools are free software and will always be, the project would benefit immensely from some funding.
 Raising a monthly budget of... "dollars" would make the project more sustainable.
 
-We welcome both individual and corporate sponsors\! We also offer a
-wide array of funding channels to account for your preferences
-(although currently [Open Collective][🖇osc] is our preferred funding platform).
+We welcome both individual and corporate sponsors! We also offer a
+wide array of funding channels to account for your preferences.
+Currently, [Open Collective][🖇osc] is our preferred funding platform.
 
-**If you're working in a company that's making significant use of appraisal-rb tools we'd
-appreciate it if you suggest to your company to become a appraisal-rb sponsor.**
+**If you're working in a company that's making significant use of pboling tools we'd
+appreciate it if you suggest to your company to become a pboling sponsor.**
 
-You can support the development of appraisal-rb tools via
+You can support the development of pboling tools via
 [GitHub Sponsors][🖇sponsor],
 [Liberapay][⛳liberapay],
 [PayPal][🖇paypal],
 [Open Collective][🖇osc]
 and [Tidelift][🏙️entsup-tidelift].
 
-| 📍 NOTE                                                                                                                                                                                                              |
+| 📍 NOTE |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | If doing a sponsorship in the form of donation is problematic for your company <br/> from an accounting standpoint, we'd recommend the use of Tidelift, <br/> where you can get a support-like subscription instead. |
 
 ### Open Collective for Individuals
 
-Support us with a monthly donation and help us continue our activities. \[[Become a backer][🖇osc-backers]\]
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/pboling#backer)]
 
 NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day, automatically.
 
@@ -829,7 +288,7 @@ No backers yet. Be the first!
 
 ### Open Collective for Organizations
 
-Become a sponsor and get your logo on our README on GitHub with a link to your site. \[[Become a sponsor][🖇osc-sponsors]\]
+Become a sponsor and get your logo on our README on GitHub with a link to your site. [[Become a sponsor](https://opencollective.com/pboling#sponsor)]
 
 NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day, automatically.
 
@@ -837,7 +296,7 @@ NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day
 No sponsors yet. Be the first!
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:END -->
 
-[kettle-readme-backers]: https://github.com/appraisal-rb/appraisal2/blob/main/exe/kettle-readme-backers
+[kettle-readme-backers]: https://github.com/pboling/appraisal2/blob/main/exe/kettle-readme-backers
 
 ### Another way to support open-source
 
@@ -845,7 +304,7 @@ I’m driven by a passion to foster a thriving open-source community – a space
 
 If you work at a company that uses my work, please encourage them to support me as a corporate sponsor. My work on gems you use might show up in `bundle fund`.
 
-I’m developing a new library, [floss\_funding][🖇floss-funding-gem], designed to empower open-source developers like myself to get paid for the work we do, in a sustainable way. Please give it a look.
+I’m developing a new library, [floss_funding][🖇floss-funding-gem], designed to empower open-source developers like myself to get paid for the work we do, in a sustainable way. Please give it a look.
 
 **[Floss-Funding.dev][🖇floss-funding.dev]: 👉️ No network calls. 👉️ No tracking. 👉️ No oversight. 👉️ Minimal crypto hashing. 💡 Easily disabled nags**
 
@@ -858,7 +317,7 @@ See [SECURITY.md][🔐security].
 ## 🤝 Contributing
 
 If you need some ideas of where to help, you could work on adding more code coverage,
-or if it is already 💯 (see [below](#code-coverage)) check [issues][🤝gh-issues], or [PRs][🤝gh-pulls],
+or if it is already 💯 (see [below](#code-coverage)) check [issues][🤝gh-issues] or [PRs][🤝gh-pulls],
 or use the gem and think about how it could be better.
 
 We [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] so if you make changes, remember to update it.
@@ -871,11 +330,16 @@ See [CONTRIBUTING.md][🤝contributing].
 
 ### Code Coverage
 
-[![Coverage Graph][🔑codecov-g♻️]][🔑codecov]
+<details markdown="1">
+<summary>Coverage service badges</summary>
 
-[![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls]
+[![Coverage Graph][🏀codecov-g]][🏀codecov]
 
-[![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov]
+[![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls]
+
+[![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov]
+
+</details>
 
 ### 🪇 Code of Conduct
 
@@ -888,16 +352,16 @@ chat rooms and mailing lists agrees to follow the [![Contributor Covenant 2.1][�
 
 Made with [contributors-img][🖐contrib-rocks].
 
-Also see GitLab Contributors: <https://gitlab.com/appraisal-rb/appraisal2/-/graphs/main>
+Also see GitLab Contributors: [https://gitlab.com/pboling/appraisal2/-/graphs/main][🚎contributors-gl]
 
 <details>
-    <summary>⭐️ Star History</summary>
+ <summary>⭐️ Star History</summary>
 
-<a href="https://star-history.com/#appraisal-rb/appraisal2&Date">
+<a href="https://star-history.com/pboling/appraisal2&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=appraisal-rb/appraisal2&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=appraisal-rb/appraisal2&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=appraisal-rb/appraisal2&type=Date" />
+ <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=pboling/appraisal2&type=Date&theme=dark" />
+ <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=pboling/appraisal2&type=Date" />
+ <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=pboling/appraisal2&type=Date" />
  </picture>
 </a>
 
@@ -905,19 +369,8 @@ Also see GitLab Contributors: <https://gitlab.com/appraisal-rb/appraisal2/-/grap
 
 ## 📌 Versioning
 
-This Library adheres to [![Semantic Versioning 2.0.0][📌semver-img]][📌semver].
-Violations of this scheme should be reported as bugs.
-Specifically, if a minor or patch version is released that breaks backward compatibility,
-a new version should be immediately released that restores compatibility.
-Breaking changes to the public API will only be introduced with new major versions.
-
-> dropping support for a platform is both obviously and objectively a breaking change <br/>
-> —Jordan Harband ([@ljharb](https://github.com/ljharb), maintainer of SemVer) [in SemVer issue 716][📌semver-breaking]
-
-I understand that policy doesn't work universally ("exceptions to every rule\!"),
-but it is the policy here.
-As such, in many cases it is good to specify a dependency on this library using
-the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
+This library follows [![Semantic Versioning 2.0.0][📌semver-img]][📌semver] for its public API where practical.
+For most applications, prefer the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
 
 For example:
 
@@ -928,8 +381,8 @@ spec.add_dependency("appraisal2", "~> 3.0")
 <details markdown="1">
 <summary>📌 Is "Platform Support" part of the public API? More details inside.</summary>
 
-SemVer should, IMO, but doesn't explicitly, say that dropping support for specific Platforms
-is a *breaking change* to an API, and for that reason the bike shedding is endless.
+Dropping support for a platform can be a breaking change for affected users.
+If a release changes supported platforms, it should be called out clearly in the changelog and versioned with that impact in mind.
 
 To get a better understanding of how SemVer is intended to work over a project's lifetime,
 read this article from the creator of SemVer:
@@ -943,23 +396,57 @@ See [CHANGELOG.md][📌changelog] for a list of releases.
 ## 📄 License
 
 The gem is available as open source under the terms of
-the [MIT License][📄license] [![License: MIT][📄license-img]][📄license-ref].
-See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright-notice-explainer].
+the [MIT](MIT.md) [![License: MIT][📄license-img]][📄license-ref].
 
 ### © Copyright
 
-<ul>
-    <li>
-        Copyright (c) 2024 - 2026 Peter H. Boling, of
-        <a href="https://discord.gg/3qme4XHNKN">
-            Galtzo.com
-            <picture>
-              <img src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px-blank.svg" alt="Galtzo.com Logo (wordless) by Aboling0, CC BY-SA 4.0" width="24">
-            </picture>
-        </a>, and Appraisal2 contributors
-    </li>
-    <li>Copyright (c) 2010 - 2013 Joe Ferris and thoughtbot, inc.</li>
-</ul>
+See [LICENSE.md][📄license] for the official copyright notice.
+
+<details markdown="1">
+<summary>Copyright holders</summary>
+
+- Copyright (c) 2010 Joe Ferris
+- Copyright (c) 2011 Dan Croak
+- Copyright (c) 2011-2012 Gabe Berke-Williams
+- Copyright (c) 2011 Joe Ferris
+- Copyright (c) 2011 Joseph Anthony Pasquale Holsten
+- Copyright (c) 2011 Nick Quaranto
+- Copyright (c) 2011 Prem Sichanugrist
+- Copyright (c) 2012 Gregory Ostermayr
+- Copyright (c) 2012 osheroff
+- Copyright (c) 2013 Jason Waldrip
+- Copyright (c) 2013 Marc Ignacio
+- Copyright (c) 2013 Phill Baker
+- Copyright (c) 2013-2016 Prem Sichanugrist
+- Copyright (c) 2013 sanemat
+- Copyright (c) 2014 Juan González
+- Copyright (c) 2014-2015 Prem Sichanugrist
+- Copyright (c) 2015 akihiro17
+- Copyright (c) 2015 Elliot Winkler
+- Copyright (c) 2015 M.Shibuya
+- Copyright (c) 2015 Vlad Bokov
+- Copyright (c) 2016 Geoff Massanek
+- Copyright (c) 2016 Ian Fosbery
+- Copyright (c) 2016 Teo Ljungberg
+- Copyright (c) 2017 Brad Gessler
+- Copyright (c) 2017 Oli Peate
+- Copyright (c) 2017, 2025-2026 Peter H. Boling
+- Copyright (c) 2018 Antonis Berkakis
+- Copyright (c) 2018 Jared Beck
+- Copyright (c) 2018, 2020, 2023-2024 Nick Charlton
+- Copyright (c) 2020 Brian Hawley
+- Copyright (c) 2020, 2024 David Rodríguez
+- Copyright (c) 2020 James Ebentier
+- Copyright (c) 2021, 2024 Nicolas Rodriguez
+- Copyright (c) 2022 André Arko
+- Copyright (c) 2022 Joe Sharp
+- Copyright (c) 2023 aymeric-ledorze
+- Copyright (c) 2023 Kyle Fazzari
+- Copyright (c) 2024 Joe Sharp
+- Copyright (c) 2024 Sebastian Cohnen
+- Copyright (c) 2024 Yevhenii Ponomarenko
+
+</details>
 
 ## 🤑 A request for help
 
@@ -972,37 +459,39 @@ Please consider sponsoring me or the project.
 
 To join the community or get help 👇️ Join the Discord.
 
-[![Live Chat on Discord][✉️discord-invite-img-ftb]][🖼️galtzo-discord]
+[![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite]
 
 To say "thanks!" ☝️ Join the Discord or 👇️ send money.
 
-[![Sponsor appraisal-rb/appraisal2 on Open Source Collective][🖇osc-all-bottom-img]][🖇osc] 💌 [![Sponsor me on GitHub Sponsors][🖇sponsor-bottom-img]][🖇sponsor] 💌 [![Sponsor me on Liberapay][⛳liberapay-bottom-img]][⛳liberapay] 💌 [![Donate on PayPal][🖇paypal-bottom-img]][🖇paypal]
+[![Sponsor pboling/appraisal2 on Open Source Collective][🖇osc-all-bottom-img]][🖇osc] 💌 [![Sponsor me on GitHub Sponsors][🖇sponsor-bottom-img]][🖇sponsor] 💌 [![Sponsor me on Liberapay][⛳liberapay-bottom-img]][⛳liberapay] 💌 [![Donate on PayPal][🖇paypal-bottom-img]][🖇paypal]
 
 ### Please give the project a star ⭐ ♥.
+
+Many parts of this project are actively managed by a [kettle-jem](https://github.com/structuredmerge/structuredmerge-ruby/tree/main/gems/kettle-jem) smart template utilizing [StructuredMerge.org](https://structuredmerge.org) merge contracts.
 
 Thanks for RTFM. ☺️
 
 [⛳liberapay-img]: https://img.shields.io/liberapay/goal/pboling.svg?logo=liberapay&color=a51611&style=flat
 [⛳liberapay-bottom-img]: https://img.shields.io/liberapay/goal/pboling.svg?style=for-the-badge&logo=liberapay&color=a51611
 [⛳liberapay]: https://liberapay.com/pboling/donate
-[🖇osc-all-img]: https://img.shields.io/opencollective/all/appraisal-rb
-[🖇osc-sponsors-img]: https://img.shields.io/opencollective/sponsors/appraisal-rb
-[🖇osc-backers-img]: https://img.shields.io/opencollective/backers/appraisal-rb
-[🖇osc-backers]: https://opencollective.com/appraisal-rb#backer
-[🖇osc-backers-i]: https://opencollective.com/appraisal-rb/backers/badge.svg?style=flat
-[🖇osc-sponsors]: https://opencollective.com/appraisal-rb#sponsor
-[🖇osc-sponsors-i]: https://opencollective.com/appraisal-rb/sponsors/badge.svg?style=flat
-[🖇osc-all-bottom-img]: https://img.shields.io/opencollective/all/appraisal-rb?style=for-the-badge
-[🖇osc-sponsors-bottom-img]: https://img.shields.io/opencollective/sponsors/appraisal-rb?style=for-the-badge
-[🖇osc-backers-bottom-img]: https://img.shields.io/opencollective/backers/appraisal-rb?style=for-the-badge
-[🖇osc]: https://opencollective.com/appraisal-rb
+[🖇osc-all-img]: https://img.shields.io/opencollective/all/pboling
+[🖇osc-sponsors-img]: https://img.shields.io/opencollective/sponsors/pboling
+[🖇osc-backers-img]: https://img.shields.io/opencollective/backers/pboling
+[🖇osc-backers]: https://opencollective.com/pboling#backer
+[🖇osc-backers-i]: https://opencollective.com/pboling/backers/badge.svg?style=flat
+[🖇osc-sponsors]: https://opencollective.com/pboling#sponsor
+[🖇osc-sponsors-i]: https://opencollective.com/pboling/sponsors/badge.svg?style=flat
+[🖇osc-all-bottom-img]: https://img.shields.io/opencollective/all/pboling?style=for-the-badge
+[🖇osc-sponsors-bottom-img]: https://img.shields.io/opencollective/sponsors/pboling?style=for-the-badge
+[🖇osc-backers-bottom-img]: https://img.shields.io/opencollective/backers/pboling?style=for-the-badge
+[🖇osc]: https://opencollective.com/pboling
 [🖇sponsor-img]: https://img.shields.io/badge/Sponsor_Me!-pboling.svg?style=social&logo=github
 [🖇sponsor-bottom-img]: https://img.shields.io/badge/Sponsor_Me!-pboling-blue?style=for-the-badge&logo=github
 [🖇sponsor]: https://github.com/sponsors/pboling
 [🖇polar-img]: https://img.shields.io/badge/polar-donate-a51611.svg?style=flat
 [🖇polar]: https://polar.sh/pboling
 [🖇kofi-img]: https://img.shields.io/badge/ko--fi-%E2%9C%93-a51611.svg?style=flat
-[🖇kofi]: https://ko-fi.com/O5O86SNP4
+[🖇kofi]: https://ko-fi.com/pboling
 [🖇patreon-img]: https://img.shields.io/badge/patreon-donate-a51611.svg?style=flat
 [🖇patreon]: https://patreon.com/galtzo
 [🖇buyme-small-img]: https://img.shields.io/badge/buy_me_a_coffee-%E2%9C%93-a51611.svg?style=flat
@@ -1017,23 +506,26 @@ Thanks for RTFM. ☺️
 [✉️discord-invite-img-ftb]: https://img.shields.io/discord/1373797679469170758?style=for-the-badge&logo=discord
 [✉️ruby-friends-img]: https://img.shields.io/badge/daily.dev-%F0%9F%92%8E_Ruby_Friends-0A0A0A?style=for-the-badge&logo=dailydotdev&logoColor=white
 [✉️ruby-friends]: https://app.daily.dev/squads/rubyfriends
+
 [✇bundle-group-pattern]: https://gist.github.com/pboling/4564780
-[⛳️gem-namespace]: https://github.com/appraisal-rb/appraisal2
-[⛳️namespace-img]: https://img.shields.io/badge/namespace-Appraisal-brightgreen.svg?style=flat&logo=ruby&logoColor=white
-[⛳️gem-name]: https://rubygems.org/gems/appraisal2
-[⛳️name-img]: https://img.shields.io/badge/name-appraisal2-brightgreen.svg?style=flat&logo=rubygems&logoColor=red
-[🚂bdfl-blog]: http://www.railsbling.com/tags/appraisal2
-[🚂bdfl-blog-img]: https://img.shields.io/badge/blog-railsbling-0093D0.svg?style=for-the-badge&logo=rubyonrails&logoColor=orange
-[🚂bdfl-contact]: http://www.railsbling.com/contact
-[🚂bdfl-contact-img]: https://img.shields.io/badge/Contact-BDFL-0093D0.svg?style=flat&logo=rubyonrails&logoColor=red
+[⛳️gem-namespace]: https://github.com/pboling/appraisal2
+[⛳️namespace-img]: https://img.shields.io/badge/namespace-Appraisal2-3C2D2D.svg?style=square&logo=ruby&logoColor=white
+[⛳️gem-name]: https://bestgems.org/gems/appraisal2
+[⛳️name-img]: https://img.shields.io/badge/name-appraisal2-3C2D2D.svg?style=square&logo=rubygems&logoColor=red
+[⛳️tag-img]: https://img.shields.io/github/tag/pboling/appraisal2.svg
+[⛳️tag]: https://github.com/pboling/appraisal2/releases
+[🚂maint-blog]: http://www.railsbling.com/tags/appraisal2
+[🚂maint-blog-img]: https://img.shields.io/badge/blog-railsbling-0093D0.svg?style=for-the-badge&logo=rubyonrails&logoColor=orange
+[🚂maint-contact]: http://www.railsbling.com/contact
+[🚂maint-contact-img]: https://img.shields.io/badge/Contact-Maintainer-0093D0.svg?style=flat&logo=rubyonrails&logoColor=red
 [💖🖇linkedin]: http://www.linkedin.com/in/peterboling
-[💖🖇linkedin-img]: https://img.shields.io/badge/PeterBoling-LinkedIn-0B66C2?style=flat&logo=newjapanprowrestling
-[💖✌️wellfound]: https://angel.co/u/peter-boling
+[💖🖇linkedin-img]: https://img.shields.io/badge/LinkedIn-Profile-0B66C2?style=flat&logo=newjapanprowrestling
+[💖✌️wellfound]: https://wellfound.com/u/peter-boling
 [💖✌️wellfound-img]: https://img.shields.io/badge/peter--boling-orange?style=flat&logo=wellfound
 [💖💲crunchbase]: https://www.crunchbase.com/person/peter-boling
 [💖💲crunchbase-img]: https://img.shields.io/badge/peter--boling-purple?style=flat&logo=crunchbase
 [💖🐘ruby-mast]: https://ruby.social/@galtzo
-[💖🐘ruby-mast-img]: https://img.shields.io/mastodon/follow/109447111526622197?domain=https%3A%2F%2Fruby.social&style=flat&logo=mastodon&label=Ruby%20%40galtzo
+[💖🐘ruby-mast-img]: https://img.shields.io/mastodon/follow/109447111526622197?domain=https://ruby.social&style=flat&logo=mastodon&label=Ruby%20@galtzo
 [💖🦋bluesky]: https://bsky.app/profile/galtzo.com
 [💖🦋bluesky-img]: https://img.shields.io/badge/@galtzo.com-0285FF?style=flat&logo=bluesky&logoColor=white
 [💖🌳linktree]: https://linktr.ee/galtzo
@@ -1050,91 +542,76 @@ Thanks for RTFM. ☺️
 [👨🏼‍🏫expsup-upwork-img]: https://img.shields.io/badge/UpWork-13544E?style=for-the-badge&logo=Upwork&logoColor=white
 [👨🏼‍🏫expsup-codementor]: https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github
 [👨🏼‍🏫expsup-codementor-img]: https://img.shields.io/badge/CodeMentor-Get_Help-1abc9c?style=for-the-badge&logo=CodeMentor&logoColor=white
-[🏙️entsup-tidelift]: https://tidelift.com/subscription
+[🏙️entsup-tidelift]: https://tidelift.com/subscription/pkg/rubygems-appraisal2?utm_source=rubygems-appraisal2&utm_medium=referral&utm_campaign=readme
 [🏙️entsup-tidelift-img]: https://img.shields.io/badge/Tidelift_and_Sonar-Enterprise_Support-FD3456?style=for-the-badge&logo=sonar&logoColor=white
 [🏙️entsup-tidelift-sonar]: https://blog.tidelift.com/tidelift-joins-sonar
 [💁🏼‍♂️peterboling]: http://www.peterboling.com
 [🚂railsbling]: http://www.railsbling.com
 [📜src-gl-img]: https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&logo=Gitlab&logoColor=orange
-[📜src-gl]: https://gitlab.com/appraisal-rb/appraisal2/
+[📜src-gl]: https://gitlab.com/pboling/appraisal2
 [📜src-cb-img]: https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&logo=CodeBerg&logoColor=blue
-[📜src-cb]: https://codeberg.org/appraisal-rb/appraisal2
+[📜src-cb]: https://codeberg.org/pboling/appraisal2
 [📜src-gh-img]: https://img.shields.io/badge/GitHub-238636?style=for-the-badge&logo=Github&logoColor=green
-[📜src-gh]: https://github.com/appraisal-rb/appraisal2
+[📜src-gh]: https://github.com/pboling/appraisal2
 [📜docs-cr-rd-img]: https://img.shields.io/badge/RubyDoc-Current_Release-943CD2?style=for-the-badge&logo=readthedocs&logoColor=white
 [📜docs-head-rd-img]: https://img.shields.io/badge/YARD_on_Galtzo.com-HEAD-943CD2?style=for-the-badge&logo=readthedocs&logoColor=white
-[📜wiki]: https://gitlab.com/appraisal-rb/appraisal2/-/wikis/home
-[📜wiki-img]: https://img.shields.io/badge/wiki-examples-943CD2.svg?style=for-the-badge&logo=Wiki&logoColor=white
-[👽dl-rank]: https://rubygems.org/gems/appraisal2
+[📜gl-wiki]: https://gitlab.com/pboling/appraisal2/-/wikis/home
+[📜gh-wiki]: https://github.com/pboling/appraisal2/wiki
+[📜gl-wiki-img]: https://img.shields.io/badge/wiki-gitlab-943CD2.svg?style=for-the-badge&logo=gitlab&logoColor=white
+[📜gh-wiki-img]: https://img.shields.io/badge/wiki-github-943CD2.svg?style=for-the-badge&logo=github&logoColor=white
+[👽dl-rank]: https://bestgems.org/gems/appraisal2
 [👽dl-ranki]: https://img.shields.io/gem/rd/appraisal2.svg
-[👽oss-help]: https://www.codetriage.com/appraisal-rb/appraisal2
-[👽oss-helpi]: https://www.codetriage.com/appraisal-rb/appraisal2/badges/users.svg
-[👽version]: https://rubygems.org/gems/appraisal2
+[👽version]: https://bestgems.org/gems/appraisal2
 [👽versioni]: https://img.shields.io/gem/v/appraisal2.svg
-[🔑qlty-mnt]: https://qlty.sh/gh/appraisal-rb/projects/appraisal2
-[🔑qlty-mnti]: https://qlty.sh/gh/appraisal-rb/projects/appraisal2/maintainability.svg
-[🔑qlty-cov]: https://qlty.sh/gh/appraisal-rb/projects/appraisal2/metrics/code?sort=coverageRating
-[🔑qlty-covi]: https://qlty.sh/gh/appraisal-rb/projects/appraisal2/coverage.svg
-[🔑codecov]: https://codecov.io/gh/appraisal-rb/appraisal2
-[🔑codecovi♻️]: https://codecov.io/gh/appraisal-rb/appraisal2/branch/main/graph/badge.svg?token=0X5VEW9USD
-[🔑coveralls]: https://coveralls.io/github/appraisal-rb/appraisal2?branch=main
-[🔑coveralls-img]: https://coveralls.io/repos/github/appraisal-rb/appraisal2/badge.svg?branch=main
-[🖐codeQL]: https://github.com/appraisal-rb/appraisal2/security/code-scanning
-[🖐codeQL-img]: https://github.com/appraisal-rb/appraisal2/actions/workflows/codeql-analysis.yml/badge.svg
-[🚎1-r2.3-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-3.yml
-[🚎1-r2.3-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-3.yml/badge.svg
-[🚎1-r2.4-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-4.yml
-[🚎1-r2.4-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-4.yml/badge.svg
-[🚎1-r2.5-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-5.yml
-[🚎1-r2.5-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-5.yml/badge.svg
-[🚎1-r2.6-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-6.yml
-[🚎1-r2.6-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-6.yml/badge.svg
-[🚎1-r2.7-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-7.yml
-[🚎1-r2.7-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-7.yml/badge.svg
-[🚎2-cov-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/coverage.yml
-[🚎2-cov-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/coverage.yml/badge.svg
-[🚎3-hd-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/heads.yml
-[🚎3-hd-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/heads.yml/badge.svg
-[🚎4-r2.3-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-3.yml
-[🚎4-r2.3-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-3.yml/badge.svg
-[🚎4-r2.4-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-4.yml
-[🚎4-r2.4-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-4.yml/badge.svg
-[🚎4-r2.5-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-5.yml
-[🚎4-r2.5-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-5.yml/badge.svg
-[🚎4-r2.6-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-6.yml
-[🚎4-r2.6-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-6.yml/badge.svg
-[🚎4-r2.7-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-7.yml
-[🚎4-r2.7-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-2-7.yml/badge.svg
-[🚎4-r3.0-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-0.yml
-[🚎4-r3.0-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-0.yml/badge.svg
-[🚎4-r3.1-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-1.yml
-[🚎4-r3.1-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-1.yml/badge.svg
-[🚎4-r3.2-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-2.yml
-[🚎4-r3.2-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-2.yml/badge.svg
-[🚎4-r3.3-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-3.yml
-[🚎4-r3.3-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-3.yml/badge.svg
-[🚎4-r3.4-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-4.yml
-[🚎4-r3.4-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/ruby-3-4.yml/badge.svg
-[🚎5-st-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/style.yml
-[🚎5-st-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/style.yml/badge.svg
-[🚎9-t-wf]: https://github.com/galtzo-floss/simple_column-scopes/actions/workflows/truffle.yml
-[🚎9-t-wfi]: https://github.com/galtzo-floss/simple_column-scopes/actions/workflows/truffle.yml/badge.svg
-[🚎10-j-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/jruby.yml
-[🚎10-j-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/jruby.yml/badge.svg
-[🚎11-c-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current.yml
-[🚎11-c-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current.yml/badge.svg
-[🚎12-crh-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current-runtime-heads.yml
-[🚎12-crh-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/current-runtime-heads.yml/badge.svg
-[🚎13-🔒️-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/locked_deps.yml
-[🚎13-🔒️-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/locked_deps.yml/badge.svg
-[🚎14-🔓️-wf]: https://github.com/appraisal-rb/appraisal2/actions/workflows/unlocked_deps.yml
-[🚎14-🔓️-wfi]: https://github.com/appraisal-rb/appraisal2/actions/workflows/unlocked_deps.yml/badge.svg
-[💎ruby-1.8i]: https://img.shields.io/badge/Ruby-1.8_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=white
+[🏀qlty-mnt]: https://qlty.sh/gh/pboling/projects/appraisal2
+[🏀qlty-mnti]: https://qlty.sh/gh/pboling/projects/appraisal2/maintainability.svg
+[🏀qlty-cov]: https://qlty.sh/gh/pboling/projects/appraisal2/metrics/code?sort=coverageRating
+[🏀qlty-covi]: https://qlty.sh/gh/pboling/projects/appraisal2/coverage.svg
+[🏀codecov]: https://codecov.io/gh/pboling/appraisal2
+[🏀codecovi]: https://codecov.io/gh/pboling/appraisal2/graph/badge.svg
+[🏀coveralls]: https://coveralls.io/github/pboling/appraisal2?branch=main
+[🏀coveralls-img]: https://coveralls.io/repos/github/pboling/appraisal2/badge.svg?branch=main
+[🚎ruby-2.4-wf]: https://github.com/pboling/appraisal2/actions/workflows/ruby-2.4.yml
+[🚎ruby-2.5-wf]: https://github.com/pboling/appraisal2/actions/workflows/ruby-2.5.yml
+[🚎ruby-2.6-wf]: https://github.com/pboling/appraisal2/actions/workflows/ruby-2.6.yml
+[🚎ruby-2.7-wf]: https://github.com/pboling/appraisal2/actions/workflows/ruby-2.7.yml
+[🚎ruby-3.0-wf]: https://github.com/pboling/appraisal2/actions/workflows/ruby-3.0.yml
+[🚎ruby-3.1-wf]: https://github.com/pboling/appraisal2/actions/workflows/ruby-3.1.yml
+[🚎ruby-3.2-wf]: https://github.com/pboling/appraisal2/actions/workflows/ruby-3.2.yml
+[🚎ruby-3.3-wf]: https://github.com/pboling/appraisal2/actions/workflows/ruby-3.3.yml
+[🚎ruby-3.4-wf]: https://github.com/pboling/appraisal2/actions/workflows/ruby-3.4.yml
+[🚎jruby-9.2-wf]: https://github.com/pboling/appraisal2/actions/workflows/jruby-9.2.yml
+[🚎jruby-9.3-wf]: https://github.com/pboling/appraisal2/actions/workflows/jruby-9.3.yml
+[🚎jruby-9.4-wf]: https://github.com/pboling/appraisal2/actions/workflows/jruby-9.4.yml
+[🚎truby-22.3-wf]: https://github.com/pboling/appraisal2/actions/workflows/truffleruby-22.3.yml
+[🚎truby-23.0-wf]: https://github.com/pboling/appraisal2/actions/workflows/truffleruby-23.0.yml
+[🚎truby-23.1-wf]: https://github.com/pboling/appraisal2/actions/workflows/truffleruby-23.1.yml
+[🚎truby-24.2-wf]: https://github.com/pboling/appraisal2/actions/workflows/truffleruby-24.2.yml
+[🚎truby-25.0-wf]: https://github.com/pboling/appraisal2/actions/workflows/truffleruby-25.0.yml
+[🚎2-cov-wf]: https://github.com/pboling/appraisal2/actions/workflows/coverage.yml
+[🚎2-cov-wfi]: https://github.com/pboling/appraisal2/actions/workflows/coverage.yml/badge.svg
+[🚎3-hd-wf]: https://github.com/pboling/appraisal2/actions/workflows/heads.yml
+[🚎3-hd-wfi]: https://github.com/pboling/appraisal2/actions/workflows/heads.yml/badge.svg
+[🚎5-st-wf]: https://github.com/pboling/appraisal2/actions/workflows/style.yml
+[🚎5-st-wfi]: https://github.com/pboling/appraisal2/actions/workflows/style.yml/badge.svg
+[🚎9-t-wf]: https://github.com/pboling/appraisal2/actions/workflows/truffle.yml
+[🚎9-t-wfi]: https://github.com/pboling/appraisal2/actions/workflows/truffle.yml/badge.svg
+[🚎10-j-wf]: https://github.com/pboling/appraisal2/actions/workflows/jruby.yml
+[🚎10-j-wfi]: https://github.com/pboling/appraisal2/actions/workflows/jruby.yml/badge.svg
+[🚎11-c-wf]: https://github.com/pboling/appraisal2/actions/workflows/current.yml
+[🚎11-c-wfi]: https://github.com/pboling/appraisal2/actions/workflows/current.yml/badge.svg
+[🚎12-crh-wf]: https://github.com/pboling/appraisal2/actions/workflows/dep-heads.yml
+[🚎12-crh-wfi]: https://github.com/pboling/appraisal2/actions/workflows/dep-heads.yml/badge.svg
+[🚎13-🔒️-wf]: https://github.com/pboling/appraisal2/actions/workflows/locked_deps.yml
+[🚎13-🔒️-wfi]: https://github.com/pboling/appraisal2/actions/workflows/locked_deps.yml/badge.svg
+[🚎14-🔓️-wf]: https://github.com/pboling/appraisal2/actions/workflows/unlocked_deps.yml
+[🚎14-🔓️-wfi]: https://github.com/pboling/appraisal2/actions/workflows/unlocked_deps.yml/badge.svg
+[🚎15-🪪-wf]: https://github.com/pboling/appraisal2/actions/workflows/license-eye.yml
+[🚎15-🪪-wfi]: https://github.com/pboling/appraisal2/actions/workflows/license-eye.yml/badge.svg
 [💎ruby-1.9i]: https://img.shields.io/badge/Ruby-1.9_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.0i]: https://img.shields.io/badge/Ruby-2.0_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.1i]: https://img.shields.io/badge/Ruby-2.1_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.2i]: https://img.shields.io/badge/Ruby-2.2_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=white
-[💎ruby-2.3i]: https://img.shields.io/badge/Ruby-2.3-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.4i]: https://img.shields.io/badge/Ruby-2.4-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.5i]: https://img.shields.io/badge/Ruby-2.5-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.6i]: https://img.shields.io/badge/Ruby-2.6-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
@@ -1144,56 +621,75 @@ Thanks for RTFM. ☺️
 [💎ruby-3.2i]: https://img.shields.io/badge/Ruby-3.2-CC342D?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-3.3i]: https://img.shields.io/badge/Ruby-3.3-CC342D?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-3.4i]: https://img.shields.io/badge/Ruby-3.4-CC342D?style=for-the-badge&logo=ruby&logoColor=white
+[💎ruby-4.0i]: https://img.shields.io/badge/Ruby-4.0-CC342D?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-c-i]: https://img.shields.io/badge/Ruby-current-CC342D?style=for-the-badge&logo=ruby&logoColor=green
 [💎ruby-headi]: https://img.shields.io/badge/Ruby-HEAD-CC342D?style=for-the-badge&logo=ruby&logoColor=blue
-[💎truby-22.3i]: https://img.shields.io/badge/Truffle_Ruby-22.3_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
-[💎truby-23.1i]: https://img.shields.io/badge/Truffle_Ruby-23.1_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-22.3i]: https://img.shields.io/badge/Truffle_Ruby-22.3-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-23.0i]: https://img.shields.io/badge/Truffle_Ruby-23.0-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-23.1i]: https://img.shields.io/badge/Truffle_Ruby-23.1-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-24.2i]: https://img.shields.io/badge/Truffle_Ruby-24.2-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-25.0i]: https://img.shields.io/badge/Truffle_Ruby-25.0-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-c-i]: https://img.shields.io/badge/Truffle_Ruby-current-34BCB1?style=for-the-badge&logo=ruby&logoColor=green
-[💎truby-headi]: https://img.shields.io/badge/Truffle_Ruby-HEAD-34BCB1?style=for-the-badge&logo=ruby&logoColor=blue
+[💎jruby-9.2i]: https://img.shields.io/badge/JRuby-9.2-FBE742?style=for-the-badge&logo=ruby&logoColor=red
+[💎jruby-9.3i]: https://img.shields.io/badge/JRuby-9.3-FBE742?style=for-the-badge&logo=ruby&logoColor=red
 [💎jruby-9.4i]: https://img.shields.io/badge/JRuby-9.4-FBE742?style=for-the-badge&logo=ruby&logoColor=red
 [💎jruby-c-i]: https://img.shields.io/badge/JRuby-current-FBE742?style=for-the-badge&logo=ruby&logoColor=green
 [💎jruby-headi]: https://img.shields.io/badge/JRuby-HEAD-FBE742?style=for-the-badge&logo=ruby&logoColor=blue
-[🤝gh-issues]: https://github.com/appraisal-rb/appraisal2/issues
-[🤝gh-pulls]: https://github.com/appraisal-rb/appraisal2/pulls
-[🤝gl-issues]: https://gitlab.com/appraisal-rb/appraisal2/-/issues
-[🤝gl-pulls]: https://gitlab.com/appraisal-rb/appraisal2/-/merge_requests
-[🤝cb-issues]: https://codeberg.org/appraisal-rb/appraisal2/issues
-[🤝cb-pulls]: https://codeberg.org/appraisal-rb/appraisal2/pulls
+[🤝gh-issues]: https://github.com/pboling/appraisal2/issues
+[🤝gh-pulls]: https://github.com/pboling/appraisal2/pulls
+[🤝gl-issues]: https://gitlab.com/pboling/appraisal2/-/issues
+[🤝gl-pulls]: https://gitlab.com/pboling/appraisal2/-/merge_requests
+[🤝cb-issues]: https://codeberg.org/pboling/appraisal2/issues
+[🤝cb-pulls]: https://codeberg.org/pboling/appraisal2/pulls
 [🤝cb-donate]: https://donate.codeberg.org/
-[🤝contributing]: CONTRIBUTING.md
-[🔑codecov-g♻️]: https://codecov.io/gh/appraisal-rb/appraisal2/graphs/tree.svg?token=0X5VEW9USD
+[🤝contributing]: https://github.com/pboling/appraisal2/blob/main/CONTRIBUTING.md
+[🏀codecov-g]: https://codecov.io/gh/pboling/appraisal2/graph/badge.svg
 [🖐contrib-rocks]: https://contrib.rocks
-[🖐contributors]: https://github.com/appraisal-rb/appraisal2/graphs/contributors
-[🖐contributors-img]: https://contrib.rocks/image?repo=appraisal-rb/appraisal2
-[🚎contributors-gl]: https://gitlab.com/appraisal-rb/appraisal2/-/graphs/main
-[🪇conduct]: CODE_OF_CONDUCT.md
+[🖐contributors]: https://github.com/pboling/appraisal2/graphs/contributors
+[🖐contributors-img]: https://contrib.rocks/image?repo=pboling/appraisal2
+[🚎contributors-gl]: https://gitlab.com/pboling/appraisal2/-/graphs/main
+[🪇conduct]: https://github.com/pboling/appraisal2/blob/main/CODE_OF_CONDUCT.md
 [🪇conduct-img]: https://img.shields.io/badge/Contributor_Covenant-2.1-259D6C.svg
 [📌pvc]: http://guides.rubygems.org/patterns/#pessimistic-version-constraint
 [📌semver]: https://semver.org/spec/v2.0.0.html
 [📌semver-img]: https://img.shields.io/badge/semver-2.0.0-259D6C.svg?style=flat
 [📌semver-breaking]: https://github.com/semver/semver/issues/716#issuecomment-869336139
 [📌major-versions-not-sacred]: https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html
-[📌changelog]: CHANGELOG.md
+[📌changelog]: https://github.com/pboling/appraisal2/blob/main/CHANGELOG.md
 [📗keep-changelog]: https://keepachangelog.com/en/1.0.0/
 [📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-34495e.svg?style=flat
-[📌gitmoji]:https://gitmoji.dev
-[📌gitmoji-img]:https://img.shields.io/badge/gitmoji_commits-%20😜%20😍-34495e.svg?style=flat-square
+[📌gitmoji]: https://gitmoji.dev
+[📌gitmoji-img]: https://img.shields.io/badge/gitmoji_commits-%20%F0%9F%98%9C%20%F0%9F%98%8D-34495e.svg?style=flat-square
 [🧮kloc]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
 [🧮kloc-img]: https://img.shields.io/badge/KLOC-0.823-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
-[🔐security]: SECURITY.md
+[🔐security]: https://github.com/pboling/appraisal2/blob/main/SECURITY.md
 [🔐security-img]: https://img.shields.io/badge/security-policy-259D6C.svg?style=flat
 [📄copyright-notice-explainer]: https://opensource.stackexchange.com/questions/5778/why-do-licenses-such-as-the-mit-license-specify-a-single-year
-[📄license]: LICENSE.txt
-[📄license-ref]: https://opensource.org/licenses/MIT
+[📄license]: LICENSE.md
+[📄license-ref]: MIT.md
 [📄license-img]: https://img.shields.io/badge/License-MIT-259D6C.svg
+[📄license-compat]: https://www.apache.org/legal/resolved.html#category-a
+[📄license-compat-img]: https://img.shields.io/badge/Apache_Compatible:_Category_A-✓-259D6C.svg?style=flat&logo=Apache
+
 [📄ilo-declaration]: https://www.ilo.org/declaration/lang--en/index.htm
 [📄ilo-declaration-img]: https://img.shields.io/badge/ILO_Fundamental_Principles-✓-259D6C.svg?style=flat
 [🚎yard-current]: http://rubydoc.info/gems/appraisal2
 [🚎yard-head]: https://appraisal2.galtzo.com
-[💎stone_checksums]: https://github.com/pboling/stone_checksums
-[💎SHA_checksums]: https://gitlab.com/appraisal-rb/appraisal2/-/tree/main/checksums
+[💎stone_checksums]: https://github.com/galtzo-floss/stone_checksums
+[💎SHA_checksums]: https://gitlab.com/pboling/appraisal2/-/tree/main/checksums
 [💎rlts]: https://github.com/rubocop-lts/rubocop-lts
-[💎rlts-img]: https://img.shields.io/badge/code_style_%26_linting-rubocop--lts-34495e.svg?plastic&logo=ruby&logoColor=white
+[💎rlts-img]: https://img.shields.io/badge/code_style_&_linting-rubocop--lts-34495e.svg?plastic&logo=ruby&logoColor=white
+[💎appraisal2]: https://github.com/appraisal-rb/appraisal2
+[💎appraisal2-img]: https://img.shields.io/badge/appraised_by-appraisal2-34495e.svg?plastic&logo=ruby&logoColor=white
 [💎d-in-dvcs]: https://railsbling.com/posts/dvcs/put_the_d_in_dvcs/
+
+<!-- kettle-jem:metadata:start -->
+| Field | Value |
+|---|---|
+| Package | appraisal2 |
+| Description | 🔍️ Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals." |
+| Homepage | https://github.com/pboling/appraisal2 |
+| Source | https://github.com/pboling/appraisal2/tree/v3.0.6 |
+| License | `MIT` |
+| Funding | https://github.com/sponsors/pboling, https://issuehunt.io/u/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/appraisal-rb, https://patreon.com/galtzo, https://polar.sh/pboling, https://thanks.dev/u/gh/pboling, https://tidelift.com/funding/github/rubygems/appraisal2, https://www.buymeacoffee.com/pboling |
+<!-- kettle-jem:metadata:end -->

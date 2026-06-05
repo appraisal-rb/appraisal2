@@ -3,6 +3,9 @@ inherit_gem:
 
 inherit_from:
   - .rubocop_rspec.yml
+plugins:
+  - rubocop-on-rbs
+  - rubocop-packaging
 
 # This tells RuboCop to add the exclusions in this file
 # to the default exclusions (and those from other inherited files),
@@ -42,3 +45,7 @@ ThreadSafety/DirChdir:
 
 Style/SymbolArray:
   EnforcedStyle: brackets
+RBS:
+  Enabled: true
+Layout/IndentationConsistency:
+  Exclude: ['*.md']

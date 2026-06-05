@@ -22,7 +22,6 @@ permissions:
 
 env:
   K_SOUP_COV_DO: false
-  ORE_DEBUG: true
 
 on:
   push:
@@ -49,15 +48,8 @@ jobs:
     name: Default rake task w/ unlocked deps ${{ matrix.name_extra || '' }}
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
-    env:
-      # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
-      BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.gemfile }}.gemfile
-      # tree-sitter library paths for FFI/MRI/Rust backend compatibility
-      LD_LIBRARY_PATH: "/usr/local/lib:/usr/lib/x86_64-linux-gnu:/usr/lib"
-      TREE_SITTER_RUNTIME_LIB: "/usr/lib/x86_64-linux-gnu/libtree-sitter.so.0"
-      TREE_SITTER_TOML_PATH: "/usr/local/lib/libtree-sitter-toml.so"
-      # Force Nokogiri to use system libraries instead of bundled ones
-      BUNDLE_FORCE_RUBY_PLATFORM: "false"
+    env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
+      BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
     strategy:
       matrix:
         include:
@@ -65,32 +57,38 @@ jobs:
           - ruby: "ruby"
             appraisal: "unlocked_deps"
             exec_cmd: "rake"
-            gemfile: "Appraisal.root"
             rubygems: latest
             bundler: latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Install tree-sitter and toml grammar
-        uses: kettle-rb/ts-grammar-action@main
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
         with:
-          setup-rust: "true"
-          grammar-toml: "true"
+          persist-credentials: false
 
-      - name: Setup Ruby & Gems via rv & ore
-        uses: appraisal-rb/setup-ruby-flash@main
+      - name: Install tree-sitter library
+        uses: kettle-rb/ts-grammar-action@4b0c04d11ed5b85c67c0c60c6ecb590e81748ccb # v1.0.1
+
+      - name: Setup Ruby & RubyGems
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1.310.0
         with:
-          ruby-version: "${{ matrix.ruby }}"
-          rubygems: "${{ matrix.rubygems }}"
-          bundler: "${{ matrix.bundler }}"
-          ore-install: true
-          cache-version: "v1"
+          ruby-version: ${{ matrix.ruby }}
+          rubygems: ${{ matrix.rubygems }}
+          bundler: ${{ matrix.bundler }}
+          bundler-cache: true
 
-      # Raw `bundle` will use the BUNDLE_GEMFILE set to matrix.gemfile (i.e. Appraisal.root)
-      # NOTE: This does not use the primary Gemfile at all.
-      - name: Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} bundle
+      - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
+        id: bundleAppraisalAttempt1
+        run: bundle exec appraisal ${{ matrix.appraisal }} install
+        # Continue to the next step on failure
+        continue-on-error: true
+
+      # Effectively an automatic retry of the previous step.
+      - name: "[Attempt 2] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
+        id: bundleAppraisalAttempt2
+        # If bundleAppraisalAttempt1 failed, try again here; Otherwise skip.
+        if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' }}
+        run: bundle exec appraisal ${{ matrix.appraisal }} install
+
       - name: Run ${{ matrix.exec_cmd }} on ${{ matrix.ruby }}@${{ matrix.appraisal }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}

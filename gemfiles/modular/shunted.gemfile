@@ -1,0 +1,3 @@
+# <<kettle-jem:generated>> do not edit below this line
+gem "activesupport", ">= 3.2.21" # ruby >= 3.2.0
+# <</kettle-jem:generated>>

@@ -68,11 +68,11 @@ jobs:
     steps:
       - name: Checkout
         if: ${{ !env.ACT || !startsWith(matrix.ruby, 'jruby') }}
-        uses: actions/checkout@v6
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT || !startsWith(matrix.ruby, 'jruby') }}
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1.310.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
