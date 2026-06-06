@@ -70,9 +70,32 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.9...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.1.0...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
+
+<h3 id="changed">Changed</h3>
+
+<h3 id="deprecated">Deprecated</h3>
+
+<h3 id="removed">Removed</h3>
+
+<h3 id="fixed">Fixed</h3>
+
+<h3 id="security">Security</h3>
+
+<h2 id="310---2026-06-06">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.9...v3.1.0">3.1.0</a> - 2026-06-06</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.0">v3.1.0</a>
+</li>
+  <li>COVERAGE: 90.04% – 805/894 lines in 29 files</li>
+  <li>BRANCH COVERAGE: 80.00% – 148/185 branches in 29 files</li>
+  <li>43.17% documented</li>
+</ul>
+
+<h3 id="added-1">Added</h3>
 
 <ul>
   <li>Added Appraisal lifecycle hooks, including <code>Appraisal.transform_gemfile</code><br>
@@ -84,7 +107,7 @@ workflows that need to regenerate Appraisal gemfiles before resolving them.</li>
 <code>generate-update</code>.</li>
 </ul>
 
-<h3 id="changed">Changed</h3>
+<h3 id="changed-1">Changed</h3>
 
 <ul>
   <li>Changed <code>install</code> and <code>update</code> to resolve existing Appraisal gemfiles without<br>
@@ -94,14 +117,6 @@ the basic install workflow.</li>
 <code>appraisal generate-install</code>, preserving its historical generate-and-install<br>
 behavior.</li>
 </ul>
-
-<h3 id="deprecated">Deprecated</h3>
-
-<h3 id="removed">Removed</h3>
-
-<h3 id="fixed">Fixed</h3>
-
-<h3 id="security">Security</h3>
 
 <h2 id="309---2026-06-05">
 <a href="https://github.com/appraisal-rb/appraisal2/compare/v3.0.8...v3.0.9">3.0.9</a> - 2026-06-05</h2>
@@ -114,7 +129,7 @@ behavior.</li>
   <li>42.69% documented</li>
 </ul>
 
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 
 <ul>
   <li>Raised the <code>version_gem</code> runtime dependency floor to <code>version_gem</code> &gt;= 1.1.10.</li>
@@ -154,7 +169,7 @@ not support.</li>
   <li>42.69% documented</li>
 </ul>
 
-<h3 id="added-1">Added</h3>
+<h3 id="added-2">Added</h3>
 
 <ul>
   <li>Added <code>Appraisal2::Version</code> / <code>Appraisal2::VERSION</code> constants backed by<br>
@@ -167,7 +182,7 @@ per-engine/per-version Ruby workflows.</li>
 contributor/operator guides.</li>
 </ul>
 
-<h3 id="changed-2">Changed</h3>
+<h3 id="changed-3">Changed</h3>
 
 <ul>
   <li>Refreshed project automation and CI templates with the current <code>kettle-jem</code><br>
@@ -241,7 +256,7 @@ is active.</li>
   <li>43.11% documented</li>
 </ul>
 
-<h3 id="added-2">Added</h3>
+<h3 id="added-3">Added</h3>
 
 <ul>
   <li>Test for bundler handling with pre-existing appraisal lockfiles
@@ -299,7 +314,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-3">Added</h3>
+<h3 id="added-4">Added</h3>
 
 <ul>
   <li>Documentation of <code>BUNDLE_PATH</code> for caching gems</li>
@@ -327,7 +342,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="changed-3">Changed</h3>
+<h3 id="changed-4">Changed</h3>
 
 <ul>
   <li>Documentation cleanup</li>
@@ -345,14 +360,14 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-4">Added</h3>
+<h3 id="added-5">Added</h3>
 
 <ul>
   <li>New CLI specs for testing named appraisal commands with options</li>
   <li>Shared RSpec contexts for mocking gem managers (<code>BundlerAdapter</code> and <code>OreAdapter</code>) to facilitate faster unit testing</li>
 </ul>
 
-<h3 id="changed-4">Changed</h3>
+<h3 id="changed-5">Changed</h3>
 
 <ul>
   <li>Improved documentation for using <code>install</code> and <code>update</code> commands with named appraisals and options</li>
@@ -406,7 +421,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-5">Added</h3>
+<h3 id="added-6">Added</h3>
 
 <ul>
   <li>funding documentation</li>
@@ -425,7 +440,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-6">Added</h3>
+<h3 id="added-7">Added</h3>
 
 <ul>
   <li>Support for <a href="https://github.com/contriboss/ore-light">ore-light</a> as an alternative gem manager via <code>--gem-manager=ore</code> CLI option
@@ -468,7 +483,7 @@ is active.</li>
   <li>CLI configs for RuboCop, RubyGems, YARD, and JRuby (for local development only)</li>
 </ul>
 
-<h3 id="changed-5">Changed</h3>
+<h3 id="changed-6">Changed</h3>
 
 <ul>
   <li>Improved test isolation for acceptance tests to prevent modification of parent project’s Gemfile.lock
@@ -525,7 +540,7 @@ is active.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun  6 04:59:19 2026 by
+  Generated on Sat Jun  6 05:22:09 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

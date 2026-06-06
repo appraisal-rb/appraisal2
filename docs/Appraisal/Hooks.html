@@ -108,6 +108,27 @@ monkey-patching command or generation internals.</p>
   
 </p>
 
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="GEMFILE_TRANSFORM_MUTEX-constant" class="">GEMFILE_TRANSFORM_MUTEX =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'>Mutex</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span></pre></dd>
+      
+        <dt id="GEMFILE_TRANSFORMS-constant" class="">GEMFILE_TRANSFORMS =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_freeze'>freeze</span></pre></dd>
+      
+    </dl>
+  
+
 
 
 
@@ -216,15 +237,19 @@ monkey-patching command or generation internals.</p>
       <pre class="lines">
 
 
-40
-41
-42</pre>
+43
+44
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/hooks.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/hooks.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_reset!'>reset!</span>
-  <span class='ivar'>@gemfile_transforms</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+  <span class='const'><span class='object_link'><a href="#GEMFILE_TRANSFORM_MUTEX-constant" title="Appraisal::Hooks::GEMFILE_TRANSFORM_MUTEX (constant)">GEMFILE_TRANSFORM_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_set_gemfile_transforms'>set_gemfile_transforms</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -246,9 +271,6 @@ monkey-patching command or generation internals.</p>
       <pre class="lines">
 
 
-27
-28
-29
 30
 31
 32
@@ -257,18 +279,21 @@ monkey-patching command or generation internals.</p>
 35
 36
 37
-38</pre>
+38
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/hooks.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/hooks.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run_transform_gemfile'>run_transform_gemfile</span><span class='lparen'>(</span><span class='id identifier rubyid_appraisal'>appraisal</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_content'>content</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_context'>context</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Hooks/GemfileContext.html" title="Appraisal::Hooks::GemfileContext (class)">GemfileContext</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Hooks/GemfileContext.html#initialize-instance_method" title="Appraisal::Hooks::GemfileContext#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_appraisal'>appraisal</span><span class='comma'>,</span> <span class='id identifier rubyid_path'>path</span><span class='comma'>,</span> <span class='id identifier rubyid_content'>content</span><span class='rparen'>)</span>
-  <span class='ivar'>@gemfile_transforms</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hook'>hook</span><span class='op'>|</span>
-    <span class='kw'>if</span> <span class='id identifier rubyid_hook'>hook</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>==</span> <span class='int'>1</span>
-      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_hook'>hook</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_context'>context</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_gemfile_transforms'>gemfile_transforms</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_hook'>hook</span><span class='op'>|</span>
+    <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_hook'>hook</span><span class='period'>.</span><span class='id identifier rubyid_arity'>arity</span> <span class='op'>==</span> <span class='int'>1</span>
+      <span class='id identifier rubyid_hook'>hook</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_context'>context</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span><span class='rparen'>)</span>
     <span class='kw'>else</span>
-      <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='id identifier rubyid_hook'>hook</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_context'>context</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span><span class='comma'>,</span> <span class='id identifier rubyid_context'>context</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_hook'>hook</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_context'>context</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span><span class='comma'>,</span> <span class='id identifier rubyid_context'>context</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
     <span class='id identifier rubyid_context'>context</span><span class='period'>.</span><span class='id identifier rubyid_content'>content</span> <span class='op'>=</span> <span class='id identifier rubyid_result'>result</span> <span class='kw'>unless</span> <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
   <span class='kw'>end</span>
@@ -317,19 +342,23 @@ monkey-patching command or generation internals.</p>
       <pre class="lines">
 
 
-21
 22
 23
 24
-25</pre>
+25
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/hooks.rb', line 21</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/hooks.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_transform_gemfile'>transform_gemfile</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>ArgumentError</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>transform_gemfile requires a block</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>unless</span> <span class='id identifier rubyid_block'>block</span>
 
-  <span class='ivar'>@gemfile_transforms</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_block'>block</span>
+  <span class='const'><span class='object_link'><a href="#GEMFILE_TRANSFORM_MUTEX-constant" title="Appraisal::Hooks::GEMFILE_TRANSFORM_MUTEX (constant)">GEMFILE_TRANSFORM_MUTEX</a></span></span><span class='period'>.</span><span class='id identifier rubyid_synchronize'>synchronize</span> <span class='kw'>do</span>
+    <span class='id identifier rubyid_set_gemfile_transforms'>set_gemfile_transforms</span><span class='lparen'>(</span><span class='id identifier rubyid_gemfile_transforms'>gemfile_transforms</span> <span class='op'>+</span> <span class='lbracket'>[</span><span class='id identifier rubyid_block'>block</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -341,7 +370,7 @@ monkey-patching command or generation internals.</p>
 </div>
 
       <div id="footer">
-  Generated on Sat Jun  6 04:59:19 2026 by
+  Generated on Sat Jun  6 05:22:09 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
