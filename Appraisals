@@ -85,6 +85,8 @@ appraise "ruby-2-7" do
 end
 
 appraise "ruby-3-0" do
+  eval_gemfile "modular/json/truffleruby_22_3.gemfile"
+  eval_gemfile "modular/json/truffleruby_23_0.gemfile"
   eval_gemfile "modular/x_std_libs/r3.1/libs.gemfile"
   eval_gemfile("modular/ruby_3_0.gemfile")
 end
@@ -95,6 +97,7 @@ appraise "ruby-3-1" do
 end
 
 appraise "ruby-3-2" do
+  eval_gemfile "modular/json/truffleruby_23_1.gemfile"
   eval_gemfile "modular/x_std_libs/r3/libs.gemfile"
   eval_gemfile("modular/ruby_3_2.gemfile")
 end
