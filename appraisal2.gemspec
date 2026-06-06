@@ -123,7 +123,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency("bundler", ">= 1.17.3")  # Last version supporting Ruby 1.8.7
   spec.add_dependency("rake", ">= 10")         # Last version supporting Ruby 1.8.7
   spec.add_dependency("thor", ">= 0.14")       # Last version supporting Ruby 1.8.7 && Rails 3
-  spec.add_dependency("version_gem", "~> 1.0", ">= 1.0.10")              # ruby >= 2.2.0
+  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.10")              # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability.

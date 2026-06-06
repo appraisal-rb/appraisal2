@@ -689,7 +689,7 @@ Thanks for RTFM. ☺️
 | Package | appraisal2 |
 | Description | 🔍️ Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals." |
 | Homepage | https://github.com/appraisal-rb/appraisal2 |
-| Source | https://github.com/appraisal-rb/appraisal2/tree/v3.0.7 |
+| Source | https://github.com/appraisal-rb/appraisal2/tree/v3.0.8 |
 | License | `MIT` |
 | Funding | https://github.com/sponsors/pboling, https://issuehunt.io/u/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/appraisal-rb, https://patreon.com/galtzo, https://polar.sh/pboling, https://thanks.dev/u/gh/pboling, https://tidelift.com/funding/github/rubygems/appraisal2, https://www.buymeacoffee.com/pboling |
 <!-- kettle-jem:metadata:end -->

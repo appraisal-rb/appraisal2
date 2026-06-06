@@ -22,6 +22,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Raised the `version_gem` runtime dependency floor to `version_gem` >= 1.1.10.
 - Updated local generated funding environment metadata to use the
   `appraisal-rb` OpenCollective handle.
 
