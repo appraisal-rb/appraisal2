@@ -53,7 +53,7 @@ module Appraisal
       end
     end
 
-    desc "install", "Resolve and install dependencies for each appraisal"
+    desc "install", "Resolve and install dependencies for each generated appraisal gemfile"
     method_option "jobs",
       :aliases => "j",
       :type => :numeric,
@@ -78,13 +78,39 @@ module Appraisal
         "Bundler will remember this option."
 
     def install
-      invoke(:generate, [], {})
-
       install_options = options.to_h
       AppraisalFile.each do |appraisal|
         appraisal.install(install_options)
         appraisal.relativize
       end
+    end
+
+    desc "generate-install", "Generate gemfiles, then resolve and install dependencies for each appraisal"
+    method_option "jobs",
+      :aliases => "j",
+      :type => :numeric,
+      :default => 1,
+      :banner => "SIZE",
+      :desc => "Install gems in parallel using the given number of workers."
+    method_option "retry",
+      :type => :numeric,
+      :default => 1,
+      :desc => "Retry network and git requests that have failed"
+    method_option "without",
+      :banner => "GROUP_NAMES",
+      :desc => "A space-separated list of groups referencing gems to skip " \
+        "during installation. Bundler will remember this option."
+    method_option "full-index",
+      :type => :boolean,
+      :desc => "Run bundle install with the " \
+        "full-index argument."
+    method_option "path",
+      :type => :string,
+      :desc => "Install gems in the specified directory. " \
+        "Bundler will remember this option."
+    def generate_install
+      invoke(:generate, [], {})
+      invoke(:install, [], options.to_h)
     end
 
     desc "generate", "Generate a gemfile for each appraisal"
@@ -99,15 +125,19 @@ module Appraisal
       FileUtils.rm_f(Dir["gemfiles/*.{gemfile,gemfile.lock}"])
     end
 
-    desc "update [LIST_OF_GEMS]", "Remove all generated gemfiles and lockfiles, resolve, and install dependencies again"
+    desc "update [LIST_OF_GEMS]", "Update dependencies for each generated appraisal gemfile"
     def update(*gems)
-      invoke(:generate, [], {})
-
       gem_manager = options["gem-manager"] || options[:gem_manager]
       update_options = gem_manager ? {:gem_manager => gem_manager} : {}
       AppraisalFile.each do |appraisal|
         appraisal.update(gems, update_options)
       end
+    end
+
+    desc "generate-update [LIST_OF_GEMS]", "Generate gemfiles, then update dependencies for each appraisal"
+    def generate_update(*gems)
+      invoke(:generate, [], {})
+      update(*gems)
     end
 
     desc "list", "List the names of the defined appraisals"
@@ -132,8 +162,10 @@ module Appraisal
         # This handles cases where Thor doesn't pass arguments
         actual_args = (args.empty? && ARGV.any?) ? ARGV.dup : args
 
-        # Check if the first argument is a Thor command (install or update)
-        if actual_args.first == "install"
+        # Check if the first argument is an appraisal subcommand.
+        if actual_args.first == "generate"
+          matching_appraisal.write_gemfile
+        elsif actual_args.first == "install"
           # Extract Thor options from the remaining arguments
           # Filter out the command name and pass options to install
           filtered_args = actual_args[1..-1] || []
@@ -142,6 +174,15 @@ module Appraisal
 
           # Also include the class-level gem_manager option if provided
           # Thor consumes class_option before calling method_missing, so check both places
+          gem_manager = options["gem-manager"] || options[:gem_manager]
+          parsed_options[:gem_manager] = gem_manager if gem_manager && !parsed_options.key?(:gem_manager)
+
+          matching_appraisal.install(parsed_options)
+          matching_appraisal.relativize
+        elsif actual_args.first == "generate-install"
+          filtered_args = actual_args[1..-1] || []
+          parsed_options = parse_external_options(filtered_args)
+
           gem_manager = options["gem-manager"] || options[:gem_manager]
           parsed_options[:gem_manager] = gem_manager if gem_manager && !parsed_options.key?(:gem_manager)
 
@@ -157,6 +198,15 @@ module Appraisal
           gem_manager = options["gem-manager"] || options[:gem_manager]
           parsed_options[:gem_manager] = gem_manager if gem_manager && !parsed_options.key?(:gem_manager)
 
+          matching_appraisal.update(gems, parsed_options)
+        elsif actual_args.first == "generate-update"
+          filtered_args = actual_args[1..-1] || []
+          gems, parsed_options = extract_gems_and_options(filtered_args)
+
+          gem_manager = options["gem-manager"] || options[:gem_manager]
+          parsed_options[:gem_manager] = gem_manager if gem_manager && !parsed_options.key?(:gem_manager)
+
+          matching_appraisal.write_gemfile
           matching_appraisal.update(gems, parsed_options)
         else
           # Run as an external command

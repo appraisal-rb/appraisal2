@@ -19,8 +19,8 @@ module Appraisal
         desc("DEPRECATED: Resolve and install dependencies for each appraisal")
         task(:install) do
           warn("`rake appraisal:install` task is deprecated and will be removed soon. " \
-            "Please use `appraisal install`.")
-          exec("bundle exec appraisal install")
+            "Please use `appraisal generate-install`.")
+          exec("bundle exec appraisal generate-install")
         end
 
         desc("DEPRECATED: Remove all generated gemfiles from gemfiles/ folder")

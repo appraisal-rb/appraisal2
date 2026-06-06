@@ -20,7 +20,20 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Added Appraisal lifecycle hooks, including `Appraisal.after_write_gemfile`
+  for plugins that need to normalize generated Appraisal gemfiles.
+- Added explicit `generate-install` and `generate-update` CLI commands for
+  workflows that need to regenerate Appraisal gemfiles before resolving them.
+- Added named appraisal support for `generate`, `generate-install`, and
+  `generate-update`.
+
 ### Changed
+
+- Changed `install` and `update` to only resolve existing Appraisal gemfiles;
+  they no longer regenerate Appraisal gemfiles as a side effect.
+- Updated the deprecated `rake appraisal:install` task to delegate to
+  `appraisal generate-install`, preserving its historical generate-and-install
+  behavior.
 
 ### Deprecated
 

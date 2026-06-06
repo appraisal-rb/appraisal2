@@ -28,10 +28,26 @@ RSpec.describe Appraisal::CLI do
   describe "method_missing for named appraisals with install command" do
     context "when appraisal name matches and command is install" do
       it "calls install on the matching appraisal without options" do
+        expect(appraisal).not_to receive(:write_gemfile)
         expect(appraisal).to receive(:install).with(hash_including(:gem_manager => "bundler"))
         expect(appraisal).to receive(:relativize)
 
         cli.send(:method_missing, :"rails-7", "install")
+      end
+
+      it "generates before installing when command is generate-install" do
+        expect(appraisal).to receive(:write_gemfile)
+        expect(appraisal).to receive(:install).with(hash_including(:gem_manager => "bundler"))
+        expect(appraisal).to receive(:relativize)
+
+        cli.send(:method_missing, :"rails-7", "generate-install")
+      end
+
+      it "generates only the matching appraisal when command is generate" do
+        expect(appraisal).to receive(:write_gemfile)
+        expect(appraisal).not_to receive(:install)
+
+        cli.send(:method_missing, :"rails-7", "generate")
       end
 
       it "calls install with gem_manager option when --gem-manager=ore is provided" do
@@ -71,9 +87,17 @@ RSpec.describe Appraisal::CLI do
 
     context "when appraisal name matches and command is update" do
       it "calls update on the matching appraisal without gems or options" do
+        expect(appraisal).not_to receive(:write_gemfile)
         expect(appraisal).to receive(:update).with([], hash_including(:gem_manager => "bundler"))
 
         cli.send(:method_missing, :"rails-7", "update")
+      end
+
+      it "generates before updating when command is generate-update" do
+        expect(appraisal).to receive(:write_gemfile)
+        expect(appraisal).to receive(:update).with([], hash_including(:gem_manager => "bundler"))
+
+        cli.send(:method_missing, :"rails-7", "generate-update")
       end
 
       it "calls update with gem_manager option" do

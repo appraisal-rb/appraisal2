@@ -17,14 +17,14 @@ RSpec.describe "CLI", ".install with named appraisal" do
     end
 
     it "installs dependencies for only the named appraisal" do
-      run "appraisal rails-7 install"
+      run "appraisal rails-7 generate-install"
 
       expect(file("gemfiles/rails_7.gemfile.lock")).to be_exists
       expect(content_of("gemfiles/rails_7.gemfile.lock")).to include("dummy (1.1.0)")
     end
 
     it "accepts --gem-manager option" do
-      output = run "appraisal rails-7 install --gem-manager=bundler"
+      output = run "appraisal rails-7 generate-install --gem-manager=bundler"
 
       expect(output).to include("bundle install")
       expect(output).to include("gemfiles/rails_7.gemfile")
@@ -32,7 +32,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
     end
 
     it "accepts -g shorthand for gem-manager" do
-      output = run "appraisal rails-7 install -g bundler"
+      output = run "appraisal rails-7 generate-install -g bundler"
 
       expect(output).to include("bundle install")
       expect(output).to include("gemfiles/rails_7.gemfile")
@@ -40,7 +40,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
     end
 
     it "accepts --jobs option with named appraisal", :parallel do
-      output = run "appraisal rails-7 install --jobs=2"
+      output = run "appraisal rails-7 generate-install --jobs=2"
 
       expect(output).to include("bundle install")
       expect(output).to include("gemfiles/rails_7.gemfile")
@@ -49,7 +49,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
     end
 
     it "accepts multiple options with named appraisal", :parallel do
-      output = run "appraisal rails-7 install --gem-manager=bundler --jobs=2"
+      output = run "appraisal rails-7 generate-install --gem-manager=bundler --jobs=2"
 
       expect(output).to include("bundle install")
       expect(output).to include("gemfiles/rails_7.gemfile")
@@ -58,7 +58,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
     end
 
     it "does not install other appraisals" do
-      run "appraisal rails-7 install"
+      run "appraisal rails-7 generate-install"
 
       expect(file("gemfiles/rails_7.gemfile.lock")).to be_exists
       expect(file("gemfiles/rails_6.gemfile.lock")).not_to be_exists
@@ -77,7 +77,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
     it "installs using ore when --gem-manager=ore is specified" do
       skip "ore not available" unless ore_available?
 
-      output = run "appraisal rails-7 install --gem-manager=ore"
+      output = run "appraisal rails-7 generate-install --gem-manager=ore"
 
       expect(output).to include("ore install")
       expect(file("gemfiles/rails_7.gemfile.lock")).to be_exists
@@ -86,7 +86,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
     it "installs using ore with short flag -g ore" do
       skip "ore not available" unless ore_available?
 
-      output = run "appraisal rails-7 install -g ore"
+      output = run "appraisal rails-7 generate-install -g ore"
 
       expect(output).to include("ore install")
       expect(file("gemfiles/rails_7.gemfile.lock")).to be_exists

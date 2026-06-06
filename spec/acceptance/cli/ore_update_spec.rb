@@ -10,7 +10,7 @@ RSpec.describe "CLI with ore", ".update --gem-manager=ore", :ore do
 
     # This is the update test, so initial install is via bundler, so we don't have a dependency between
     # ore install and ore update
-    run "appraisal install"
+    run "appraisal generate-install"
   end
 
   context "with no gem arguments" do

@@ -18,7 +18,7 @@ RSpec.describe "CLI", ".install" do
       end
     APPRAISAL
 
-    run "appraisal install"
+    run "appraisal generate-install"
 
     expect(file("gemfiles/1.0.0.gemfile.lock")).to be_exists
     expect(file("gemfiles/1.1.0.gemfile.lock")).to be_exists
@@ -34,7 +34,7 @@ RSpec.describe "CLI", ".install" do
       end
     APPRAISAL
 
-    run "appraisal install"
+    run "appraisal generate-install"
 
     expect(content_of("gemfiles/1.0.0.gemfile.lock")).not_to include(current_directory)
   end
@@ -53,7 +53,7 @@ RSpec.describe "CLI", ".install" do
       end
     APPRAISAL
 
-    run "appraisal install"
+    run "appraisal generate-install"
 
     expect(content_of("gemfiles/1.0.0.gemfile.lock")).to include("file://#{uri_dummy_path}")
   end
@@ -68,12 +68,14 @@ RSpec.describe "CLI", ".install" do
     end
 
     it "accepts --jobs option to set job size" do
+      run "appraisal generate"
       output = run "appraisal install --jobs=2"
 
       expect(output).to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}' --jobs=2")
     end
 
     it "ignores --jobs option if the job size is less than or equal to 1" do
+      run "appraisal generate"
       output = run "appraisal install --jobs=0"
 
       expect(output).to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}'")
@@ -92,6 +94,7 @@ RSpec.describe "CLI", ".install" do
     end
 
     it "accepts --full-index option to pull the full RubyGems index" do
+      run "appraisal generate"
       output = run("appraisal install --full-index")
 
       expect(output).to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}' --retry 1 --full-index true")
@@ -108,6 +111,7 @@ RSpec.describe "CLI", ".install" do
     end
 
     it "accepts --path option to specify the location to install gems into" do
+      run "appraisal generate"
       output = run("appraisal install --path vendor/appraisal")
 
       expect(output).to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}' --path #{file("vendor/appraisal")} --retry 1")

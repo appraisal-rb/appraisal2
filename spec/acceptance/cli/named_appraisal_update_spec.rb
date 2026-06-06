@@ -13,7 +13,7 @@ RSpec.describe "CLI", ".update with named appraisal" do
         end
       APPRAISAL
 
-      run "appraisal install"
+      run "appraisal generate-install"
     end
 
     it "updates dependencies for only the named appraisal" do
@@ -60,7 +60,7 @@ RSpec.describe "CLI", ".update with named appraisal" do
         end
       APPRAISAL
 
-      run "appraisal install"
+      run "appraisal generate-install"
     end
 
     it "updates using ore when --gem-manager=ore is specified" do

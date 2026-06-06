@@ -11,7 +11,7 @@ RSpec.describe "CLI", ".update" do
       end
     APPRAISAL
 
-    run "appraisal install"
+    run "appraisal generate-install"
     build_gem "dummy", "1.0.1"
     build_gem "dummy2", "1.0.1"
   end
