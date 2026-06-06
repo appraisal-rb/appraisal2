@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "appraisal/appraisal"
+require "stringio"
 require "tempfile"
 
 RSpec.describe Appraisal::Appraisal do
@@ -27,6 +28,19 @@ RSpec.describe Appraisal::Appraisal do
     appraisal.write_gemfile
 
     expect(output_file.read).to match(/[^\n]*\n\z/m)
+  end
+
+  it "runs gemfile transforms before writing the gemfile once" do
+    output_file = Tempfile.new("gemfile")
+    appraisal = described_class.new("fake", "fake")
+    allow(appraisal).to receive(:gemfile_path).and_return(output_file.path)
+
+    Appraisal.transform_gemfile { |content| "#{content}# transformed\n" }
+    appraisal.write_gemfile
+
+    expect(output_file.read).to end_with("fake\n# transformed\n")
+  ensure
+    Appraisal::Hooks.reset!
   end
 
   context "when customizing gemfile" do
@@ -92,6 +106,8 @@ RSpec.describe Appraisal::Appraisal do
     before do
       @appraisal = described_class.new("fake", "fake")
       allow(@appraisal).to receive_messages(:gemfile_path => "/home/test/test directory", :project_root => Pathname.new("/home/test"))
+      allow(File).to receive(:exist?).and_call_original
+      allow(File).to receive(:exist?).with("/home/test/test directory").and_return(true)
       # We don't use the shared context here because we want to test the
       # integration with BundlerAdapter, but we still mock Command.
       allow(Appraisal::Command).to receive(:new).and_return(double(:run => true))
@@ -137,6 +153,19 @@ RSpec.describe Appraisal::Appraisal do
 
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --path /home/test/vendor/appraisal",
+        :gemfile => "/home/test/test directory"
+      )
+    end
+
+    it "generates the gemfile when installing and the gemfile is missing" do
+      allow(File).to receive(:exist?).with("/home/test/test directory").and_return(false)
+      expect(@appraisal).to receive(:write_gemfile).and_call_original
+      allow(File).to receive(:open).and_yield(StringIO.new)
+
+      @appraisal.install
+
+      expect(Appraisal::Command).to have_received(:new).with(
+        "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory'",
         :gemfile => "/home/test/test directory"
       )
     end

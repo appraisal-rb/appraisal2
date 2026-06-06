@@ -7,33 +7,43 @@ RSpec.describe Appraisal::Hooks do
     described_class.reset!
   end
 
-  it "requires a block for after_write_gemfile hooks" do
-    expect { described_class.after_write_gemfile }.to raise_error(
+  it "requires a block for gemfile transforms" do
+    expect { described_class.transform_gemfile }.to raise_error(
       ArgumentError,
-      "after_write_gemfile requires a block"
+      "transform_gemfile requires a block"
     )
   end
 
-  it "runs registered after_write_gemfile hooks" do
-    calls = []
+  it "runs registered gemfile transforms with content and context" do
     appraisal = instance_double(Appraisal::Appraisal)
 
-    Appraisal.after_write_gemfile do |hook_appraisal, path|
-      calls << [hook_appraisal, path]
+    Appraisal.transform_gemfile do |content, context|
+      expect(context.appraisal).to eq(appraisal)
+      expect(context.path).to eq("gemfiles/current.gemfile")
+      "#{content}# transformed\n"
     end
 
-    described_class.run_after_write_gemfile(appraisal, "gemfiles/current.gemfile")
+    content = described_class.run_transform_gemfile(appraisal, "gemfiles/current.gemfile", "source\n")
 
-    expect(calls).to eq([[appraisal, "gemfiles/current.gemfile"]])
+    expect(content).to eq("source\n# transformed\n")
+  end
+
+  it "runs single-argument transforms with content" do
+    appraisal = instance_double(Appraisal::Appraisal)
+
+    Appraisal.transform_gemfile { |content| "#{content}# transformed\n" }
+
+    content = described_class.run_transform_gemfile(appraisal, "gemfiles/current.gemfile", "source\n")
+
+    expect(content).to eq("source\n# transformed\n")
   end
 
   it "can reset registered hooks" do
-    calls = []
-    Appraisal.after_write_gemfile { calls << true }
+    Appraisal.transform_gemfile { |content| "#{content}# transformed\n" }
 
     described_class.reset!
-    described_class.run_after_write_gemfile(nil, "gemfiles/current.gemfile")
+    content = described_class.run_transform_gemfile(nil, "gemfiles/current.gemfile", "source\n")
 
-    expect(calls).to be_empty
+    expect(content).to eq("source\n")
   end
 end

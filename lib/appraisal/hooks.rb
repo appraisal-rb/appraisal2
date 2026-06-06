@@ -4,30 +4,48 @@ module Appraisal
   # Lifecycle hooks used by companion gems to extend Appraisal without
   # monkey-patching command or generation internals.
   module Hooks
-    @after_write_gemfile = []
+    class GemfileContext
+      attr_accessor :content
+      attr_reader :appraisal, :path
+
+      def initialize(appraisal, path, content)
+        @appraisal = appraisal
+        @path = path
+        @content = content
+      end
+    end
+
+    @gemfile_transforms = []
 
     class << self
-      def after_write_gemfile(&block)
-        raise ArgumentError, "after_write_gemfile requires a block" unless block
+      def transform_gemfile(&block)
+        raise ArgumentError, "transform_gemfile requires a block" unless block
 
-        @after_write_gemfile << block
+        @gemfile_transforms << block
       end
 
-      def run_after_write_gemfile(appraisal, path)
-        @after_write_gemfile.each do |hook|
-          hook.call(appraisal, path)
+      def run_transform_gemfile(appraisal, path, content)
+        context = GemfileContext.new(appraisal, path, content)
+        @gemfile_transforms.each do |hook|
+          if hook.arity == 1
+            result = hook.call(context.content)
+          else
+            result = hook.call(context.content, context)
+          end
+          context.content = result unless result.nil?
         end
+        context.content
       end
 
       def reset!
-        @after_write_gemfile.clear
+        @gemfile_transforms.clear
       end
     end
   end
 
   class << self
-    def after_write_gemfile(&block)
-      Hooks.after_write_gemfile(&block)
+    def transform_gemfile(&block)
+      Hooks.transform_gemfile(&block)
     end
   end
 end
