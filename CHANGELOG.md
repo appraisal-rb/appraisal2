@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.1.0] - 2026-06-06
+
+- TAG: [v3.1.0][3.1.0t]
+- COVERAGE: 90.04% -- 805/894 lines in 29 files
+- BRANCH COVERAGE: 80.00% -- 148/185 branches in 29 files
+- 43.17% documented
+
+### Added
+
 - Added Appraisal lifecycle hooks, including `Appraisal.transform_gemfile`
   for plugins that need to normalize generated Appraisal gemfiles in memory
   before Appraisal2 writes them.
@@ -36,14 +55,6 @@ Please file a bug if you notice a violation of semantic versioning.
 - Updated the deprecated `rake appraisal:install` task to delegate to
   `appraisal generate-install`, preserving its historical generate-and-install
   behavior.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [3.0.9] - 2026-06-05
 
@@ -331,7 +342,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.9...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.0...HEAD
+[3.1.0]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.9...v3.1.0
+[3.1.0t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.0
 [3.0.9]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.8...v3.0.9
 [3.0.9t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.9
 [3.0.8]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.7...v3.0.8

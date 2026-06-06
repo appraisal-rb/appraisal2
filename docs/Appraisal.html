@@ -81,7 +81,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/appraisal/cli.rb<span class="defines">,<br>
-  lib/appraisal/git.rb,<br> lib/appraisal/path.rb,<br> lib/appraisal/task.rb,<br> lib/appraisal/group.rb,<br> lib/appraisal/utils.rb,<br> lib/appraisal/errors.rb,<br> lib/appraisal/source.rb,<br> lib/appraisal/command.rb,<br> lib/appraisal/gemfile.rb,<br> lib/appraisal/gemspec.rb,<br> lib/appraisal/version.rb,<br> lib/appraisal/platform.rb,<br> lib/appraisal/appraisal.rb,<br> lib/appraisal/customize.rb,<br> lib/appraisal/dependency.rb,<br> lib/appraisal/bundler_dsl.rb,<br> lib/appraisal/conditional.rb,<br> lib/appraisal/gem_manager.rb,<br> lib/appraisal/ordered_hash.rb,<br> lib/appraisal/appraisal_file.rb,<br> lib/appraisal/dependency_list.rb,<br> lib/appraisal/gem_manager/base.rb,<br> lib/appraisal/gem_manager/factory.rb,<br> lib/appraisal/gem_manager/ore_adapter.rb,<br> lib/appraisal/gem_manager/bundler_adapter.rb</span>
+  lib/appraisal/git.rb,<br> lib/appraisal/path.rb,<br> lib/appraisal/task.rb,<br> lib/appraisal/group.rb,<br> lib/appraisal/hooks.rb,<br> lib/appraisal/utils.rb,<br> lib/appraisal/errors.rb,<br> lib/appraisal/source.rb,<br> lib/appraisal/command.rb,<br> lib/appraisal/gemfile.rb,<br> lib/appraisal/gemspec.rb,<br> lib/appraisal/version.rb,<br> lib/appraisal/platform.rb,<br> lib/appraisal/appraisal.rb,<br> lib/appraisal/customize.rb,<br> lib/appraisal/dependency.rb,<br> lib/appraisal/bundler_dsl.rb,<br> lib/appraisal/conditional.rb,<br> lib/appraisal/gem_manager.rb,<br> lib/appraisal/ordered_hash.rb,<br> lib/appraisal/appraisal_file.rb,<br> lib/appraisal/dependency_list.rb,<br> lib/appraisal/gem_manager/base.rb,<br> lib/appraisal/gem_manager/factory.rb,<br> lib/appraisal/gem_manager/ore_adapter.rb,<br> lib/appraisal/gem_manager/bundler_adapter.rb</span>
 
 </dd>
   </dl>
@@ -92,7 +92,7 @@
 <p class="children">
   
     
-      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Appraisal/GemManager.html" title="Appraisal::GemManager (module)">GemManager</a></span>, <span class='object_link'><a href="Appraisal/Utils.html" title="Appraisal::Utils (module)">Utils</a></span>, <span class='object_link'><a href="Appraisal/Version.html" title="Appraisal::Version (module)">Version</a></span>
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="Appraisal/GemManager.html" title="Appraisal::GemManager (module)">GemManager</a></span>, <span class='object_link'><a href="Appraisal/Hooks.html" title="Appraisal::Hooks (module)">Hooks</a></span>, <span class='object_link'><a href="Appraisal/Utils.html" title="Appraisal::Utils (module)">Utils</a></span>, <span class='object_link'><a href="Appraisal/Version.html" title="Appraisal::Version (module)">Version</a></span>
     
   
     
@@ -133,12 +133,83 @@
 
 
 
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
 
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transform_gemfile-class_method" title="transform_gemfile (class method)">.<strong>transform_gemfile</strong>(&amp;block)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+    
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="transform_gemfile-class_method">
+  
+    .<strong>transform_gemfile</strong>(&amp;block)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/hooks.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_transform_gemfile'>transform_gemfile</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Appraisal/Hooks.html" title="Appraisal::Hooks (module)">Hooks</a></span></span><span class='period'>.</span><span class='id identifier rubyid_transform_gemfile'><span class='object_link'><a href="Appraisal/Hooks.html#transform_gemfile-class_method" title="Appraisal::Hooks.transform_gemfile (method)">transform_gemfile</a></span></span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 </div>
 
       <div id="footer">
-  Generated on Thu Jun  4 20:37:20 2026 by
+  Generated on Sat Jun  6 04:59:19 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

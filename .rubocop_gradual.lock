@@ -2,6 +2,15 @@
   "appraisal2.gemspec:1401532509": [
     [35, 32, 10, "Gemspec/RequiredRubyVersion: `required_ruby_version` and `TargetRubyVersion` (2.0, which may be specified in .rubocop.yml) should be equal.", 3998630200]
   ],
+  "lib/appraisal/hooks.rb:3547251479": [
+    [18, 27, 2, "ThreadSafety/MutableClassInstanceVariable: Freeze mutable objects assigned to class instance variables.", 5862883],
+    [24, 9, 19, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 1467690828],
+    [29, 9, 19, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 1467690828],
+    [41, 9, 19, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 1467690828]
+  ],
+  "spec/appraisal/appraisal_spec.rb:3928068548": [
+    [42, 3, 6, "Lint/Syntax: unexpected token kENSURE\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 1164465823]
+  ],
   "spec/appraisal/bundler_dsl_spec.rb:3320894796": [
     [219, 7, 45, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 3449135615],
     [223, 16, 40, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 2309639542],

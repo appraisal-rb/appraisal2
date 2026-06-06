@@ -27,10 +27,10 @@ module Appraisal
       def run_transform_gemfile(appraisal, path, content)
         context = GemfileContext.new(appraisal, path, content)
         @gemfile_transforms.each do |hook|
-          if hook.arity == 1
-            result = hook.call(context.content)
+          result = if hook.arity == 1
+            hook.call(context.content)
           else
-            result = hook.call(context.content, context)
+            hook.call(context.content, context)
           end
           context.content = result unless result.nil?
         end

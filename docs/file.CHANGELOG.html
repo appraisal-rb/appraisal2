@@ -74,7 +74,26 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="added">Added</h3>
 
+<ul>
+  <li>Added Appraisal lifecycle hooks, including <code>Appraisal.transform_gemfile</code><br>
+for plugins that need to normalize generated Appraisal gemfiles in memory<br>
+before Appraisal2 writes them.</li>
+  <li>Added explicit <code>generate-install</code> and <code>generate-update</code> CLI commands for<br>
+workflows that need to regenerate Appraisal gemfiles before resolving them.</li>
+  <li>Added named appraisal support for <code>generate</code>, <code>generate-install</code>, and<br>
+<code>generate-update</code>.</li>
+</ul>
+
 <h3 id="changed">Changed</h3>
+
+<ul>
+  <li>Changed <code>install</code> and <code>update</code> to resolve existing Appraisal gemfiles without<br>
+rewriting them, while still generating missing Appraisal gemfiles to preserve<br>
+the basic install workflow.</li>
+  <li>Updated the deprecated <code>rake appraisal:install</code> task to delegate to<br>
+<code>appraisal generate-install</code>, preserving its historical generate-and-install<br>
+behavior.</li>
+</ul>
 
 <h3 id="deprecated">Deprecated</h3>
 
@@ -506,7 +525,7 @@ is active.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Fri Jun  5 22:44:46 2026 by
+  Generated on Sat Jun  6 04:59:19 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

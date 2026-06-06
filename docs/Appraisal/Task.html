@@ -249,8 +249,8 @@ for a given appraisal.</p>
     <span class='id identifier rubyid_desc'>desc</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DEPRECATED: Resolve and install dependencies for each appraisal</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='id identifier rubyid_task'>task</span><span class='lparen'>(</span><span class='symbol'>:install</span><span class='rparen'>)</span> <span class='kw'>do</span>
       <span class='id identifier rubyid_warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>`rake appraisal:install` task is deprecated and will be removed soon. </span><span class='tstring_end'>&quot;</span></span> \
-        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please use `appraisal install`.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-      <span class='id identifier rubyid_exec'>exec</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bundle exec appraisal install</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Please use `appraisal generate-install`.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_exec'>exec</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bundle exec appraisal generate-install</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_desc'>desc</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>DEPRECATED: Remove all generated gemfiles from gemfiles/ folder</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -293,7 +293,7 @@ for a given appraisal.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Jun  4 20:37:20 2026 by
+  Generated on Sat Jun  6 04:59:19 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
