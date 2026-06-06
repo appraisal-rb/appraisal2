@@ -32,7 +32,10 @@ Gem::Specification.new do |spec|
   spec.description = '🔍️ Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals."'
   spec.homepage = "https://github.com/appraisal-rb/appraisal2"
   spec.licenses = ["MIT"]
+  # Runtime support intentionally extends below the active RuboCop-LTS target.
+  # rubocop:disable Gemspec/RequiredRubyVersion
   spec.required_ruby_version = ">= 1.8.7"
+  # rubocop:enable Gemspec/RequiredRubyVersion
 
   # Linux distros often package gems and securely certify them independent
   #   of the official RubyGem certification process. Allowed via ENV["SKIP_GEM_SIGNING"]

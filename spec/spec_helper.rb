@@ -4,6 +4,7 @@
 require "active_support/core_ext/string/strip"
 require "kettle/test/rspec"
 require "rspec/pending_for"
+require "rspec/stubbed_env"
 require "silent_stream"
 
 # RSpec Support

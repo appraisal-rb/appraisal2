@@ -213,14 +213,10 @@ RSpec.describe Appraisal::BundlerDSL do
   end
 
   describe "indentation" do
-    around do |example|
-      original_indenter = ENV["APPRAISAL_INDENTER"]
-      example.run
-      ENV["APPRAISAL_INDENTER"] = original_indenter
-    end
+    include_context "with stubbed env"
 
     context "with lookaround indenter (default)" do
-      before { ENV["APPRAISAL_INDENTER"] = "lookaround" }
+      before { stub_env("APPRAISAL_INDENTER" => "lookaround") }
 
       it "indents content within blocks" do
         dsl.group :test do
@@ -232,7 +228,7 @@ RSpec.describe Appraisal::BundlerDSL do
     end
 
     context "with capture indenter" do
-      before { ENV["APPRAISAL_INDENTER"] = "capture" }
+      before { stub_env("APPRAISAL_INDENTER" => "capture") }
 
       it "indents content within blocks" do
         dsl.group :test do
@@ -244,7 +240,7 @@ RSpec.describe Appraisal::BundlerDSL do
     end
 
     context "with unknown indenter" do
-      before { ENV["APPRAISAL_INDENTER"] = "none" }
+      before { stub_env("APPRAISAL_INDENTER" => "none") }
 
       it "does not indent content" do
         dsl.group :test do

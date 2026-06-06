@@ -31,16 +31,18 @@ RSpec.describe Appraisal::Appraisal do
   end
 
   it "runs gemfile transforms before writing the gemfile once" do
-    output_file = Tempfile.new("gemfile")
-    appraisal = described_class.new("fake", "fake")
-    allow(appraisal).to receive(:gemfile_path).and_return(output_file.path)
+    begin
+      output_file = Tempfile.new("gemfile")
+      appraisal = described_class.new("fake", "fake")
+      allow(appraisal).to receive(:gemfile_path).and_return(output_file.path)
 
-    Appraisal.transform_gemfile { |content| "#{content}# transformed\n" }
-    appraisal.write_gemfile
+      Appraisal.transform_gemfile { |content| "#{content}# transformed\n" }
+      appraisal.write_gemfile
 
-    expect(output_file.read).to end_with("fake\n# transformed\n")
-  ensure
-    Appraisal::Hooks.reset!
+      expect(output_file.read).to end_with("fake\n# transformed\n")
+    ensure
+      Appraisal::Hooks.reset!
+    end
   end
 
   context "when customizing gemfile" do

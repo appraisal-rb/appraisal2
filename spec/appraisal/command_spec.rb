@@ -75,6 +75,8 @@ RSpec.describe Appraisal::Command do
 
     context "with BUNDLE_PATH set in environment" do
       it "preserves BUNDLE_PATH and strips bundler activation markers" do
+        # This example exercises real ENV mutation inside Command#with_bundler_env.
+        # rubocop:disable Env/Assign
         original_bundle_path = ENV["BUNDLE_PATH"]
         original_rubyopt = ENV["RUBYOPT"]
         original_bundler_setup = ENV["BUNDLER_SETUP"]
@@ -102,6 +104,7 @@ RSpec.describe Appraisal::Command do
           ENV["BUNDLER_SETUP"] = original_bundler_setup
           ENV["BUNDLER_VERSION"] = original_bundler_version
         end
+        # rubocop:enable Env/Assign
       end
     end
 

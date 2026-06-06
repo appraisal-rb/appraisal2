@@ -4,6 +4,9 @@ module Appraisal
   # Lifecycle hooks used by companion gems to extend Appraisal without
   # monkey-patching command or generation internals.
   module Hooks
+    GEMFILE_TRANSFORM_MUTEX = Mutex.new
+    GEMFILE_TRANSFORMS = [].freeze
+
     class GemfileContext
       attr_accessor :content
       attr_reader :appraisal, :path
@@ -15,18 +18,18 @@ module Appraisal
       end
     end
 
-    @gemfile_transforms = []
-
     class << self
       def transform_gemfile(&block)
         raise ArgumentError, "transform_gemfile requires a block" unless block
 
-        @gemfile_transforms << block
+        GEMFILE_TRANSFORM_MUTEX.synchronize do
+          set_gemfile_transforms(gemfile_transforms + [block])
+        end
       end
 
       def run_transform_gemfile(appraisal, path, content)
         context = GemfileContext.new(appraisal, path, content)
-        @gemfile_transforms.each do |hook|
+        gemfile_transforms.each do |hook|
           result = if hook.arity == 1
             hook.call(context.content)
           else
@@ -38,7 +41,20 @@ module Appraisal
       end
 
       def reset!
-        @gemfile_transforms.clear
+        GEMFILE_TRANSFORM_MUTEX.synchronize do
+          set_gemfile_transforms([])
+        end
+      end
+
+      private
+
+      def gemfile_transforms
+        ::Appraisal::Hooks.const_get(:GEMFILE_TRANSFORMS)
+      end
+
+      def set_gemfile_transforms(transforms)
+        ::Appraisal::Hooks.__send__(:remove_const, :GEMFILE_TRANSFORMS)
+        ::Appraisal::Hooks.const_set(:GEMFILE_TRANSFORMS, transforms.freeze)
       end
     end
   end
