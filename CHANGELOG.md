@@ -22,10 +22,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Raised the `version_gem` runtime dependency floor to `version_gem` >= 1.1.10.
-- Updated local generated funding environment metadata to use the
-  `appraisal-rb` OpenCollective handle.
-
 ### Deprecated
 
 ### Removed
@@ -33,6 +29,19 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+## [3.0.9] - 2026-06-05
+
+- TAG: [v3.0.9][3.0.9t]
+- COVERAGE: 89.69% -- 748/834 lines in 28 files
+- BRANCH COVERAGE: 80.61% -- 133/165 branches in 28 files
+- 42.69% documented
+
+### Changed
+
+- Raised the `version_gem` runtime dependency floor to `version_gem` >= 1.1.10.
+- Updated local generated funding environment metadata to use the
+  `appraisal-rb` OpenCollective handle.
 
 ## [3.0.8] - 2026-06-05
 
@@ -307,7 +316,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.8...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.9...HEAD
+[3.0.9]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.8...v3.0.9
+[3.0.9t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.9
 [3.0.8]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.7...v3.0.8
 [3.0.8t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.0.8
 [3.0.7]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.6...v3.0.7

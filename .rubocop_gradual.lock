@@ -1,5 +1,5 @@
 {
-  "appraisal2.gemspec:1905822429": [
+  "appraisal2.gemspec:1401532509": [
     [35, 32, 10, "Gemspec/RequiredRubyVersion: `required_ruby_version` and `TargetRubyVersion` (2.0, which may be specified in .rubocop.yml) should be equal.", 3998630200]
   ],
   "spec/appraisal/bundler_dsl_spec.rb:3320894796": [
