@@ -22,9 +22,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Documented the Appraisal2 3.1.0 command lifecycle changes, named appraisal
-  generation commands, and generated gemfile transform hooks in the README.
-
 ### Deprecated
 
 ### Removed
@@ -36,9 +33,9 @@ Please file a bug if you notice a violation of semantic versioning.
 ## [3.1.0] - 2026-06-06
 
 - TAG: [v3.1.0][3.1.0t]
-- COVERAGE: 90.04% -- 805/894 lines in 29 files
+- COVERAGE: 90.14% -- 814/903 lines in 29 files
 - BRANCH COVERAGE: 80.00% -- 148/185 branches in 29 files
-- 43.17% documented
+- 42.70% documented
 
 ### Added
 
@@ -58,6 +55,9 @@ Please file a bug if you notice a violation of semantic versioning.
 - Updated the deprecated `rake appraisal:install` task to delegate to
   `appraisal generate-install`, preserving its historical generate-and-install
   behavior.
+
+- Documented the Appraisal2 3.1.0 command lifecycle changes, named appraisal
+  generation commands, and generated gemfile transform hooks in the README.
 
 ## [3.0.9] - 2026-06-05
 

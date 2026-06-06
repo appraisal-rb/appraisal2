@@ -98,6 +98,16 @@ and <a href="https://github.com/jferris">Joe Ferris</a>, the original author!</p
 <ul>
   <li>support for <code>eval_gemfile</code>
 </li>
+  <li>explicit <code>generate</code>, <code>install</code>, and <code>update</code> workflows, so CI can resolve<br>
+already-generated appraisal gemfiles without rewriting them</li>
+  <li>
+<code>generate-install</code> and <code>generate-update</code> commands for workflows that need to<br>
+regenerate appraisal gemfiles before resolving dependencies</li>
+  <li>named appraisal support for <code>generate</code>, <code>generate-install</code>, and<br>
+<code>generate-update</code>
+</li>
+  <li>lifecycle hooks, including <code>Appraisal.transform_gemfile</code>, for plugins that<br>
+need to normalize generated appraisal gemfiles before Appraisal2 writes them</li>
   <li>support for caching gems across appraisals in CI workflows by setting <code>BUNDLE_PATH</code> in env</li>
   <li>support for <a href="https://github.com/contriboss/ore-light">ORE</a> as an alternative gem manager (faster than bundler!)
     <ul>
@@ -338,6 +348,44 @@ not practical for the current toolchain.</p>
 
 <h2 id="️-configuration">⚙️ Configuration</h2>
 
+<p>Create an <code>Appraisals</code> file at the root of your project, then define one or<br>
+more dependency scenarios:</p>
+
+<pre class="code language-ruby"><code class="language-ruby">appraise &quot;rails-7&quot; do
+  gem &quot;rails&quot;, &quot;~&gt; 7.0&quot;
+end
+
+appraise &quot;rails-8&quot; do
+  gem &quot;rails&quot;, &quot;~&gt; 8.0&quot;
+end
+</code></pre>
+
+<p>Each appraisal starts from your root <code>Gemfile</code>, then applies the dependency<br>
+changes declared in the matching <code>appraise</code> block. Generated appraisal gemfiles<br>
+are written to <code>gemfiles/*.gemfile</code>.</p>
+
+<h3 id="generated-gemfile-hooks">Generated Gemfile Hooks</h3>
+
+<p>Appraisal2 3.1.0 adds lifecycle hooks for companion gems and local tooling.<br>
+The primary hook is <code>Appraisal.transform_gemfile</code>, which receives generated<br>
+gemfile content before Appraisal2 writes it.</p>
+
+<pre class="code language-ruby"><code class="language-ruby">Appraisal.transform_gemfile do |content, context|
+  # context.appraisal is the Appraisal::Appraisal instance.
+  # context.path is the generated gemfile path.
+  content.gsub(%(source &quot;https://rubygems.org&quot;), %(source &quot;https://gem.coop&quot;))
+end
+</code></pre>
+
+<p>Hooks run in memory. Appraisal2 writes the final transformed content once, after<br>
+all registered transforms have run. A transform may accept only <code>content</code>, or it<br>
+may accept <code>content, context</code>. Returning <code>nil</code> leaves the current content<br>
+unchanged.</p>
+
+<p>This is intended for plugin gems that need deterministic generated output, such<br>
+as style normalization of appraisal gemfiles, without monkey-patching Appraisal2<br>
+internals.</p>
+
 <h2 id="-basic-usage">🔧 Basic Usage</h2>
 
 <p>Once you’ve configured the appraisals you want to use, you need to install the<br>
@@ -346,9 +394,18 @@ dependencies for each appraisal:</p>
 <pre class="code ruby"><code class="ruby">$ bundle exec appraisal install
 </code></pre>
 
-<p>This will resolve, install, and lock the dependencies for that appraisal using<br>
-bundler. Once you have your dependencies set up, you can run any command in a<br>
-single appraisal:</p>
+<p>This resolves, installs, and locks dependencies for each generated appraisal<br>
+gemfile using bundler. If an appraisal gemfile is missing, <code>install</code> generates<br>
+that missing gemfile first, preserving the basic setup workflow.</p>
+
+<p>When you intentionally want to regenerate every appraisal gemfile before<br>
+installing dependencies, use:</p>
+
+<pre class="code ruby"><code class="ruby">$ bundle exec appraisal generate-install
+</code></pre>
+
+<p>Once you have your dependencies set up, you can run any command in a single<br>
+appraisal:</p>
 
 <pre class="code ruby"><code class="ruby">$ bundle exec appraisal rails-3 rake test
 </code></pre>
@@ -384,19 +441,77 @@ default.</p>
 
 <pre class="code language-bash"><code class="language-bash">appraisal clean                  # Remove all generated gemfiles and lockfiles from gemfiles folder
 appraisal generate               # Generate a gemfile for each appraisal
+appraisal generate-install       # Generate gemfiles, then resolve and install dependencies
+appraisal generate-update [LIST_OF_GEMS] # Generate gemfiles, then update dependencies
 appraisal help [COMMAND]         # Describe available commands or one specific command
-appraisal install                # Resolve and install dependencies for each appraisal
+appraisal install                # Resolve and install dependencies for each generated appraisal gemfile
 appraisal list                   # List the names of the defined appraisals
-appraisal update [LIST_OF_GEMS]  # Remove all generated gemfiles and lockfiles, resolve, and install dependencies again
+appraisal update [LIST_OF_GEMS]  # Update dependencies for each generated appraisal gemfile
 appraisal version                # Display the version and exit
 </code></pre>
 
+<p>Since Appraisal2 3.1.0, <code>install</code> and <code>update</code> do not rewrite existing appraisal<br>
+gemfiles. They operate on the generated files already present under <code>gemfiles/</code>.<br>
+This matters in CI and plugin workflows where generated gemfiles may be<br>
+normalized by hooks or committed as stable inputs.</p>
+
+<p>Use the command that matches the lifecycle you want:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Command</th>
+      <th>Regenerates appraisal gemfiles?</th>
+      <th>Resolves dependencies?</th>
+      <th>Typical use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>generate</code></td>
+      <td>Yes</td>
+      <td>No</td>
+      <td>Refresh generated gemfiles after editing <code>Appraisals</code>
+</td>
+    </tr>
+    <tr>
+      <td><code>install</code></td>
+      <td>Only missing gemfiles</td>
+      <td>Yes, via install</td>
+      <td>CI or local setup using existing generated gemfiles</td>
+    </tr>
+    <tr>
+      <td><code>update</code></td>
+      <td>Only missing gemfiles</td>
+      <td>Yes, via update</td>
+      <td>Refresh lockfiles/dependencies using existing generated gemfiles</td>
+    </tr>
+    <tr>
+      <td><code>generate-install</code></td>
+      <td>Yes</td>
+      <td>Yes, via install</td>
+      <td>First setup, or after intentional Appraisals changes</td>
+    </tr>
+    <tr>
+      <td><code>generate-update</code></td>
+      <td>Yes</td>
+      <td>Yes, via update</td>
+      <td>Regenerate gemfiles, then update dependency locks</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The deprecated rake task <code>rake appraisal:install</code> now delegates to<br>
+<code>appraisal generate-install</code>, preserving its historical generate-and-install<br>
+behavior while the CLI commands remain explicit.</p>
+
 <h3 id="command-options">Command Options</h3>
 
-<p>The <code>install</code> and <code>update</code> <strong>built-in commands</strong> support several options:</p>
+<p>Built-in dependency commands support the following options:</p>
 
-<p><strong>Important:</strong> These options apply <strong>only</strong> to Appraisal’s <code>install</code> and <code>update</code> commands.<br>
-They do <strong>not</strong> apply when running external commands like <code>bundle install</code> or <code>bundle update</code>.</p>
+<p><strong>Important:</strong> These options apply <strong>only</strong> to Appraisal’s built-in dependency<br>
+commands. They do <strong>not</strong> apply when running external commands like<br>
+<code>bundle install</code> or <code>bundle update</code>.</p>
 
 <table>
   <thead>
@@ -410,30 +525,34 @@ They do <strong>not</strong> apply when running external commands like <code>bun
       <td>
 <code>--gem-manager</code>, <code>-g</code>
 </td>
-      <td>Gem manager to use: <code>bundler</code> (default) or <code>ore</code>
+      <td>Gem manager to use: <code>bundler</code> (default) or <code>ore</code>; applies to <code>install</code>, <code>update</code>, <code>generate-install</code>, and <code>generate-update</code>
 </td>
     </tr>
     <tr>
       <td>
 <code>--jobs</code>, <code>-j</code>
 </td>
-      <td>Install gems in parallel using the given number of workers</td>
+      <td>Install gems in parallel using the given number of workers; applies to <code>install</code> and <code>generate-install</code>
+</td>
     </tr>
     <tr>
       <td><code>--retry</code></td>
-      <td>Retry network and git requests that have failed (default: 1)</td>
+      <td>Retry network and git requests that have failed; applies to <code>install</code> and <code>generate-install</code> (default: 1)</td>
     </tr>
     <tr>
       <td><code>--without</code></td>
-      <td>A space-separated list of groups to skip during installation</td>
+      <td>A space-separated list of groups to skip during installation; applies to <code>install</code> and <code>generate-install</code>
+</td>
     </tr>
     <tr>
       <td><code>--full-index</code></td>
-      <td>Run bundle install with the full-index argument</td>
+      <td>Run bundle install with the full-index argument; applies to <code>install</code> and <code>generate-install</code>
+</td>
     </tr>
     <tr>
       <td><code>--path</code></td>
-      <td>Install gems in the specified directory</td>
+      <td>Install gems in the specified directory; applies to <code>install</code> and <code>generate-install</code>
+</td>
     </tr>
   </tbody>
 </table>
@@ -442,12 +561,15 @@ They do <strong>not</strong> apply when running external commands like <code>bun
 
 <h4 id="using-appraisals-built-in-commands-with-named-appraisals">Using Appraisal’s built-in commands with named appraisals</h4>
 
-<p>When using Appraisal’s <code>install</code> or <code>update</code> commands with a specific appraisal name,<br>
-place the appraisal name first, then the command, then any options:</p>
+<p>When using Appraisal’s built-in commands with a specific appraisal name, place<br>
+the appraisal name first, then the command, then any options:</p>
 
 <pre class="code language-bash"><code class="language-bash"># ✅ Correct order: appraisal &lt;NAME&gt; &lt;COMMAND&gt; [OPTIONS]
+bundle exec appraisal rails-7 generate
 bundle exec appraisal rails-7 install --gem-manager=ore
+bundle exec appraisal rails-7 generate-install --gem-manager=ore
 bundle exec appraisal rails-7 update rails --gem-manager=ore
+bundle exec appraisal rails-7 generate-update rails --gem-manager=ore
 bundle exec appraisal rails-7 install --jobs=4
 
 # ❌ Wrong order (won&#39;t work)
@@ -459,6 +581,9 @@ bundle exec appraisal install rails-7 --gem-manager=ore  # Wrong order
 <pre class="code language-bash"><code class="language-bash"># Install dependencies for a specific appraisal
 bundle exec appraisal rails-7 install
 
+# Regenerate and install dependencies for a specific appraisal
+bundle exec appraisal rails-7 generate-install
+
 # Install with options
 bundle exec appraisal rails-7 install --gem-manager=ore --jobs=4
 
@@ -468,6 +593,10 @@ bundle exec appraisal rails-7 update
 # Update specific gems in a specific appraisal
 bundle exec appraisal rails-7 update rails rack
 bundle exec appraisal rails-7 update rails rack --gem-manager=ore
+
+# Regenerate before updating a specific appraisal
+bundle exec appraisal rails-7 generate-update
+bundle exec appraisal rails-7 generate-update rails rack
 </code></pre>
 
 <h4 id="running-external-commands-with-named-appraisals">Running external commands with named appraisals</h4>
@@ -737,7 +866,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun  6 05:22:09 2026 by
+  Generated on Sat Jun  6 05:29:54 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
