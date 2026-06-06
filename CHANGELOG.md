@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Documented the Appraisal2 3.1.0 command lifecycle changes, named appraisal
+  generation commands, and generated gemfile transform hooks in the README.
+
 ### Deprecated
 
 ### Removed
