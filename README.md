@@ -178,6 +178,28 @@ This is intended for plugin gems that need deterministic generated output, such
 as style normalization of appraisal gemfiles, without monkey-patching Appraisal2
 internals.
 
+### Generator Plugins
+
+Use `plugin` in `Appraisals` for companion gems that must be loaded while
+Appraisal2 evaluates and generates appraisal gemfiles, but must not be written
+as dependencies in the generated appraisal gemfiles.
+
+```ruby
+plugin "appraisal2-rubocop",
+  :require => "appraisal2/rubocop",
+  :optional => true
+```
+
+`plugin` requires the requested path in the active generator bundle. It does not
+call `gem`, and it is not serialized into `gemfiles/*.gemfile`. This keeps
+generator-only tooling out of appraisals that target older Rubies, while still
+allowing modern generator workflows to load hooks such as
+`Appraisal.transform_gemfile`.
+
+Set `:optional => true` when some workflows evaluate `Appraisals` without the
+plugin dependency installed. This is useful when a CI matrix uses one generator
+bundle for old-Ruby appraisals and another modern workflow provides the plugin.
+
 ## 🔧 Basic Usage
 
 Once you've configured the appraisals you want to use, you need to install the

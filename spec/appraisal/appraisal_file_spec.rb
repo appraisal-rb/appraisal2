@@ -15,6 +15,72 @@ RSpec.describe Appraisal::AppraisalFile do
     expect { described_class.new }.to raise_error(Appraisal::AppraisalsNotFound)
   end
 
+  describe "#plugin" do
+    it "requires the requested plugin path" do
+      appraisals = described_class.allocate
+
+      allow(appraisals).to receive(:require).with("appraisal2/rubocop").and_return(true)
+
+      appraisals.plugin("appraisal2-rubocop", :require => "appraisal2/rubocop")
+
+      expect(appraisals).to have_received(:require).with("appraisal2/rubocop")
+    end
+
+    it "uses the plugin name as the default require path" do
+      appraisals = described_class.allocate
+
+      allow(appraisals).to receive(:require).with("appraisal2-rubocop").and_return(true)
+
+      appraisals.plugin("appraisal2-rubocop")
+
+      expect(appraisals).to have_received(:require).with("appraisal2-rubocop")
+    end
+
+    it "ignores missing optional plugins" do
+      appraisals = described_class.allocate
+
+      allow(appraisals).to receive(:require).with("missing/plugin").and_raise(LoadError)
+
+      expect do
+        appraisals.plugin("missing-plugin", :require => "missing/plugin", :optional => true)
+      end.not_to raise_error
+
+      expect(appraisals).to have_received(:require).with("missing/plugin")
+    end
+
+    it "raises when a required plugin cannot be loaded" do
+      appraisals = described_class.allocate
+
+      allow(appraisals).to receive(:require).with("missing/plugin").and_raise(LoadError)
+
+      expect do
+        appraisals.plugin("missing-plugin", :require => "missing/plugin")
+      end.to raise_error(LoadError)
+
+      expect(appraisals).to have_received(:require).with("missing/plugin")
+    end
+
+    it "does not add plugin declarations to generated appraisal dependencies" do
+      allow(File).to receive(:exist?).and_call_original
+      allow(File).to receive(:exist?).with("Gemfile").and_return(true)
+      allow(File).to receive(:exist?).with("Appraisals").and_return(true)
+      allow(File).to receive(:read).and_call_original
+      allow(File).to receive(:read).with("Gemfile").and_return("")
+      allow(File).to receive(:read).with("Appraisals").and_return(<<-RUBY)
+        plugin "appraisal2-rubocop", :require => "missing/plugin", :optional => true
+
+        appraise "current" do
+          gem "rspec"
+        end
+      RUBY
+
+      appraisal = described_class.new.appraisals.first
+
+      expect(appraisal.gemfile.to_s).to include('gem "rspec"')
+      expect(appraisal.gemfile.to_s).not_to include("appraisal2-rubocop")
+    end
+  end
+
   describe "#customize_gemfiles" do
     before do
       # Reset Customize class state before each test

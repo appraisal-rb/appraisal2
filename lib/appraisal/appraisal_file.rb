@@ -41,6 +41,16 @@ module Appraisal
       Customize.new(args)
     end
 
+    def plugin(name, *args)
+      options = args.last.is_a?(Hash) ? args.last : {}
+      require_path = options.key?(:require) ? options[:require] : name
+      optional = options.key?(:optional) ? options[:optional] : false
+
+      require require_path if require_path
+    rescue LoadError
+      raise unless optional
+    end
+
     private
 
     def run(definitions)

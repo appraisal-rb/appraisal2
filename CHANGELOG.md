@@ -20,6 +20,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Added the `plugin` Appraisals DSL for generator-only companion gems that
+  should be loaded while Appraisal2 generates gemfiles without being serialized
+  into generated appraisal gemfiles.
+
 ### Changed
 
 ### Deprecated
