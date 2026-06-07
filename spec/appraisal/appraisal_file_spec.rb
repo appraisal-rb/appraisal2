@@ -79,6 +79,34 @@ RSpec.describe Appraisal::AppraisalFile do
       expect(appraisal.gemfile.to_s).to include('gem "rspec"')
       expect(appraisal.gemfile.to_s).not_to include("appraisal2-rubocop")
     end
+
+    it "does not serialize root generator-only dependencies into appraisals" do
+      root_gemfile = ENV["BUNDLE_GEMFILE"] || "Gemfile"
+
+      allow(File).to receive(:exist?).and_call_original
+      allow(File).to receive(:exist?).with(root_gemfile).and_return(true)
+      allow(File).to receive(:exist?).with("Appraisals").and_return(true)
+      allow(File).to receive(:read).and_call_original
+      allow(File).to receive(:read).with(root_gemfile).and_return(<<-RUBY)
+        if respond_to?(:generator_only)
+          generator_only do
+            eval_gemfile "gemfiles/modular/style.gemfile"
+          end
+        else
+          eval_gemfile "gemfiles/modular/style.gemfile"
+        end
+      RUBY
+      allow(File).to receive(:read).with("Appraisals").and_return(<<-RUBY)
+        appraise "current" do
+          gem "rspec"
+        end
+      RUBY
+
+      appraisal = described_class.new.appraisals.first
+
+      expect(appraisal.gemfile.to_s).to include('gem "rspec"')
+      expect(appraisal.gemfile.to_s).not_to include("style.gemfile")
+    end
   end
 
   describe "#customize_gemfiles" do

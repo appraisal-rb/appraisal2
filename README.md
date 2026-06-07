@@ -200,6 +200,25 @@ Set `:optional => true` when some workflows evaluate `Appraisals` without the
 plugin dependency installed. This is useful when a CI matrix uses one generator
 bundle for old-Ruby appraisals and another modern workflow provides the plugin.
 
+If the generator bundle needs dependencies that must not be copied into every
+generated appraisal gemfile, wrap those root Gemfile declarations with
+`generator_only` for Appraisal2 and leave the Bundler branch unchanged:
+
+```ruby
+if respond_to?(:generator_only)
+  generator_only do
+    eval_gemfile "gemfiles/modular/style.gemfile"
+  end
+else
+  eval_gemfile "gemfiles/modular/style.gemfile"
+end
+```
+
+Bundler evaluates the `else` branch while installing the active generator
+bundle. Appraisal2 evaluates the `generator_only` branch while parsing the root
+Gemfile, but intentionally does not serialize that block into generated
+appraisal gemfiles.
+
 ## 🔧 Basic Usage
 
 Once you've configured the appraisals you want to use, you need to install the

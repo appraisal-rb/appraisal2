@@ -183,6 +183,18 @@ RSpec.describe Appraisal::BundlerDSL do
     end
   end
 
+  describe "#generator_only" do
+    it "does not serialize the block contents" do
+      dsl.generator_only do
+        eval_gemfile "gemfiles/modular/style.gemfile"
+        gem "appraisal2-rubocop"
+      end
+
+      expect(dsl.to_s).not_to include("style.gemfile")
+      expect(dsl.to_s).not_to include("appraisal2-rubocop")
+    end
+  end
+
   describe "#git_source" do
     it "registers a custom git source" do
       dsl.git_source(:github) { |repo| "https://github.com/#{repo}.git" }

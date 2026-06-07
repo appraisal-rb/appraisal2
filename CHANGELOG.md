@@ -42,6 +42,9 @@ Please file a bug if you notice a violation of semantic versioning.
 - Added the `plugin` Appraisals DSL for generator-only companion gems that
   should be loaded while Appraisal2 generates gemfiles without being serialized
   into generated appraisal gemfiles.
+- Added the `generator_only` root Gemfile DSL for dependencies that Bundler
+  should install in the active generator bundle but Appraisal2 should not
+  serialize into generated appraisal gemfiles.
 
 ## [3.1.0] - 2026-06-06
 

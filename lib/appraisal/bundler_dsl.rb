@@ -44,6 +44,10 @@ module Appraisal
       @eval_gemfile << [path, contents]
     end
 
+    def generator_only(&_block)
+      nil
+    end
+
     def gem(name, *requirements)
       @dependencies.add(name, substitute_git_source(requirements))
     end
