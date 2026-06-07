@@ -315,6 +315,29 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#plugin-instance_method" title="#plugin (instance method)">#<strong>plugin</strong>(name, *args)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+</div></span>
+  
+</li>
+
+      
     </ul>
     
   
@@ -615,12 +638,54 @@
 </table>
 </div>
     
+      <div class="method_details ">
+  <h3 class="signature " id="plugin-instance_method">
+  
+    #<strong>plugin</strong>(name, *args)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/appraisal_file.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_plugin'>plugin</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Hash</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_args'>args</span><span class='period'>.</span><span class='id identifier rubyid_last'>last</span> <span class='op'>:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_require_path'>require_path</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='symbol'>:require</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:require</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id identifier rubyid_name'>name</span>
+  <span class='id identifier rubyid_optional'>optional</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='symbol'>:optional</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:optional</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='kw'>false</span>
+
+  <span class='id identifier rubyid_require'>require</span> <span class='id identifier rubyid_require_path'>require_path</span> <span class='kw'>if</span> <span class='id identifier rubyid_require_path'>require_path</span>
+<span class='kw'>rescue</span> <span class='const'>LoadError</span>
+  <span class='id identifier rubyid_raise'>raise</span> <span class='kw'>unless</span> <span class='id identifier rubyid_optional'>optional</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
   </div>
 
 </div>
 
       <div id="footer">
-  Generated on Thu Jun  4 20:37:20 2026 by
+  Generated on Sat Jun  6 19:57:11 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

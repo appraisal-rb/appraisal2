@@ -20,10 +20,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- Added the `plugin` Appraisals DSL for generator-only companion gems that
-  should be loaded while Appraisal2 generates gemfiles without being serialized
-  into generated appraisal gemfiles.
-
 ### Changed
 
 ### Deprecated
@@ -33,6 +29,19 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+## [3.1.1] - 2026-06-06
+
+- TAG: [v3.1.1][3.1.1t]
+- COVERAGE: 90.21% -- 820/909 lines in 29 files
+- BRANCH COVERAGE: 80.51% -- 157/195 branches in 29 files
+- 42.47% documented
+
+### Added
+
+- Added the `plugin` Appraisals DSL for generator-only companion gems that
+  should be loaded while Appraisal2 generates gemfiles without being serialized
+  into generated appraisal gemfiles.
 
 ## [3.1.0] - 2026-06-06
 
@@ -349,7 +358,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.1...HEAD
+[3.1.1]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.0...v3.1.1
+[3.1.1t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.1
 [3.1.0]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.9...v3.1.0
 [3.1.0t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.0
 [3.0.9]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.8...v3.0.9

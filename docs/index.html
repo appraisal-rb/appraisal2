@@ -182,7 +182,7 @@ need to normalize generated appraisal gemfiles before Appraisal2 writes them</li
     <tr>
       <td>Source</td>
       <td>
-<a href="https://gitlab.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=Github&amp;logoColor=green" alt="Source on Github.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.894-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
+<a href="https://gitlab.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=Github&amp;logoColor=green" alt="Source on Github.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.909-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
 </td>
     </tr>
     <tr>
@@ -385,6 +385,27 @@ unchanged.</p>
 <p>This is intended for plugin gems that need deterministic generated output, such<br>
 as style normalization of appraisal gemfiles, without monkey-patching Appraisal2<br>
 internals.</p>
+
+<h3 id="generator-plugins">Generator Plugins</h3>
+
+<p>Use <code>plugin</code> in <code>Appraisals</code> for companion gems that must be loaded while<br>
+Appraisal2 evaluates and generates appraisal gemfiles, but must not be written<br>
+as dependencies in the generated appraisal gemfiles.</p>
+
+<pre class="code language-ruby"><code class="language-ruby">plugin &quot;appraisal2-rubocop&quot;,
+  :require =&gt; &quot;appraisal2/rubocop&quot;,
+  :optional =&gt; true
+</code></pre>
+
+<p><code>plugin</code> requires the requested path in the active generator bundle. It does not<br>
+call <code>gem</code>, and it is not serialized into <code>gemfiles/*.gemfile</code>. This keeps<br>
+generator-only tooling out of appraisals that target older Rubies, while still<br>
+allowing modern generator workflows to load hooks such as<br>
+<code>Appraisal.transform_gemfile</code>.</p>
+
+<p>Set <code>:optional =&gt; true</code> when some workflows evaluate <code>Appraisals</code> without the<br>
+plugin dependency installed. This is useful when a CI matrix uses one generator<br>
+bundle for old-Ruby appraisals and another modern workflow provides the plugin.</p>
 
 <h2 id="-basic-usage">🔧 Basic Usage</h2>
 
@@ -866,7 +887,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun  6 05:29:54 2026 by
+  Generated on Sat Jun  6 19:57:11 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
