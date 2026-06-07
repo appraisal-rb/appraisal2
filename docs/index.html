@@ -182,7 +182,7 @@ need to normalize generated appraisal gemfiles before Appraisal2 writes them</li
     <tr>
       <td>Source</td>
       <td>
-<a href="https://gitlab.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=Github&amp;logoColor=green" alt="Source on Github.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.909-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
+<a href="https://gitlab.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=Github&amp;logoColor=green" alt="Source on Github.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.911-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
 </td>
     </tr>
     <tr>
@@ -406,6 +406,24 @@ allowing modern generator workflows to load hooks such as<br>
 <p>Set <code>:optional =&gt; true</code> when some workflows evaluate <code>Appraisals</code> without the<br>
 plugin dependency installed. This is useful when a CI matrix uses one generator<br>
 bundle for old-Ruby appraisals and another modern workflow provides the plugin.</p>
+
+<p>If the generator bundle needs dependencies that must not be copied into every<br>
+generated appraisal gemfile, wrap those root Gemfile declarations with<br>
+<code>generator_only</code> for Appraisal2 and leave the Bundler branch unchanged:</p>
+
+<pre class="code language-ruby"><code class="language-ruby">if respond_to?(:generator_only)
+  generator_only do
+    eval_gemfile &quot;gemfiles/modular/style.gemfile&quot;
+  end
+else
+  eval_gemfile &quot;gemfiles/modular/style.gemfile&quot;
+end
+</code></pre>
+
+<p>Bundler evaluates the <code>else</code> branch while installing the active generator<br>
+bundle. Appraisal2 evaluates the <code>generator_only</code> branch while parsing the root<br>
+Gemfile, but intentionally does not serialize that block into generated<br>
+appraisal gemfiles.</p>
 
 <h2 id="-basic-usage">🔧 Basic Usage</h2>
 
@@ -887,7 +905,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun  6 19:57:11 2026 by
+  Generated on Sat Jun  6 20:10:25 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

@@ -90,9 +90,9 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <ul>
   <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.1">v3.1.1</a>
 </li>
-  <li>COVERAGE: 90.21% – 820/909 lines in 29 files</li>
+  <li>COVERAGE: 90.23% – 822/911 lines in 29 files</li>
   <li>BRANCH COVERAGE: 80.51% – 157/195 branches in 29 files</li>
-  <li>42.47% documented</li>
+  <li>42.25% documented</li>
 </ul>
 
 <h3 id="added-1">Added</h3>
@@ -101,6 +101,9 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>Added the <code>plugin</code> Appraisals DSL for generator-only companion gems that<br>
 should be loaded while Appraisal2 generates gemfiles without being serialized<br>
 into generated appraisal gemfiles.</li>
+  <li>Added the <code>generator_only</code> root Gemfile DSL for dependencies that Bundler<br>
+should install in the active generator bundle but Appraisal2 should not<br>
+serialize into generated appraisal gemfiles.</li>
 </ul>
 
 <h2 id="310---2026-06-06">
@@ -563,7 +566,7 @@ is active.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun  6 19:57:11 2026 by
+  Generated on Sat Jun  6 20:10:26 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
