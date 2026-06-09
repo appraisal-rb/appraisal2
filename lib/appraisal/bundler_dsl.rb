@@ -76,13 +76,13 @@ module Appraisal
 
     alias_method :platform, :platforms
 
-    def source(source, &block)
+    def source(source, options = {}, &block)
       if block_given?
         @source_blocks[source] ||=
           Source.new(source).tap { |g| g.git_sources = @git_sources.dup }
         @source_blocks[source].run(&block)
       else
-        @sources << source
+        @sources << [source, options]
       end
     end
 
@@ -131,7 +131,9 @@ module Appraisal
     alias_method :eval_gemfile_entry_for_dup, :eval_gemfile_entry
 
     def source_entry
-      @sources.uniq.map { |source| "source #{source.inspect}" }.join("\n")
+      @sources.uniq.map do |(src, opts)|
+        opts.empty? ? "source #{src.inspect}" : "source #{src.inspect}, #{Utils.format_string(opts)}"
+      end.join("\n")
     end
 
     alias_method :source_entry_for_dup, :source_entry

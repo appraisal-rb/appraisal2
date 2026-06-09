@@ -48,6 +48,19 @@ RSpec.describe Appraisal::BundlerDSL do
         output = dsl.to_s
         expect(output.scan('source "https://gem.coop"').length).to eq(1)
       end
+
+      it "preserves options in output" do
+        dsl.source "https://rubygems.org", :cooldown => 14
+        expect(dsl.to_s).to include('source "https://rubygems.org", :cooldown => 14')
+      end
+
+      it "deduplicates sources with identical options" do
+        dsl.source "https://rubygems.org", :cooldown => 14
+        dsl.source "https://rubygems.org", :cooldown => 14
+        output = dsl.to_s
+        expect(output.scan('source "https://rubygems.org"').length).to eq(1)
+        expect(output).to include(":cooldown => 14")
+      end
     end
 
     context "with block" do

@@ -20,6 +20,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Support for Bundlers cooldown feature (#31)
+
 ### Changed
 
 ### Deprecated
