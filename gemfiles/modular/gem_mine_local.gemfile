@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Local path override for GemMine fixture scaffolding.
-# Loaded by gem_mine.gemfile when GEM_MINE_DEV != "false".
+# Loaded by gem_mine.gemfile when GEM_MINE_DEV is not "false".
 
 require "nomono/bundler" unless defined?(Nomono)
 

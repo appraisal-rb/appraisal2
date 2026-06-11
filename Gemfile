@@ -21,8 +21,8 @@ gemspec
 # Local workspace dependency wiring for *_local.gemfile overrides
 gem "nomono", "~> 1.0", ">= 1.0.3", :require => false # ruby >= 2.2
 
-# Test fixture scaffolding (local workspace only; not part of generated templates)
-eval_gemfile "gemfiles/modular/gem_mine.gemfile" if ENV.fetch("GEM_MINE_DEV", "false").casecmp("false") != 0
+# Test fixture scaffolding (not part of generated templates)
+eval_gemfile "gemfiles/modular/gem_mine.gemfile"
 
 # Templating (env-switched: SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local paths)
 eval_gemfile "gemfiles/modular/templating.gemfile" if ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?

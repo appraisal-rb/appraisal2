@@ -20,8 +20,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- Added local `gem_mine` fixture-scaffold wiring for acceptance specs that need
-  temporary throwaway gems.
+- Added released `gem_mine` fixture-scaffold dependency wiring for acceptance
+  specs that need temporary throwaway gems.
 
 ### Changed
 

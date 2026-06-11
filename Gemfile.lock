@@ -7,12 +7,6 @@ PATH
       thor (>= 0.14)
       version_gem (~> 1.1, >= 1.1.10)
 
-PATH
-  remote: /home/pboling/src/kettle-rb/appraisal-rb/gem_mine
-  specs:
-    gem_mine (0.1.0)
-      version_gem (~> 1.1, >= 1.1.11)
-
 GEM
   remote: https://gem.coop/
   specs:
@@ -85,6 +79,8 @@ GEM
     gem_bench (2.0.5)
       bundler (>= 1.14)
       version_gem (~> 1.1, >= 1.1.4)
+    gem_mine (0.1.0)
+      version_gem (~> 1.1, >= 1.1.11)
     geom2d (0.4.1)
     gitmoji-regex (2.0.1)
       version_gem (~> 1.1, >= 1.1.9)
@@ -410,7 +406,7 @@ DEPENDENCIES
   debug (>= 1.1)
   erb (~> 6.0, >= 6.0.4)
   gem_bench (~> 2.0, >= 2.0.5)
-  gem_mine!
+  gem_mine (~> 0.1, >= 0.1.0)
   gitmoji-regex (~> 2.0, >= 2.0.1)
   irb (~> 1.17)
   kettle-dev (~> 2.0, >= 2.0.8)
