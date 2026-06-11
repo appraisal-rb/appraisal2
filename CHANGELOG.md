@@ -35,6 +35,7 @@ Please file a bug if you notice a violation of semantic versioning.
   dummy gem projects do not accumulate under `tmp/spec-process-*`.
 - Isolated Git bare-repository config for acceptance specs so Bundler can use
   its per-process local git cache on machines with stricter global Git config.
+- Corrected the gemspec public author email to use `floss@galtzo.com`.
 
 ### Security
 
