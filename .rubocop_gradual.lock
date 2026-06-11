@@ -1,0 +1,122 @@
+{
+  "Gemfile:2370161132": [
+    [22, 37, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122]
+  ],
+  "appraisal2.gemspec:2924804135": [
+    [34, 32, 10, "Gemspec/RequiredRubyVersion: `required_ruby_version` and `TargetRubyVersion` (2.0, which may be specified in .rubocop.yml) should be equal.", 3998630200]
+  ],
+  "gemfiles/modular/benchmark/vHEAD.gemfile:3580879781": [
+    [2, 18, 7, "Style/HashSyntax: Use hash rockets syntax.", 2958841530],
+    [2, 44, 7, "Style/HashSyntax: Use hash rockets syntax.", 2712016907]
+  ],
+  "gemfiles/modular/coverage.gemfile:3684537803": [
+    [10, 52, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122]
+  ],
+  "gemfiles/modular/coverage_local.gemfile:1407628515": [
+    [8, 14, 57, "Style/WordArray: Use `['kettle-dev', 'kettle-test', 'kettle-soup-cover', 'kettle-drift']` for an array of words.", 819506788],
+    [10, 35, 14, "Style/WordArray: Use `['appraisal2']` for an array of words.", 243510982],
+    [15, 5, 5, "Style/HashSyntax: Use hash rockets syntax.", 172139267],
+    [16, 5, 7, "Style/HashSyntax: Use hash rockets syntax.", 1793069327],
+    [17, 5, 9, "Style/HashSyntax: Use hash rockets syntax.", 1462384112],
+    [18, 5, 18, "Style/HashSyntax: Use hash rockets syntax.", 2896500251],
+    [19, 5, 19, "Style/HashSyntax: Use hash rockets syntax.", 398792745],
+    [20, 5, 10, "Style/HashSyntax: Use hash rockets syntax.", 2523816364],
+    [25, 7, 5, "Style/HashSyntax: Use hash rockets syntax.", 172139267],
+    [25, 13, 16, "Style/WordArray: Use `['turbo_tests2']` for an array of words.", 442359367],
+    [26, 7, 7, "Style/HashSyntax: Use hash rockets syntax.", 1793069327],
+    [27, 7, 9, "Style/HashSyntax: Use hash rockets syntax.", 1462384112],
+    [28, 7, 18, "Style/HashSyntax: Use hash rockets syntax.", 2896500251],
+    [29, 7, 19, "Style/HashSyntax: Use hash rockets syntax.", 398792745],
+    [30, 7, 10, "Style/HashSyntax: Use hash rockets syntax.", 2523816364]
+  ],
+  "gemfiles/modular/documentation.gemfile:2565830817": [
+    [10, 39, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
+    [11, 38, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
+    [12, 33, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
+    [13, 36, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
+    [14, 40, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
+    [15, 47, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
+    [18, 43, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
+    [19, 48, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
+    [20, 42, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
+    [26, 24, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122]
+  ],
+  "gemfiles/modular/documentation_local.gemfile:885096597": [
+    [8, 14, 40, "Style/WordArray: Use `['yard-fence', 'yard-timekeeper', 'yard-yaml']` for an array of words.", 93613017],
+    [12, 3, 5, "Style/HashSyntax: Use hash rockets syntax.", 172139267],
+    [13, 3, 7, "Style/HashSyntax: Use hash rockets syntax.", 1793069327],
+    [14, 3, 9, "Style/HashSyntax: Use hash rockets syntax.", 1462384112],
+    [15, 3, 18, "Style/HashSyntax: Use hash rockets syntax.", 2896500251],
+    [16, 3, 19, "Style/HashSyntax: Use hash rockets syntax.", 398792745],
+    [17, 3, 10, "Style/HashSyntax: Use hash rockets syntax.", 2523816364]
+  ],
+  "gemfiles/modular/erb/vHEAD.gemfile:1986119783": [
+    [2, 12, 7, "Style/HashSyntax: Use hash rockets syntax.", 2958841530],
+    [2, 32, 7, "Style/HashSyntax: Use hash rockets syntax.", 2712016907]
+  ],
+  "gemfiles/modular/mutex_m/vHEAD.gemfile:256867115": [
+    [2, 16, 7, "Style/HashSyntax: Use hash rockets syntax.", 2958841530],
+    [2, 40, 7, "Style/HashSyntax: Use hash rockets syntax.", 2712016907]
+  ],
+  "gemfiles/modular/optional.gemfile:4198932128": [
+    [12, 22, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
+    [13, 46, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122]
+  ],
+  "gemfiles/modular/rspec.gemfile:1847119889": [
+    [2, 3, 7, "Style/HashSyntax: Use hash rockets syntax.", 2958841530],
+    [3, 3, 7, "Style/HashSyntax: Use hash rockets syntax.", 2712016907],
+    [4, 3, 4, "Style/HashSyntax: Use hash rockets syntax.", 2088303054]
+  ],
+  "gemfiles/modular/stringio/vHEAD.gemfile:105320523": [
+    [2, 17, 7, "Style/HashSyntax: Use hash rockets syntax.", 2958841530],
+    [2, 42, 7, "Style/HashSyntax: Use hash rockets syntax.", 2712016907]
+  ],
+  "gemfiles/modular/style.gemfile:804530777": [
+    [15, 51, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122]
+  ],
+  "gemfiles/modular/style_local.gemfile:432613766": [
+    [11, 14, 70, "Style/WordArray: Use `['rubocop-lts', 'rubocop-lts-rspec', 'rubocop-ruby1_8', 'standard-rubocop-lts']` for an array of words.", 3798071388],
+    [16, 5, 5, "Style/HashSyntax: Use hash rockets syntax.", 172139267],
+    [17, 5, 7, "Style/HashSyntax: Use hash rockets syntax.", 1793069327],
+    [18, 5, 9, "Style/HashSyntax: Use hash rockets syntax.", 1462384112],
+    [19, 5, 18, "Style/HashSyntax: Use hash rockets syntax.", 2896500251],
+    [20, 5, 19, "Style/HashSyntax: Use hash rockets syntax.", 398792745],
+    [21, 5, 10, "Style/HashSyntax: Use hash rockets syntax.", 2523816364],
+    [22, 5, 5, "Style/HashSyntax: Use hash rockets syntax.", 194600825]
+  ],
+  "gemfiles/modular/templating.gemfile:125467659": [
+    [13, 45, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122]
+  ],
+  "gemfiles/modular/templating_local.gemfile:3370728880": [
+    [9, 23, 466, "Style/WordArray: Use an array literal `[...]` for an array of words.", 1241212190],
+    [42, 24, 61, "Style/WordArray: Use an array literal `[...]` for an array of words.", 3377685433],
+    [46, 53, 14, "Style/WordArray: Use `['appraisal2']` for an array of words.", 243510982],
+    [47, 55, 14, "Style/WordArray: Use `['appraisal2']` for an array of words.", 243510982],
+    [58, 38, 5, "Style/HashSyntax: Use hash rockets syntax.", 187670450],
+    [63, 7, 5, "Style/HashSyntax: Use hash rockets syntax.", 172139267],
+    [64, 7, 7, "Style/HashSyntax: Use hash rockets syntax.", 1793069327],
+    [65, 7, 9, "Style/HashSyntax: Use hash rockets syntax.", 1462384112],
+    [66, 7, 18, "Style/HashSyntax: Use hash rockets syntax.", 2896500251],
+    [67, 7, 19, "Style/HashSyntax: Use hash rockets syntax.", 398792745],
+    [68, 7, 10, "Style/HashSyntax: Use hash rockets syntax.", 2523816364],
+    [74, 7, 5, "Style/HashSyntax: Use hash rockets syntax.", 172139267],
+    [75, 7, 7, "Style/HashSyntax: Use hash rockets syntax.", 1793069327],
+    [76, 7, 9, "Style/HashSyntax: Use hash rockets syntax.", 1462384112],
+    [77, 7, 18, "Style/HashSyntax: Use hash rockets syntax.", 2896500251],
+    [78, 7, 19, "Style/HashSyntax: Use hash rockets syntax.", 398792745],
+    [79, 7, 10, "Style/HashSyntax: Use hash rockets syntax.", 2523816364]
+  ],
+  "lib/appraisal/bundler_dsl.rb:3162571999": [
+    [153, 17, 3, "Style/MapJoin: Remove redundant `map(&:to_s)` before `join`.", 193414073]
+  ],
+  "lib/appraisal/dependency_list.rb:1269446823": [
+    [30, 28, 3, "Style/MapJoin: Remove redundant `map(&:to_s)` before `join`.", 193414073]
+  ],
+  "spec/acceptance/cli/run_spec.rb:171720885": [
+    [16, 27, 35, "Lint/InterpolationCheck: Interpolation in single quoted string detected. Use double quoted strings if you need interpolation.", 874607702],
+    [17, 39, 35, "Lint/InterpolationCheck: Interpolation in single quoted string detected. Use double quoted strings if you need interpolation.", 874607702]
+  ],
+  "spec/appraisal/appraisal_spec.rb:1189013292": [
+    [89, 35, 18, "RSpec/MatchWithSimpleRegex: Prefer using `include(\"gem 'foo'\")` when the regex is a simple string literal.", 339361534]
+  ]
+}
