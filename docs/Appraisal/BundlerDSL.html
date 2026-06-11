@@ -534,7 +534,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#source-instance_method" title="#source (instance method)">#<strong>source</strong>(source, &amp;block)  &#x21d2; Object </a>
+      <a href="#source-instance_method" title="#source (instance method)">#<strong>source</strong>(source, options = {}, &amp;block)  &#x21d2; Object </a>
     
 
     
@@ -1147,7 +1147,7 @@
       <div class="method_details ">
   <h3 class="signature " id="source-instance_method">
   
-    #<strong>source</strong>(source, &amp;block)  &#x21d2; <tt>Object</tt> 
+    #<strong>source</strong>(source, options = {}, &amp;block)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -1172,13 +1172,13 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/appraisal/bundler_dsl.rb', line 79</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_source'>source</span><span class='lparen'>(</span><span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_source'>source</span><span class='lparen'>(</span><span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_block_given?'>block_given?</span>
     <span class='ivar'>@source_blocks</span><span class='lbracket'>[</span><span class='id identifier rubyid_source'>source</span><span class='rbracket'>]</span> <span class='op'>||=</span>
       <span class='const'><span class='object_link'><a href="Source.html" title="Appraisal::Source (class)">Source</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Source.html#initialize-instance_method" title="Appraisal::Source#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_source'>source</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_g'>g</span><span class='op'>|</span> <span class='id identifier rubyid_g'>g</span><span class='period'>.</span><span class='id identifier rubyid_git_sources'>git_sources</span> <span class='op'>=</span> <span class='ivar'>@git_sources</span><span class='period'>.</span><span class='id identifier rubyid_dup'>dup</span> <span class='rbrace'>}</span>
     <span class='ivar'>@source_blocks</span><span class='lbracket'>[</span><span class='id identifier rubyid_source'>source</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>else</span>
-    <span class='ivar'>@sources</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_source'>source</span>
+    <span class='ivar'>@sources</span> <span class='op'>&lt;&lt;</span> <span class='lbracket'>[</span><span class='id identifier rubyid_source'>source</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rbracket'>]</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -1221,7 +1221,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Jun  6 20:10:26 2026 by
+  Generated on Tue Jun  9 10:25:09 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

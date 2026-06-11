@@ -20,6 +20,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Support for Bundlers cooldown feature (#31)
 - Added released `gem_mine` fixture-scaffold dependency wiring for acceptance
   specs that need temporary throwaway gems.
 
