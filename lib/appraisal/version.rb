@@ -2,7 +2,7 @@
 
 module Appraisal
   module Version
-    VERSION = "3.1.1"
+    VERSION = "3.1.2"
   end
   VERSION = Version::VERSION # Traditional constant location
 end

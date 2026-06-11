@@ -20,10 +20,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- Support for Bundlers cooldown feature (#31)
-- Added released `gem_mine` fixture-scaffold dependency wiring for acceptance
-  specs that need temporary throwaway gems.
-
 ### Changed
 
 ### Deprecated
@@ -32,13 +28,28 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+### Security
+
+## [3.1.2] - 2026-06-11
+
+- TAG: [v3.1.2][3.1.2t]
+- COVERAGE: 90.21% -- 820/909 lines in 29 files
+- BRANCH COVERAGE: 80.71% -- 159/197 branches in 29 files
+- 42.25% documented
+
+### Added
+
+- Support for Bundlers cooldown feature (#31)
+- Added released `gem_mine` fixture-scaffold dependency wiring for acceptance
+  specs that need temporary throwaway gems.
+
+### Fixed
+
 - Cleaned up per-process scaffold roots after acceptance spec runs so generated
   dummy gem projects do not accumulate under `tmp/spec-process-*`.
 - Isolated Git bare-repository config for acceptance specs so Bundler can use
   its per-process local git cache on machines with stricter global Git config.
 - Corrected the gemspec public author email to use `floss@galtzo.com`.
-
-### Security
 
 ## [3.1.1] - 2026-06-06
 
@@ -364,14 +375,16 @@ Please file a bug if you notice a violation of semantic versioning.
 - Initial release as a hard fork of [appraisal v3.0.0.rc1](https://github.com/thoughtbot/appraisal/commit/602cdd9b5f8cb8f36992733422f69312b172f427) with many improvements - by @pboling
   - support for `eval_gemfile`
   - support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot's `appraisal`)
-    - NOTE: The [setup-ruby GH Action](https://github.com/ruby/setup-ruby) only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI. Compatibility is assumed thanks to [![Enforced Code Style Linter](https://img.shields.io/badge/code_style_%26_linting-rubocop--lts-34495e.svg?plastic&logo=ruby&logoColor=white)](https://github.com/rubocop-lts/rubocop-lts) enforcing the syntax for the oldest supported Ruby, which is Ruby v1.8. File a bug if you find something broken.
+    - NOTE: The [setup-ruby GH Action](https://github.com/ruby/setup-ruby) only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI. Compatibility is assumed thanks to [![Enforced Code Style Linter](https://img.shields.io/badge/code_style_&_linting-rubocop--lts-34495e.svg?plastic&logo=ruby&logoColor=white)](https://github.com/rubocop-lts/rubocop-lts) enforcing the syntax for the oldest supported Ruby, which is Ruby v1.8. File a bug if you find something broken.
   - Support for JRuby 9.4+
   - updated and improved documentation
   - maintainability tracked with QLTY.sh and the reek gem
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.1...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.2...HEAD
+[3.1.2]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.1...v3.1.2
+[3.1.2t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.2
 [3.1.1]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.0...v3.1.1
 [3.1.1t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.1
 [3.1.0]: https://github.com/appraisal-rb/appraisal2/compare/v3.0.9...v3.1.0

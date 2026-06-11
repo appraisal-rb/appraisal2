@@ -70,15 +70,9 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.1.1...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.1.2...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
-
-<ul>
-  <li>Support for Bundlers cooldown feature (#31)</li>
-  <li>Added released <code>gem_mine</code> fixture-scaffold dependency wiring for acceptance<br>
-specs that need temporary throwaway gems.</li>
-</ul>
 
 <h3 id="changed">Changed</h3>
 
@@ -88,6 +82,29 @@ specs that need temporary throwaway gems.</li>
 
 <h3 id="fixed">Fixed</h3>
 
+<h3 id="security">Security</h3>
+
+<h2 id="312---2026-06-11">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.1.1...v3.1.2">3.1.2</a> - 2026-06-11</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.2">v3.1.2</a>
+</li>
+  <li>COVERAGE: 90.21% – 820/909 lines in 29 files</li>
+  <li>BRANCH COVERAGE: 80.71% – 159/197 branches in 29 files</li>
+  <li>42.25% documented</li>
+</ul>
+
+<h3 id="added-1">Added</h3>
+
+<ul>
+  <li>Support for Bundlers cooldown feature (#31)</li>
+  <li>Added released <code>gem_mine</code> fixture-scaffold dependency wiring for acceptance<br>
+specs that need temporary throwaway gems.</li>
+</ul>
+
+<h3 id="fixed-1">Fixed</h3>
+
 <ul>
   <li>Cleaned up per-process scaffold roots after acceptance spec runs so generated<br>
 dummy gem projects do not accumulate under <code>tmp/spec-process-*</code>.</li>
@@ -95,8 +112,6 @@ dummy gem projects do not accumulate under <code>tmp/spec-process-*</code>.</li>
 its per-process local git cache on machines with stricter global Git config.</li>
   <li>Corrected the gemspec public author email to use <code>floss@galtzo.com</code>.</li>
 </ul>
-
-<h3 id="security">Security</h3>
 
 <h2 id="311---2026-06-06">
 <a href="https://github.com/appraisal-rb/appraisal2/compare/v3.1.0...v3.1.1">3.1.1</a> - 2026-06-06</h2>
@@ -109,7 +124,7 @@ its per-process local git cache on machines with stricter global Git config.</li
   <li>42.25% documented</li>
 </ul>
 
-<h3 id="added-1">Added</h3>
+<h3 id="added-2">Added</h3>
 
 <ul>
   <li>Added the <code>plugin</code> Appraisals DSL for generator-only companion gems that<br>
@@ -131,7 +146,7 @@ serialize into generated appraisal gemfiles.</li>
   <li>42.70% documented</li>
 </ul>
 
-<h3 id="added-2">Added</h3>
+<h3 id="added-3">Added</h3>
 
 <ul>
   <li>Added Appraisal lifecycle hooks, including <code>Appraisal.transform_gemfile</code><br>
@@ -188,7 +203,7 @@ generation commands, and generated gemfile transform hooks in the README.</li>
   <li>42.69% documented</li>
 </ul>
 
-<h3 id="fixed-1">Fixed</h3>
+<h3 id="fixed-2">Fixed</h3>
 
 <ul>
   <li>Fixed generated project metadata and README links to use the <code>appraisal-rb</code><br>
@@ -209,7 +224,7 @@ not support.</li>
   <li>42.69% documented</li>
 </ul>
 
-<h3 id="added-3">Added</h3>
+<h3 id="added-4">Added</h3>
 
 <ul>
   <li>Added <code>Appraisal2::Version</code> / <code>Appraisal2::VERSION</code> constants backed by<br>
@@ -257,7 +272,7 @@ workflow set.</p>
 generated <code>dep-heads</code> appraisal workflow.</li>
 </ul>
 
-<h3 id="fixed-2">Fixed</h3>
+<h3 id="fixed-3">Fixed</h3>
 
 <ul>
   <li>
@@ -296,7 +311,7 @@ is active.</li>
   <li>43.11% documented</li>
 </ul>
 
-<h3 id="added-4">Added</h3>
+<h3 id="added-5">Added</h3>
 
 <ul>
   <li>Test for bundler handling with pre-existing appraisal lockfiles
@@ -314,7 +329,7 @@ is active.</li>
   </li>
 </ul>
 
-<h3 id="fixed-3">Fixed</h3>
+<h3 id="fixed-4">Fixed</h3>
 
 <ul>
   <li>Restore bundler’s automatic version switching for modern bundler versions (2.2+)
@@ -354,13 +369,13 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-5">Added</h3>
+<h3 id="added-6">Added</h3>
 
 <ul>
   <li>Documentation of <code>BUNDLE_PATH</code> for caching gems</li>
 </ul>
 
-<h3 id="fixed-4">Fixed</h3>
+<h3 id="fixed-5">Fixed</h3>
 
 <ul>
   <li>Restore support for <code>BUNDLE_PATH</code> environment variable which regressed in  <code>v3.0.3</code>
@@ -400,7 +415,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-6">Added</h3>
+<h3 id="added-7">Added</h3>
 
 <ul>
   <li>New CLI specs for testing named appraisal commands with options</li>
@@ -419,7 +434,7 @@ is active.</li>
   <li>Significantly optimized unit tests in <code>cli_spec.rb</code> and <code>appraisal_spec.rb</code> by using gem manager mocks, reducing execution time from seconds to milliseconds</li>
 </ul>
 
-<h3 id="fixed-5">Fixed</h3>
+<h3 id="fixed-6">Fixed</h3>
 
 <ul>
   <li>Removed <code>Dir.chdir</code> into <code>gemfiles/</code> directory before running <code>ore</code> commands.</li>
@@ -461,7 +476,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-7">Added</h3>
+<h3 id="added-8">Added</h3>
 
 <ul>
   <li>funding documentation</li>
@@ -480,7 +495,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-8">Added</h3>
+<h3 id="added-9">Added</h3>
 
 <ul>
   <li>Support for <a href="https://github.com/contriboss/ore-light">ore-light</a> as an alternative gem manager via <code>--gem-manager=ore</code> CLI option
@@ -541,7 +556,7 @@ is active.</li>
   <li>YARD CLI config switch from custom Kramdown support to yard-fence</li>
 </ul>
 
-<h3 id="fixed-6">Fixed</h3>
+<h3 id="fixed-7">Fixed</h3>
 
 <ul>
   <li>Fixed <code>BundlerAdapter#install</code> not passing <code>gemfile_path</code> to <code>Command.new</code>, which caused bundler to potentially write to the wrong Gemfile.lock when <code>Bundler.with_original_env</code> reset the environment</li>
@@ -565,7 +580,7 @@ is active.</li>
 </li>
       <li>support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot’s <code>appraisal</code>)
         <ul>
-          <li>NOTE: The <a href="https://github.com/ruby/setup-ruby">setup-ruby GH Action</a> only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI. Compatibility is assumed thanks to <a href="https://github.com/rubocop-lts/rubocop-lts"><img src="https://img.shields.io/badge/code_style_%26_linting-rubocop--lts-34495e.svg?plastic&amp;logo=ruby&amp;logoColor=white" alt="Enforced Code Style Linter"></a> enforcing the syntax for the oldest supported Ruby, which is Ruby v1.8. File a bug if you find something broken.</li>
+          <li>NOTE: The <a href="https://github.com/ruby/setup-ruby">setup-ruby GH Action</a> only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI. Compatibility is assumed thanks to <a href="https://github.com/rubocop-lts/rubocop-lts"><img src="https://img.shields.io/badge/code_style_&amp;_linting-rubocop--lts-34495e.svg?plastic&amp;logo=ruby&amp;logoColor=white" alt="Enforced Code Style Linter"></a> enforcing the syntax for the oldest supported Ruby, which is Ruby v1.8. File a bug if you find something broken.</li>
         </ul>
       </li>
       <li>Support for JRuby 9.4+</li>
@@ -580,7 +595,7 @@ is active.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Thu Jun 11 03:47:42 2026 by
+  Generated on Thu Jun 11 05:30:27 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
