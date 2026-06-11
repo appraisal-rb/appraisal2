@@ -47,3 +47,4 @@ Choose the option that best fits your use case:
 - Copyright (c) 2024 Joe Sharp
 - Copyright (c) 2024 Sebastian Cohnen
 - Copyright (c) 2024 Yevhenii Ponomarenko
+- Copyright (c) 2026 Richard Kramer

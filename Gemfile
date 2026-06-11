@@ -19,7 +19,7 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 gemspec
 
 # Local workspace dependency wiring for *_local.gemfile overrides
-gem "nomono", "~> 1.0", ">= 1.0.3", :require => false # ruby >= 2.2
+gem "nomono", "~> 1.0", ">= 1.0.3", require: false # ruby >= 2.2
 
 # Test fixture scaffolding (not part of generated templates)
 eval_gemfile "gemfiles/modular/gem_mine.gemfile"

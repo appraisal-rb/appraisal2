@@ -1,4 +1,40 @@
 {
+  "# To retain chunks of comments & code during kettle-jem templating:\n# Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).": [
+    {
+      "file": "Appraisals",
+      "lines": [
+        4,
+        15
+      ]
+    }
+  ],
+  "# Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).\n# kettle-jem will then preserve content between those markers across template runs.": [
+    {
+      "file": "Appraisals",
+      "lines": [
+        5,
+        16
+      ]
+    }
+  ],
+  "# kettle-jem will then preserve content between those markers across template runs.\n# kettle-jem:unfreeze": [
+    {
+      "file": "Appraisals",
+      "lines": [
+        6,
+        17
+      ]
+    }
+  ],
+  "# kettle-jem:freeze\n# To retain chunks of comments & code during kettle-jem templating:": [
+    {
+      "file": "Appraisals",
+      "lines": [
+        3,
+        14
+      ]
+    }
+  ],
   "// Use 'forwardPorts' to make a list of ports inside the container available locally.\n// \"forwardPorts\": [],": [
     {
       "file": ".devcontainer/devcontainer.json",
@@ -32,8 +68,8 @@
     {
       "file": "Appraisals",
       "lines": [
-        49,
-        116
+        60,
+        127
       ]
     }
   ],

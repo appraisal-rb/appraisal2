@@ -15,8 +15,7 @@ gem_version =
   else
     # NOTE: Use __FILE__ or __dir__ until removal of Ruby 1.x support
     # __dir__ introduced in Ruby 1.9.1
-    # lib = File.expand_path("../lib", __FILE__)
-    lib = File.expand_path("lib", __dir__)
+    lib = File.expand_path("lib", File.dirname(__FILE__))
     $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
     require "appraisal2/version"
     Appraisal2::Version::VERSION
@@ -25,17 +24,14 @@ gem_version =
 Gem::Specification.new do |spec|
   spec.name = "appraisal2"
   spec.version = gem_version
-  spec.authors = ["Peter Boling", "Joe Ferris", "Prem Sichanugrist"]
+  spec.authors = ["Peter H. Boling"]
   spec.email = ["floss@galtzo.com"]
 
   spec.summary = "🔍️ Find out what your Ruby gems are worth"
   spec.description = '🔍️ Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals."'
   spec.homepage = "https://github.com/appraisal-rb/appraisal2"
   spec.licenses = ["MIT"]
-  # Runtime support intentionally extends below the active RuboCop-LTS target.
-  # rubocop:disable Gemspec/RequiredRubyVersion
   spec.required_ruby_version = ">= 1.8.7"
-  # rubocop:enable Gemspec/RequiredRubyVersion
 
   # Linux distros often package gems and securely certify them independent
   #   of the official RubyGem certification process. Allowed via ENV["SKIP_GEM_SIGNING"]
@@ -126,7 +122,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency("bundler", ">= 1.17.3")  # Last version supporting Ruby 1.8.7
   spec.add_dependency("rake", ">= 10")         # Last version supporting Ruby 1.8.7
   spec.add_dependency("thor", ">= 0.14")       # Last version supporting Ruby 1.8.7 && Rails 3
-  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.10")              # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability.
@@ -142,7 +137,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 2.0", ">= 2.0.8")      # ruby >= 2.4
+  spec.add_development_dependency("kettle-dev", "~> 2.2", ">= 2.2.3")      # ruby >= 2.4
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
@@ -153,8 +148,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("require_bench", "~> 1.0", ">= 1.0.4")            # ruby >= 2.2.0
 
   # Testing
-  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.3")             # ruby >= 2.4
-  spec.add_development_dependency("turbo_tests2", "~> 3.1", ">= 3.1.1")            # ruby >= 2.4.0, default kettle-test runner
+  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.5")             # ruby >= 2.4
+  spec.add_development_dependency("turbo_tests2", "~> 3.1", ">= 3.1.2")            # ruby >= 2.4.0, default kettle-test runner
 
   # Releasing
   spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
