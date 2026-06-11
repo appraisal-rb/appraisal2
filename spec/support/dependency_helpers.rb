@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+begin
+  require "gem_mine"
+rescue LoadError
+  nil
+end
+
 module DependencyHelpers
   DEFAULT_OPTS = {
     :skip_build => false,
@@ -32,6 +38,12 @@ module DependencyHelpers
     return if File.exist? "#{TMP_GEM_ROOT}/gems/#{gem_name}-#{version}"
 
     build_dir = "#{TMP_GEM_BUILD}/#{gem_name}"
+    if gem_mine_available?
+      return build_gem_with_gem_mine(gem_name, version, build_dir, skip_build, skip_install) do |gem_dir, redirect|
+        yield gem_dir, redirect if block_given?
+      end
+    end
+
     FileUtils.mkdir_p "#{build_dir}/lib"
 
     FileUtils.cd build_dir do
@@ -83,17 +95,33 @@ module DependencyHelpers
   end
 
   def build_git_gem(gem_name, version = "1.0.0")
-    build_gem(gem_name, {:version => version, :skip_build => true, :skip_install => true}) do |_gem_dir, redirect|
-      # At this point we have a gem file structure on disk inside `_gem_dir`.
-      # Since we are already inside _gem_dir, we do not need to chdir.
+    if gem_mine_available?
+      ENV["GEM_HOME"] = TMP_GEM_ROOT
+      return if File.exist? "#{TMP_GEM_BUILD}/#{gem_name}/.git"
+
       puts "initializing git repo for gem: #{gem_name} #{version}" if ENV["VERBOSE"]
-      # Set up our clone of the bare git repository, and push our gem into it
-      `git init . --initial-branch=main #{redirect}`
-      `git config user.email "appraisal@thoughtbot.com" #{redirect}`
-      `git config user.name "Appraisal" #{redirect}`
-      `git config commit.gpgsign false #{redirect}`
-      `git add . #{redirect}`
-      `git commit --all --no-verify --message "initial commit" #{redirect}`
+      GemMine.scaffold(
+        gem_name,
+        :root => "#{TMP_GEM_BUILD}/#{gem_name}",
+        :version => version,
+        :gem_home => TMP_GEM_ROOT,
+        :build => false,
+        :install => false,
+        :git => true,
+        :verbose => ENV["VERBOSE"]
+      )
+    else
+      build_gem(gem_name, {:version => version, :skip_build => true, :skip_install => true}) do |_gem_dir, redirect|
+        # At this point we have a gem file structure on disk inside `_gem_dir`.
+        # Since we are already inside _gem_dir, we do not need to chdir.
+        puts "initializing git repo for gem: #{gem_name} #{version}" if ENV["VERBOSE"]
+        # Set up our clone of the bare git repository, and push our gem into it
+        `git init . --initial-branch=main #{redirect}`
+        `git config user.email "appraisal@thoughtbot.com" #{redirect}`
+        `git config user.name "Appraisal" #{redirect}`
+        `git add . #{redirect}`
+        `git commit --all --no-verify --message "initial commit" #{redirect}`
+      end
     end
 
     # Cleanup Bundler cache path manually for now
@@ -107,5 +135,27 @@ module DependencyHelpers
 
   def build_git_gems(gems)
     gems.each { |gem| build_git_gem(gem) }
+  end
+
+  private
+
+  def gem_mine_available?
+    defined?(GemMine::Scaffold)
+  end
+
+  def build_gem_with_gem_mine(gem_name, version, build_dir, skip_build, skip_install)
+    scaffold = GemMine::Scaffold.new(
+      gem_name,
+      :root => build_dir,
+      :version => version,
+      :gem_home => TMP_GEM_ROOT,
+      :verbose => ENV["VERBOSE"]
+    ).create
+
+    yield build_dir, (ENV["VERBOSE"] ? "" : "2>&1") if block_given?
+    scaffold.build unless skip_build
+    scaffold.install unless skip_install
+    puts "" if ENV["VERBOSE"]
+    nil
   end
 end

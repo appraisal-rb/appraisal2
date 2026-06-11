@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+# Test fixture scaffolding.
+# Released gem_mine is used by default; GEM_MINE_DEV enables a local path override.
+if ENV.fetch("GEM_MINE_DEV", "false").casecmp("false") != 0
+  eval_gemfile "gem_mine_local.gemfile"
+else
+  gem "gem_mine", "~> 0.1", ">= 0.1.0", :require => false # ruby >= 3.2
+end

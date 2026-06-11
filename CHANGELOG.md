@@ -21,6 +21,8 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Added
 
 - Support for Bundlers cooldown feature (#31)
+- Added released `gem_mine` fixture-scaffold dependency wiring for acceptance
+  specs that need temporary throwaway gems.
 
 ### Changed
 
@@ -29,6 +31,12 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Removed
 
 ### Fixed
+
+- Cleaned up per-process scaffold roots after acceptance spec runs so generated
+  dummy gem projects do not accumulate under `tmp/spec-process-*`.
+- Isolated Git bare-repository config for acceptance specs so Bundler can use
+  its per-process local git cache on machines with stricter global Git config.
+- Corrected the gemspec public author email to use `floss@galtzo.com`.
 
 ### Security
 

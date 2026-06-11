@@ -76,6 +76,8 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <ul>
   <li>Support for Bundlers cooldown feature (#31)</li>
+  <li>Added released <code>gem_mine</code> fixture-scaffold dependency wiring for acceptance<br>
+specs that need temporary throwaway gems.</li>
 </ul>
 
 <h3 id="changed">Changed</h3>
@@ -85,6 +87,14 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <h3 id="removed">Removed</h3>
 
 <h3 id="fixed">Fixed</h3>
+
+<ul>
+  <li>Cleaned up per-process scaffold roots after acceptance spec runs so generated<br>
+dummy gem projects do not accumulate under <code>tmp/spec-process-*</code>.</li>
+  <li>Isolated Git bare-repository config for acceptance specs so Bundler can use<br>
+its per-process local git cache on machines with stricter global Git config.</li>
+  <li>Corrected the gemspec public author email to use <code>floss@galtzo.com</code>.</li>
+</ul>
 
 <h3 id="security">Security</h3>
 
@@ -570,7 +580,7 @@ is active.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Tue Jun  9 10:37:52 2026 by
+  Generated on Thu Jun 11 03:47:42 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

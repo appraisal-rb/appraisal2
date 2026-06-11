@@ -80,6 +80,9 @@ module AcceptanceTestHelpers
       "BUNDLE_IGNORE_FUNDING_REQUESTS",
       "BUNDLE_DISABLE_SHARED_GEMS",
       "GEM_PATH",
+      "GIT_CONFIG_COUNT",
+      "GIT_CONFIG_KEY_0",
+      "GIT_CONFIG_VALUE_0",
       "APPRAISAL_TEST_BUNDLER_VERSION",
       "APPRAISAL_TEST_SYSTEM_GEM_PATH"
     ]
@@ -137,6 +140,13 @@ module AcceptanceTestHelpers
     test_cache_dir = File.join(current_directory, ".bundle", "cache")
     FileUtils.mkdir_p(test_cache_dir)
     ENV["BUNDLE_USER_CACHE"] = test_cache_dir
+
+    # Bundler creates bare repositories inside its isolated git cache. Some
+    # developer machines set safe.bareRepository=explicit globally, so allow
+    # bare repositories only for subprocesses spawned by these isolated specs.
+    ENV["GIT_CONFIG_COUNT"] = "1"
+    ENV["GIT_CONFIG_KEY_0"] = "safe.bareRepository"
+    ENV["GIT_CONFIG_VALUE_0"] = "all"
 
     ENV["APPRAISAL_TEST_BUNDLER_VERSION"] = test_bundler_version
     ENV["APPRAISAL_TEST_SYSTEM_GEM_PATH"] = Gem.path.join(File::PATH_SEPARATOR)

@@ -26,7 +26,7 @@ Gem::Specification.new do |spec|
   spec.name = "appraisal2"
   spec.version = gem_version
   spec.authors = ["Peter Boling", "Joe Ferris", "Prem Sichanugrist"]
-  spec.email = ["galtzo@floss.com"]
+  spec.email = ["floss@galtzo.com"]
 
   spec.summary = "🔍️ Find out what your Ruby gems are worth"
   spec.description = '🔍️ Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals."'
