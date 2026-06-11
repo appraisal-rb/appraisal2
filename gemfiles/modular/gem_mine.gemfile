@@ -1,0 +1,5 @@
+# frozen_string_literal: true
+
+# Test fixture scaffolding.
+# Local path override is enabled by GEM_MINE_DEV in mise.toml for this workspace.
+eval_gemfile "gem_mine_local.gemfile"

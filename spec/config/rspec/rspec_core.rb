@@ -31,4 +31,12 @@ RSpec.configure do |config|
     FileUtils.rm_rf TMP_PROCESS_ROOT
     FileUtils.mkdir_p TMP_PROCESS_ROOT
   end
+
+  config.after :suite do
+    if defined?(GemMine)
+      GemMine.clean(TMP_PROCESS_ROOT)
+    else
+      FileUtils.rm_rf TMP_PROCESS_ROOT
+    end
+  end
 end

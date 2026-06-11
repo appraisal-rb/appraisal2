@@ -7,6 +7,12 @@ PATH
       thor (>= 0.14)
       version_gem (~> 1.1, >= 1.1.10)
 
+PATH
+  remote: /home/pboling/src/kettle-rb/appraisal-rb/gem_mine
+  specs:
+    gem_mine (0.1.0)
+      version_gem (~> 1.1, >= 1.1.11)
+
 GEM
   remote: https://gem.coop/
   specs:
@@ -147,8 +153,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.3-x86_64-linux-musl)
       racc (~> 1.4)
-    nomono (1.0.2)
-      version_gem (~> 1.1, >= 1.1.9)
+    nomono (1.0.3)
+      version_gem (~> 1.1, >= 1.1.11)
     openssl (4.0.2)
     ostruct (0.6.3)
     parallel (1.28.0)
@@ -359,7 +365,7 @@ GEM
       unicode-emoji (~> 4.1)
     unicode-emoji (4.2.0)
     uri (1.1.1)
-    version_gem (1.1.10)
+    version_gem (1.1.11)
     yaml-converter (0.2.0)
       hexapdf (>= 1.8, < 2)
       kramdown (>= 2.4, < 3)
@@ -404,6 +410,7 @@ DEPENDENCIES
   debug (>= 1.1)
   erb (~> 6.0, >= 6.0.4)
   gem_bench (~> 2.0, >= 2.0.5)
+  gem_mine!
   gitmoji-regex (~> 2.0, >= 2.0.1)
   irb (~> 1.17)
   kettle-dev (~> 2.0, >= 2.0.8)
@@ -412,7 +419,7 @@ DEPENDENCIES
   kramdown (~> 2.5, >= 2.5.1)
   kramdown-parser-gfm (~> 1.1)
   mutex_m (~> 0.2)
-  nomono (~> 1.0, >= 1.0.2)
+  nomono (~> 1.0, >= 1.0.3)
   rbs (>= 3.0)
   rdoc (~> 6.11)
   reek (~> 6.5, >= 6.5.0)
