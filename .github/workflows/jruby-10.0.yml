@@ -1,4 +1,4 @@
-name: TruffleRuby 22.3
+name: JRuby 10.0
 
 permissions:
   contents: read
@@ -29,17 +29,16 @@ jobs:
   test:
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
     name: Specs ${{ matrix.ruby }}@${{ matrix.appraisal }}
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
     strategy:
       matrix:
         include:
-          # NOTE: truffleruby does not support upgrading rubygems.
-          # truffleruby-22.3 (targets Ruby 3.0 compatibility)
-          - ruby: "truffleruby-22.3"
-            appraisal: "ruby-3-0"
+          # jruby-10.0 (targets Ruby 3.4 compatibility)
+          - ruby: "jruby-10.0"
+            appraisal: "ruby-3-4"
             exec_cmd: "kettle-test"
             rubygems: default
             bundler: default

@@ -1,4 +1,4 @@
-name: TruffleRuby 22.3
+name: TruffleRuby 33.0
 
 permissions:
   contents: read
@@ -37,13 +37,12 @@ jobs:
       matrix:
         include:
           # NOTE: truffleruby does not support upgrading rubygems.
-          # truffleruby-22.3 (targets Ruby 3.0 compatibility)
-          - ruby: "truffleruby-22.3"
-            appraisal: "ruby-3-0"
+          # truffleruby-33.0 (targets Ruby 3.3 compatibility)
+          - ruby: "truffleruby-33.0"
+            appraisal: "ruby-3-3"
             exec_cmd: "kettle-test"
             rubygems: default
             bundler: default
-            experimental: true
 
     steps:
       - name: Checkout
