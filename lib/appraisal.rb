@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-# :nocov:
+# simplecov:disable
 require "appraisal2"
-# :nocov:
+# simplecov:enable
