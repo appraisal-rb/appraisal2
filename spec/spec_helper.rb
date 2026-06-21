@@ -19,6 +19,10 @@ require "config/rspec/rspec_core"
 # Last thing before loading this gem is to setup code coverage
 begin
   require "kettle-soup-cover"
+  if Kettle::Soup::Cover::DO_COV
+    require "simplecov"
+    SimpleCov.start
+  end
   #   this next line has a side-effect of running `.simplecov`
   require "simplecov" if defined?(Kettle::Soup::Cover) && Kettle::Soup::Cover::DO_COV
 rescue LoadError
