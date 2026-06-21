@@ -18,6 +18,6 @@ platform :mri do
     :vendored_gems_env => "APPRAISAL_RB_VENDORED_GEMS",
     :vendor_gem_dir_env => "APPRAISAL_RB_VENDOR_GEM_DIR",
     :debug_env => "APPRAISAL_RB_DEBUG",
-    :root => ["src", "kettle-rb", "appraisal-rb"]
+    :root => ["src", "kettle-dev", "appraisal-rb"]
   )
 end

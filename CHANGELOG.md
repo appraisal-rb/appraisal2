@@ -32,6 +32,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Updated local GemMine fixture workspace path wiring to use the migrated
+  `kettle-dev` organization directory.
+
 ### Security
 
 ## [3.1.2] - 2026-06-11
