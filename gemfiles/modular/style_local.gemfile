@@ -6,7 +6,7 @@
 # Local path overrides for development.
 # Loaded by the associated non-local gemfile when RUBOCOP_LTS_LOCAL != "false".
 
-require "nomono/bundler" unless defined?(Nomono)
+require "nomono/bundler"
 
 local_gems = %w[rubocop-lts rubocop-lts-rspec rubocop-ruby1_8 standard-rubocop-lts]
 

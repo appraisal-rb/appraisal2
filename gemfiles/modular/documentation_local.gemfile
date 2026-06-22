@@ -3,7 +3,7 @@
 # Local path overrides for development.
 # Loaded by the associated non-local gemfile when GALTZO_FLOSS_DEV != "false".
 
-require "nomono/bundler" unless defined?(Nomono)
+require "nomono/bundler"
 
 local_gems = %w[yard-fence yard-timekeeper yard-yaml]
 
