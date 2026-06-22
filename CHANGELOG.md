@@ -20,11 +20,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- Added support for JRuby 10.1 and TruffleRuby 34.0.
-
 ### Changed
-
-- Retemplated project metadata and CI/development automation with `kettle-jem` v7.0.0.
 
 ### Deprecated
 
@@ -32,10 +28,27 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+### Security
+
+## [3.1.3] - 2026-06-22
+
+- TAG: [v3.1.3][3.1.3t]
+- COVERAGE: 90.21% -- 820/909 lines in 29 files
+- BRANCH COVERAGE: 79.10% -- 159/201 branches in 29 files
+- 42.25% documented
+
+### Added
+
+- Added support for JRuby 10.1 and TruffleRuby 34.0.
+
+### Changed
+
+- Retemplated project metadata and CI/development automation with `kettle-jem` v7.0.0.
+
+### Fixed
+
 - Updated local GemMine fixture workspace path wiring to use the migrated
   `kettle-dev` organization directory.
-
-### Security
 
 ## [3.1.2] - 2026-06-11
 
@@ -389,7 +402,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.2...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.3...HEAD
+[3.1.3]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.2...v3.1.3
+[3.1.3t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.3
 [3.1.2]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.1...v3.1.2
 [3.1.2t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.2
 [3.1.1]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.0...v3.1.1
