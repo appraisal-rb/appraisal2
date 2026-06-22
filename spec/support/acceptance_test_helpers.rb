@@ -77,6 +77,7 @@ module AcceptanceTestHelpers
     vars_to_save = BUNDLER_ENVIRONMENT_VARIABLES + [
       "PATH",
       "HOME",
+      "GEM_HOME",
       "BUNDLE_IGNORE_FUNDING_REQUESTS",
       "BUNDLE_DISABLE_SHARED_GEMS",
       "GEM_PATH",

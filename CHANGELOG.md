@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Restored `GEM_HOME` after acceptance specs so generated fixture gems do not leak into later Bundler subprocesses.
+
 ### Security
 
 ## [3.1.3] - 2026-06-22
