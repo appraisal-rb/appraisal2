@@ -86,7 +86,7 @@ RSpec.describe Appraisal::Appraisal do
 
       appraisal.write_gemfile
 
-      expect(output_file.read).to match(/gem 'foo'/)
+      expect(output_file.read).to include("gem 'foo'")
     end
 
     it "does not customize anything by default" do

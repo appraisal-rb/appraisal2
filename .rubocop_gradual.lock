@@ -2,31 +2,6 @@
   "appraisal2.gemspec:697359255": [
     [34, 32, 10, "Gemspec/RequiredRubyVersion: `required_ruby_version` and `TargetRubyVersion` (2.0, which may be specified in .rubocop.yml) should be equal.", 3998630200]
   ],
-  "gemfiles/modular/benchmark/vHEAD.gemfile:3580879781": [
-    [2, 18, 7, "Style/HashSyntax: Use hash rockets syntax.", 2958841530],
-    [2, 44, 7, "Style/HashSyntax: Use hash rockets syntax.", 2712016907]
-  ],
-  "gemfiles/modular/erb/vHEAD.gemfile:1986119783": [
-    [2, 12, 7, "Style/HashSyntax: Use hash rockets syntax.", 2958841530],
-    [2, 32, 7, "Style/HashSyntax: Use hash rockets syntax.", 2712016907]
-  ],
-  "gemfiles/modular/mutex_m/vHEAD.gemfile:256867115": [
-    [2, 16, 7, "Style/HashSyntax: Use hash rockets syntax.", 2958841530],
-    [2, 40, 7, "Style/HashSyntax: Use hash rockets syntax.", 2712016907]
-  ],
-  "gemfiles/modular/optional.gemfile:4198932128": [
-    [12, 22, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122],
-    [13, 46, 8, "Style/HashSyntax: Use hash rockets syntax.", 2059947122]
-  ],
-  "gemfiles/modular/rspec.gemfile:1847119889": [
-    [2, 3, 7, "Style/HashSyntax: Use hash rockets syntax.", 2958841530],
-    [3, 3, 7, "Style/HashSyntax: Use hash rockets syntax.", 2712016907],
-    [4, 3, 4, "Style/HashSyntax: Use hash rockets syntax.", 2088303054]
-  ],
-  "gemfiles/modular/stringio/vHEAD.gemfile:105320523": [
-    [2, 17, 7, "Style/HashSyntax: Use hash rockets syntax.", 2958841530],
-    [2, 42, 7, "Style/HashSyntax: Use hash rockets syntax.", 2712016907]
-  ],
   "lib/appraisal/bundler_dsl.rb:3162571999": [
     [153, 17, 3, "Style/MapJoin: Remove redundant `map(&:to_s)` before `join`.", 193414073]
   ],
@@ -36,8 +11,5 @@
   "spec/acceptance/cli/run_spec.rb:171720885": [
     [16, 27, 35, "Lint/InterpolationCheck: Interpolation in single quoted string detected. Use double quoted strings if you need interpolation.", 874607702],
     [17, 39, 35, "Lint/InterpolationCheck: Interpolation in single quoted string detected. Use double quoted strings if you need interpolation.", 874607702]
-  ],
-  "spec/appraisal/appraisal_spec.rb:1189013292": [
-    [89, 35, 18, "RSpec/MatchWithSimpleRegex: Prefer using `include(\"gem 'foo'\")` when the regex is a simple string literal.", 339361534]
   ]
 }
