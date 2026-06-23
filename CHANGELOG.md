@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Clarified README Bundler path caching guidance and removed hard paragraph
+  wraps from prose.
+
 ### Deprecated
 
 ### Removed

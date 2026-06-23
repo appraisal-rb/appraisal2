@@ -21,28 +21,18 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 
 ## 🌻 Synopsis <a href="https://discord.gg/3qme4XHNKN"><img alt="Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px.svg" width="8%" align="right"/></a> <a href="https://ruby-toolbox.com"><img alt="ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5" src="https://logos.galtzo.com/assets/images/ruby-lang/avatar-128px.svg" width="8%" align="right"/></a>
 
-Appraisal2 integrates with bundler and rake to test your library against
-different versions of dependencies in repeatable scenarios called "appraisals."
-Appraisal2 is designed to make it easy to check for regressions in your library
-without interfering with day-to-day development using Bundler.
+Appraisal2 integrates with bundler and rake to test your library against different versions of dependencies in repeatable scenarios called "appraisals." Appraisal2 is designed to make it easy to check for regressions in your library without interfering with day-to-day development using Bundler.
 
-Appraisal2 is a hard fork of the venerable appraisal gem,
-which thoughtbot maintained for many years.
-Many thanks to [thoughtbot](https://github.com/thoughtbot/),
-and [Joe Ferris](https://github.com/jferris), the original author!
+Appraisal2 is a hard fork of the venerable appraisal gem, which thoughtbot maintained for many years. Many thanks to [thoughtbot](https://github.com/thoughtbot/), and [Joe Ferris](https://github.com/jferris), the original author!
 
 Appraisal2 adds:
 
 - support for `eval_gemfile`
-- explicit `generate`, `install`, and `update` workflows, so CI can resolve
-  already-generated appraisal gemfiles without rewriting them
-- `generate-install` and `generate-update` commands for workflows that need to
-  regenerate appraisal gemfiles before resolving dependencies
-- named appraisal support for `generate`, `generate-install`, and
-  `generate-update`
-- lifecycle hooks, including `Appraisal.transform_gemfile`, for plugins that
-  need to normalize generated appraisal gemfiles before Appraisal2 writes them
-- support for caching gems across appraisals in CI workflows by setting `BUNDLE_PATH` in env
+- explicit `generate`, `install`, and `update` workflows, so CI can resolve already-generated appraisal gemfiles without rewriting them
+- `generate-install` and `generate-update` commands for workflows that need to regenerate appraisal gemfiles before resolving dependencies
+- named appraisal support for `generate`, `generate-install`, and `generate-update`
+- lifecycle hooks, including `Appraisal.transform_gemfile`, for plugins that need to normalize generated appraisal gemfiles before Appraisal2 writes them
+- support for caching gems across appraisals in CI workflows by setting `BUNDLE_PATH` in env; Appraisal2's `--path` option uses Bundler path configuration instead of the deprecated `bundle install --path` CLI flag
 - support for [ORE](https://github.com/contriboss/ore-light) as an alternative gem manager (faster than bundler!)
   - For easy setup in **Gitea** [Actions](https://docs.gitea.com/usage/actions/overview), **Forgejo** [Actions](https://forgejo.org/docs/next/admin/actions/), **Codeberg** [Actions](https://docs.codeberg.org/ci/actions/), or **GitHub** [Actions](https://github.com/marketplace/actions/setup-ruby-with-rv-and-ore) check out [appraisal-rb/setup-ruby-flash](https://github.com/appraisal-rb/setup-ruby-flash)
 - support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot's `appraisal`)
@@ -75,9 +65,7 @@ Appraisal2 adds:
 
 Compatible with MRI Ruby 1.8.7+, and concordant releases of JRuby, and TruffleRuby.
 CI workflows and Appraisals are generated for MRI Ruby 2.4+.
-This test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml` and
-may be higher than the gem's runtime compatibility floor when legacy Rubies are
-not practical for the current toolchain.
+This test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml` and may be higher than the gem's runtime compatibility floor when legacy Rubies are not practical for the current toolchain.
 
 <a href="https://github.com/kettle-dev"><img alt="kettle-dev Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/kettle-dev/avatar-128px.svg" width="14%" align="right"/></a>
 
@@ -153,8 +141,7 @@ gem install appraisal2
 
 ## ⚙️ Configuration
 
-Create an `Appraisals` file at the root of your project, then define one or
-more dependency scenarios:
+Create an `Appraisals` file at the root of your project, then define one or more dependency scenarios:
 
 ```ruby
 appraise "rails-7" do
@@ -166,15 +153,11 @@ appraise "rails-8" do
 end
 ```
 
-Each appraisal starts from your root `Gemfile`, then applies the dependency
-changes declared in the matching `appraise` block. Generated appraisal gemfiles
-are written to `gemfiles/*.gemfile`.
+Each appraisal starts from your root `Gemfile`, then applies the dependency changes declared in the matching `appraise` block. Generated appraisal gemfiles are written to `gemfiles/*.gemfile`.
 
 ### Generated Gemfile Hooks
 
-Appraisal2 3.1.0 adds lifecycle hooks for companion gems and local tooling.
-The primary hook is `Appraisal.transform_gemfile`, which receives generated
-gemfile content before Appraisal2 writes it.
+Appraisal2 3.1.0 adds lifecycle hooks for companion gems and local tooling. The primary hook is `Appraisal.transform_gemfile`, which receives generated gemfile content before Appraisal2 writes it.
 
 ```ruby
 Appraisal.transform_gemfile do |content, context|
@@ -184,20 +167,13 @@ Appraisal.transform_gemfile do |content, context|
 end
 ```
 
-Hooks run in memory. Appraisal2 writes the final transformed content once, after
-all registered transforms have run. A transform may accept only `content`, or it
-may accept `content, context`. Returning `nil` leaves the current content
-unchanged.
+Hooks run in memory. Appraisal2 writes the final transformed content once, after all registered transforms have run. A transform may accept only `content`, or it may accept `content, context`. Returning `nil` leaves the current content unchanged.
 
-This is intended for plugin gems that need deterministic generated output, such
-as style normalization of appraisal gemfiles, without monkey-patching Appraisal2
-internals.
+This is intended for plugin gems that need deterministic generated output, such as style normalization of appraisal gemfiles, without monkey-patching Appraisal2 internals.
 
 ### Generator Plugins
 
-Use `plugin` in `Appraisals` for companion gems that must be loaded while
-Appraisal2 evaluates and generates appraisal gemfiles, but must not be written
-as dependencies in the generated appraisal gemfiles.
+Use `plugin` in `Appraisals` for companion gems that must be loaded while Appraisal2 evaluates and generates appraisal gemfiles, but must not be written as dependencies in the generated appraisal gemfiles.
 
 ```ruby
 plugin "appraisal2-rubocop",
@@ -205,19 +181,11 @@ plugin "appraisal2-rubocop",
   :optional => true
 ```
 
-`plugin` requires the requested path in the active generator bundle. It does not
-call `gem`, and it is not serialized into `gemfiles/*.gemfile`. This keeps
-generator-only tooling out of appraisals that target older Rubies, while still
-allowing modern generator workflows to load hooks such as
-`Appraisal.transform_gemfile`.
+`plugin` requires the requested path in the active generator bundle. It does not call `gem`, and it is not serialized into `gemfiles/*.gemfile`. This keeps generator-only tooling out of appraisals that target older Rubies, while still allowing modern generator workflows to load hooks such as `Appraisal.transform_gemfile`.
 
-Set `:optional => true` when some workflows evaluate `Appraisals` without the
-plugin dependency installed. This is useful when a CI matrix uses one generator
-bundle for old-Ruby appraisals and another modern workflow provides the plugin.
+Set `:optional => true` when some workflows evaluate `Appraisals` without the plugin dependency installed. This is useful when a CI matrix uses one generator bundle for old-Ruby appraisals and another modern workflow provides the plugin.
 
-If the generator bundle needs dependencies that must not be copied into every
-generated appraisal gemfile, wrap those root Gemfile declarations with
-`generator_only` for Appraisal2 and leave the Bundler branch unchanged:
+If the generator bundle needs dependencies that must not be copied into every generated appraisal gemfile, wrap those root Gemfile declarations with `generator_only` for Appraisal2 and leave the Bundler branch unchanged:
 
 ```ruby
 if respond_to?(:generator_only)
@@ -229,56 +197,39 @@ else
 end
 ```
 
-Bundler evaluates the `else` branch while installing the active generator
-bundle. Appraisal2 evaluates the `generator_only` branch while parsing the root
-Gemfile, but intentionally does not serialize that block into generated
-appraisal gemfiles.
+Bundler evaluates the `else` branch while installing the active generator bundle. Appraisal2 evaluates the `generator_only` branch while parsing the root Gemfile, but intentionally does not serialize that block into generated appraisal gemfiles.
 
 ## 🔧 Basic Usage
 
-Once you've configured the appraisals you want to use, you need to install the
-dependencies for each appraisal:
+Once you've configured the appraisals you want to use, you need to install the dependencies for each appraisal:
 
     $ bundle exec appraisal install
 
-This resolves, installs, and locks dependencies for each generated appraisal
-gemfile using bundler. If an appraisal gemfile is missing, `install` generates
-that missing gemfile first, preserving the basic setup workflow.
+This resolves, installs, and locks dependencies for each generated appraisal gemfile using bundler. If an appraisal gemfile is missing, `install` generates that missing gemfile first, preserving the basic setup workflow.
 
-When you intentionally want to regenerate every appraisal gemfile before
-installing dependencies, use:
+When you intentionally want to regenerate every appraisal gemfile before installing dependencies, use:
 
     $ bundle exec appraisal generate-install
 
-Once you have your dependencies set up, you can run any command in a single
-appraisal:
+Once you have your dependencies set up, you can run any command in a single appraisal:
 
     $ bundle exec appraisal rails-3 rake test
 
-This will run `rake test` using the dependencies configured for Rails 3. You can
-also run each appraisal in turn:
+This will run `rake test` using the dependencies configured for Rails 3. You can also run each appraisal in turn:
 
     $ bundle exec appraisal rake test
 
-If you want to use only the dependencies from your Gemfile, just run `rake
-test` as normal. This allows you to keep running with the latest versions of
-your dependencies in quick test runs, but keep running the tests in older
-versions to check for regressions.
+If you want to use only the dependencies from your Gemfile, just run `rake test` as normal. This allows you to keep running with the latest versions of your dependencies in quick test runs, but keep running the tests in older versions to check for regressions.
 
-In the case that you want to run all the appraisals by default when you run
-`rake`, you can override your default Rake task by putting this into your Rakefile:
+In the case that you want to run all the appraisals by default when you run `rake`, you can override your default Rake task by putting this into your Rakefile:
 
     if !ENV["APPRAISAL_INITIALIZED"] && ENV.fetch("CI", "false").casecmp("false") == 0
       task :default => :appraisal
     end
 
-(Appraisal2 sets `APPRAISAL_INITIALIZED` environment variable when it runs your
-process. We put a check here to ensure that `appraisal rake` command should run
-your real default task, which usually is your `test` task.)
+(Appraisal2 sets `APPRAISAL_INITIALIZED` environment variable when it runs your process. We put a check here to ensure that `appraisal rake` command should run your real default task, which usually is your `test` task.)
 
-Note that this may conflict with your CI setup if you decide to split the test
-into multiple processes by Appraisal2 and you are using `rake` to run tests by
-default.
+Note that this may conflict with your CI setup if you decide to split the test into multiple processes by Appraisal2 and you are using `rake` to run tests by default.
 
 ### Commands
 
@@ -294,10 +245,7 @@ appraisal update [LIST_OF_GEMS]  # Update dependencies for each generated apprai
 appraisal version                # Display the version and exit
 ```
 
-Since Appraisal2 3.1.0, `install` and `update` do not rewrite existing appraisal
-gemfiles. They operate on the generated files already present under `gemfiles/`.
-This matters in CI and plugin workflows where generated gemfiles may be
-normalized by hooks or committed as stable inputs.
+Since Appraisal2 3.1.0, `install` and `update` do not rewrite existing appraisal gemfiles. They operate on the generated files already present under `gemfiles/`. This matters in CI and plugin workflows where generated gemfiles may be normalized by hooks or committed as stable inputs.
 
 Use the command that matches the lifecycle you want:
 
@@ -309,17 +257,13 @@ Use the command that matches the lifecycle you want:
 | `generate-install` | Yes | Yes, via install | First setup, or after intentional Appraisals changes |
 | `generate-update` | Yes | Yes, via update | Regenerate gemfiles, then update dependency locks |
 
-The deprecated rake task `rake appraisal:install` now delegates to
-`appraisal generate-install`, preserving its historical generate-and-install
-behavior while the CLI commands remain explicit.
+The deprecated rake task `rake appraisal:install` now delegates to `appraisal generate-install`, preserving its historical generate-and-install behavior while the CLI commands remain explicit.
 
 ### Command Options
 
 Built-in dependency commands support the following options:
 
-**Important:** These options apply **only** to Appraisal's built-in dependency
-commands. They do **not** apply when running external commands like
-`bundle install` or `bundle update`.
+**Important:** These options apply **only** to Appraisal's built-in dependency commands. They do **not** apply when running external commands like `bundle install` or `bundle update`.
 
 | Option | Description |
 |--------|-------------|
@@ -334,8 +278,7 @@ commands. They do **not** apply when running external commands like
 
 #### Using Appraisal's built-in commands with named appraisals
 
-When using Appraisal's built-in commands with a specific appraisal name, place
-the appraisal name first, then the command, then any options:
+When using Appraisal's built-in commands with a specific appraisal name, place the appraisal name first, then the command, then any options:
 
 ```bash
 # ✅ Correct order: appraisal <NAME> <COMMAND> [OPTIONS]
@@ -376,8 +319,7 @@ bundle exec appraisal rails-7 generate-update rails rack
 
 #### Running external commands with named appraisals
 
-For running external commands (like `rake test`, `rspec`, etc.) with a specific appraisal,
-the structure is the same: appraisal name first, then the command:
+For running external commands (like `rake test`, `rspec`, etc.) with a specific appraisal, the structure is the same: appraisal name first, then the command:
 
 ```bash
 # Run any external command with a specific appraisal's dependencies
@@ -399,22 +341,13 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 
 ## 🦷 FLOSS Funding
 
-While appraisal-rb tools are free software and will always be, the project would benefit immensely from some funding.
-Raising a monthly budget of... "dollars" would make the project more sustainable.
+While appraisal-rb tools are free software and will always be, the project would benefit immensely from some funding. Raising a monthly budget of... "dollars" would make the project more sustainable.
 
-We welcome both individual and corporate sponsors! We also offer a
-wide array of funding channels to account for your preferences.
-Currently, [Open Collective][🖇osc] is our preferred funding platform.
+We welcome both individual and corporate sponsors! We also offer a wide array of funding channels to account for your preferences. Currently, [Open Collective][🖇osc] is our preferred funding platform.
 
-**If you're working in a company that's making significant use of appraisal-rb tools we'd
-appreciate it if you suggest to your company to become a appraisal-rb sponsor.**
+**If you're working in a company that's making significant use of appraisal-rb tools we'd appreciate it if you suggest to your company to become a appraisal-rb sponsor.**
 
-You can support the development of appraisal-rb tools via
-[GitHub Sponsors][🖇sponsor],
-[Liberapay][⛳liberapay],
-[PayPal][🖇paypal],
-[Open Collective][🖇osc]
-and [Tidelift][🏙️entsup-tidelift].
+You can support the development of appraisal-rb tools via [GitHub Sponsors][🖇sponsor], [Liberapay][⛳liberapay], [PayPal][🖇paypal], [Open Collective][🖇osc] and [Tidelift][🏙️entsup-tidelift].
 
 | 📍 NOTE |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -460,9 +393,7 @@ See [SECURITY.md][🔐security].
 
 ## 🤝 Contributing
 
-If you need some ideas of where to help, you could work on adding more code coverage,
-or if it is already 💯 (see [below](#code-coverage)) check [issues][🤝gh-issues] or [PRs][🤝gh-pulls],
-or use the gem and think about how it could be better.
+If you need some ideas of where to help, you could work on adding more code coverage, or if it is already 💯 (see [below](#code-coverage)) check [issues][🤝gh-issues] or [PRs][🤝gh-pulls], or use the gem and think about how it could be better.
 
 We [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] so if you make changes, remember to update it.
 
@@ -487,8 +418,7 @@ See [CONTRIBUTING.md][🤝contributing].
 
 ### 🪇 Code of Conduct
 
-Everyone interacting with this project's codebases, issue trackers,
-chat rooms and mailing lists agrees to follow the [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct].
+Everyone interacting with this project's codebases, issue trackers, chat rooms and mailing lists agrees to follow the [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct].
 
 ## 🌈 Contributors
 
@@ -513,8 +443,7 @@ Also see GitLab Contributors: [https://gitlab.com/appraisal-rb/appraisal2/-/grap
 
 ## 📌 Versioning
 
-This library follows [![Semantic Versioning 2.0.0][📌semver-img]][📌semver] for its public API where practical.
-For most applications, prefer the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
+This library follows [![Semantic Versioning 2.0.0][📌semver-img]][📌semver] for its public API where practical. For most applications, prefer the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
 
 For example:
 
@@ -525,11 +454,9 @@ spec.add_dependency("appraisal2", "~> 3.0")
 <details markdown="1">
 <summary>📌 Is "Platform Support" part of the public API? More details inside.</summary>
 
-Dropping support for a platform can be a breaking change for affected users.
-If a release changes supported platforms, it should be called out clearly in the changelog and versioned with that impact in mind.
+Dropping support for a platform can be a breaking change for affected users. If a release changes supported platforms, it should be called out clearly in the changelog and versioned with that impact in mind.
 
-To get a better understanding of how SemVer is intended to work over a project's lifetime,
-read this article from the creator of SemVer:
+To get a better understanding of how SemVer is intended to work over a project's lifetime, read this article from the creator of SemVer:
 
 - ["Major Version Numbers are Not Sacred"][📌major-versions-not-sacred]
 
@@ -539,8 +466,7 @@ See [CHANGELOG.md][📌changelog] for a list of releases.
 
 ## 📄 License
 
-The gem is available as open source under the terms of
-the [MIT](MIT.md) [![License: MIT][📄license-img]][📄license-ref].
+The gem is available as open source under the terms of the [MIT](MIT.md) [![License: MIT][📄license-img]][📄license-ref].
 
 ### © Copyright
 
@@ -595,12 +521,7 @@ See [LICENSE.md][📄license] for the official copyright notice.
 
 ## 🤑 A request for help
 
-Maintainers have teeth and need to pay their dentists.
-After getting laid off in an RIF in March, and encountering difficulty finding a new one,
-I began spending most of my time building open source tools.
-I'm hoping to be able to pay for my kids' health insurance this month,
-so if you value the work I am doing, I need your support.
-Please consider sponsoring me or the project.
+Maintainers have teeth and need to pay their dentists. After getting laid off in an RIF in March, and encountering difficulty finding a new one, I began spending most of my time building open source tools. I'm hoping to be able to pay for my kids' health insurance this month, so if you value the work I am doing, I need your support. Please consider sponsoring me or the project.
 
 To join the community or get help 👇️ Join the Discord.
 
