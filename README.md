@@ -47,8 +47,8 @@ Appraisal2 adds:
   - For easy setup in **Gitea** [Actions](https://docs.gitea.com/usage/actions/overview), **Forgejo** [Actions](https://forgejo.org/docs/next/admin/actions/), **Codeberg** [Actions](https://docs.codeberg.org/ci/actions/), or **GitHub** [Actions](https://github.com/marketplace/actions/setup-ruby-with-rv-and-ore) check out [appraisal-rb/setup-ruby-flash](https://github.com/appraisal-rb/setup-ruby-flash)
 - support for Ruby 1.8, 1.9, 2.0, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6 (all removed, or planned-to-be, in thoughtbot's `appraisal`)
   - NOTE: The [setup-ruby GH Action](https://github.com/ruby/setup-ruby) only ships support for Ruby 2.3+, so older Rubies are no longer tested in CI. Compatibility is assumed thanks to [![Enforced Code Style Linter][💎rlts-img]][💎rlts] enforcing the syntax for the oldest supported Ruby, which is Ruby v1.8. File a bug if you find something broken.
-- Support for JRuby 9.4+
-- Support for Truffle Ruby 22.3+
+- Support for JRuby 9.2, 9.3, 9.4, 10.0, 10.1
+- Support for Truffle Ruby 22.3, 23.0, 23.1, 24.2, 25.0, 33.0, 34.0
 - Support for MRI Ruby 4+
 - updated and improved documentation
 - many other fixes and improvements. See [CHANGELOG](CHANGELOG.md) for details.
