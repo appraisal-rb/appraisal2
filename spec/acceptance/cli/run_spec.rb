@@ -13,8 +13,8 @@ RSpec.describe "CLI appraisal (with arguments)" do
     APPRAISAL
 
     run "appraisal install"
-    write_file "test.rb", 'puts "Running: #{$dummy_version}"'
-    write_file "test with spaces.rb", 'puts "Running: #{$dummy_version}"'
+    write_file "test.rb", %(puts "Running: \#{$dummy_version}")
+    write_file "test with spaces.rb", %(puts "Running: \#{$dummy_version}")
   end
 
   it "sets APPRAISAL_INITIALIZED environment variable" do

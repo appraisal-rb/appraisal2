@@ -27,7 +27,7 @@ module Appraisal
     end
 
     def to_s
-      @dependencies.values.map(&:to_s).join("\n")
+      @dependencies.values.join("\n")
     end
 
     # :nodoc:

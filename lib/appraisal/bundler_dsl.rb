@@ -150,7 +150,7 @@ module Appraisal
     alias_method :ruby_version_entry_for_dup, :ruby_version_entry
 
     def gemspec_entry
-      @gemspecs.map(&:to_s).join("\n")
+      @gemspecs.join("\n")
     end
 
     def gemspec_entry_for_dup

@@ -37,6 +37,11 @@ RSpec/MultipleExpectations:
 RSpec/DescribeClass:
   Enabled: false
 
+# Appraisal2 intentionally remains installable on Ruby 1.8.7, while modern
+# development linting targets the lowest Ruby version RuboCop can parse here.
+Gemspec/RequiredRubyVersion:
+  Enabled: false
+
 # TODO: We would need to implement Mutexes in order to make violations thread safe.
 #       But even then they would still trigger the violation.
 #       See: https://coderscat.com/ruby-change-current-working-directory/
