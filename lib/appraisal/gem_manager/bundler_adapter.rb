@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "shellwords"
+
 require_relative "base"
 
 module Appraisal
@@ -26,13 +28,12 @@ module Appraisal
         end
 
         command = commands.join(" || ")
+        command = path_config_command(options["path"], command) if options["path"]
+        env = install_environment(options)
+        command_options = {:gemfile => gemfile_path}
+        command_options[:env] = env unless env.empty?
 
-        if Bundler.settings[:path]
-          env = {"BUNDLE_DISABLE_SHARED_GEMS" => "1"}
-          Command.new(command, :gemfile => gemfile_path, :env => env).run
-        else
-          Command.new(command, :gemfile => gemfile_path).run
-        end
+        Command.new(command, command_options).run
       end
 
       def update(gems = [])
@@ -69,17 +70,28 @@ module Appraisal
           end
         end
 
-        path = full_options.delete("path")
-        if path
-          relative_path = project_root.join(options["path"])
-          options_strings << "--path #{relative_path}"
-        end
+        full_options.delete("path")
 
         full_options.each do |flag, val|
           options_strings << "--#{flag} #{val}"
         end
 
         options_strings.join(" ") if options_strings != []
+      end
+
+      def path_config_command(path, command)
+        relative_path = project_root.join(path)
+        "bundle config set --local path #{Shellwords.escape(relative_path.to_s)} && (#{command})"
+      end
+
+      def install_environment(options)
+        env = {}
+
+        if options["path"].nil? && Bundler.settings[:path]
+          env["BUNDLE_DISABLE_SHARED_GEMS"] = "1"
+        end
+
+        env
       end
     end
   end

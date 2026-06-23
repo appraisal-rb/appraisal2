@@ -154,7 +154,8 @@ RSpec.describe Appraisal::Appraisal do
       @appraisal.install("path" => "vendor/appraisal")
 
       expect(Appraisal::Command).to have_received(:new).with(
-        "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --path /home/test/vendor/appraisal",
+        "bundle config set --local path /home/test/vendor/appraisal && " \
+          "(bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory')",
         :gemfile => "/home/test/test directory"
       )
     end

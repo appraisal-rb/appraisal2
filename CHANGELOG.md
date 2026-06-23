@@ -29,6 +29,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 - Restored `GEM_HOME` after acceptance specs so generated fixture gems do not leak into later Bundler subprocesses.
+- Stopped passing Bundler's deprecated `bundle install --path` flag when resolving Appraisal `--path` installs.
 
 ### Security
 

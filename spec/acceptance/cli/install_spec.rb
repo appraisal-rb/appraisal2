@@ -103,9 +103,12 @@ RSpec.describe "CLI", ".install" do
 
   context "with path", :parallel do
     before do
+      build_gem "path_dummy", :version => "1.0.0", :skip_install => true
+      path_dummy_path = File.join(TMP_GEM_BUILD, "path_dummy")
+
       build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
         appraise '1.0.0' do
-          gem 'dummy', '1.0.0'
+          gem 'path_dummy', '1.0.0', :path => '#{path_dummy_path}'
         end
       APPRAISAL
     end
@@ -114,7 +117,9 @@ RSpec.describe "CLI", ".install" do
       run "appraisal generate"
       output = run("appraisal install --path vendor/appraisal")
 
-      expect(output).to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}' --path #{file("vendor/appraisal")} --retry 1")
+      expect(output).to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}' --retry 1")
+      expect(output).not_to include("bundle install --path")
+      expect(file("vendor/appraisal")).to be_directory
     end
   end
 end

@@ -99,11 +99,12 @@ RSpec.describe Appraisal::GemManager::BundlerAdapter do
     end
 
     context "with path option" do
-      it "includes --path flag with resolved path" do
+      it "configures Bundler path before installing" do
         adapter.install("path" => "vendor/bundle")
 
         expect(Appraisal::Command).to have_received(:new).with(
-          "bundle check --gemfile='#{gemfile_path}' || bundle install --gemfile='#{gemfile_path}' --path /home/test/vendor/bundle",
+          "bundle config set --local path /home/test/vendor/bundle && " \
+            "(bundle check --gemfile='#{gemfile_path}' || bundle install --gemfile='#{gemfile_path}')",
           :gemfile => gemfile_path
         )
       end
