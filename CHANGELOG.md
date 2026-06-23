@@ -26,6 +26,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Removed
 
+- Removed unused legacy root and fixture Gemfiles for Ruby 1.8, 2.0, and 2.1.
+
 ### Fixed
 
 - Restored `GEM_HOME` after acceptance specs so generated fixture gems do not leak into later Bundler subprocesses.
