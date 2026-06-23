@@ -30,7 +30,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Restored `GEM_HOME` after acceptance specs so generated fixture gems do not leak into later Bundler subprocesses.
 - Stopped passing Bundler's deprecated `bundle install --path` flag when resolving Appraisal `--path` installs.
-- Mirrored `gem.coop` to RubyGems.org in the JRuby 9.3 workflow so legacy Bundler fallback index fetches can resolve.
+- Disabled `ruby/setup-ruby` Bundler caching in the JRuby 9.3 workflow and
+  run a serial Bundler install to avoid legacy fallback index failures.
 
 ### Security
 
