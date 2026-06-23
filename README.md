@@ -65,7 +65,9 @@ Appraisal2 adds:
 
 Compatible with MRI Ruby 1.8.7+, and concordant releases of JRuby, and TruffleRuby.
 CI workflows and Appraisals are generated for MRI Ruby 2.4+.
-This test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml` and may be higher than the gem's runtime compatibility floor when legacy Rubies are not practical for the current toolchain.
+This test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml` and
+may be higher than the gem's runtime compatibility floor when legacy Rubies are
+not practical for the current toolchain.
 
 <a href="https://github.com/kettle-dev"><img alt="kettle-dev Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/kettle-dev/avatar-128px.svg" width="14%" align="right"/></a>
 
@@ -341,13 +343,22 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 
 ## 🦷 FLOSS Funding
 
-While appraisal-rb tools are free software and will always be, the project would benefit immensely from some funding. Raising a monthly budget of... "dollars" would make the project more sustainable.
+While appraisal-rb tools are free software and will always be, the project would benefit immensely from some funding.
+Raising a monthly budget of... "dollars" would make the project more sustainable.
 
-We welcome both individual and corporate sponsors! We also offer a wide array of funding channels to account for your preferences. Currently, [Open Collective][🖇osc] is our preferred funding platform.
+We welcome both individual and corporate sponsors! We also offer a
+wide array of funding channels to account for your preferences.
+Currently, [Open Collective][🖇osc] is our preferred funding platform.
 
-**If you're working in a company that's making significant use of appraisal-rb tools we'd appreciate it if you suggest to your company to become a appraisal-rb sponsor.**
+**If you're working in a company that's making significant use of appraisal-rb tools we'd
+appreciate it if you suggest to your company to become a appraisal-rb sponsor.**
 
-You can support the development of appraisal-rb tools via [GitHub Sponsors][🖇sponsor], [Liberapay][⛳liberapay], [PayPal][🖇paypal], [Open Collective][🖇osc] and [Tidelift][🏙️entsup-tidelift].
+You can support the development of appraisal-rb tools via
+[GitHub Sponsors][🖇sponsor],
+[Liberapay][⛳liberapay],
+[PayPal][🖇paypal],
+[Open Collective][🖇osc]
+and [Tidelift][🏙️entsup-tidelift].
 
 | 📍 NOTE |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -393,7 +404,9 @@ See [SECURITY.md][🔐security].
 
 ## 🤝 Contributing
 
-If you need some ideas of where to help, you could work on adding more code coverage, or if it is already 💯 (see [below](#code-coverage)) check [issues][🤝gh-issues] or [PRs][🤝gh-pulls], or use the gem and think about how it could be better.
+If you need some ideas of where to help, you could work on adding more code coverage,
+or if it is already 💯 (see [below](#code-coverage)) check [issues][🤝gh-issues] or [PRs][🤝gh-pulls],
+or use the gem and think about how it could be better.
 
 We [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] so if you make changes, remember to update it.
 
@@ -418,7 +431,8 @@ See [CONTRIBUTING.md][🤝contributing].
 
 ### 🪇 Code of Conduct
 
-Everyone interacting with this project's codebases, issue trackers, chat rooms and mailing lists agrees to follow the [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct].
+Everyone interacting with this project's codebases, issue trackers,
+chat rooms and mailing lists agrees to follow the [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct].
 
 ## 🌈 Contributors
 
@@ -443,7 +457,8 @@ Also see GitLab Contributors: [https://gitlab.com/appraisal-rb/appraisal2/-/grap
 
 ## 📌 Versioning
 
-This library follows [![Semantic Versioning 2.0.0][📌semver-img]][📌semver] for its public API where practical. For most applications, prefer the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
+This library follows [![Semantic Versioning 2.0.0][📌semver-img]][📌semver] for its public API where practical.
+For most applications, prefer the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
 
 For example:
 
@@ -454,9 +469,11 @@ spec.add_dependency("appraisal2", "~> 3.0")
 <details markdown="1">
 <summary>📌 Is "Platform Support" part of the public API? More details inside.</summary>
 
-Dropping support for a platform can be a breaking change for affected users. If a release changes supported platforms, it should be called out clearly in the changelog and versioned with that impact in mind.
+Dropping support for a platform can be a breaking change for affected users.
+If a release changes supported platforms, it should be called out clearly in the changelog and versioned with that impact in mind.
 
-To get a better understanding of how SemVer is intended to work over a project's lifetime, read this article from the creator of SemVer:
+To get a better understanding of how SemVer is intended to work over a project's lifetime,
+read this article from the creator of SemVer:
 
 - ["Major Version Numbers are Not Sacred"][📌major-versions-not-sacred]
 
@@ -466,7 +483,8 @@ See [CHANGELOG.md][📌changelog] for a list of releases.
 
 ## 📄 License
 
-The gem is available as open source under the terms of the [MIT](MIT.md) [![License: MIT][📄license-img]][📄license-ref].
+The gem is available as open source under the terms of
+the [MIT](MIT.md) [![License: MIT][📄license-img]][📄license-ref].
 
 ### © Copyright
 
@@ -521,7 +539,12 @@ See [LICENSE.md][📄license] for the official copyright notice.
 
 ## 🤑 A request for help
 
-Maintainers have teeth and need to pay their dentists. After getting laid off in an RIF in March, and encountering difficulty finding a new one, I began spending most of my time building open source tools. I'm hoping to be able to pay for my kids' health insurance this month, so if you value the work I am doing, I need your support. Please consider sponsoring me or the project.
+Maintainers have teeth and need to pay their dentists.
+After getting laid off in an RIF in March, and encountering difficulty finding a new one,
+I began spending most of my time building open source tools.
+I'm hoping to be able to pay for my kids' health insurance this month,
+so if you value the work I am doing, I need your support.
+Please consider sponsoring me or the project.
 
 To join the community or get help 👇️ Join the Discord.
 
