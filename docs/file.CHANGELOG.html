@@ -92,6 +92,8 @@ wraps from prose.</li>
 <h3 id="fixed">Fixed</h3>
 
 <ul>
+  <li>Re-normalized templated Gemfiles to Ruby 1.8-compatible syntax after<br>
+templating.</li>
   <li>Restored <code>GEM_HOME</code> after acceptance specs so generated fixture gems do not leak into later Bundler subprocesses.</li>
   <li>Stopped passing Bundler’s deprecated <code>bundle install --path</code> flag when resolving Appraisal <code>--path</code> installs.</li>
   <li>Disabled <code>ruby/setup-ruby</code> Bundler caching in the JRuby 9.3 workflow and<br>
@@ -641,7 +643,7 @@ is active.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Mon Jun 22 20:28:36 2026 by
+  Generated on Mon Jun 22 21:07:10 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

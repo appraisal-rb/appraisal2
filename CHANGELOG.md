@@ -33,6 +33,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Re-normalized templated Gemfiles to Ruby 1.8-compatible syntax after
+  templating.
 - Restored `GEM_HOME` after acceptance specs so generated fixture gems do not leak into later Bundler subprocesses.
 - Stopped passing Bundler's deprecated `bundle install --path` flag when resolving Appraisal `--path` installs.
 - Disabled `ruby/setup-ruby` Bundler caching in the JRuby 9.3 workflow and

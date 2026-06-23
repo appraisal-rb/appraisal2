@@ -215,7 +215,9 @@
 
 <p>Compatible with MRI Ruby 1.8.7+, and concordant releases of JRuby, and TruffleRuby.<br>
 CI workflows and Appraisals are generated for MRI Ruby 2.4+.<br>
-This test floor is configured by <code>ruby.test_minimum</code> in <code>.kettle-jem.yml</code> and may be higher than the gem’s runtime compatibility floor when legacy Rubies are not practical for the current toolchain.</p>
+This test floor is configured by <code>ruby.test_minimum</code> in <code>.kettle-jem.yml</code> and<br>
+may be higher than the gem’s runtime compatibility floor when legacy Rubies are<br>
+not practical for the current toolchain.</p>
 
 <p><a href="https://github.com/kettle-dev"><img alt="kettle-dev Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/kettle-dev/avatar-128px.svg" width="14%" align="right"></a></p>
 
@@ -659,13 +661,22 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 
 <h2 id="-floss-funding">🦷 FLOSS Funding</h2>
 
-<p>While appraisal-rb tools are free software and will always be, the project would benefit immensely from some funding. Raising a monthly budget of… “dollars” would make the project more sustainable.</p>
+<p>While appraisal-rb tools are free software and will always be, the project would benefit immensely from some funding.<br>
+Raising a monthly budget of… “dollars” would make the project more sustainable.</p>
 
-<p>We welcome both individual and corporate sponsors! We also offer a wide array of funding channels to account for your preferences. Currently, <a href="https://opencollective.com/appraisal-rb">Open Collective</a> is our preferred funding platform.</p>
+<p>We welcome both individual and corporate sponsors! We also offer a<br>
+wide array of funding channels to account for your preferences.<br>
+Currently, <a href="https://opencollective.com/appraisal-rb">Open Collective</a> is our preferred funding platform.</p>
 
-<p><strong>If you’re working in a company that’s making significant use of appraisal-rb tools we’d appreciate it if you suggest to your company to become a appraisal-rb sponsor.</strong></p>
+<p><strong>If you’re working in a company that’s making significant use of appraisal-rb tools we’d<br>
+appreciate it if you suggest to your company to become a appraisal-rb sponsor.</strong></p>
 
-<p>You can support the development of appraisal-rb tools via <a href="https://github.com/sponsors/pboling">GitHub Sponsors</a>, <a href="https://liberapay.com/pboling/donate">Liberapay</a>, <a href="https://www.paypal.com/paypalme/peterboling">PayPal</a>, <a href="https://opencollective.com/appraisal-rb">Open Collective</a> and <a href="https://tidelift.com/subscription/pkg/rubygems-appraisal2?utm_source=rubygems-appraisal2&amp;utm_medium=referral&amp;utm_campaign=readme">Tidelift</a>.</p>
+<p>You can support the development of appraisal-rb tools via<br>
+<a href="https://github.com/sponsors/pboling">GitHub Sponsors</a>,<br>
+<a href="https://liberapay.com/pboling/donate">Liberapay</a>,<br>
+<a href="https://www.paypal.com/paypalme/peterboling">PayPal</a>,<br>
+<a href="https://opencollective.com/appraisal-rb">Open Collective</a><br>
+and <a href="https://tidelift.com/subscription/pkg/rubygems-appraisal2?utm_source=rubygems-appraisal2&amp;utm_medium=referral&amp;utm_campaign=readme">Tidelift</a>.</p>
 
 <table>
   <thead>
@@ -718,7 +729,9 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 
 <h2 id="-contributing">🤝 Contributing</h2>
 
-<p>If you need some ideas of where to help, you could work on adding more code coverage, or if it is already 💯 (see <a href="#code-coverage">below</a>) check <a href="https://github.com/appraisal-rb/appraisal2/issues">issues</a> or <a href="https://github.com/appraisal-rb/appraisal2/pulls">PRs</a>, or use the gem and think about how it could be better.</p>
+<p>If you need some ideas of where to help, you could work on adding more code coverage,<br>
+or if it is already 💯 (see <a href="#code-coverage">below</a>) check <a href="https://github.com/appraisal-rb/appraisal2/issues">issues</a> or <a href="https://github.com/appraisal-rb/appraisal2/pulls">PRs</a>,<br>
+or use the gem and think about how it could be better.</p>
 
 <p>We <a href="https://keepachangelog.com/en/1.0.0/"><img src="https://img.shields.io/badge/keep--a--changelog-1.0.0-34495e.svg?style=flat" alt="Keep A Changelog"></a> so if you make changes, remember to update it.</p>
 
@@ -743,7 +756,8 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 
 <h3 id="-code-of-conduct">🪇 Code of Conduct</h3>
 
-<p>Everyone interacting with this project’s codebases, issue trackers, chat rooms and mailing lists agrees to follow the <a href="https://github.com/appraisal-rb/appraisal2/blob/main/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor_Covenant-2.1-259D6C.svg" alt="Contributor Covenant 2.1"></a>.</p>
+<p>Everyone interacting with this project’s codebases, issue trackers,<br>
+chat rooms and mailing lists agrees to follow the <a href="https://github.com/appraisal-rb/appraisal2/blob/main/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor_Covenant-2.1-259D6C.svg" alt="Contributor Covenant 2.1"></a>.</p>
 
 <h2 id="-contributors">🌈 Contributors</h2>
 
@@ -768,7 +782,8 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 
 <h2 id="-versioning">📌 Versioning</h2>
 
-<p>This library follows <a href="https://semver.org/spec/v2.0.0.html"><img src="https://img.shields.io/badge/semver-2.0.0-259D6C.svg?style=flat" alt="Semantic Versioning 2.0.0"></a> for its public API where practical. For most applications, prefer the <a href="http://guides.rubygems.org/patterns/#pessimistic-version-constraint">Pessimistic Version Constraint</a> with two digits of precision.</p>
+<p>This library follows <a href="https://semver.org/spec/v2.0.0.html"><img src="https://img.shields.io/badge/semver-2.0.0-259D6C.svg?style=flat" alt="Semantic Versioning 2.0.0"></a> for its public API where practical.<br>
+For most applications, prefer the <a href="http://guides.rubygems.org/patterns/#pessimistic-version-constraint">Pessimistic Version Constraint</a> with two digits of precision.</p>
 
 <p>For example:</p>
 
@@ -778,9 +793,11 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 <details>
   <summary>📌 Is "Platform Support" part of the public API? More details inside.</summary>
 
-  <p>Dropping support for a platform can be a breaking change for affected users. If a release changes supported platforms, it should be called out clearly in the changelog and versioned with that impact in mind.</p>
+  <p>Dropping support for a platform can be a breaking change for affected users.
+If a release changes supported platforms, it should be called out clearly in the changelog and versioned with that impact in mind.</p>
 
-  <p>To get a better understanding of how SemVer is intended to work over a project’s lifetime, read this article from the creator of SemVer:</p>
+  <p>To get a better understanding of how SemVer is intended to work over a project’s lifetime,
+read this article from the creator of SemVer:</p>
 
   <ul>
     <li><a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">“Major Version Numbers are Not Sacred”</a></li>
@@ -792,7 +809,8 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 
 <h2 id="-license">📄 License</h2>
 
-<p>The gem is available as open source under the terms of the <a href="MIT.md">MIT</a> <a href="MIT.md"><img src="https://img.shields.io/badge/License-MIT-259D6C.svg" alt="License: MIT"></a>.</p>
+<p>The gem is available as open source under the terms of<br>
+the <a href="MIT.md">MIT</a> <a href="MIT.md"><img src="https://img.shields.io/badge/License-MIT-259D6C.svg" alt="License: MIT"></a>.</p>
 
 <h3 id="-copyright">© Copyright</h3>
 
@@ -849,7 +867,12 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 
 <h2 id="-a-request-for-help">🤑 A request for help</h2>
 
-<p>Maintainers have teeth and need to pay their dentists. After getting laid off in an RIF in March, and encountering difficulty finding a new one, I began spending most of my time building open source tools. I’m hoping to be able to pay for my kids’ health insurance this month, so if you value the work I am doing, I need your support. Please consider sponsoring me or the project.</p>
+<p>Maintainers have teeth and need to pay their dentists.<br>
+After getting laid off in an RIF in March, and encountering difficulty finding a new one,<br>
+I began spending most of my time building open source tools.<br>
+I’m hoping to be able to pay for my kids’ health insurance this month,<br>
+so if you value the work I am doing, I need your support.<br>
+Please consider sponsoring me or the project.</p>
 
 <p>To join the community or get help 👇️ Join the Discord.</p>
 
@@ -878,7 +901,7 @@ bundle exec appraisal rails-7 bundle install --gem-manager=ore  # ❌ Wrong
 </div></div>
 
       <div id="footer">
-  Generated on Mon Jun 22 20:28:36 2026 by
+  Generated on Mon Jun 22 21:07:10 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
