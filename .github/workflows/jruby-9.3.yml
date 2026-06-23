@@ -57,7 +57,7 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
-          bundler-cache: false
+          bundler-cache: true
 
       - name: Bundle install for JRuby 9.3
         if: ${{ !env.ACT }}
