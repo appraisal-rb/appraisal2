@@ -3,6 +3,10 @@
 require "appraisal/hooks"
 
 RSpec.describe Appraisal::Hooks do
+  before do
+    described_class.reset!
+  end
+
   after do
     described_class.reset!
   end
