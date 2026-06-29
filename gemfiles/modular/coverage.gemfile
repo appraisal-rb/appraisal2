@@ -9,7 +9,7 @@ gem "simplecov", :github => "kettle-dev/simplecov", :branch => "fix-final-parall
 if ENV.fetch("KETTLE_RB_DEV", "false").casecmp("false").zero?
   # Coverage (remote/released)
   platform :mri do
-    gem "kettle-soup-cover", "~> 3.0.a", ">= 3.0.0.rc4", :require => false
+    gem "kettle-soup-cover", "~> 3.0.a", ">= 3.0.0.rc5", :require => false
   end
 else
   eval_gemfile "coverage_local.gemfile"

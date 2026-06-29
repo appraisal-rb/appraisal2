@@ -115,7 +115,7 @@ GEM
       kettle-test (~> 2.0, >= 2.0.4)
       ruby-progressbar (~> 1.13)
       version_gem (~> 1.1, >= 1.1.13)
-    kettle-rb (0.1.0)
+    kettle-rb (0.1.1)
     kettle-soup-cover (3.0.0.rc5)
       simplecov (>= 1.0.pre)
       simplecov-cobertura (>= 4.0.pre)
@@ -150,13 +150,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.4-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.19.4-arm-linux-gnu)
-      racc (~> 1.4)
-    nokogiri (1.19.4-arm-linux-musl)
-      racc (~> 1.4)
     nokogiri (1.19.4-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.19.4-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.19.4-x86_64-linux-gnu)
       racc (~> 1.4)
@@ -404,10 +398,8 @@ GEM
 PLATFORMS
   aarch64-linux-gnu
   aarch64-linux-musl
-  arm-linux-gnu
-  arm-linux-musl
   arm64-darwin
-  x86_64-darwin
+  x86_64-linux
   x86_64-linux-gnu
   x86_64-linux-musl
 
@@ -415,7 +407,7 @@ DEPENDENCIES
   activesupport (>= 3.2.21)
   addressable (>= 2.8, < 3)
   appraisal2!
-  appraisal2-rubocop (~> 0.2, >= 0.2.1)
+  appraisal2-rubocop (~> 0.2, >= 0.2.2)
   benchmark (~> 0.5, >= 0.5.0)
   bundler-audit (~> 0.9.3)
   cgi (~> 0.5)
@@ -425,9 +417,9 @@ DEPENDENCIES
   gem_mine (~> 0.1, >= 0.1.1)
   gitmoji-regex (~> 2.0, >= 2.0.3)
   irb (~> 1.17)
-  kettle-dev (~> 2.2, >= 2.2.15)
-  kettle-soup-cover (~> 3.0.a, >= 3.0.0.rc4)
-  kettle-test (~> 2.0, >= 2.0.6)
+  kettle-dev (~> 2.2, >= 2.2.24)
+  kettle-soup-cover (~> 3.0.a, >= 3.0.0.rc5)
+  kettle-test (~> 2.0, >= 2.0.8)
   kramdown (~> 2.5, >= 2.5.1)
   kramdown-parser-gfm (~> 1.1)
   mutex_m (~> 0.2)
@@ -442,19 +434,19 @@ DEPENDENCIES
   rspec-stubbed_env (~> 1.0, >= 1.0.4)
   rspec_junit_formatter (~> 0.6)
   rubocop-gradual (~> 0.4, >= 0.4.0)
-  rubocop-lts (~> 0.3, >= 0.3.0)
-  rubocop-lts-rspec (~> 1.0, >= 1.0.3)
+  rubocop-lts (~> 0.3, >= 0.3.1)
+  rubocop-lts-rspec (~> 1.0, >= 1.0.4)
   rubocop-minitest (~> 0.38, >= 0.38.1)
   rubocop-on-rbs (~> 2.0, >= 2.0.0)
   rubocop-packaging (~> 0.6, >= 0.6.0)
-  rubocop-ruby1_8 (~> 2.0, >= 2.0.2)
+  rubocop-ruby1_8 (~> 2.0, >= 2.0.5)
   ruby-progressbar (~> 1.13)
   silent_stream (~> 1.0, >= 1.0.12)
   simplecov!
   standard (~> 1.54, >= 1.54.0)
-  stone_checksums (~> 1.0, >= 1.0.3)
+  stone_checksums (~> 1.0, >= 1.0.4)
   stringio (>= 3.0)
-  turbo_tests2 (~> 3.1, >= 3.1.4)
+  turbo_tests2 (~> 3.1, >= 3.1.5)
   webrick (~> 1.9)
   yaml-converter (~> 0.2, >= 0.2.2)
   yard (~> 0.9, >= 0.9.44)
