@@ -40,6 +40,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - Disabled `ruby/setup-ruby` Bundler caching in the JRuby 9.3 workflow and
   run a serial Bundler install to avoid legacy fallback index failures.
 
+- Package configured license files in gem release file lists.
+
 ### Security
 
 ## [3.1.3] - 2026-06-22
