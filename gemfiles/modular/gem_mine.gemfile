@@ -5,5 +5,5 @@
 if ENV.fetch("GEM_MINE_DEV", "false").casecmp("false") != 0
   eval_gemfile "gem_mine_local.gemfile"
 else
-  gem "gem_mine", "~> 0.1", ">= 0.1.1", :require => false # ruby >= 3.2
+  gem "gem_mine", "~> 0.1", ">= 0.1.2", :require => false # ruby >= 3.2
 end

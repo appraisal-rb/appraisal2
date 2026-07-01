@@ -22,10 +22,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.1.4] - 2026-07-01
+
+- TAG: [v3.1.4][3.1.4t]
+- COVERAGE: 90.28% -- 827/916 lines in 29 files
+- BRANCH COVERAGE: 79.31% -- 161/203 branches in 29 files
+- 42.25% documented
+
+### Changed
+
 - Clarified README Bundler path caching guidance and removed hard paragraph
   wraps from prose.
-
-### Deprecated
 
 ### Removed
 
@@ -41,8 +56,6 @@ Please file a bug if you notice a violation of semantic versioning.
   run a serial Bundler install to avoid legacy fallback index failures.
 
 - Package configured license files in gem release file lists.
-
-### Security
 
 ## [3.1.3] - 2026-06-22
 
@@ -416,7 +429,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.3...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.4...HEAD
+[3.1.4]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.3...v3.1.4
+[3.1.4t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.4
 [3.1.3]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.2...v3.1.3
 [3.1.3t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.3
 [3.1.2]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.1...v3.1.2
