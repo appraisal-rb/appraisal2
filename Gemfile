@@ -22,9 +22,6 @@ gemspec
 nomono_requirements = ["~> 1.0", ">= 1.0.7"]
 gem "nomono", *nomono_requirements, :require => false # ruby >= 2.2
 
-# Test fixture scaffolding (not part of generated templates)
-eval_gemfile "gemfiles/modular/gem_mine.gemfile"
-
 # Templating (env-switched: SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local paths)
 eval_gemfile "gemfiles/modular/templating.gemfile" if ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?
 
