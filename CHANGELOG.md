@@ -32,6 +32,8 @@ Please file a bug if you notice a violation of semantic versioning.
   deprecated implicit full-update form.
 - Acceptance specs now opt into expensive dummy-gem and bundle fixture setup
   through metadata, and reuse a per-worker cached default fixture stage.
+- Generated CI workflows now pass `.rspec_status` to `kettle-test` so
+  `turbo_tests2` can balance workers with historical example timings.
 - `generate-install` and `generate-update` now reuse the parsed Appraisals set
   for their generate and install/update phases.
 

@@ -48,7 +48,7 @@ jobs:
           # Coverage
           - ruby: "ruby"
             appraisal: "coverage"
-            exec_cmd: "kettle-test"
+            exec_cmd: "kettle-test --example-status-log .rspec_status"
             rubygems: latest
             bundler: latest
 
