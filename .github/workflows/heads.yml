@@ -80,10 +80,10 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .rspec_status
-          key: rspec-status-${{ github.workflow }}-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: rspec-status-heads-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            rspec-status-${{ github.workflow }}-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-
-            rspec-status-${{ github.workflow }}-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-
+            rspec-status-heads-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-
+            rspec-status-heads-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-
 
       - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         if: ${{ !env.ACT }}
@@ -138,10 +138,10 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .rspec_status
-          key: rspec-status-${{ github.workflow }}-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: rspec-status-heads-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            rspec-status-${{ github.workflow }}-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-
-            rspec-status-${{ github.workflow }}-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-
+            rspec-status-heads-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-
+            rspec-status-heads-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-
 
       - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         if: ${{ !env.ACT }}
@@ -196,10 +196,10 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .rspec_status
-          key: rspec-status-${{ github.workflow }}-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          key: rspec-status-heads-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
-            rspec-status-${{ github.workflow }}-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-
-            rspec-status-${{ github.workflow }}-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-
+            rspec-status-heads-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-${{ hashFiles('**/Gemfile.lock', 'Appraisal.root.gemfile', 'gemfiles/**/*.gemfile') }}-
+            rspec-status-heads-${{ runner.os }}-${{ matrix.ruby }}-${{ matrix.appraisal }}-
 
       - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         if: ${{ !env.ACT }}
