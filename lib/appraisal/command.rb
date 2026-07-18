@@ -8,7 +8,9 @@ module Appraisal
     attr_reader :command, :env, :gemfile
 
     # BUNDLE_* environment variables that must be preserved for proper bundler operation
-    # and test isolation. These are preserved when using with_bundler_env to ensure:
+    # and test isolation. These are preserved after starting from Bundler's
+    # unbundled environment so Appraisal can run a fresh Bundler subprocess
+    # without losing the target appraisal and isolation settings:
     # - Bundler version switching works (BUNDLE_GEMFILE)
     # - Test isolation is maintained (BUNDLE_APP_CONFIG, etc.)
     # - User settings are respected (BUNDLE_PATH, BUNDLE_USER_CACHE, etc.)
@@ -30,6 +32,7 @@ module Appraisal
 
     PRESERVED_RUNTIME_VARS = [
       "PATH",
+      "GEM_HOME",
       "GEM_PATH"
     ].freeze
 
@@ -44,101 +47,105 @@ module Appraisal
       run_env = test_environment.merge(env)
 
       if @skip_bundle_exec
-        execute(run_env)
+        execute(ENV.to_h, run_env)
       else
-        # For bundler version switching to work reliably, we need to preserve
-        # the appraisal Gemfile while avoiding the active parent Bundler process.
-        # However, we still need to isolate from the parent's bundler state
-        # to avoid conflicts.
-        #
-        # Solution: Use a selective environment approach instead of with_original_env,
-        # which strips all BUNDLE_* variables and breaks version switching.
-        with_bundler_env do
-          apply_run_env(run_env)
-          ensure_bundler_is_available
-          ensure_locked_bundler_is_available
-          execute(run_env)
-        end
+        clean_env = bundler_env(run_env)
+        ensure_bundler_is_available(clean_env)
+        ensure_locked_bundler_is_available(clean_env)
+        execute(clean_env, run_env)
       end
     end
 
     private
 
-    # Provide a clean environment while preserving Bundler's version switching
-    # inputs and test isolation settings.
+    # Build an Appraisal subprocess environment from Bundler's explicit env APIs.
     #
-    # The current Ruby process has bundler activated, which adds bundler/setup to RUBYOPT.
-    # When we run a subprocess, we need to remove that activation so the subprocess bundler
-    # can start fresh. However, we keep all test isolation variables intact.
-    def with_bundler_env
-      backup_env = ENV.to_h
-
-      begin
-        clean_env = if Bundler.respond_to?(:original_env)
-          Bundler.original_env.to_h
-        else
-          backup_env.to_h
-        end
-
-        # Avoid leaking a global BUNDLE_LOCKFILE into subprocesses.
-        clean_env.delete("BUNDLE_LOCKFILE")
-
-        preserved_vars = PRESERVED_BUNDLE_VARS + PRESERVED_RUNTIME_VARS
-
-        preserved_vars.each do |var|
-          clean_env[var] = backup_env[var] if backup_env[var]
-        end
-
-        # Remove bundler/setup from RUBYOPT so subprocess doesn't auto-load bundler
-        if backup_env["RUBYOPT"]
-          rubyopt = backup_env["RUBYOPT"].split(" ")
-          rubyopt.reject! { |opt| opt == "-rbundler/setup" || opt.include?("bundler/setup") }
-          clean_env["RUBYOPT"] = rubyopt.join(" ") unless rubyopt.empty?
-        end
-
-        # Remove Bundler activation markers from the subprocess environment.
-        # BUNDLE_BIN_PATH pins the already-active Bundler executable, so keeping
-        # it would bypass the BUNDLED WITH version selected below.
-        clean_env.delete("BUNDLE_BIN_PATH")
-        clean_env.delete("BUNDLER_SETUP")
-        clean_env.delete("BUNDLER_VERSION")
-
-        ENV.replace(clean_env)
-
-        yield
-      ensure
-        ENV.replace(backup_env)
+    # Bundler.clean_env / Bundler.with_clean_env are removed. Bundler now exposes
+    # three related but distinct choices:
+    #
+    # - Bundler.original_env: the environment before the current Bundler activated.
+    #   This is too broad for Appraisal because unrelated original BUNDLE_* values
+    #   can leak into the appraisal subprocess.
+    # - Bundler.unbundled_env: original_env with Bundler activation removed. This
+    #   is the right base because it removes parent Bundler state, RUBYOPT
+    #   bundler/setup activation, and arbitrary BUNDLE_* values.
+    # - Bundler.with_unbundled_env: the block form of unbundled_env. Appraisal
+    #   needs a Hash to pass to Kernel.system and must re-add selected variables,
+    #   so the block helper is the wrong shape even though its semantics are close.
+    #
+    # Starting from unbundled_env would normally remove BUNDLE_GEMFILE,
+    # BUNDLE_APP_CONFIG, and related isolation knobs. Appraisal intentionally
+    # reintroduces only the variables it owns or must preserve, then sets
+    # BUNDLE_GEMFILE and the selected Bundler version for the target subprocess.
+    def bundler_env(run_env)
+      current_env = ENV.to_h
+      clean_env = if defined?(Bundler) && Bundler.respond_to?(:unbundled_env)
+        Bundler.unbundled_env.to_h
+      elsif defined?(Bundler) && Bundler.respond_to?(:original_env)
+        Bundler.original_env.to_h
+      else
+        current_env.to_h
       end
+
+      # Avoid leaking a global BUNDLE_LOCKFILE into subprocesses.
+      clean_env["BUNDLE_LOCKFILE"] = nil
+
+      preserved_vars = PRESERVED_BUNDLE_VARS + PRESERVED_RUNTIME_VARS
+
+      preserved_vars.each do |var|
+        clean_env[var] = current_env[var] if current_env[var]
+      end
+
+      clean_env["RUBYOPT"] = current_env["RUBYOPT"] if current_env["RUBYOPT"]
+
+      # Remove bundler/setup from RUBYOPT so subprocess doesn't auto-load bundler.
+      # Bundler.original_env can also contain RUBYOPT, so strip from the final
+      # command environment rather than only from the active process env.
+      if clean_env["RUBYOPT"]
+        rubyopt = clean_env["RUBYOPT"].split(" ")
+        rubyopt.reject! { |opt| opt == "-rbundler/setup" || opt.include?("bundler/setup") }
+        clean_env["RUBYOPT"] = rubyopt.join(" ")
+        clean_env["RUBYOPT"] = nil if clean_env["RUBYOPT"].empty?
+      end
+
+      # Remove Bundler activation markers from the subprocess environment.
+      # BUNDLE_BIN_PATH pins the already-active Bundler executable, so keeping
+      # it would bypass the BUNDLED WITH version selected below.
+      clean_env["BUNDLE_BIN_PATH"] = nil
+      clean_env["BUNDLE_VERSION"] = nil
+      clean_env["BUNDLER_SETUP"] = nil
+      clean_env["BUNDLER_VERSION"] = nil
+
+      run_env.each_pair do |key, value|
+        clean_env[key] = value
+      end
+
+      clean_env
     end
 
-    def execute(run_env)
+    def execute(base_env, run_env)
       announce
 
-      ENV["BUNDLE_GEMFILE"] = gemfile
-      if (bundler_version = locked_bundler_version)
-        ENV["BUNDLER_VERSION"] = bundler_version
+      process_env = base_env.merge(run_env)
+      process_env["BUNDLE_GEMFILE"] = gemfile if gemfile
+      if (bundler_version = subprocess_bundler_version(process_env))
+        process_env["BUNDLE_VERSION"] = bundler_version
+        process_env["BUNDLER_VERSION"] = bundler_version
       end
-      ENV["APPRAISAL_INITIALIZED"] = "1"
-      run_env.each_pair do |key, value|
-        ENV[key] = value
-      end
+      process_env["APPRAISAL_INITIALIZED"] = "1"
 
-      exit(1) unless Kernel.system(command_as_string)
+      exit(1) unless Kernel.system(process_env, command_as_string)
     end
 
-    def apply_run_env(run_env)
-      run_env.each_pair do |key, value|
-        ENV[key] = value
-      end
-    end
+    def ensure_bundler_is_available(process_env)
+      rubygems_env = rubygems_command_env(process_env)
 
-    def ensure_bundler_is_available
       # Check if any version of bundler is available
-      return if system(%(gem list --silent -i bundler))
+      return if system(rubygems_env, bundler_available_command)
 
       puts ">> Bundler not found, attempting to install..."
       # If that fails, try to install the latest stable version
-      return if system("gem install bundler")
+      return if system(rubygems_env, "ruby --disable=gems -S gem install bundler")
 
       puts
       puts <<-ERROR.rstrip
@@ -150,14 +157,16 @@ manually.
       exit(1)
     end
 
-    def ensure_locked_bundler_is_available
+    def ensure_locked_bundler_is_available(process_env)
       locked_version = locked_bundler_version
       return unless locked_version
 
-      return if system(%(gem list --silent -i bundler -v "#{locked_version}"))
+      rubygems_env = rubygems_command_env(process_env)
+
+      return if system(rubygems_env, bundler_available_command(locked_version))
 
       puts ">> Bundler #{locked_version} not found, attempting to install..."
-      return if system("gem install bundler -v #{Shellwords.escape(locked_version)} --no-document")
+      return if system(rubygems_env, "ruby --disable=gems -S gem install bundler -v #{Shellwords.escape(locked_version)} --no-document")
 
       puts
       puts <<-ERROR.rstrip
@@ -178,6 +187,37 @@ manually.
       lockfile_content = File.read(lockfile_path)
       match = lockfile_content.match(/BUNDLED WITH\s*\n\s*([^\s]+)/)
       match && match[1]
+    end
+
+    def subprocess_bundler_version(process_env)
+      # Production subprocesses pin Bundler only when the appraisal lockfile
+      # says to. Acceptance specs may provide APPRAISAL_TEST_BUNDLER_VERSION so
+      # the nested subprocesses use the same isolated Bundler selected by the
+      # harness, without changing production behavior.
+      locked_bundler_version || process_env["APPRAISAL_TEST_BUNDLER_VERSION"]
+    end
+
+    def rubygems_command_env(process_env)
+      process_env.dup.tap do |env|
+        env["BUNDLE_APP_CONFIG"] = nil
+        env["BUNDLE_BIN_PATH"] = nil
+        env["BUNDLE_GEMFILE"] = nil
+        env["BUNDLE_LOCKFILE"] = nil
+        env["BUNDLE_VERSION"] = nil
+        env["BUNDLER_SETUP"] = nil
+        env["BUNDLER_VERSION"] = nil
+        env["RUBYOPT"] = nil
+      end
+    end
+
+    def bundler_available_command(version = nil)
+      requirement = version ? ", Gem::Requirement.new(#{version.inspect})" : ""
+      code = <<-RUBY.chomp
+        require "rubygems"
+        specs = Gem::Specification.find_all_by_name("bundler"#{requirement})
+        exit(specs.empty? ? 1 : 0)
+      RUBY
+      "ruby --disable=gems -e #{Shellwords.escape(code)}"
     end
 
     def announce
@@ -219,7 +259,7 @@ manually.
 
       {
         "GEM_HOME" => ENV["GEM_HOME"],
-        "GEM_PATH" => ""
+        "GEM_PATH" => ENV["APPRAISAL_TEST_SYSTEM_GEM_PATH"].to_s
       }
     end
   end

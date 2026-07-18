@@ -4,6 +4,7 @@
 require "rspec/expectations/expectation_target"
 require "active_support/core_ext/string/filters"
 require "active_support/concern"
+require "shellwords"
 
 # This library
 require "appraisal/utils"
@@ -19,6 +20,7 @@ module AcceptanceTestHelpers
     "BUNDLER_VERSION",
     "BUNDLE_GEMFILE",
     "BUNDLE_LOCKFILE",
+    "BUNDLE_VERSION",
     "BUNDLER_SETUP",
     "BUNDLE_APP_CONFIG",
     "BUNDLE_USER_CONFIG",
@@ -261,20 +263,32 @@ module AcceptanceTestHelpers
   end
 
   def ensure_bundler_is_available
-    return if in_test_directory { system("bundle -v > /dev/null 2>&1") }
+    clean_env = rubygems_command_env
 
-    # Check if any version of bundler is already installed
-    check_cmd = "gem list --silent -i bundler"
-    begin
-      return if run("#{check_cmd} 2>&1", false).include?("true")
-    rescue
-      nil
-    end
+    return if in_test_directory { system(clean_env, "bundle -v > /dev/null 2>&1") }
+
+    return if in_test_directory { system(clean_env, bundler_available_command) }
 
     puts ">> Bundler not found in #{TMP_GEM_ROOT}, attempting to install..."
 
-    # Try to install the latest stable version
-    run "gem install bundler --install-dir '#{TMP_GEM_ROOT}'"
+    return if in_test_directory { system(clean_env, "gem install bundler --install-dir '#{TMP_GEM_ROOT}'") }
+
+    raise "Bundler installation failed in #{TMP_GEM_ROOT}"
+  end
+
+  def rubygems_command_env
+    ENV.to_h.tap do |env|
+      BUNDLER_ENVIRONMENT_VARIABLES.each { |key| env[key] = nil }
+    end
+  end
+
+  def bundler_available_command
+    code = <<-RUBY.chomp
+      require "rubygems"
+      specs = Gem::Specification.find_all_by_name("bundler")
+      exit(specs.empty? ? 1 : 0)
+    RUBY
+    "ruby --disable=gems -e #{Shellwords.escape(code)}"
   end
 
   def build_default_gemfile
@@ -284,6 +298,7 @@ module AcceptanceTestHelpers
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source 'https://gem.coop'
 
+      gem 'bundler', '#{test_bundler_version}'
       gem 'appraisal2', :path => './appraisal2'
     GEMFILE
 
@@ -323,11 +338,11 @@ module AcceptanceTestHelpers
   APPRAISAL2_GEM_PATH = "./appraisal2"
 
   def test_bundler_version
-    if defined?(Bundler::VERSION)
-      Bundler::VERSION
-    else
-      Gem.loaded_specs.fetch("bundler").version.to_s
-    end
+    # Use an installed Bundler spec, not Bundler::VERSION from the current
+    # process. Local Rubies can have an older Bundler library already loaded
+    # while a newer Bundler spec is installed, and subprocesses need a version
+    # RubyGems can activate consistently.
+    Gem::Specification.find_all_by_name("bundler").map(&:version).max.to_s
   end
 
   def install_test_binstub_gem_path_prelude(bin_path)

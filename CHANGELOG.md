@@ -20,8 +20,11 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- `appraisal generate` can now generate appraisal Gemfiles in parallel with
-  `--jobs` / `-j`, or `APPRAISAL_JOBS`.
+- `appraisal generate`, `install`, `update`, `generate-install`, and
+  `generate-update` can now process appraisals in parallel with
+  `--appraisal-jobs` / `-n`, or `APPRAISAL_JOBS`. Appraisal-level
+  parallelism defaults to 2 workers; use `-n 1` to run serially. Bundler older
+  than 2.1 falls back to serial processing.
 
 ### Changed
 
