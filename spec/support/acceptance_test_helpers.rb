@@ -338,11 +338,21 @@ module AcceptanceTestHelpers
   APPRAISAL2_GEM_PATH = "./appraisal2"
 
   def test_bundler_version
+    return loaded_bundler_version if RUBY_ENGINE == "truffleruby" && loaded_bundler_version
+
     # Use an installed Bundler spec, not Bundler::VERSION from the current
     # process. Local Rubies can have an older Bundler library already loaded
     # while a newer Bundler spec is installed, and subprocesses need a version
     # RubyGems can activate consistently.
     Gem::Specification.find_all_by_name("bundler").map(&:version).max.to_s
+  end
+
+  def loaded_bundler_version
+    loaded_spec = Gem.loaded_specs["bundler"]
+    spec_version = loaded_spec.version if loaded_spec
+    return spec_version.to_s if spec_version
+
+    defined?(Bundler::VERSION) ? Bundler::VERSION.to_s : nil
   end
 
   def install_test_binstub_gem_path_prelude(bin_path)
