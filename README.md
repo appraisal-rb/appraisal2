@@ -259,6 +259,11 @@ Use the command that matches the lifecycle you want:
 | `generate-install` | Yes | Yes, via install | First setup, or after intentional Appraisals changes |
 | `generate-update` | Yes | Yes, via update | Regenerate gemfiles, then update dependency locks |
 
+`generate`, `generate-install`, and `generate-update` can generate appraisal
+gemfiles in parallel with `--jobs` / `-j`, or with `APPRAISAL_JOBS` when no
+CLI value is provided. `generate-install` and `generate-update` parallelize the
+generation phase, then resolve dependencies with the selected gem manager.
+
 The deprecated rake task `rake appraisal:install` now delegates to `appraisal generate-install`, preserving its historical generate-and-install behavior while the CLI commands remain explicit.
 
 ### Command Options
@@ -270,7 +275,7 @@ Built-in dependency commands support the following options:
 | Option | Description |
 |--------|-------------|
 | `--gem-manager`, `-g` | Gem manager to use: `bundler` (default) or `ore`; applies to `install`, `update`, `generate-install`, and `generate-update` |
-| `--jobs`, `-j` | Install gems in parallel using the given number of workers; applies to `install` and `generate-install` |
+| `--jobs`, `-j` | Generate appraisal gemfiles in parallel for `generate`, `generate-install`, and `generate-update`; also installs gems in parallel for `install` and `generate-install` when supported by the selected gem manager |
 | `--retry` | Retry network and git requests that have failed; applies to `install` and `generate-install` (default: 1) |
 | `--without` | A space-separated list of groups to skip during installation; applies to `install` and `generate-install` |
 | `--full-index` | Run bundle install with the full-index argument; applies to `install` and `generate-install` |
