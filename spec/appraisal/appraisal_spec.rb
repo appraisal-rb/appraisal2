@@ -125,6 +125,7 @@ RSpec.describe Appraisal::Appraisal do
 
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory'",
+        :env => {"BUNDLE_JOBS" => "1"},
         :gemfile => "/home/test/test directory"
       )
       expect(warning).to include "Please upgrade Bundler"
@@ -137,6 +138,7 @@ RSpec.describe Appraisal::Appraisal do
 
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --jobs=42",
+        :env => {"BUNDLE_JOBS" => "42"},
         :gemfile => "/home/test/test directory"
       )
     end
@@ -146,6 +148,7 @@ RSpec.describe Appraisal::Appraisal do
 
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --retry 3",
+        :env => {"BUNDLE_JOBS" => "1"},
         :gemfile => "/home/test/test directory"
       )
     end
@@ -156,6 +159,7 @@ RSpec.describe Appraisal::Appraisal do
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle config set --local path /home/test/vendor/appraisal && " \
           "(bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory')",
+        :env => {"BUNDLE_JOBS" => "1"},
         :gemfile => "/home/test/test directory"
       )
     end
@@ -169,6 +173,7 @@ RSpec.describe Appraisal::Appraisal do
 
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory'",
+        :env => {"BUNDLE_JOBS" => "1"},
         :gemfile => "/home/test/test directory"
       )
     end

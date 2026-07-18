@@ -96,11 +96,13 @@ module Appraisal
       end
 
       def install_environment(options)
-        env = {}
+        env = {"BUNDLE_JOBS" => DEFAULT_INSTALL_OPTIONS.fetch("jobs").to_s}
 
         if options["path"].nil? && Bundler.settings[:path]
           env["BUNDLE_DISABLE_SHARED_GEMS"] = "1"
         end
+
+        env["BUNDLE_JOBS"] = options["jobs"].to_s if options["jobs"].to_i > 1 && Utils.support_parallel_installation?
 
         env
       end
