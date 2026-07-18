@@ -4,6 +4,7 @@
 require "rspec/expectations/expectation_target"
 require "active_support/core_ext/string/filters"
 require "active_support/concern"
+require "rbconfig"
 require "shellwords"
 
 # This library
@@ -338,7 +339,10 @@ module AcceptanceTestHelpers
   APPRAISAL2_GEM_PATH = "./appraisal2"
 
   def test_bundler_version
-    return loaded_bundler_version if RUBY_ENGINE == "truffleruby" && loaded_bundler_version
+    if RUBY_ENGINE == "truffleruby"
+      version = ruby_shipped_bundler_version
+      return version if version
+    end
 
     # Use an installed Bundler spec, not Bundler::VERSION from the current
     # process. Local Rubies can have an older Bundler library already loaded
@@ -347,10 +351,16 @@ module AcceptanceTestHelpers
     Gem::Specification.find_all_by_name("bundler").map(&:version).max.to_s
   end
 
+  def ruby_shipped_bundler_version
+    output = IO.popen(rubygems_command_env, [RbConfig.ruby, "--disable-gems", "-rbundler/version", "-e", "puts Bundler::VERSION"], &:read)
+    version = output.to_s.strip
+    version unless version.empty?
+  rescue Errno::ENOENT, LoadError
+    nil
+  end
+
   def loaded_bundler_version
-    loaded_spec = Gem.loaded_specs["bundler"]
-    spec_version = loaded_spec.version if loaded_spec
-    return spec_version.to_s if spec_version
+    return Gem.loaded_specs["bundler"].version.to_s if Gem.loaded_specs["bundler"]
 
     defined?(Bundler::VERSION) ? Bundler::VERSION.to_s : nil
   end

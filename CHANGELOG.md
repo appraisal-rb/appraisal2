@@ -47,6 +47,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - Appraisal command execution now checks whether the `bundle` executable can
   boot before falling back to RubyGems spec probing and Bundler installation,
   preserving TruffleRuby's engine-shipped Bundler in isolated subprocesses.
+- Acceptance fixture Bundler selection now detects TruffleRuby's shipped
+  Bundler without reusing a newer Bundler activated by the appraised suite.
 - Bundler-backed appraisal installs now set `BUNDLE_JOBS` explicitly so the
   configured Appraisal job count also controls Bundler's installer worker
   count in subprocesses.
