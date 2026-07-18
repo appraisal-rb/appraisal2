@@ -2,6 +2,7 @@
 
 require "thor"
 require "fileutils"
+require "thread"
 
 module Appraisal
   class CLI < Thor
@@ -78,11 +79,7 @@ module Appraisal
         "Bundler will remember this option."
 
     def install
-      install_options = options.to_h
-      AppraisalFile.each do |appraisal|
-        appraisal.install(install_options)
-        appraisal.relativize
-      end
+      install_appraisals(appraisals, install_options)
     end
 
     desc "generate-install", "Generate gemfiles, then resolve and install dependencies for each appraisal"
@@ -109,15 +106,19 @@ module Appraisal
       :desc => "Install gems in the specified directory. " \
         "Bundler will remember this option."
     def generate_install
-      invoke(:generate, [], {})
-      invoke(:install, [], options.to_h)
+      appraisal_list = appraisals
+      generate_appraisals(appraisal_list, generate_jobs(options))
+      install_appraisals(appraisal_list, install_options)
     end
 
     desc "generate", "Generate a gemfile for each appraisal"
+    method_option "jobs",
+      :aliases => "j",
+      :type => :numeric,
+      :banner => "SIZE",
+      :desc => "Generate appraisal gemfiles in parallel using the given number of workers."
     def generate
-      AppraisalFile.each do |appraisal|
-        appraisal.write_gemfile
-      end
+      generate_appraisals(appraisals, generate_jobs(options))
     end
 
     desc "clean", "Remove all generated gemfiles and lockfiles from gemfiles folder"
@@ -127,17 +128,19 @@ module Appraisal
 
     desc "update [LIST_OF_GEMS]", "Update dependencies for each generated appraisal gemfile"
     def update(*gems)
-      gem_manager = options["gem-manager"] || options[:gem_manager]
-      update_options = gem_manager ? {:gem_manager => gem_manager} : {}
-      AppraisalFile.each do |appraisal|
-        appraisal.update(gems, update_options)
-      end
+      update_appraisals(appraisals, gems, update_options)
     end
 
     desc "generate-update [LIST_OF_GEMS]", "Generate gemfiles, then update dependencies for each appraisal"
+    method_option "jobs",
+      :aliases => "j",
+      :type => :numeric,
+      :banner => "SIZE",
+      :desc => "Generate appraisal gemfiles in parallel using the given number of workers."
     def generate_update(*gems)
-      invoke(:generate, [], {})
-      update(*gems)
+      appraisal_list = appraisals
+      generate_appraisals(appraisal_list, generate_jobs(options))
+      update_appraisals(appraisal_list, gems, update_options)
     end
 
     desc "list", "List the names of the defined appraisals"
@@ -151,6 +154,79 @@ module Appraisal
     end
 
     private
+
+    def appraisals
+      AppraisalFile.new.appraisals
+    end
+
+    def generate_appraisals(appraisal_list, jobs)
+      each_appraisal(appraisal_list, jobs) do |appraisal|
+        appraisal.write_gemfile
+      end
+    end
+
+    def install_appraisals(appraisal_list, install_options)
+      appraisal_list.each do |appraisal|
+        appraisal.install(install_options.dup)
+        appraisal.relativize
+      end
+    end
+
+    def update_appraisals(appraisal_list, gems, update_options)
+      appraisal_list.each do |appraisal|
+        appraisal.update(gems, update_options.dup)
+      end
+    end
+
+    def each_appraisal(appraisal_list, jobs)
+      jobs = worker_count(jobs, appraisal_list.length)
+      return appraisal_list.each { |appraisal| yield(appraisal) } if jobs <= 1
+
+      queue = Queue.new
+      errors = []
+      mutex = Mutex.new
+
+      appraisal_list.each { |appraisal| queue << appraisal }
+      jobs.times { queue << nil }
+
+      # rubocop:disable ThreadSafety/NewThread
+      threads = Array.new(jobs) do
+        Thread.new do
+          while (appraisal = queue.pop)
+            begin
+              yield(appraisal)
+            rescue Exception => error # rubocop:disable Lint/RescueException
+              mutex.synchronize { errors << error }
+            end
+          end
+        end
+      end
+      # rubocop:enable ThreadSafety/NewThread
+      threads.each(&:join)
+
+      raise errors.first unless errors.empty?
+    end
+
+    def worker_count(jobs, item_count)
+      jobs = jobs.to_i
+      jobs = 1 if jobs < 1
+      return jobs if item_count.zero?
+
+      [jobs, item_count].min
+    end
+
+    def generate_jobs(command_options)
+      command_options["jobs"] || command_options[:jobs] || ENV["APPRAISAL_JOBS"] || 1
+    end
+
+    def install_options
+      options.to_h
+    end
+
+    def update_options
+      gem_manager = options["gem-manager"] || options[:gem_manager]
+      gem_manager ? {:gem_manager => gem_manager} : {}
+    end
 
     def method_missing(name, *args)
       matching_appraisal = AppraisalFile.new.appraisals.detect do |appraisal|

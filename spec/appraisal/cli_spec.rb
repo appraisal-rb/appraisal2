@@ -2,6 +2,7 @@
 
 require "appraisal/cli"
 require "appraisal/appraisal_file"
+require "timeout"
 
 RSpec.describe Appraisal::CLI do
   include_context "with bundler gem manager mocked"
@@ -23,6 +24,55 @@ RSpec.describe Appraisal::CLI do
   before do
     allow(Appraisal::AppraisalFile).to receive(:new).and_return(appraisal_file)
     allow(appraisal_file).to receive(:appraisals).and_return([appraisal])
+  end
+
+  describe "#generate" do
+    let(:first_appraisal) { instance_double(Appraisal::Appraisal, :write_gemfile => true) }
+    let(:second_appraisal) { instance_double(Appraisal::Appraisal, :write_gemfile => true) }
+
+    it "generates appraisal gemfiles in parallel when jobs is greater than one" do
+      runner = nil
+
+      begin
+        entered = Queue.new
+        release = Queue.new
+
+        allow(cli).to receive_messages(
+          :appraisals => [first_appraisal, second_appraisal],
+          :options => {"jobs" => 2}
+        )
+        [first_appraisal, second_appraisal].each do |current_appraisal|
+          allow(current_appraisal).to receive(:write_gemfile) do
+            entered << true
+            release.pop
+          end
+        end
+
+        runner = Thread.new { cli.generate } # rubocop:disable ThreadSafety/NewThread
+
+        Timeout.timeout(1) do
+          2.times { entered.pop }
+        end
+        2.times { release << true }
+        runner.join
+
+        expect(first_appraisal).to have_received(:write_gemfile)
+        expect(second_appraisal).to have_received(:write_gemfile)
+      ensure
+        runner.kill if runner && runner.alive?
+      end
+    end
+
+    it "uses APPRAISAL_JOBS when jobs is not passed" do
+      stub_env("APPRAISAL_JOBS" => "2")
+      allow(cli).to receive_messages(
+        :appraisals => [first_appraisal, second_appraisal],
+        :options => {}
+      )
+      expect(cli).to receive(:generate_appraisals).with([first_appraisal, second_appraisal], "2")
+
+      cli.generate
+    end
   end
 
   describe "method_missing for named appraisals with install command" do

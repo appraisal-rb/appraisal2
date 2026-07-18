@@ -20,10 +20,15 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- `appraisal generate` can now generate appraisal Gemfiles in parallel with
+  `--jobs` / `-j`, or `APPRAISAL_JOBS`.
+
 ### Changed
 
 - Full dependency updates now run `bundle update --all` to avoid Bundler's
   deprecated implicit full-update form.
+- `generate-install` and `generate-update` now reuse the parsed Appraisals set
+  for their generate and install/update phases.
 
 ### Deprecated
 
