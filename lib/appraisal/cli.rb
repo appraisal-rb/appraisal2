@@ -6,14 +6,23 @@ require "thread"
 
 module Appraisal
   class CLI < Thor
+    MINIMUM_PARALLEL_BUNDLER_VERSION = Gem::Version.new("2.1.0")
+
     default_task :install
     map ["-v", "--version"] => "version"
+    map "generate-install" => "generate_install"
+    map "generate-update" => "generate_update"
 
     class_option "gem-manager",
       :aliases => "-g",
       :type => :string,
       :default => "bundler",
       :desc => "Gem manager to use for install/update (bundler or ore)"
+    class_option "appraisal-jobs",
+      :aliases => "-n",
+      :type => :numeric,
+      :banner => "SIZE",
+      :desc => "Process appraisals in parallel using the given number of workers."
 
     class << self
       # Override help command to print out usage
@@ -60,7 +69,7 @@ module Appraisal
       :type => :numeric,
       :default => 1,
       :banner => "SIZE",
-      :desc => "Install gems in parallel using the given number of workers."
+      :desc => "Pass the given parallel job count to the selected gem manager."
     method_option "retry",
       :type => :numeric,
       :default => 1,
@@ -79,7 +88,7 @@ module Appraisal
         "Bundler will remember this option."
 
     def install
-      install_appraisals(appraisals, install_options)
+      install_appraisals(appraisals, install_options, appraisal_jobs(options))
     end
 
     desc "generate-install", "Generate gemfiles, then resolve and install dependencies for each appraisal"
@@ -88,7 +97,7 @@ module Appraisal
       :type => :numeric,
       :default => 1,
       :banner => "SIZE",
-      :desc => "Install gems in parallel using the given number of workers."
+      :desc => "Pass the given parallel job count to the selected gem manager."
     method_option "retry",
       :type => :numeric,
       :default => 1,
@@ -107,18 +116,13 @@ module Appraisal
         "Bundler will remember this option."
     def generate_install
       appraisal_list = appraisals
-      generate_appraisals(appraisal_list, generate_jobs(options))
-      install_appraisals(appraisal_list, install_options)
+      generate_appraisals(appraisal_list, appraisal_jobs(options))
+      install_appraisals(appraisal_list, install_options, appraisal_jobs(options))
     end
 
     desc "generate", "Generate a gemfile for each appraisal"
-    method_option "jobs",
-      :aliases => "j",
-      :type => :numeric,
-      :banner => "SIZE",
-      :desc => "Generate appraisal gemfiles in parallel using the given number of workers."
     def generate
-      generate_appraisals(appraisals, generate_jobs(options))
+      generate_appraisals(appraisals, appraisal_jobs(options))
     end
 
     desc "clean", "Remove all generated gemfiles and lockfiles from gemfiles folder"
@@ -128,19 +132,14 @@ module Appraisal
 
     desc "update [LIST_OF_GEMS]", "Update dependencies for each generated appraisal gemfile"
     def update(*gems)
-      update_appraisals(appraisals, gems, update_options)
+      update_appraisals(appraisals, gems, update_options, appraisal_jobs(options))
     end
 
     desc "generate-update [LIST_OF_GEMS]", "Generate gemfiles, then update dependencies for each appraisal"
-    method_option "jobs",
-      :aliases => "j",
-      :type => :numeric,
-      :banner => "SIZE",
-      :desc => "Generate appraisal gemfiles in parallel using the given number of workers."
     def generate_update(*gems)
       appraisal_list = appraisals
-      generate_appraisals(appraisal_list, generate_jobs(options))
-      update_appraisals(appraisal_list, gems, update_options)
+      generate_appraisals(appraisal_list, appraisal_jobs(options))
+      update_appraisals(appraisal_list, gems, update_options, appraisal_jobs(options))
     end
 
     desc "list", "List the names of the defined appraisals"
@@ -165,15 +164,15 @@ module Appraisal
       end
     end
 
-    def install_appraisals(appraisal_list, install_options)
-      appraisal_list.each do |appraisal|
+    def install_appraisals(appraisal_list, install_options, jobs)
+      each_appraisal(appraisal_list, jobs) do |appraisal|
         appraisal.install(install_options.dup)
         appraisal.relativize
       end
     end
 
-    def update_appraisals(appraisal_list, gems, update_options)
-      appraisal_list.each do |appraisal|
+    def update_appraisals(appraisal_list, gems, update_options, jobs)
+      each_appraisal(appraisal_list, jobs) do |appraisal|
         appraisal.update(gems, update_options.dup)
       end
     end
@@ -210,17 +209,29 @@ module Appraisal
     def worker_count(jobs, item_count)
       jobs = jobs.to_i
       jobs = 1 if jobs < 1
+      jobs = 1 unless parallel_appraisals_supported?
       return jobs if item_count.zero?
 
       [jobs, item_count].min
     end
 
-    def generate_jobs(command_options)
-      command_options["jobs"] || command_options[:jobs] || ENV["APPRAISAL_JOBS"] || 1
+    def parallel_appraisals_supported?
+      # Parallel install/update workers depend on Appraisal::Command being able
+      # to build independent Bundler subprocess environments. Bundler 2.1 is the
+      # floor for the modern original_env/unbundled_env API split that replaced
+      # clean_env, so older Bundler versions keep the historical serial path.
+      bundler_version = Gem::Specification.find_all_by_name("bundler").map(&:version).max
+      return false unless bundler_version
+
+      bundler_version >= MINIMUM_PARALLEL_BUNDLER_VERSION
+    end
+
+    def appraisal_jobs(command_options)
+      command_options["appraisal-jobs"] || command_options[:appraisal_jobs] || ENV["APPRAISAL_JOBS"] || 2
     end
 
     def install_options
-      options.to_h
+      options.to_h.reject { |key, _value| key.to_s == "appraisal-jobs" }
     end
 
     def update_options
@@ -229,6 +240,13 @@ module Appraisal
     end
 
     def method_missing(name, *args)
+      case name.to_s
+      when "generate-install"
+        return generate_install
+      when "generate-update"
+        return generate_update(*args)
+      end
+
       matching_appraisal = AppraisalFile.new.appraisals.detect do |appraisal|
         appraisal.name == name.to_s
       end
@@ -289,7 +307,7 @@ module Appraisal
           Command.new(actual_args, :gemfile => matching_appraisal.gemfile_path).run
         end
       else
-        AppraisalFile.each do |appraisal|
+        each_appraisal(AppraisalFile.new.appraisals, appraisal_jobs(options)) do |appraisal|
           Command.new(ARGV, :gemfile => appraisal.gemfile_path).run
         end
       end
@@ -316,6 +334,17 @@ module Appraisal
           options[:jobs] = Regexp.last_match(1).to_i
         when /^-j(\d+)$/
           options[:jobs] = Regexp.last_match(1).to_i
+        when /^-j$/
+          options[:jobs] = args[index + 1].to_i
+          skip_next = true
+        when /^--appraisal-jobs=\d+$/
+          nil
+        when /^--appraisal-jobs$/
+          skip_next = true
+        when /^-n\d+$/
+          nil
+        when /^-n$/
+          skip_next = true
         when /^--retry=(\d+)$/
           options[:retry] = Regexp.last_match(1).to_i
         when /^--without=(.+)$/
@@ -346,6 +375,10 @@ module Appraisal
         when /^-g$/
           # Next arg should be the value
           options[:gem_manager] = args[index + 1]
+          skip_next = true
+        when /^--appraisal-jobs$/
+          skip_next = true
+        when /^-n$/
           skip_next = true
         when /^-/
           # Other options are not gems, but we don't handle them all here

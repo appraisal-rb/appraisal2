@@ -20,8 +20,11 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- `appraisal generate` can now generate appraisal Gemfiles in parallel with
-  `--jobs` / `-j`, or `APPRAISAL_JOBS`.
+- `appraisal generate`, `install`, `update`, `generate-install`, and
+  `generate-update` can now process appraisals in parallel with
+  `--appraisal-jobs` / `-n`, or `APPRAISAL_JOBS`. Appraisal-level
+  parallelism defaults to 2 workers; use `-n 1` to run serially. Bundler older
+  than 2.1 falls back to serial processing.
 
 ### Changed
 
@@ -40,6 +43,17 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Removed
 
 ### Fixed
+
+- Appraisal command execution now checks whether the `bundle` executable can
+  boot before falling back to RubyGems spec probing and Bundler installation,
+  preserving TruffleRuby's engine-shipped Bundler in isolated subprocesses.
+- Acceptance fixture Bundler selection now detects TruffleRuby's shipped
+  Bundler without reusing a newer Bundler activated by the appraised suite.
+- Acceptance fixture binstubs now pin the selected Bundler version before
+  loading generated `bin/bundle` handoff code.
+- Bundler-backed appraisal installs now set `BUNDLE_JOBS` explicitly so the
+  configured Appraisal job count also controls Bundler's installer worker
+  count in subprocesses.
 
 ### Security
 

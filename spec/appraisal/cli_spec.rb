@@ -30,7 +30,7 @@ RSpec.describe Appraisal::CLI do
     let(:first_appraisal) { instance_double(Appraisal::Appraisal, :write_gemfile => true) }
     let(:second_appraisal) { instance_double(Appraisal::Appraisal, :write_gemfile => true) }
 
-    it "generates appraisal gemfiles in parallel when jobs is greater than one" do
+    it "generates appraisal gemfiles in parallel when appraisal jobs is greater than one" do
       runner = nil
 
       begin
@@ -39,7 +39,7 @@ RSpec.describe Appraisal::CLI do
 
         allow(cli).to receive_messages(
           :appraisals => [first_appraisal, second_appraisal],
-          :options => {"jobs" => 2}
+          :options => {"appraisal-jobs" => 2}
         )
         [first_appraisal, second_appraisal].each do |current_appraisal|
           allow(current_appraisal).to receive(:write_gemfile) do
@@ -63,7 +63,7 @@ RSpec.describe Appraisal::CLI do
       end
     end
 
-    it "uses APPRAISAL_JOBS when jobs is not passed" do
+    it "uses APPRAISAL_JOBS when appraisal jobs is not passed" do
       stub_env("APPRAISAL_JOBS" => "2")
       allow(cli).to receive_messages(
         :appraisals => [first_appraisal, second_appraisal],
@@ -72,6 +72,82 @@ RSpec.describe Appraisal::CLI do
       expect(cli).to receive(:generate_appraisals).with([first_appraisal, second_appraisal], "2")
 
       cli.generate
+    end
+
+    it "defaults to two appraisal workers" do
+      allow(cli).to receive_messages(
+        :appraisals => [first_appraisal, second_appraisal],
+        :options => {}
+      )
+      expect(cli).to receive(:generate_appraisals).with([first_appraisal, second_appraisal], 2)
+
+      cli.generate
+    end
+
+    it "allows explicit serial appraisal processing" do
+      allow(cli).to receive_messages(
+        :appraisals => [first_appraisal, second_appraisal],
+        :options => {"appraisal-jobs" => 1}
+      )
+      expect(cli).to receive(:generate_appraisals).with([first_appraisal, second_appraisal], 1)
+
+      cli.generate
+    end
+  end
+
+  describe "#install" do
+    let(:first_appraisal) { instance_double(Appraisal::Appraisal, :install => true, :relativize => true) }
+    let(:second_appraisal) { instance_double(Appraisal::Appraisal, :install => true, :relativize => true) }
+
+    it "uses separate job counts for appraisal workers and gem manager workers" do
+      allow(cli).to receive_messages(
+        :appraisals => [first_appraisal, second_appraisal],
+        :options => {"appraisal-jobs" => 2, "jobs" => 4}
+      )
+
+      expect(cli).to receive(:each_appraisal).with([first_appraisal, second_appraisal], 2).and_call_original
+
+      cli.install
+
+      expect(first_appraisal).to have_received(:install).with(hash_including("jobs" => 4))
+      expect(second_appraisal).to have_received(:install).with(hash_including("jobs" => 4))
+      expect(first_appraisal).not_to have_received(:install).with(hash_including("appraisal-jobs" => 2))
+      expect(second_appraisal).not_to have_received(:install).with(hash_including("appraisal-jobs" => 2))
+    end
+  end
+
+  describe "#update" do
+    let(:first_appraisal) { instance_double(Appraisal::Appraisal, :update => true) }
+    let(:second_appraisal) { instance_double(Appraisal::Appraisal, :update => true) }
+
+    it "updates appraisals in parallel when appraisal jobs is greater than one" do
+      allow(cli).to receive_messages(
+        :appraisals => [first_appraisal, second_appraisal],
+        :options => {"appraisal-jobs" => 2}
+      )
+
+      expect(cli).to receive(:each_appraisal).with([first_appraisal, second_appraisal], 2).and_call_original
+
+      cli.update("rack")
+
+      expect(first_appraisal).to have_received(:update).with(["rack"], {})
+      expect(second_appraisal).to have_received(:update).with(["rack"], {})
+    end
+  end
+
+  describe "#worker_count" do
+    it "uses requested workers when Bundler is modern enough for isolated parallel subprocesses" do
+      bundler_spec = instance_double(Gem::Specification, :version => Gem::Version.new("2.1.0"))
+      allow(Gem::Specification).to receive(:find_all_by_name).with("bundler").and_return([bundler_spec])
+
+      expect(cli.send(:worker_count, 2, 3)).to eq(2)
+    end
+
+    it "falls back to serial processing when Bundler is older than the isolation floor" do
+      bundler_spec = instance_double(Gem::Specification, :version => Gem::Version.new("1.17.3"))
+      allow(Gem::Specification).to receive(:find_all_by_name).with("bundler").and_return([bundler_spec])
+
+      expect(cli.send(:worker_count, 2, 3)).to eq(1)
     end
   end
 
@@ -183,6 +259,37 @@ RSpec.describe Appraisal::CLI do
         cli.send(:method_missing, :"rails-7", "rake", "test")
       end
     end
+
+    context "when no appraisal name matches" do
+      let(:first_appraisal) do
+        instance_double(Appraisal::Appraisal, :name => "rails-7", :gemfile_path => "gemfiles/rails-7.gemfile")
+      end
+      let(:second_appraisal) do
+        instance_double(Appraisal::Appraisal, :name => "rails-8", :gemfile_path => "gemfiles/rails-8.gemfile")
+      end
+
+      it "runs the external command across appraisals with APPRAISAL_JOBS workers" do
+        first_command = instance_double(Appraisal::Command, :run => true)
+        second_command = instance_double(Appraisal::Command, :run => true)
+
+        stub_env("APPRAISAL_JOBS" => "2")
+        stub_const("ARGV", ["rake", "test"])
+        allow(appraisal_file).to receive(:appraisals).and_return([first_appraisal, second_appraisal])
+        allow(Appraisal::Command).to receive(:new)
+          .with(["rake", "test"], :gemfile => "gemfiles/rails-7.gemfile")
+          .and_return(first_command)
+        allow(Appraisal::Command).to receive(:new)
+          .with(["rake", "test"], :gemfile => "gemfiles/rails-8.gemfile")
+          .and_return(second_command)
+
+        expect(cli).to receive(:each_appraisal).with([first_appraisal, second_appraisal], "2").and_call_original
+
+        cli.send(:method_missing, :rake, "test")
+
+        expect(first_command).to have_received(:run)
+        expect(second_command).to have_received(:run)
+      end
+    end
   end
 
   describe "parse_external_options" do
@@ -203,6 +310,21 @@ RSpec.describe Appraisal::CLI do
 
     it "parses -j option" do
       result = cli.send(:parse_external_options, ["-j4"])
+      expect(result).to eq(:jobs => 4)
+    end
+
+    it "consumes --appraisal-jobs without forwarding it to dependency commands" do
+      result = cli.send(:parse_external_options, ["--appraisal-jobs=2"])
+      expect(result).to eq({})
+    end
+
+    it "consumes -n without forwarding it to dependency commands" do
+      result = cli.send(:parse_external_options, ["-n", "2", "--jobs=4"])
+      expect(result).to eq(:jobs => 4)
+    end
+
+    it "consumes --appraisal-jobs with a separate value" do
+      result = cli.send(:parse_external_options, ["--appraisal-jobs", "2", "--jobs=4"])
       expect(result).to eq(:jobs => 4)
     end
 
@@ -235,6 +357,12 @@ RSpec.describe Appraisal::CLI do
       gems, options = cli.send(:extract_gems_and_options, ["rails", "-g", "ore"])
       expect(gems).to eq(["rails"])
       expect(options).to eq(:gem_manager => "ore")
+    end
+
+    it "does not treat appraisal job values as gem names" do
+      gems, options = cli.send(:extract_gems_and_options, ["rails", "-n", "2"])
+      expect(gems).to eq(["rails"])
+      expect(options).to eq({})
     end
 
     it "handles repeated values correctly (reproducibility test)" do

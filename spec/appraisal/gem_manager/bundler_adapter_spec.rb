@@ -37,6 +37,7 @@ RSpec.describe Appraisal::GemManager::BundlerAdapter do
 
       expect(Appraisal::Command).to have_received(:new).with(
         "bundle check --gemfile='#{gemfile_path}' || bundle install --gemfile='#{gemfile_path}'",
+        :env => {"BUNDLE_JOBS" => "1"},
         :gemfile => gemfile_path
       )
     end
@@ -52,6 +53,7 @@ RSpec.describe Appraisal::GemManager::BundlerAdapter do
 
           expect(Appraisal::Command).to have_received(:new).with(
             "bundle check --gemfile='#{gemfile_path}' || bundle install --gemfile='#{gemfile_path}' --jobs=4",
+            :env => {"BUNDLE_JOBS" => "4"},
             :gemfile => gemfile_path
           )
         end
@@ -71,6 +73,7 @@ RSpec.describe Appraisal::GemManager::BundlerAdapter do
 
           expect(Appraisal::Command).to have_received(:new).with(
             "bundle check --gemfile='#{gemfile_path}' || bundle install --gemfile='#{gemfile_path}'",
+            :env => {"BUNDLE_JOBS" => "1"},
             :gemfile => gemfile_path
           )
           expect(warning).to include("Please upgrade Bundler")
@@ -82,6 +85,7 @@ RSpec.describe Appraisal::GemManager::BundlerAdapter do
 
         expect(Appraisal::Command).to have_received(:new).with(
           "bundle check --gemfile='#{gemfile_path}' || bundle install --gemfile='#{gemfile_path}'",
+          :env => {"BUNDLE_JOBS" => "1"},
           :gemfile => gemfile_path
         )
       end
@@ -93,6 +97,7 @@ RSpec.describe Appraisal::GemManager::BundlerAdapter do
 
         expect(Appraisal::Command).to have_received(:new).with(
           "bundle check --gemfile='#{gemfile_path}' || bundle install --gemfile='#{gemfile_path}' --retry 3",
+          :env => {"BUNDLE_JOBS" => "1"},
           :gemfile => gemfile_path
         )
       end
@@ -105,6 +110,7 @@ RSpec.describe Appraisal::GemManager::BundlerAdapter do
         expect(Appraisal::Command).to have_received(:new).with(
           "bundle config set --local path /home/test/vendor/bundle && " \
             "(bundle check --gemfile='#{gemfile_path}' || bundle install --gemfile='#{gemfile_path}')",
+          :env => {"BUNDLE_JOBS" => "1"},
           :gemfile => gemfile_path
         )
       end
@@ -116,6 +122,7 @@ RSpec.describe Appraisal::GemManager::BundlerAdapter do
 
         expect(Appraisal::Command).to have_received(:new).with(
           "bundle install --gemfile='#{gemfile_path}' --without development test",
+          :env => {"BUNDLE_JOBS" => "1"},
           :gemfile => gemfile_path
         )
       end
@@ -131,7 +138,7 @@ RSpec.describe Appraisal::GemManager::BundlerAdapter do
 
         expect(Appraisal::Command).to have_received(:new).with(
           "bundle check --gemfile='#{gemfile_path}' || bundle install --gemfile='#{gemfile_path}'",
-          :env => {"BUNDLE_DISABLE_SHARED_GEMS" => "1"},
+          :env => {"BUNDLE_DISABLE_SHARED_GEMS" => "1", "BUNDLE_JOBS" => "1"},
           :gemfile => gemfile_path
         )
       end

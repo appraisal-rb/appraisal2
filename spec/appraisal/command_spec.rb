@@ -62,20 +62,22 @@ RSpec.describe Appraisal::Command do
     end
 
     context "with default settings" do
-      it "wraps execution in with_bundler_env and ensures bundler is available" do
-        allow(command).to receive(:with_bundler_env).and_yield
+      it "builds an isolated Bundler environment and ensures bundler is available" do
+        allow(command).to receive(:bundler_env).and_return({})
         allow(command).to receive(:ensure_bundler_is_available)
+        allow(command).to receive(:ensure_locked_bundler_is_available)
 
         command.run
 
-        expect(command).to have_received(:with_bundler_env)
-        expect(command).to have_received(:ensure_bundler_is_available)
+        expect(command).to have_received(:bundler_env).with(hash_including("GEM_PATH" => ENV["APPRAISAL_TEST_SYSTEM_GEM_PATH"].to_s))
+        expect(command).to have_received(:ensure_bundler_is_available).with({})
+        expect(command).to have_received(:ensure_locked_bundler_is_available).with({})
       end
     end
 
     context "with BUNDLE_PATH set in environment" do
       it "preserves BUNDLE_PATH and strips bundler activation markers" do
-        # This example exercises real ENV mutation inside Command#with_bundler_env.
+        # This example exercises the real environment builder used by Command#run.
         # rubocop:disable Env/Assign
         original_bundle_path = ENV["BUNDLE_PATH"]
         original_rubyopt = ENV["RUBYOPT"]
@@ -87,13 +89,14 @@ RSpec.describe Appraisal::Command do
           ENV["BUNDLER_SETUP"] = "1"
           ENV["BUNDLER_VERSION"] = "4.0.3"
 
-          allow(Bundler).to receive(:original_env).and_return({})
+          allow(Bundler).to receive(:unbundled_env).and_return({})
 
-          expect(Kernel).to receive(:system) do
-            expect(ENV["BUNDLE_PATH"]).to eq("/custom/path")
-            expect(ENV["BUNDLER_SETUP"]).to be_nil
-            expect(ENV["BUNDLER_VERSION"]).to be_nil
-            expect(ENV["RUBYOPT"]).to eq("-W0")
+          expect(Kernel).to receive(:system) do |env, _command|
+            expect(env["BUNDLE_PATH"]).to eq("/custom/path")
+            expect(env["BUNDLER_SETUP"]).to be_nil
+            expect(env["BUNDLE_VERSION"]).to be_nil
+            expect(env["BUNDLER_VERSION"]).to be_nil
+            expect(env["RUBYOPT"]).to eq("-W0")
             true
           end
 
@@ -105,6 +108,42 @@ RSpec.describe Appraisal::Command do
           ENV["BUNDLER_VERSION"] = original_bundler_version
         end
         # rubocop:enable Env/Assign
+      end
+    end
+
+    context "when Bundler environment helpers are available" do
+      it "uses unbundled_env instead of original_env as the subprocess base" do
+        allow(Bundler).to receive_messages(
+          :unbundled_env => {"PATH" => "/original/bin"},
+          :original_env => {"BUNDLE_FOO" => "leaked", "PATH" => "/original/bin"}
+        )
+
+        expect(Kernel).to receive(:system) do |env, _command|
+          expect(env["BUNDLE_FOO"]).to be_nil
+          true
+        end
+
+        command.run
+
+        expect(Bundler).to have_received(:unbundled_env)
+        expect(Bundler).not_to have_received(:original_env)
+      end
+    end
+
+    context "with an acceptance test Bundler version" do
+      it "pins the subprocess to the harness-selected Bundler version" do
+        harness_command = described_class.new(command_string, :gemfile => gemfile, :env => {"APPRAISAL_TEST_BUNDLER_VERSION" => "4.0.16"})
+        allow(harness_command).to receive(:system).and_return(true)
+        allow(harness_command).to receive(:puts)
+        allow(Bundler).to receive(:unbundled_env).and_return({})
+
+        expect(Kernel).to receive(:system) do |env, _command|
+          expect(env["BUNDLE_VERSION"]).to eq("4.0.16")
+          expect(env["BUNDLER_VERSION"]).to eq("4.0.16")
+          true
+        end
+
+        harness_command.run
       end
     end
 
@@ -132,28 +171,48 @@ RSpec.describe Appraisal::Command do
           locked_command = described_class.new(command_string, :gemfile => gemfile, :env => {"GEM_HOME" => gem_home, "GEM_PATH" => ""})
           allow(locked_command).to receive(:system).and_return(true)
           allow(locked_command).to receive(:puts)
-          allow(Bundler).to receive(:original_env).and_return({})
+          allow(Bundler).to receive(:unbundled_env).and_return({})
 
-          allow(locked_command).to receive(:system).with(%(gem list --silent -i bundler)) do
-            expect(ENV["GEM_HOME"]).to eq(gem_home)
-            true
-          end
-          allow(locked_command).to receive(:system).with(%(gem list --silent -i bundler -v "4.0.5")) do
-            expect(ENV["GEM_HOME"]).to eq(gem_home)
-            true
-          end
-          expect(Kernel).to receive(:system) do
-            expect(ENV["BUNDLE_GEMFILE"]).to eq(gemfile)
-            expect(ENV["BUNDLER_VERSION"]).to eq("4.0.5")
-            expect(ENV["BUNDLE_BIN_PATH"]).to be_nil
+          allow(locked_command).to receive(:system)
+            .with(hash_including("GEM_HOME" => gem_home), a_string_matching(/ruby --disable=gems .*bundler/m))
+            .and_return(true)
+          expect(Kernel).to receive(:system) do |env, _command|
+            expect(env["BUNDLE_GEMFILE"]).to eq(gemfile)
+            expect(env["BUNDLE_VERSION"]).to eq("4.0.5")
+            expect(env["BUNDLER_VERSION"]).to eq("4.0.5")
+            expect(env["BUNDLE_BIN_PATH"]).to be_nil
             true
           end
 
           locked_command.run
 
-          expect(locked_command).to have_received(:system).with(%(gem list --silent -i bundler))
-          expect(locked_command).to have_received(:system).with(%(gem list --silent -i bundler -v "4.0.5"))
+          expect(locked_command).to have_received(:system)
+            .with(hash_including("GEM_HOME" => gem_home), a_string_matching(/ruby --disable=gems .*bundler/m))
+            .once
         end
+      end
+    end
+
+    context "when the Bundler executable can boot" do
+      it "does not install bundler when RubyGems spec discovery is too narrow" do
+        allow(command).to receive(:system)
+          .with(anything, "bundle -v > /dev/null 2>&1")
+          .and_return(true)
+        allow(command).to receive(:system)
+          .with(anything, a_string_matching(/Gem::Specification\.find_all_by_name/))
+          .and_return(false)
+        allow(command).to receive(:system)
+          .with(anything, a_string_matching(/gem install bundler/))
+          .and_return(true)
+
+        command.run
+
+        expect(command).to have_received(:system)
+          .with(anything, "bundle -v > /dev/null 2>&1")
+        expect(command).not_to have_received(:system)
+          .with(anything, a_string_matching(/Gem::Specification\.find_all_by_name/))
+        expect(command).not_to have_received(:system)
+          .with(anything, a_string_matching(/gem install bundler/))
       end
     end
   end

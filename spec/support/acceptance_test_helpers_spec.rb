@@ -1,7 +1,37 @@
 # frozen_string_literal: true
 
+require "tmpdir"
+
 RSpec.describe AcceptanceTestHelpers do
   include described_class
+
+  describe "#install_test_binstub_gem_path_prelude" do
+    it "pins generated test binstubs to the harness-selected Bundler version" do
+      FileUtils.mkdir_p(File.join(Dir.pwd, "tmp"))
+
+      Dir.mktmpdir("binstub", File.join(Dir.pwd, "tmp")) do |dir|
+        binstub = File.join(dir, "appraisal")
+        File.write(binstub, <<-RUBY.strip_heredoc)
+          #!/usr/bin/env ruby
+          require "pathname"
+          bundle_binstub = File.expand_path("../bundle", __FILE__)
+          load(bundle_binstub)
+          require "rubygems"
+          require "bundler/setup"
+          load Gem.bin_path("appraisal2", "appraisal")
+        RUBY
+
+        install_test_binstub_gem_path_prelude(dir)
+
+        contents = File.read(binstub)
+        bundler_pin_index = contents.index('ENV["BUNDLER_VERSION"] = ENV["APPRAISAL_TEST_BUNDLER_VERSION"]')
+        bundle_binstub_load_index = contents.index("load(bundle_binstub)")
+
+        expect(contents).to include('ENV["BUNDLE_VERSION"] = ENV["APPRAISAL_TEST_BUNDLER_VERSION"]')
+        expect(bundler_pin_index).to be < bundle_binstub_load_index
+      end
+    end
+  end
 
   describe "#restore_environment_variables" do
     it "restores GEM_HOME after fixture gem setup changes it" do
@@ -12,6 +42,38 @@ RSpec.describe AcceptanceTestHelpers do
       restore_environment_variables
 
       expect(ENV["GEM_HOME"]).to eq("/original/gem/home")
+    end
+  end
+
+  describe "#test_bundler_version" do
+    it "uses the Ruby-shipped Bundler on TruffleRuby instead of the newest installed spec" do
+      stub_const("RUBY_ENGINE", "truffleruby")
+      allow(self).to receive(:ruby_shipped_bundler_version).and_return("2.2.32")
+
+      newer_spec = instance_double(Gem::Specification, :version => Gem::Version.new("2.5.23"))
+      allow(Gem::Specification).to receive(:find_all_by_name).with("bundler").and_return([newer_spec])
+
+      expect(test_bundler_version).to eq("2.2.32")
+    end
+
+    it "falls back to the newest installed Bundler spec on TruffleRuby when the shipped version cannot be detected" do
+      stub_const("RUBY_ENGINE", "truffleruby")
+      allow(self).to receive(:ruby_shipped_bundler_version).and_return(nil)
+
+      newer_spec = instance_double(Gem::Specification, :version => Gem::Version.new("2.5.23"))
+      allow(Gem::Specification).to receive(:find_all_by_name).with("bundler").and_return([newer_spec])
+
+      expect(test_bundler_version).to eq("2.5.23")
+    end
+
+    it "uses the newest installed Bundler spec on other engines" do
+      stub_const("RUBY_ENGINE", "ruby")
+
+      older_spec = instance_double(Gem::Specification, :version => Gem::Version.new("2.4.0"))
+      newer_spec = instance_double(Gem::Specification, :version => Gem::Version.new("2.5.0"))
+      allow(Gem::Specification).to receive(:find_all_by_name).with("bundler").and_return([older_spec, newer_spec])
+
+      expect(test_bundler_version).to eq("2.5.0")
     end
   end
 end

@@ -94,7 +94,7 @@ module Appraisal
     end
 
     def gemfile_path
-      gemfile_root.mkdir unless gemfile_root.exist?
+      FileUtils.mkdir_p(gemfile_root)
 
       gemfile_root.join(gemfile_name).to_s
     end

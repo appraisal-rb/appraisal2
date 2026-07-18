@@ -259,10 +259,20 @@ Use the command that matches the lifecycle you want:
 | `generate-install` | Yes | Yes, via install | First setup, or after intentional Appraisals changes |
 | `generate-update` | Yes | Yes, via update | Regenerate gemfiles, then update dependency locks |
 
-`generate`, `generate-install`, and `generate-update` can generate appraisal
-gemfiles in parallel with `--jobs` / `-j`, or with `APPRAISAL_JOBS` when no
-CLI value is provided. `generate-install` and `generate-update` parallelize the
-generation phase, then resolve dependencies with the selected gem manager.
+Appraisal2 can process appraisals in parallel with `--appraisal-jobs` / `-n`,
+or with `APPRAISAL_JOBS` when no CLI value is provided. `generate`,
+`generate-install`, and `generate-update` use this for generation. `install`,
+`update`, `generate-install`, and `generate-update` use it to fan out dependency
+resolution across appraisals. External commands run across all appraisals, such
+as `bundle exec appraisal rake test`, use `APPRAISAL_JOBS`. Appraisal-level
+parallelism defaults to 2 workers; use `-n 1` to run serially. When Appraisal2
+is running under Bundler older than 2.1, Appraisal2 falls back to serial
+processing because those Bundler versions do not provide the modern environment
+helpers used to isolate parallel Bundler subprocesses.
+
+Install commands keep `--jobs` / `-j` for the selected gem manager. With
+Bundler, `-j` controls `bundle install --jobs`, while `-n` controls how many
+appraisal gemfiles Appraisal2 processes at the same time.
 
 The deprecated rake task `rake appraisal:install` now delegates to `appraisal generate-install`, preserving its historical generate-and-install behavior while the CLI commands remain explicit.
 
@@ -275,11 +285,26 @@ Built-in dependency commands support the following options:
 | Option | Description |
 |--------|-------------|
 | `--gem-manager`, `-g` | Gem manager to use: `bundler` (default) or `ore`; applies to `install`, `update`, `generate-install`, and `generate-update` |
-| `--jobs`, `-j` | Generate appraisal gemfiles in parallel for `generate`, `generate-install`, and `generate-update`; also installs gems in parallel for `install` and `generate-install` when supported by the selected gem manager |
+| `--appraisal-jobs`, `-n` | Process appraisals in parallel for `generate`, `install`, `update`, `generate-install`, and `generate-update` (default: 2; use `-n 1` for serial execution; Bundler < 2.1 falls back to serial processing) |
+| `--jobs`, `-j` | Pass a parallel job count to the selected gem manager; applies to `install` and `generate-install` |
 | `--retry` | Retry network and git requests that have failed; applies to `install` and `generate-install` (default: 1) |
 | `--without` | A space-separated list of groups to skip during installation; applies to `install` and `generate-install` |
 | `--full-index` | Run bundle install with the full-index argument; applies to `install` and `generate-install` |
 | `--path` | Install gems in the specified directory; applies to `install` and `generate-install` |
+
+```bash
+# Process two appraisals at a time, using the default Appraisal worker count
+bundle exec appraisal generate-install
+
+# Process four appraisals at a time
+bundle exec appraisal generate-install -n 4
+
+# Process two appraisals at a time, and give each Bundler install four jobs
+bundle exec appraisal generate-install -n 2 -j 4
+
+# Run Appraisal serially when parallel appraisal processing is not desired
+bundle exec appraisal generate-install -n 1
+```
 
 ### Using Commands with Named Appraisals
 
