@@ -371,6 +371,19 @@ module AcceptanceTestHelpers
       next if File.basename(binstub) == "bundle"
 
       contents = File.read(binstub)
+      unless contents.include?("APPRAISAL_TEST_BUNDLER_VERSION")
+        contents.sub!(
+          "require \"pathname\"\n",
+          <<-RUBY.strip_heredoc
+            if ENV["APPRAISAL_TEST_BUNDLER_VERSION"] && !ENV["APPRAISAL_TEST_BUNDLER_VERSION"].empty?
+              ENV["BUNDLE_VERSION"] = ENV["APPRAISAL_TEST_BUNDLER_VERSION"]
+              ENV["BUNDLER_VERSION"] = ENV["APPRAISAL_TEST_BUNDLER_VERSION"]
+            end
+            require "pathname"
+          RUBY
+        )
+      end
+
       next if contents.include?("APPRAISAL_TEST_SYSTEM_GEM_PATH")
 
       contents.sub!(

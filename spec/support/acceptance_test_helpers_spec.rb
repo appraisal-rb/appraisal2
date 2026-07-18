@@ -1,7 +1,37 @@
 # frozen_string_literal: true
 
+require "tmpdir"
+
 RSpec.describe AcceptanceTestHelpers do
   include described_class
+
+  describe "#install_test_binstub_gem_path_prelude" do
+    it "pins generated test binstubs to the harness-selected Bundler version" do
+      FileUtils.mkdir_p(File.join(Dir.pwd, "tmp"))
+
+      Dir.mktmpdir("binstub", File.join(Dir.pwd, "tmp")) do |dir|
+        binstub = File.join(dir, "appraisal")
+        File.write(binstub, <<-RUBY.strip_heredoc)
+          #!/usr/bin/env ruby
+          require "pathname"
+          bundle_binstub = File.expand_path("../bundle", __FILE__)
+          load(bundle_binstub)
+          require "rubygems"
+          require "bundler/setup"
+          load Gem.bin_path("appraisal2", "appraisal")
+        RUBY
+
+        install_test_binstub_gem_path_prelude(dir)
+
+        contents = File.read(binstub)
+        bundler_pin_index = contents.index('ENV["BUNDLER_VERSION"] = ENV["APPRAISAL_TEST_BUNDLER_VERSION"]')
+        bundle_binstub_load_index = contents.index("load(bundle_binstub)")
+
+        expect(contents).to include('ENV["BUNDLE_VERSION"] = ENV["APPRAISAL_TEST_BUNDLER_VERSION"]')
+        expect(bundler_pin_index).to be < bundle_binstub_load_index
+      end
+    end
+  end
 
   describe "#restore_environment_variables" do
     it "restores GEM_HOME after fixture gem setup changes it" do
