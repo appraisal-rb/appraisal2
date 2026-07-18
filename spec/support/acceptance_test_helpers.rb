@@ -29,6 +29,20 @@ module AcceptanceTestHelpers
     "BUNDLE_USER_PLUGIN"
   ].freeze
 
+  ACCEPTANCE_ENVIRONMENT_VARIABLES = (BUNDLER_ENVIRONMENT_VARIABLES + [
+    "PATH",
+    "HOME",
+    "GEM_HOME",
+    "BUNDLE_IGNORE_FUNDING_REQUESTS",
+    "BUNDLE_DISABLE_SHARED_GEMS",
+    "GEM_PATH",
+    "GIT_CONFIG_COUNT",
+    "GIT_CONFIG_KEY_0",
+    "GIT_CONFIG_VALUE_0",
+    "APPRAISAL_TEST_BUNDLER_VERSION",
+    "APPRAISAL_TEST_SYSTEM_GEM_PATH"
+  ]).freeze
+
   included do
     metadata[:type] = :acceptance
 
@@ -48,15 +62,12 @@ module AcceptanceTestHelpers
       skip "ore-light not installed" unless ore_available?
     end
 
-    before do
+    before do |example|
       cleanup_artifacts
       save_environment_variables
       unset_bundler_environment_variables
       setup_isolated_bundler_environment
-      build_default_dummy_gems
-      ensure_bundler_is_available
-      add_binstub_path
-      build_default_gemfile
+      setup_acceptance_fixture(example.metadata)
     end
 
     after do
@@ -76,22 +87,7 @@ module AcceptanceTestHelpers
   def save_environment_variables
     @original_environment_variables = {}
 
-    # Save all bundler variables plus PATH and the isolation variables we set
-    vars_to_save = BUNDLER_ENVIRONMENT_VARIABLES + [
-      "PATH",
-      "HOME",
-      "GEM_HOME",
-      "BUNDLE_IGNORE_FUNDING_REQUESTS",
-      "BUNDLE_DISABLE_SHARED_GEMS",
-      "GEM_PATH",
-      "GIT_CONFIG_COUNT",
-      "GIT_CONFIG_KEY_0",
-      "GIT_CONFIG_VALUE_0",
-      "APPRAISAL_TEST_BUNDLER_VERSION",
-      "APPRAISAL_TEST_SYSTEM_GEM_PATH"
-    ]
-
-    vars_to_save.each do |key|
+    ACCEPTANCE_ENVIRONMENT_VARIABLES.each do |key|
       @original_environment_variables[key] = ENV[key]
     end
   end
@@ -245,7 +241,7 @@ module AcceptanceTestHelpers
   private
 
   def current_directory
-    TMP_STAGE_ROOT
+    @current_directory || TMP_STAGE_ROOT
   end
 
   def write_file(filename, content)
@@ -254,6 +250,57 @@ module AcceptanceTestHelpers
 
   def cleanup_artifacts
     FileUtils.rm_rf current_directory
+  end
+
+  def setup_acceptance_fixture(metadata)
+    build_default_dummy_gems if metadata[:dummy_gems]
+
+    if metadata[:appraisal_fixture]
+      copy_default_stage_template
+      add_binstub_path
+    elsif metadata[:binstub_path]
+      add_binstub_path
+    end
+  end
+
+  def copy_default_stage_template
+    ensure_default_stage_template
+    FileUtils.cp_r("#{TMP_DEFAULT_STAGE_TEMPLATE}/.", current_directory)
+  end
+
+  def ensure_default_stage_template
+    ready_file = File.join(TMP_DEFAULT_STAGE_TEMPLATE, ".appraisal-fixture-ready")
+    return if File.exist?(ready_file)
+
+    FileUtils.rm_rf TMP_DEFAULT_STAGE_TEMPLATE
+    FileUtils.mkdir_p TMP_DEFAULT_STAGE_TEMPLATE
+
+    with_current_directory(TMP_DEFAULT_STAGE_TEMPLATE) do
+      with_bundle_environment_for_current_directory do
+        ensure_bundler_is_available
+        add_binstub_path
+        build_default_gemfile
+      end
+    end
+
+    FileUtils.touch(ready_file)
+  end
+
+  def with_current_directory(path)
+    previous_directory = @current_directory
+    @current_directory = path
+    yield
+  ensure
+    @current_directory = previous_directory
+  end
+
+  def with_bundle_environment_for_current_directory
+    saved_environment = ACCEPTANCE_ENVIRONMENT_VARIABLES.each_with_object({}) { |key, env| env[key] = ENV[key] }
+
+    setup_isolated_bundler_environment
+    yield
+  ensure
+    saved_environment.each_pair { |key, value| ENV[key] = value }
   end
 
   def build_default_dummy_gems
