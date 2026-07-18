@@ -152,7 +152,7 @@ repository:
 workflows:
   # Default command used by generated test workflows.
   # ENV override: KJ_EXEC_CMD
-  exec_cmd: kettle-test
+  exec_cmd: kettle-test --example-status-log .rspec_status
   # Include VCR/WebMock recording modular gemfiles in generated Appraisals.
   # Enable only for projects that actually require recording support.
   recording: false

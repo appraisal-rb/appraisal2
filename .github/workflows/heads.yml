@@ -41,7 +41,7 @@ jobs:
           # ruby-head
           - ruby: "ruby-head"
             appraisal: "head"
-            exec_cmd: "kettle-test"
+            exec_cmd: "kettle-test --example-status-log .rspec_status"
             rubygems: default
             bundler: default
 
@@ -92,7 +92,7 @@ jobs:
         include:
           - ruby: "truffleruby-head"
             appraisal: "head"
-            exec_cmd: "kettle-test"
+            exec_cmd: "kettle-test --example-status-log .rspec_status"
             rubygems: default
             bundler: default
 
@@ -140,7 +140,7 @@ jobs:
         include:
           - ruby: "jruby-head"
             appraisal: "head"
-            exec_cmd: "kettle-test"
+            exec_cmd: "kettle-test --example-status-log .rspec_status"
             rubygems: default
             bundler: default
 
