@@ -143,7 +143,20 @@ RSpec.describe Appraisal::GemManager::BundlerAdapter do
       allow(Appraisal::Command).to receive(:new).and_return(double(:run => true))
     end
 
-    it "runs bundle update without gems" do
+    it "runs bundle update --all without gems when Bundler supports it" do
+      allow(Appraisal::Utils).to receive(:support_bundle_update_all?).and_return(true)
+
+      adapter.update
+
+      expect(Appraisal::Command).to have_received(:new).with(
+        ["bundle", "update", "--all"],
+        :gemfile => gemfile_path
+      )
+    end
+
+    it "runs bundle update without gems when Bundler does not support --all" do
+      allow(Appraisal::Utils).to receive(:support_bundle_update_all?).and_return(false)
+
       adapter.update
 
       expect(Appraisal::Command).to have_received(:new).with(

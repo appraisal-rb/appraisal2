@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Full dependency updates now run `bundle update --all` to avoid Bundler's
+  deprecated implicit full-update form.
+
 ### Deprecated
 
 ### Removed

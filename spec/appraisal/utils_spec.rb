@@ -76,4 +76,18 @@ RSpec.describe Appraisal::Utils do
       expect(version).to eq "4.1.0.dev"
     end
   end
+
+  describe ".support_bundle_update_all?" do
+    it "is true for Bundler versions with documented --all support" do
+      stub_const("Bundler::VERSION", "1.16.5")
+
+      expect(described_class.support_bundle_update_all?).to be true
+    end
+
+    it "is false for older Bundler versions" do
+      stub_const("Bundler::VERSION", "1.16.4")
+
+      expect(described_class.support_bundle_update_all?).to be false
+    end
+  end
 end

@@ -12,6 +12,10 @@ module Appraisal
         Gem::Version.create(Bundler::VERSION) > Gem::Version.create("2.4.22")
       end
 
+      def support_bundle_update_all?
+        Gem::Version.create(Bundler::VERSION) >= Gem::Version.create("1.16.5")
+      end
+
       # Appraisal needs to print Gemfiles in the oldest Ruby syntax that is supported by Appraisal.
       # Otherwise, a project would not be able to use Appraisal to test compatibility
       #   with older versions of Ruby, which is a core use case for Appraisal.

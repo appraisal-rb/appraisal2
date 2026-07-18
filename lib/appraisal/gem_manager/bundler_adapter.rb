@@ -2,6 +2,8 @@
 
 require "shellwords"
 
+require "appraisal/utils"
+
 require_relative "base"
 
 module Appraisal
@@ -53,7 +55,16 @@ module Appraisal
       end
 
       def update_command(gems)
-        ["bundle", "update", *gems].compact
+        gems = Array(gems).compact
+        return full_update_command if gems.empty?
+
+        ["bundle", "update", *gems]
+      end
+
+      def full_update_command
+        return ["bundle", "update", "--all"] if Utils.support_bundle_update_all?
+
+        ["bundle", "update"]
       end
 
       def bundle_options(options)
