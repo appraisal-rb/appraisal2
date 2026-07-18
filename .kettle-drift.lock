@@ -49,8 +49,8 @@
       "file": ".github/workflows/dep-heads.yml",
       "lines": [
         44,
-        51,
-        58
+        95,
+        134
       ]
     }
   ],
@@ -59,8 +59,8 @@
       "file": ".github/workflows/heads.yml",
       "lines": [
         43,
-        50,
-        57
+        94,
+        142
       ]
     }
   ],
@@ -75,18 +75,29 @@
   ],
   "exec_cmd: \"kettle-test\"\nrubygems: default": [
     {
+      "file": ".github/workflows/heads.yml",
+      "lines": [
+        44,
+        95,
+        143
+      ]
+    }
+  ],
+  "if: ${{ !env.ACT }}\nuses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0": [
+    {
       "file": ".github/workflows/dep-heads.yml",
       "lines": [
-        52,
-        59
+        51,
+        104,
+        142
       ]
     },
     {
       "file": ".github/workflows/heads.yml",
       "lines": [
-        44,
-        51,
-        58
+        50,
+        101,
+        149
       ]
     }
   ]

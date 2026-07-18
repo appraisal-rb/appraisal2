@@ -30,6 +30,11 @@ Please file a bug if you notice a violation of semantic versioning.
 - `generate-install` and `generate-update` now reuse the parsed Appraisals set
   for their generate and install/update phases.
 
+- kettle-jem-template-20260716-001 - Shim gemspec manifests now include
+  `LICENSE.md` instead of nonexistent `LICENSE.txt`.
+- kettle-jem-template-20260716-002 - Generated gemspec manifests now ship fewer
+  repository-only files by default to reduce downstream distro packaging churn.
+
 ### Deprecated
 
 ### Removed
