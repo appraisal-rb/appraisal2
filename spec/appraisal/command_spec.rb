@@ -188,8 +188,31 @@ RSpec.describe Appraisal::Command do
 
           expect(locked_command).to have_received(:system)
             .with(hash_including("GEM_HOME" => gem_home), a_string_matching(/ruby --disable=gems .*bundler/m))
-            .twice
+            .once
         end
+      end
+    end
+
+    context "when the Bundler executable can boot" do
+      it "does not install bundler when RubyGems spec discovery is too narrow" do
+        allow(command).to receive(:system)
+          .with(anything, "bundle -v > /dev/null 2>&1")
+          .and_return(true)
+        allow(command).to receive(:system)
+          .with(anything, a_string_matching(/Gem::Specification\.find_all_by_name/))
+          .and_return(false)
+        allow(command).to receive(:system)
+          .with(anything, a_string_matching(/gem install bundler/))
+          .and_return(true)
+
+        command.run
+
+        expect(command).to have_received(:system)
+          .with(anything, "bundle -v > /dev/null 2>&1")
+        expect(command).not_to have_received(:system)
+          .with(anything, a_string_matching(/Gem::Specification\.find_all_by_name/))
+        expect(command).not_to have_received(:system)
+          .with(anything, a_string_matching(/gem install bundler/))
       end
     end
   end

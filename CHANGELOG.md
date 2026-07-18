@@ -44,6 +44,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Appraisal command execution now checks whether the `bundle` executable can
+  boot before falling back to RubyGems spec probing and Bundler installation,
+  preserving TruffleRuby's engine-shipped Bundler in isolated subprocesses.
+
 ### Security
 
 ## [3.1.4] - 2026-07-01

@@ -140,7 +140,13 @@ module Appraisal
     def ensure_bundler_is_available(process_env)
       rubygems_env = rubygems_command_env(process_env)
 
-      # Check if any version of bundler is available
+      # First ask the actual Bundler executable whether it can boot. In CI,
+      # especially on alternate Ruby engines, Bundler may be available as the
+      # engine-shipped executable while a manually scrubbed RubyGems spec lookup
+      # cannot see it through the current GEM_HOME/GEM_PATH.
+      return if system(rubygems_env, "bundle -v > /dev/null 2>&1")
+
+      # Check if any version of bundler is available through RubyGems.
       return if system(rubygems_env, bundler_available_command)
 
       puts ">> Bundler not found, attempting to install..."
