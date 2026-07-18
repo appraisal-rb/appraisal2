@@ -6,6 +6,10 @@ TMP_GEM_ROOT = File.join(TMP_PROCESS_ROOT, "bundler")
 puts "Using tmp gem root: #{TMP_GEM_ROOT}"
 TMP_GEM_BUILD = File.join(TMP_PROCESS_ROOT, "build")
 puts "Using tmp gem build: #{TMP_GEM_BUILD}"
+TMP_FIXTURE_ROOT = File.join(TMP_PROCESS_ROOT, "fixtures")
+puts "Using tmp fixture root: #{TMP_FIXTURE_ROOT}"
+TMP_DEFAULT_STAGE_TEMPLATE = File.join(TMP_FIXTURE_ROOT, "default-stage")
+puts "Using tmp default stage template: #{TMP_DEFAULT_STAGE_TEMPLATE}"
 TMP_STAGE_ROOT = File.join(TMP_PROCESS_ROOT, "stage")
 puts "Using tmp stage root: #{TMP_STAGE_ROOT}"
 ENV["APPRAISAL_UNDER_TEST"] = "1"
@@ -25,6 +29,8 @@ RSpec.configure do |config|
 
   config.define_derived_metadata(:file_path => %r{spec/acceptance/}) do |metadata|
     metadata[:type] = :acceptance
+    metadata[:appraisal_fixture] = true unless metadata.key?(:appraisal_fixture)
+    metadata[:dummy_gems] = true unless metadata.key?(:dummy_gems)
   end
 
   config.before :suite do

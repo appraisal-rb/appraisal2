@@ -2,8 +2,34 @@
 
 require "tmpdir"
 
-RSpec.describe AcceptanceTestHelpers do
+RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems => false do
   include described_class
+
+  describe "#setup_acceptance_fixture" do
+    it "does not prepare dummy gems or bundle fixtures without opt-in metadata" do
+      allow(self).to receive(:build_default_dummy_gems)
+      allow(self).to receive(:copy_default_stage_template)
+      allow(self).to receive(:add_binstub_path)
+
+      send(:setup_acceptance_fixture, {})
+
+      expect(self).not_to have_received(:build_default_dummy_gems)
+      expect(self).not_to have_received(:copy_default_stage_template)
+      expect(self).not_to have_received(:add_binstub_path)
+    end
+
+    it "prepares the cached bundle fixture and dummy gems when metadata opts in" do
+      allow(self).to receive(:build_default_dummy_gems)
+      allow(self).to receive(:copy_default_stage_template)
+      allow(self).to receive(:add_binstub_path)
+
+      send(:setup_acceptance_fixture, {:appraisal_fixture => true, :dummy_gems => true})
+
+      expect(self).to have_received(:build_default_dummy_gems)
+      expect(self).to have_received(:copy_default_stage_template)
+      expect(self).to have_received(:add_binstub_path)
+    end
+  end
 
   describe "#install_test_binstub_gem_path_prelude" do
     it "pins generated test binstubs to the harness-selected Bundler version" do

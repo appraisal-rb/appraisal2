@@ -30,6 +30,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Full dependency updates now run `bundle update --all` to avoid Bundler's
   deprecated implicit full-update form.
+- Acceptance specs now opt into expensive dummy-gem and bundle fixture setup
+  through metadata, and reuse a per-worker cached default fixture stage.
 - `generate-install` and `generate-update` now reuse the parsed Appraisals set
   for their generate and install/update phases.
 
@@ -54,6 +56,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - Bundler-backed appraisal installs now set `BUNDLE_JOBS` explicitly so the
   configured Appraisal job count also controls Bundler's installer worker
   count in subprocesses.
+- JRuby and TruffleRuby workflows now correctly skip ordinary pull request
+  branches unless the branch targets `jruby/`, `truffleruby/`, or `engines/`.
 
 ### Security
 
