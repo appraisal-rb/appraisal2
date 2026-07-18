@@ -30,6 +30,20 @@ Follow these instructions:
 8. Create new Pull Request.
 9. Announce it in the channel for this org in the [Discord][✉️discord-invite]!
 
+## Ruby engine CI branches
+
+Pull requests run MRI workflows by default. JRuby and TruffleRuby workflows are
+available by branch naming convention so ordinary PRs do not spend CI time on
+alternate Ruby engines.
+
+- Use a branch named `jruby/*` to run JRuby workflows for a pull request.
+- Use a branch named `truffleruby/*` to run TruffleRuby workflows for a pull
+  request.
+- Use a branch named `engines/*` to run both JRuby and TruffleRuby workflows for
+  a pull request.
+
+Pushes to the default branch continue to run the configured engine workflows.
+
 ## Executables vs Rake tasks
 
 Executables shipped by dependencies, such as kettle-dev, and stone_checksums, are available
