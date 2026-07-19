@@ -6,7 +6,7 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.44
+    &mdash; Documentation by YARD 0.9.45
   
 </title>
 
@@ -174,7 +174,7 @@
     <tr>
       <td>Source</td>
       <td>
-<a href="https://gitlab.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=Github&amp;logoColor=green" alt="Source on Github.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.916-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
+<a href="https://gitlab.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=Github&amp;logoColor=green" alt="Source on Github.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-1.000-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
 </td>
     </tr>
     <tr>
@@ -541,6 +541,21 @@ appraisal version                # Display the version and exit
   </tbody>
 </table>
 
+<p>Appraisal2 can process appraisals in parallel with <code>--appraisal-jobs</code> / <code>-n</code>,<br>
+or with <code>APPRAISAL_JOBS</code> when no CLI value is provided. <code>generate</code>,<br>
+<code>generate-install</code>, and <code>generate-update</code> use this for generation. <code>install</code>,<br>
+<code>update</code>, <code>generate-install</code>, and <code>generate-update</code> use it to fan out dependency<br>
+resolution across appraisals. External commands run across all appraisals, such<br>
+as <code>bundle exec appraisal rake test</code>, use <code>APPRAISAL_JOBS</code>. Appraisal-level<br>
+parallelism defaults to 2 workers; use <code>-n 1</code> to run serially. When Appraisal2<br>
+is running under Bundler older than 2.1, Appraisal2 falls back to serial<br>
+processing because those Bundler versions do not provide the modern environment<br>
+helpers used to isolate parallel Bundler subprocesses.</p>
+
+<p>Install commands keep <code>--jobs</code> / <code>-j</code> for the selected gem manager. With<br>
+Bundler, <code>-j</code> controls <code>bundle install --jobs</code>, while <code>-n</code> controls how many<br>
+appraisal gemfiles Appraisal2 processes at the same time.</p>
+
 <p>The deprecated rake task <code>rake appraisal:install</code> now delegates to <code>appraisal generate-install</code>, preserving its historical generate-and-install behavior while the CLI commands remain explicit.</p>
 
 <h3 id="command-options">Command Options</h3>
@@ -566,9 +581,15 @@ appraisal version                # Display the version and exit
     </tr>
     <tr>
       <td>
+<code>--appraisal-jobs</code>, <code>-n</code>
+</td>
+      <td>Process appraisals in parallel for <code>generate</code>, <code>install</code>, <code>update</code>, <code>generate-install</code>, and <code>generate-update</code> (default: 2; use <code>-n 1</code> for serial execution; Bundler &lt; 2.1 falls back to serial processing)</td>
+    </tr>
+    <tr>
+      <td>
 <code>--jobs</code>, <code>-j</code>
 </td>
-      <td>Install gems in parallel using the given number of workers; applies to <code>install</code> and <code>generate-install</code>
+      <td>Pass a parallel job count to the selected gem manager; applies to <code>install</code> and <code>generate-install</code>
 </td>
     </tr>
     <tr>
@@ -592,6 +613,19 @@ appraisal version                # Display the version and exit
     </tr>
   </tbody>
 </table>
+
+<pre class="code language-bash"><code class="language-bash"># Process two appraisals at a time, using the default Appraisal worker count
+bundle exec appraisal generate-install
+
+# Process four appraisals at a time
+bundle exec appraisal generate-install -n 4
+
+# Process two appraisals at a time, and give each Bundler install four jobs
+bundle exec appraisal generate-install -n 2 -j 4
+
+# Run Appraisal serially when parallel appraisal processing is not desired
+bundle exec appraisal generate-install -n 1
+</code></pre>
 
 <h3 id="using-commands-with-named-appraisals">Using Commands with Named Appraisals</h3>
 
@@ -901,9 +935,9 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Jul  1 13:41:53 2026 by
+  Generated on Sat Jul 18 19:49:12 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.44 (ruby-4.0.5).
+  0.9.45 (ruby-4.0.6).
 </div>
 
     </div>

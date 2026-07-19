@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.2.0] - 2026-07-18
+
+- TAG: [v3.2.0][3.2.0t]
+- COVERAGE: 91.00% -- 910/1000 lines in 29 files
+- BRANCH COVERAGE: 77.54% -- 183/236 branches in 29 files
+- 42.33% documented
+
+### Added
+
 - `appraisal generate`, `install`, `update`, `generate-install`, and
   `generate-update` can now process appraisals in parallel with
   `--appraisal-jobs` / `-n`, or `APPRAISAL_JOBS`. Appraisal-level
@@ -43,10 +62,6 @@ Please file a bug if you notice a violation of semantic versioning.
 - kettle-jem-template-20260716-002 - Generated gemspec manifests now ship fewer
   repository-only files by default to reduce downstream distro packaging churn.
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - Appraisal command execution now checks whether the `bundle` executable can
@@ -61,8 +76,6 @@ Please file a bug if you notice a violation of semantic versioning.
   count in subprocesses.
 - JRuby and TruffleRuby workflows now correctly skip ordinary pull request
   branches unless the branch targets `jruby/`, `truffleruby/`, or `engines/`.
-
-### Security
 
 ## [3.1.4] - 2026-07-01
 
@@ -463,7 +476,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.4...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.0...HEAD
+[3.2.0]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.4...v3.2.0
+[3.2.0t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.0
 [3.1.4]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.3...v3.1.4
 [3.1.4t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.1.4
 [3.1.3]: https://github.com/appraisal-rb/appraisal2/compare/v3.1.2...v3.1.3

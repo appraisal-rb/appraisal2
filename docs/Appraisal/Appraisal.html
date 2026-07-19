@@ -6,7 +6,7 @@
 <title>
   Class: Appraisal::Appraisal
   
-    &mdash; Documentation by YARD 0.9.44
+    &mdash; Documentation by YARD 0.9.45
   
 </title>
 
@@ -857,7 +857,7 @@
       <pre class="code"><span class="info file"># File 'lib/appraisal/appraisal.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gemfile_path'>gemfile_path</span>
-  <span class='id identifier rubyid_gemfile_root'>gemfile_root</span><span class='period'>.</span><span class='id identifier rubyid_mkdir'>mkdir</span> <span class='kw'>unless</span> <span class='id identifier rubyid_gemfile_root'>gemfile_root</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir_p'>mkdir_p</span><span class='lparen'>(</span><span class='id identifier rubyid_gemfile_root'>gemfile_root</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_gemfile_root'>gemfile_root</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='id identifier rubyid_gemfile_name'>gemfile_name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
 <span class='kw'>end</span></pre>
@@ -1361,9 +1361,9 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Jun  6 04:59:20 2026 by
+  Generated on Sat Jul 18 19:49:12 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.44 (ruby-4.0.5).
+  0.9.45 (ruby-4.0.6).
 </div>
 
     </div>

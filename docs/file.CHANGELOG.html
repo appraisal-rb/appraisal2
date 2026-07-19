@@ -6,7 +6,7 @@
 <title>
   File: CHANGELOG
   
-    &mdash; Documentation by YARD 0.9.44
+    &mdash; Documentation by YARD 0.9.45
   
 </title>
 
@@ -70,7 +70,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.1.4...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.2.0...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
@@ -84,6 +84,65 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="security">Security</h3>
 
+<h2 id="320---2026-07-18">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.1.4...v3.2.0">3.2.0</a> - 2026-07-18</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.0">v3.2.0</a>
+</li>
+  <li>COVERAGE: 91.00% – 910/1000 lines in 29 files</li>
+  <li>BRANCH COVERAGE: 77.54% – 183/236 branches in 29 files</li>
+  <li>42.33% documented</li>
+</ul>
+
+<h3 id="added-1">Added</h3>
+
+<ul>
+  <li>
+<code>appraisal generate</code>, <code>install</code>, <code>update</code>, <code>generate-install</code>, and<br>
+<code>generate-update</code> can now process appraisals in parallel with<br>
+<code>--appraisal-jobs</code> / <code>-n</code>, or <code>APPRAISAL_JOBS</code>. Appraisal-level<br>
+parallelism defaults to 2 workers; use <code>-n 1</code> to run serially. Bundler older<br>
+than 2.1 falls back to serial processing.</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
+
+<ul>
+  <li>Full dependency updates now run <code>bundle update --all</code> to avoid Bundler’s<br>
+deprecated implicit full-update form.</li>
+  <li>Acceptance specs now opt into expensive dummy-gem and bundle fixture setup<br>
+through metadata, and reuse a per-worker cached default fixture stage.</li>
+  <li>Generated CI workflows now cache <code>.rspec_status</code> and pass it to<br>
+<code>kettle-test</code> so <code>turbo_tests2</code> can balance workers with historical example<br>
+timings.</li>
+  <li>
+    <p><code>generate-install</code> and <code>generate-update</code> now reuse the parsed Appraisals set<br>
+for their generate and install/update phases.</p>
+  </li>
+  <li>kettle-jem-template-20260716-001 - Shim gemspec manifests now include<br>
+<code>LICENSE.md</code> instead of nonexistent <code>LICENSE.txt</code>.</li>
+  <li>kettle-jem-template-20260716-002 - Generated gemspec manifests now ship fewer<br>
+repository-only files by default to reduce downstream distro packaging churn.</li>
+</ul>
+
+<h3 id="fixed-1">Fixed</h3>
+
+<ul>
+  <li>Appraisal command execution now checks whether the <code>bundle</code> executable can<br>
+boot before falling back to RubyGems spec probing and Bundler installation,<br>
+preserving TruffleRuby’s engine-shipped Bundler in isolated subprocesses.</li>
+  <li>Acceptance fixture Bundler selection now detects TruffleRuby’s shipped<br>
+Bundler without reusing a newer Bundler activated by the appraised suite.</li>
+  <li>Acceptance fixture binstubs now pin the selected Bundler version before<br>
+loading generated <code>bin/bundle</code> handoff code.</li>
+  <li>Bundler-backed appraisal installs now set <code>BUNDLE_JOBS</code> explicitly so the<br>
+configured Appraisal job count also controls Bundler’s installer worker<br>
+count in subprocesses.</li>
+  <li>JRuby and TruffleRuby workflows now correctly skip ordinary pull request<br>
+branches unless the branch targets <code>jruby/</code>, <code>truffleruby/</code>, or <code>engines/</code>.</li>
+</ul>
+
 <h2 id="314---2026-07-01">
 <a href="https://github.com/appraisal-rb/appraisal2/compare/v3.1.3...v3.1.4">3.1.4</a> - 2026-07-01</h2>
 
@@ -95,7 +154,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>42.25% documented</li>
 </ul>
 
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 
 <ul>
   <li>Clarified README Bundler path caching guidance and removed hard paragraph<br>
@@ -108,7 +167,7 @@ wraps from prose.</li>
   <li>Removed unused legacy root and fixture Gemfiles for Ruby 1.8, 2.0, and 2.1.</li>
 </ul>
 
-<h3 id="fixed-1">Fixed</h3>
+<h3 id="fixed-2">Fixed</h3>
 
 <ul>
   <li>Re-normalized templated Gemfiles to Ruby 1.8-compatible syntax after<br>
@@ -133,19 +192,19 @@ run a serial Bundler install to avoid legacy fallback index failures.</p>
   <li>42.25% documented</li>
 </ul>
 
-<h3 id="added-1">Added</h3>
+<h3 id="added-2">Added</h3>
 
 <ul>
   <li>Added support for JRuby 10.1 and TruffleRuby 34.0.</li>
 </ul>
 
-<h3 id="changed-2">Changed</h3>
+<h3 id="changed-3">Changed</h3>
 
 <ul>
   <li>Retemplated project metadata and CI/development automation with <code>kettle-jem</code> v7.0.0.</li>
 </ul>
 
-<h3 id="fixed-2">Fixed</h3>
+<h3 id="fixed-3">Fixed</h3>
 
 <ul>
   <li>Updated local GemMine fixture workspace path wiring to use the migrated<br>
@@ -163,7 +222,7 @@ run a serial Bundler install to avoid legacy fallback index failures.</p>
   <li>42.25% documented</li>
 </ul>
 
-<h3 id="added-2">Added</h3>
+<h3 id="added-3">Added</h3>
 
 <ul>
   <li>Support for Bundlers cooldown feature (#31)</li>
@@ -171,7 +230,7 @@ run a serial Bundler install to avoid legacy fallback index failures.</p>
 specs that need temporary throwaway gems.</li>
 </ul>
 
-<h3 id="fixed-3">Fixed</h3>
+<h3 id="fixed-4">Fixed</h3>
 
 <ul>
   <li>Cleaned up per-process scaffold roots after acceptance spec runs so generated<br>
@@ -192,7 +251,7 @@ its per-process local git cache on machines with stricter global Git config.</li
   <li>42.25% documented</li>
 </ul>
 
-<h3 id="added-3">Added</h3>
+<h3 id="added-4">Added</h3>
 
 <ul>
   <li>Added the <code>plugin</code> Appraisals DSL for generator-only companion gems that<br>
@@ -214,7 +273,7 @@ serialize into generated appraisal gemfiles.</li>
   <li>42.70% documented</li>
 </ul>
 
-<h3 id="added-4">Added</h3>
+<h3 id="added-5">Added</h3>
 
 <ul>
   <li>Added Appraisal lifecycle hooks, including <code>Appraisal.transform_gemfile</code><br>
@@ -226,7 +285,7 @@ workflows that need to regenerate Appraisal gemfiles before resolving them.</li>
 <code>generate-update</code>.</li>
 </ul>
 
-<h3 id="changed-3">Changed</h3>
+<h3 id="changed-4">Changed</h3>
 
 <ul>
   <li>Changed <code>install</code> and <code>update</code> to resolve existing Appraisal gemfiles without<br>
@@ -252,7 +311,7 @@ generation commands, and generated gemfile transform hooks in the README.</li>
   <li>42.69% documented</li>
 </ul>
 
-<h3 id="changed-4">Changed</h3>
+<h3 id="changed-5">Changed</h3>
 
 <ul>
   <li>Raised the <code>version_gem</code> runtime dependency floor to <code>version_gem</code> &gt;= 1.1.10.</li>
@@ -271,7 +330,7 @@ generation commands, and generated gemfile transform hooks in the README.</li>
   <li>42.69% documented</li>
 </ul>
 
-<h3 id="fixed-4">Fixed</h3>
+<h3 id="fixed-5">Fixed</h3>
 
 <ul>
   <li>Fixed generated project metadata and README links to use the <code>appraisal-rb</code><br>
@@ -292,7 +351,7 @@ not support.</li>
   <li>42.69% documented</li>
 </ul>
 
-<h3 id="added-5">Added</h3>
+<h3 id="added-6">Added</h3>
 
 <ul>
   <li>Added <code>Appraisal2::Version</code> / <code>Appraisal2::VERSION</code> constants backed by<br>
@@ -305,7 +364,7 @@ per-engine/per-version Ruby workflows.</li>
 contributor/operator guides.</li>
 </ul>
 
-<h3 id="changed-5">Changed</h3>
+<h3 id="changed-6">Changed</h3>
 
 <ul>
   <li>Refreshed project automation and CI templates with the current <code>kettle-jem</code><br>
@@ -340,7 +399,7 @@ workflow set.</p>
 generated <code>dep-heads</code> appraisal workflow.</li>
 </ul>
 
-<h3 id="fixed-5">Fixed</h3>
+<h3 id="fixed-6">Fixed</h3>
 
 <ul>
   <li>
@@ -379,7 +438,7 @@ is active.</li>
   <li>43.11% documented</li>
 </ul>
 
-<h3 id="added-6">Added</h3>
+<h3 id="added-7">Added</h3>
 
 <ul>
   <li>Test for bundler handling with pre-existing appraisal lockfiles
@@ -397,7 +456,7 @@ is active.</li>
   </li>
 </ul>
 
-<h3 id="fixed-6">Fixed</h3>
+<h3 id="fixed-7">Fixed</h3>
 
 <ul>
   <li>Restore bundler’s automatic version switching for modern bundler versions (2.2+)
@@ -437,13 +496,13 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-7">Added</h3>
+<h3 id="added-8">Added</h3>
 
 <ul>
   <li>Documentation of <code>BUNDLE_PATH</code> for caching gems</li>
 </ul>
 
-<h3 id="fixed-7">Fixed</h3>
+<h3 id="fixed-8">Fixed</h3>
 
 <ul>
   <li>Restore support for <code>BUNDLE_PATH</code> environment variable which regressed in  <code>v3.0.3</code>
@@ -465,7 +524,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="changed-6">Changed</h3>
+<h3 id="changed-7">Changed</h3>
 
 <ul>
   <li>Documentation cleanup</li>
@@ -483,14 +542,14 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-8">Added</h3>
+<h3 id="added-9">Added</h3>
 
 <ul>
   <li>New CLI specs for testing named appraisal commands with options</li>
   <li>Shared RSpec contexts for mocking gem managers (<code>BundlerAdapter</code> and <code>OreAdapter</code>) to facilitate faster unit testing</li>
 </ul>
 
-<h3 id="changed-7">Changed</h3>
+<h3 id="changed-8">Changed</h3>
 
 <ul>
   <li>Improved documentation for using <code>install</code> and <code>update</code> commands with named appraisals and options</li>
@@ -502,7 +561,7 @@ is active.</li>
   <li>Significantly optimized unit tests in <code>cli_spec.rb</code> and <code>appraisal_spec.rb</code> by using gem manager mocks, reducing execution time from seconds to milliseconds</li>
 </ul>
 
-<h3 id="fixed-8">Fixed</h3>
+<h3 id="fixed-9">Fixed</h3>
 
 <ul>
   <li>Removed <code>Dir.chdir</code> into <code>gemfiles/</code> directory before running <code>ore</code> commands.</li>
@@ -544,7 +603,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-9">Added</h3>
+<h3 id="added-10">Added</h3>
 
 <ul>
   <li>funding documentation</li>
@@ -563,7 +622,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="added-10">Added</h3>
+<h3 id="added-11">Added</h3>
 
 <ul>
   <li>Support for <a href="https://github.com/contriboss/ore-light">ore-light</a> as an alternative gem manager via <code>--gem-manager=ore</code> CLI option
@@ -606,7 +665,7 @@ is active.</li>
   <li>CLI configs for RuboCop, RubyGems, YARD, and JRuby (for local development only)</li>
 </ul>
 
-<h3 id="changed-8">Changed</h3>
+<h3 id="changed-9">Changed</h3>
 
 <ul>
   <li>Improved test isolation for acceptance tests to prevent modification of parent project’s Gemfile.lock
@@ -624,7 +683,7 @@ is active.</li>
   <li>YARD CLI config switch from custom Kramdown support to yard-fence</li>
 </ul>
 
-<h3 id="fixed-9">Fixed</h3>
+<h3 id="fixed-10">Fixed</h3>
 
 <ul>
   <li>Fixed <code>BundlerAdapter#install</code> not passing <code>gemfile_path</code> to <code>Command.new</code>, which caused bundler to potentially write to the wrong Gemfile.lock when <code>Bundler.with_original_env</code> reset the environment</li>
@@ -663,9 +722,9 @@ is active.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Jul  1 13:41:53 2026 by
+  Generated on Sat Jul 18 19:49:12 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.44 (ruby-4.0.5).
+  0.9.45 (ruby-4.0.6).
 </div>
 
     </div>

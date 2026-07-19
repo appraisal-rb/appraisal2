@@ -6,7 +6,7 @@
 <title>
   Class: Appraisal::GemManager::BundlerAdapter
   
-    &mdash; Documentation by YARD 0.9.44
+    &mdash; Documentation by YARD 0.9.45
   
 </title>
 
@@ -309,12 +309,12 @@ This is the default gem manager and is always available.</p>
       <pre class="lines">
 
 
-18
-19
-20</pre>
+20
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/gem_manager/bundler_adapter.rb', line 18</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/gem_manager/bundler_adapter.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_available?'>available?</span>
   <span class='kw'>true</span> <span class='comment'># Bundler is always available (it&#39;s a dependency of appraisal2)
@@ -339,8 +339,6 @@ This is the default gem manager and is always available.</p>
       <pre class="lines">
 
 
-22
-23
 24
 25
 26
@@ -354,10 +352,12 @@ This is the default gem manager and is always available.</p>
 34
 35
 36
-37</pre>
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/gem_manager/bundler_adapter.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/gem_manager/bundler_adapter.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_install'>install</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_commands'>commands</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_install_command'>install_command</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rbracket'>]</span>
@@ -395,12 +395,12 @@ This is the default gem manager and is always available.</p>
       <pre class="lines">
 
 
-14
-15
-16</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/gem_manager/bundler_adapter.rb', line 14</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/gem_manager/bundler_adapter.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_name'>name</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bundler</span><span class='tstring_end'>&quot;</span></span>
@@ -425,12 +425,12 @@ This is the default gem manager and is always available.</p>
       <pre class="lines">
 
 
-39
-40
-41</pre>
+41
+42
+43</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/gem_manager/bundler_adapter.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/gem_manager/bundler_adapter.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='id identifier rubyid_gems'>gems</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='const'><span class='object_link'><a href="../Command.html" title="Appraisal::Command (class)">Command</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="../Command.html#initialize-instance_method" title="Appraisal::Command#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_update_command'>update_command</span><span class='lparen'>(</span><span class='id identifier rubyid_gems'>gems</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='symbol'>:gemfile</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_gemfile_path'>gemfile_path</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_run'><span class='object_link'><a href="../Command.html#run-instance_method" title="Appraisal::Command#run (method)">run</a></span></span>
@@ -445,9 +445,9 @@ This is the default gem manager and is always available.</p>
 </div>
 
       <div id="footer">
-  Generated on Mon Jun 22 19:30:38 2026 by
+  Generated on Sat Jul 18 19:49:12 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.44 (ruby-4.0.5).
+  0.9.45 (ruby-4.0.6).
 </div>
 
     </div>

@@ -6,7 +6,7 @@
 <title>
   File: CONTRIBUTING
   
-    &mdash; Documentation by YARD 0.9.44
+    &mdash; Documentation by YARD 0.9.45
   
 </title>
 
@@ -93,6 +93,22 @@ This ensures that all contributions are properly licensed and attributed.</p>
   <li>Create new Pull Request.</li>
   <li>Announce it in the channel for this org in the <a href="https://discord.gg/3qme4XHNKN">Discord</a>!</li>
 </ol>
+
+<h2 id="ruby-engine-ci-branches">Ruby engine CI branches</h2>
+
+<p>Pull requests run MRI workflows by default. JRuby and TruffleRuby workflows are<br>
+available by branch naming convention so ordinary PRs do not spend CI time on<br>
+alternate Ruby engines.</p>
+
+<ul>
+  <li>Use a branch named <code>jruby/*</code> to run JRuby workflows for a pull request.</li>
+  <li>Use a branch named <code>truffleruby/*</code> to run TruffleRuby workflows for a pull<br>
+request.</li>
+  <li>Use a branch named <code>engines/*</code> to run both JRuby and TruffleRuby workflows for<br>
+a pull request.</li>
+</ul>
+
+<p>Pushes to the default branch continue to run the configured engine workflows.</p>
 
 <h2 id="executables-vs-rake-tasks">Executables vs Rake tasks</h2>
 
@@ -360,9 +376,9 @@ push git commits and tags, and push the <code>.gem</code> file to the gem host c
 </div></div>
 
       <div id="footer">
-  Generated on Wed Jul  1 13:41:53 2026 by
+  Generated on Sat Jul 18 19:49:12 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.44 (ruby-4.0.5).
+  0.9.45 (ruby-4.0.6).
 </div>
 
     </div>
