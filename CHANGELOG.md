@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- The `appraisal` executable now supports `-v` / `--version` and prints a
+  standard startup header on normal runs.
+
 ### Deprecated
 
 ### Removed
