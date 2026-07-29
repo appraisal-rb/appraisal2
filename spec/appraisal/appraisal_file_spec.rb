@@ -14,7 +14,26 @@ RSpec.describe Appraisal::AppraisalFile do
     allow(File).to receive(:exist?).with("Appraisals").and_return(false)
     expect { described_class.new }.to raise_error(Appraisal::AppraisalsNotFound)
   end
+  
+  it "allows a custom Appraisals file to be specified" do
+    allow(File).to receive(:exist?).and_call_original
+    allow(File).to receive(:exist?).with("Gemfile").and_return(true)
+    allow(File).to receive(:exist?).with("Appraisals").and_return(false)
+    allow(File).to receive(:exist?).with("Appraisals_4_0").and_return(true)
+    allow(File).to receive(:read).and_call_original
+    allow(File).to receive(:read).with("Gemfile").and_return("")
+    allow(File).to receive(:read).with("Appraisals_4_0").and_return(<<-RUBY)
+      appraise "current" do
+        gem "rspec"
+      end
+    RUBY
 
+    ENV["APPRAISAL_FILE"] = "Appraisals_4_0"
+    appraisal = described_class.new.appraisals.first
+    expect(appraisal.gemfile.to_s).to include('gem "rspec"')
+    ENV["APPRAISAL_FILE"] = nil
+  end
+  
   describe "#plugin" do
     it "requires the requested plugin path" do
       appraisals = described_class.allocate

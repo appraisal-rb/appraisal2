@@ -58,7 +58,7 @@ module Appraisal
     end
 
     def path
-      "Appraisals"
+      ENV["APPRAISAL_FILE"] || "Appraisals"
     end
   end
 end

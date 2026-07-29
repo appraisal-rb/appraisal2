@@ -37,7 +37,8 @@ module Appraisal
             appraisal, otherwise it runs the EXTERNAL_COMMAND against all appraisals.
         HELP
 
-        if File.exist?("Appraisals")
+        appraisals_file = ENV["APPRAISAL_FILE"] || "Appraisals"
+        if File.exist?(appraisals_file)
           shell.say
           shell.say("Available Appraisal(s):")
 
