@@ -233,6 +233,16 @@ In the case that you want to run all the appraisals by default when you run `rak
 
 Note that this may conflict with your CI setup if you decide to split the test into multiple processes by Appraisal2 and you are using `rake` to run tests by default.
 
+#### Using Multiple Appraisals Files
+It's possible to have multiple Appraisals files, each with their own 'gemfiles' folder. Selecting which 'Appraisals' file to use with `ENV["APPRAISALS_FILE"]` and the 'gemfiles' folder with `ENV["APPRAISAL_GEMFILES_ROOT"]`.
+
+For example, if you have a different Appraisals set for each version of ruby you test with:
+```ruby
+APPRAISALS_FILE=appraisals_4_0 APPRAISAL_GEMFILES_ROOT=gemfiles_4_0 bundle exec appraisal rake test
+APPRAISALS_FILE=appraisals_3_4 APPRAISAL_GEMFILES_ROOT=gemfiles_3_4 bundle exec appraisal rake test
+APPRAISALS_FILE=appraisals_3_3 APPRAISAL_GEMFILES_ROOT=gemfiles_3_3 bundle exec appraisal rake test
+```
+
 ### Commands
 
 ```bash
