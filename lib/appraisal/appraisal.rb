@@ -119,7 +119,8 @@ module Appraisal
     private
 
     def gemfile_root
-      project_root + "gemfiles"
+      gemfiles_root = ENV["APPRAISAL_GEMFILES_ROOT"] || "gemfiles"
+      project_root + gemfiles_root
     end
 
     def project_root
