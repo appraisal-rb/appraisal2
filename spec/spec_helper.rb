@@ -3,6 +3,7 @@
 # External Libraries
 require "active_support/core_ext/string/strip"
 require "kettle/test/rspec"
+# `kettle/test/rspec` installs harness helpers documented in spec/README.md.
 require "rspec/pending_for"
 require "rspec/stubbed_env"
 require "silent_stream"
