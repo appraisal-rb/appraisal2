@@ -94,6 +94,16 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Restore the package version loader to the implementation namespace after incorrect template-generated version artifacts.
 
+- kettle-jem-template-20260801-002 - Generated RSpec helpers now normalize
+  managed configuration block bindings structurally, preventing mixed block
+  parameter names from producing invalid configuration after a merge.
+- kettle-jem-template-20260801-003 - Generated project metadata and
+  documentation now normalize configured underscore hostnames to valid
+  hyphenated hostnames.
+- kettle-jem-template-20260801-004 - Generated organization README logos now
+  use GitHub's stable organization avatar endpoint instead of assuming a
+  matching Galtzo-hosted asset exists.
+
 ### Security
 
 ## [3.2.0] - 2026-07-18

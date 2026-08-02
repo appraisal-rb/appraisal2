@@ -44,79 +44,12 @@
       ]
     }
   ],
-  ":vendored_gems_env => \"VENDORED_GEMS\",\n:vendor_gem_dir_env => \"VENDOR_GEM_DIR\",": [
-    {
-      "file": "gemfiles/modular/templating_local.gemfile",
-      "lines": [
-        71,
-        82
-      ]
-    }
-  ],
-  "appraisal: \"dep-heads\"\nexec_cmd: \"kettle-test --example-status-log .rspec_status\"": [
-    {
-      "file": ".github/workflows/dep-heads.yml",
-      "lines": [
-        43,
-        102,
-        161
-      ]
-    }
-  ],
-  "appraisal: \"head\"\nexec_cmd: \"kettle-test --example-status-log .rspec_status\"": [
-    {
-      "file": ".github/workflows/heads.yml",
-      "lines": [
-        43,
-        106,
-        166
-      ]
-    }
-  ],
   "eval_gemfile \"modular/x_std_libs.gemfile\"\neval_gemfile(\"modular/audit.gemfile\")": [
     {
       "file": "Appraisals",
       "lines": [
         60,
         127
-      ]
-    }
-  ],
-  "exec_cmd: \"kettle-test --example-status-log .rspec_status\"\n# Run directly from the generated appraisal Gemfile so setup-ruby": [
-    {
-      "file": ".github/workflows/dep-heads.yml",
-      "lines": [
-        44,
-        103,
-        162
-      ]
-    }
-  ],
-  "exec_cmd: \"kettle-test --example-status-log .rspec_status\"\nrubygems: default": [
-    {
-      "file": ".github/workflows/heads.yml",
-      "lines": [
-        44,
-        107,
-        167
-      ]
-    }
-  ],
-  "if: ${{ !env.ACT }}\nuses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0": [
-    {
-      "file": ".github/workflows/dep-heads.yml",
-      "lines": [
-        63,
-        122,
-        182
-      ]
-    },
-    {
-      "file": ".github/workflows/heads.yml",
-      "lines": [
-        56,
-        119,
-        179
       ]
     }
   ]
