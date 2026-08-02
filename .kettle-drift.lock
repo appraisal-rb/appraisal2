@@ -44,6 +44,15 @@
       ]
     }
   ],
+  ":vendored_gems_env => \"VENDORED_GEMS\",\n:vendor_gem_dir_env => \"VENDOR_GEM_DIR\",": [
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        75,
+        86
+      ]
+    }
+  ],
   "eval_gemfile \"modular/x_std_libs.gemfile\"\neval_gemfile(\"modular/audit.gemfile\")": [
     {
       "file": "Appraisals",

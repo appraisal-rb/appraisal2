@@ -1,0 +1,15 @@
+{
+  "README.md:1908562793": [
+    [239, 69, 6, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 1517357585],
+    [240, 69, 6, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 1517357585],
+    [241, 69, 6, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.0 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 1517357585]
+  ],
+  "spec/acceptance/cli/generate_spec.rb:1432205316": [
+    [37, 5, 50, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 2657836748],
+    [68, 5, 36, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 1239579025]
+  ],
+  "spec/appraisal/appraisal_file_spec.rb:3569207313": [
+    [31, 5, 40, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 1085013485],
+    [34, 5, 27, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 224029588]
+  ]
+}

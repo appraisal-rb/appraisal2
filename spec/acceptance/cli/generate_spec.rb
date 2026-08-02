@@ -31,11 +31,11 @@ RSpec.describe "CLI", ".generate" do
       gem "dummy", "1.0.0"
     GEMFILE
   end
-  
+
   it "generates the gemfiles in a custom directory" do
     expect(file("custom_gemfiles")).not_to be_exists
     ENV["APPRAISAL_GEMFILES_ROOT"] = "custom_gemfiles"
-    
+
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source "https://gem.coop"
 
@@ -64,7 +64,7 @@ RSpec.describe "CLI", ".generate" do
       gem "appraisal2", :path => "#{PROJECT_ROOT}"
       gem "dummy", "1.0.0"
     GEMFILE
-    
+
     ENV["APPRAISAL_GEMFILES_ROOT"] = nil
   end
 end
