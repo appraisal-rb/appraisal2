@@ -11,14 +11,14 @@ gem_version =
     # Loading Version into an anonymous module allows version.rb to get code coverage from SimpleCov!
     # See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-2630782358
     # See: https://github.com/panorama-ed/memo_wise/pull/397
-    Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/appraisal2/version.rb", mod) }::Appraisal2::Version::VERSION
+    Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/appraisal/version.rb", mod) }::Appraisal::Version::VERSION
   else
     # NOTE: Use __FILE__ or __dir__ until removal of Ruby 1.x support
     # __dir__ introduced in Ruby 1.9.1
     lib = File.expand_path("lib", File.dirname(__FILE__))
     $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-    require "appraisal2/version"
-    Appraisal2::Version::VERSION
+    require "appraisal/version"
+    Appraisal::Version::VERSION
   end
 
 Gem::Specification.new do |spec|

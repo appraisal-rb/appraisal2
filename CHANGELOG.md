@@ -92,6 +92,8 @@ Please file a bug if you notice a violation of semantic versioning.
   relative to the gemspec directory, so release package contents stay correct
   even when the gemspec is loaded from another working directory.
 
+- Restore the package version loader to the implementation namespace after incorrect template-generated version artifacts.
+
 ### Security
 
 ## [3.2.0] - 2026-07-18

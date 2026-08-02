@@ -112,6 +112,9 @@ ruby:
 
 # RubyGems packaging/runtime shape.
 rubygems:
+  # The appraisal2 package preserves the historical Appraisal implementation
+  # namespace, which owns the version file and gemspec loader.
+  entrypoint_require: appraisal
   # Published runtime Ruby floor used for generated gemspec metadata and README
   # compatibility text. Omit this to derive the value from the gemspec.
   min_ruby: "1.8.7"
