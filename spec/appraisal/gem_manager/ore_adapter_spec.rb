@@ -66,6 +66,7 @@ RSpec.describe Appraisal::GemManager::OreAdapter do
       allow(Appraisal::Command).to receive(:new).and_return(double(:run => true))
       allow(adapter).to receive(:puts)
       # Simulate lockfile exists by default
+      allow(File).to receive(:exist?).and_call_original
       allow(File).to receive(:exist?).with("#{gemfile_path}.lock").and_return(true)
     end
 
