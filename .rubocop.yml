@@ -24,6 +24,7 @@ AllCops:
     - fixtures/**/*
     - gemfiles/*.gemfile
     - pkg/**/*
+    - README.md
     - results/**/*
     - spec/fixtures/**/*
     - tmp/**/*
