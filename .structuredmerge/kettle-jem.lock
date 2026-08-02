@@ -593,7 +593,7 @@ files:
   ".rubocop.yml":
     recipe: template_source_application_rubocop_yml
     action: write
-    dest_sha256: 7bf34e61fd778aa774c6cf26a977dfdd9b25cccfd280203a2fd5b541d29b9c21
+    dest_sha256: 8c128a3e0947f854c73e82189a9fc889f3356a833a68637d0543b985a2cf1104
     input_fingerprint: f9566d3f0cb0f64a94e767feee5c01a3a0a696a16989239c21848f7aaa05d80c
     template_sources:
     - ".rubocop.yml.example"
