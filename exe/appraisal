@@ -2,9 +2,9 @@
 # frozen_string_literal: true
 
 script_basename = File.basename(__FILE__)
-require_relative "../lib/appraisal2/version"
+require_relative "../lib/appraisal/version"
 if ARGV.any? { |arg| arg == "-v" || arg == "--version" }
-  puts Appraisal2::Version::VERSION
+  puts Appraisal::Version::VERSION
   exit(0)
 end
 
@@ -13,7 +13,7 @@ require "bundler/setup"
 require "appraisal2"
 require "appraisal/cli"
 
-puts "== #{script_basename} v#{Appraisal2::Version::VERSION} =="
+puts "== #{script_basename} v#{Appraisal::Version::VERSION} =="
 
 begin
   Appraisal::CLI.start
