@@ -70,6 +70,65 @@
 #
 # Everything else should be set explicitly here or via ENV.
 
+# Direct dependency ownership decisions.
+# On first templating, kettle-jem discovers dependencies declared directly by
+# Gemfile/gemspec and also by modular Gemfiles, and writes them here for review.
+# Resolve each entry by choosing one supported action, then add a reason.
+#
+# Every entry must include gem, direct, modular, action, and reason:
+# dependency_conflicts:
+#   resolve:
+#     - gem: yard-relative_markdown_links
+#       direct: shields-badge.gemspec
+#       modular: gemfiles/modular/documentation.gemfile
+#       action: remove_modular_gem
+#       reason: "The gemspec owns the project's documentation integration."
+# Supported actions (the destination project must explicitly choose one):
+#   remove_modular_gem       - remove the modular Gemfile's direct gem call.
+#   remove_x_std_lib_eval    - remove x_std_libs eval references for the gem.
+#   keep_both                - retain both declarations when their requirements
+#                              overlap. This is intended for a broad direct
+#                              requirement narrowed by framework/engine Gemfiles;
+#                              incompatible ranges remain an error.
+dependency_conflicts:
+  # Review each entry and choose a supported action.
+  # keep_both is for a broad direct requirement plus a compatible modular narrowing.
+  resolve:
+    - gem: activesupport
+      direct: appraisal2.gemspec
+      modular: gemfiles/modular/ruby_1_8.gemfile
+      action: keep_both
+      reason: "The gemspec keeps the broad development floor; the Ruby 1.8 appraisal narrows it to the compatible Rails 3 line."
+    - gem: activesupport
+      direct: appraisal2.gemspec
+      modular: gemfiles/modular/ruby_1_9.gemfile
+      action: keep_both
+      reason: "The gemspec keeps the broad development floor; the Ruby 1.9 appraisal narrows it to a compatible Rails 4 line."
+    - gem: activesupport
+      direct: appraisal2.gemspec
+      modular: gemfiles/modular/ruby_2_0.gemfile
+      action: keep_both
+      reason: "The gemspec keeps the broad development floor; the Ruby 2.0 appraisal narrows it to a compatible Rails 4 line."
+    - gem: activesupport
+      direct: appraisal2.gemspec
+      modular: gemfiles/modular/ruby_2_1.gemfile
+      action: keep_both
+      reason: "The gemspec keeps the broad development floor; the Ruby 2.1 appraisal narrows it to a compatible Rails 4 line."
+    - gem: bundler-audit
+      direct: appraisal2.gemspec
+      modular: gemfiles/modular/audit.gemfile
+      action: keep_both
+      reason: "The gemspec provides the current audit floor; the audit Gemfile retains a compatible modular range."
+    - gem: rake
+      direct: appraisal2.gemspec
+      modular: gemfiles/modular/ruby_1_8.gemfile
+      action: keep_both
+      reason: "The gemspec keeps the broad rake floor; the Ruby 1.8 appraisal narrows it to the compatible legacy line."
+    - gem: rspec_junit_formatter
+      direct: appraisal2.gemspec
+      modular: gemfiles/modular/rspec.gemfile
+      action: keep_both
+      reason: "The gemspec keeps the formatter dependency; the RSpec Gemfile retains its compatible test-result range."
 # This project's identifying emoji.
 # Used as the leading emoji in the README H1 heading and in the gemspec
 # summary and description. Every gem should have its own unique emoji.
