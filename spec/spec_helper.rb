@@ -13,7 +13,7 @@ require "support/dependency_helpers"
 Dir[File.join(__dir__, "support/shared_contexts/**/*.rb")].sort.each { |f| require f }
 
 # RSpec Configs
-require "debug"
+require "debug" if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.7")
 require "config/rspec/rspec_block_is_expected"
 require "config/rspec/rspec_core"
 
