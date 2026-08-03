@@ -35,6 +35,17 @@
       ]
     }
   ],
+  "- gem: activesupport\ndirect: appraisal2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        97,
+        102,
+        107,
+        112
+      ]
+    }
+  ],
   "// Use 'forwardPorts' to make a list of ports inside the container available locally.\n// \"forwardPorts\": [],": [
     {
       "file": ".devcontainer/devcontainer.json",
@@ -48,8 +59,17 @@
     {
       "file": "gemfiles/modular/templating_local.gemfile",
       "lines": [
-        75,
-        86
+        78,
+        89
+      ]
+    }
+  ],
+  "direct: appraisal2.gemspec\nmodular: gemfiles/modular/ruby_1_8.gemfile": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        98,
+        123
       ]
     }
   ],
@@ -59,6 +79,15 @@
       "lines": [
         60,
         127
+      ]
+    }
+  ],
+  "modular: gemfiles/modular/ruby_1_8.gemfile\naction: keep_both": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        99,
+        124
       ]
     }
   ]
