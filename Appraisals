@@ -11,15 +11,6 @@
 
 plugin "appraisal2-rubocop", :require => "appraisal2/rubocop", :optional => true
 
-# kettle-jem:freeze
-# To retain chunks of comments & code during kettle-jem templating:
-# Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).
-# kettle-jem will then preserve content between those markers across template runs.
-# kettle-jem:unfreeze
-
-# HOW TO UPDATE APPRAISALS (will run rubocop_gradual's autocorrect afterward):
-#   bin/rake appraisal:update
-
 # Lock/Unlock Deps Pattern
 #
 # Two often conflicting goals resolved!
