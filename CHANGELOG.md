@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Acceptance test fixture setup now preserves RubyGems default Gem.dir in GEM_PATH for Bundler resolution.
+
 ### Security
 
 ## [3.2.1] - 2026-08-05

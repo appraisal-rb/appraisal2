@@ -154,7 +154,7 @@ module AcceptanceTestHelpers
 
   def setup_gem_path_for_local_install
     # Ensure GEM_PATH includes TMP_GEM_ROOT where we pre-build gems for tests
-    new_gem_paths = [TMP_GEM_ROOT]
+    new_gem_paths = [TMP_GEM_ROOT, Gem.dir]
 
     # Also try to include the parent project's vendor bundle if it exists
     # Standard bundler layout: vendor/bundle/ruby/X.Y.Z
