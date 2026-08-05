@@ -176,11 +176,15 @@ RSpec.describe Appraisal::Command do
           allow(locked_command).to receive(:system)
             .with(hash_including("GEM_HOME" => gem_home), a_string_matching(/ruby --disable=gems .*bundler/m))
             .and_return(true)
-          expect(Kernel).to receive(:system) do |env, _command|
+          expect(Kernel).to receive(:system) do |env, command|
             expect(env["BUNDLE_GEMFILE"]).to eq(gemfile)
             expect(env["BUNDLE_VERSION"]).to eq("4.0.5")
             expect(env["BUNDLER_VERSION"]).to eq("4.0.5")
             expect(env["BUNDLE_BIN_PATH"]).to be_nil
+            expect(command).to include(RbConfig.ruby)
+            expect(command).to include("4.0.5")
+            expect(command).to include("Gem.bin_path")
+            expect(command).to include("exec rake test")
             true
           end
 

@@ -30,6 +30,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Ruby compatibility workflows now pin the setup-ruby-flash revision that supports the configured compatibility bundle input.
 
+- Pin Appraisal subprocess Bundler commands to the version recorded in each appraisal lockfile.
+
 ### Security
 
 ## [3.2.1] - 2026-08-05

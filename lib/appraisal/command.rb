@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "rbconfig"
 require "shellwords"
 
 module Appraisal
@@ -124,17 +125,18 @@ module Appraisal
     end
 
     def execute(base_env, run_env)
-      announce
-
       process_env = base_env.merge(run_env)
       process_env["BUNDLE_GEMFILE"] = gemfile if gemfile
-      if (bundler_version = subprocess_bundler_version(process_env))
+      bundler_version = subprocess_bundler_version(process_env)
+      announce
+      command_text = command_as_string(:bundler_version => bundler_version)
+      if bundler_version
         process_env["BUNDLE_VERSION"] = bundler_version
         process_env["BUNDLER_VERSION"] = bundler_version
       end
       process_env["APPRAISAL_INITIALIZED"] = "1"
 
-      exit(1) unless Kernel.system(process_env, command_as_string)
+      exit(1) unless Kernel.system(process_env, command_text)
     end
 
     def ensure_bundler_is_available(process_env)
@@ -227,11 +229,11 @@ manually.
       "ruby --disable=gems -e #{Shellwords.escape(code)}"
     end
 
-    def announce
+    def announce(command_text = command_as_string)
       if gemfile
-        puts ">> BUNDLE_GEMFILE=#{gemfile} #{command_as_string}"
+        puts ">> BUNDLE_GEMFILE=#{gemfile} #{command_text}"
       else
-        puts ">> #{command_as_string}"
+        puts ">> #{command_text}"
       end
     end
 
@@ -253,12 +255,20 @@ manually.
       end
     end
 
-    def command_as_string
-      if command.is_a?(Array)
+    def command_as_string(bundler_version: nil)
+      command_text = if command.is_a?(Array)
         Shellwords.join(command)
       else
         command
       end
+      return command_text unless bundler_version
+
+      command_text.gsub(/\bbundle(?=\s)/) { versioned_bundler_command(bundler_version) }
+    end
+
+    def versioned_bundler_command(version)
+      script = %(gem "bundler", #{version.inspect}; load Gem.bin_path("bundler", "bundle"))
+      Shellwords.join([RbConfig.ruby, "-e", script])
     end
 
     def test_environment
