@@ -121,6 +121,8 @@ module Appraisal
         clean_env[key] = value
       end
 
+      clean_env["RUBYLIB"] = nil
+
       clean_env
     end
 

@@ -32,6 +32,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Pin Appraisal subprocess Bundler commands to the version recorded in each appraisal lockfile.
 
+- Clear Bundler load paths before switching appraisal subprocesses to a locked Bundler version.
+
 ### Security
 
 ## [3.2.1] - 2026-08-05

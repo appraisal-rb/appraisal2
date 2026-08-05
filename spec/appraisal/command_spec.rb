@@ -89,13 +89,14 @@ RSpec.describe Appraisal::Command do
           ENV["BUNDLER_SETUP"] = "1"
           ENV["BUNDLER_VERSION"] = "4.0.3"
 
-          allow(Bundler).to receive(:unbundled_env).and_return({})
+          allow(Bundler).to receive(:unbundled_env).and_return({"RUBYLIB" => "/bundler/lib"})
 
           expect(Kernel).to receive(:system) do |env, _command|
             expect(env["BUNDLE_PATH"]).to eq("/custom/path")
             expect(env["BUNDLER_SETUP"]).to be_nil
             expect(env["BUNDLE_VERSION"]).to be_nil
             expect(env["BUNDLER_VERSION"]).to be_nil
+            expect(env["RUBYLIB"]).to be_nil
             expect(env["RUBYOPT"]).to eq("-W0")
             true
           end
