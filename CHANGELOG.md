@@ -28,8 +28,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Acceptance test fixture setup now preserves RubyGems default Gem.dir in GEM_PATH for Bundler resolution.
-
 ### Security
 
 ## [3.2.1] - 2026-08-05
@@ -127,6 +125,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - Acceptance fixture Bundler commands now invoke the selected Bundler executable on alternate Ruby engines.
 
 - Acceptance fixture Bundler command rewriting now supports Ruby 2.4.
+
+- Acceptance test fixture setup now preserves RubyGems default Gem.dir in GEM_PATH for Bundler resolution.
 
 ## [3.2.0] - 2026-07-18
 
