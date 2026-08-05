@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Acceptance fixture Bundler command rewriting now supports Ruby 2.4.
+
 ### Security
 
 ## [3.2.1] - 2026-08-05

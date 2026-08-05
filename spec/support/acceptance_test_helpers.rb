@@ -546,9 +546,7 @@ module AcceptanceTestHelpers
       key, value = assignment.split("=", 2)
       "#{key}=#{Shellwords.escape(value)}"
     end
-    assignments.then do |assignments|
-      [*assignments, command].join(" ")
-    end
+    [*assignments, command].join(" ")
   end
 end
 
