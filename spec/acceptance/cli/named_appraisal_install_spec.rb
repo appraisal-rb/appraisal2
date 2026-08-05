@@ -95,6 +95,9 @@ RSpec.describe "CLI", ".install with named appraisal" do
 
   context "with bundler version switching" do
     before do
+      skip_for(:engine => "jruby", :reason => "Hi, I'm JRuby, and I'm different")
+      skip_for(:engine => "truffleruby", :reason => "Upgrading bundler on Truffleruby is not a thing")
+
       # Create an appraisal with a pre-existing lockfile that specifies a bundler version
       # appropriate for the current Ruby version.
       # This tests that appraisal can handle locked bundler versions in gemfiles/*.gemfile.lock
@@ -174,8 +177,6 @@ RSpec.describe "CLI", ".install with named appraisal" do
     end
 
     it "respects bundler version specified in appraisal gemfile.lock" do
-      skip_for(:engine => "jruby", :reason => "Hi, I'm JRuby, and I'm different")
-      skip_for(:engine => "truffleruby", :reason => "Upgrading bundler on Truffleruby is not a thing")
       # This test verifies that appraisal can handle lockfiles with BUNDLED WITH specified,
       # and that the bundler version is preserved/respected through the install process.
       # This is critical for users who commit their appraisal lockfiles to ensure stable,

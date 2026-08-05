@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Skip unsupported-engine bundler setup before acceptance-test fixtures are created.
+
 ### Security
 
 ## [3.2.1] - 2026-08-05
