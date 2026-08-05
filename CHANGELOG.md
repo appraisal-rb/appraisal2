@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Ruby compatibility workflows now pin the setup-ruby-flash revision that supports the configured compatibility bundle input.
+
 ### Security
 
 ## [3.2.1] - 2026-08-05
