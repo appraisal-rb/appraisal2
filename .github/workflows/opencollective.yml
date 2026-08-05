@@ -20,7 +20,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup Ruby & RubyGems
-        uses: appraisal-rb/setup-ruby-flash@925395edf973d2dc0a629919f407f3547a03d4b5 # retry compatibility bundle installation
+        uses: appraisal-rb/setup-ruby-flash@925395edf973d2dc0a629919f407f3547a03d4b5 # v2
         with:
           ruby-version: ruby
           rubygems: default
