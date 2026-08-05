@@ -355,15 +355,15 @@ without losing the target appraisal and isolation settings:</p>
       <pre class="lines">
 
 
-39
 40
 41
 42
 43
-44</pre>
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_command'>command</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@gemfile</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:gemfile</span><span class='rbracket'>]</span>
@@ -408,12 +408,12 @@ without losing the target appraisal and isolation settings:</p>
       <pre class="lines">
 
 
-8
 9
-10</pre>
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_command'>command</span>
   <span class='ivar'>@command</span>
@@ -450,12 +450,12 @@ without losing the target appraisal and isolation settings:</p>
       <pre class="lines">
 
 
-8
 9
-10</pre>
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_env'>env</span>
   <span class='ivar'>@env</span>
@@ -492,12 +492,12 @@ without losing the target appraisal and isolation settings:</p>
       <pre class="lines">
 
 
-8
 9
-10</pre>
+10
+11</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 9</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_gemfile'>gemfile</span>
   <span class='ivar'>@gemfile</span>
@@ -529,7 +529,6 @@ without losing the target appraisal and isolation settings:</p>
       <pre class="lines">
 
 
-46
 47
 48
 49
@@ -540,10 +539,11 @@ without losing the target appraisal and isolation settings:</p>
 54
 55
 56
-57</pre>
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 46</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/command.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_run'>run</span>
   <span class='id identifier rubyid_run_env'>run_env</span> <span class='op'>=</span> <span class='id identifier rubyid_test_environment'>test_environment</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>

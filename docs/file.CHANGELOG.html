@@ -90,8 +90,8 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <ul>
   <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.1">v3.2.1</a>
 </li>
-  <li>COVERAGE: 90.78% – 906/998 lines in 29 files</li>
-  <li>BRANCH COVERAGE: 77.54% – 183/236 branches in 29 files</li>
+  <li>COVERAGE: 90.86% – 915/1007 lines in 29 files</li>
+  <li>BRANCH COVERAGE: 77.73% – 185/238 branches in 29 files</li>
   <li>43.78% documented</li>
 </ul>
 
@@ -178,8 +178,17 @@ hyphenated hostnames.</li>
 use GitHub’s stable organization avatar endpoint instead of assuming a<br>
 matching Galtzo-hosted asset exists.</p>
   </li>
-  <li>kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,<br>
-preserving comments and trailing commas during template updates.</li>
+  <li>
+    <p>kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,<br>
+preserving comments and trailing commas during template updates.</p>
+  </li>
+  <li>
+    <p>Ruby compatibility workflows now pin the setup-ruby-flash revision that supports the configured compatibility bundle input.</p>
+  </li>
+  <li>
+    <p>Pin Appraisal subprocess Bundler commands to the version recorded in each appraisal lockfile.</p>
+  </li>
+  <li>Clear Bundler load paths before switching appraisal subprocesses to a locked Bundler version.</li>
 </ul>
 
 <h2 id="320---2026-07-18">

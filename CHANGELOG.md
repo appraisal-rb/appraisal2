@@ -28,19 +28,13 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Ruby compatibility workflows now pin the setup-ruby-flash revision that supports the configured compatibility bundle input.
-
-- Pin Appraisal subprocess Bundler commands to the version recorded in each appraisal lockfile.
-
-- Clear Bundler load paths before switching appraisal subprocesses to a locked Bundler version.
-
 ### Security
 
 ## [3.2.1] - 2026-08-05
 
 - TAG: [v3.2.1][3.2.1t]
-- COVERAGE: 90.78% -- 906/998 lines in 29 files
-- BRANCH COVERAGE: 77.54% -- 183/236 branches in 29 files
+- COVERAGE: 90.86% -- 915/1007 lines in 29 files
+- BRANCH COVERAGE: 77.73% -- 185/238 branches in 29 files
 - 43.78% documented
 
 ### Added
@@ -119,6 +113,12 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,
   preserving comments and trailing commas during template updates.
+
+- Ruby compatibility workflows now pin the setup-ruby-flash revision that supports the configured compatibility bundle input.
+
+- Pin Appraisal subprocess Bundler commands to the version recorded in each appraisal lockfile.
+
+- Clear Bundler load paths before switching appraisal subprocesses to a locked Bundler version.
 
 ## [3.2.0] - 2026-07-18
 
