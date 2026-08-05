@@ -387,6 +387,9 @@ module AcceptanceTestHelpers
 
   def test_bundler_version
     if RUBY_ENGINE == "truffleruby"
+      version = loaded_bundler_version
+      return version if version
+
       version = ruby_shipped_bundler_version
       return version if version
     end

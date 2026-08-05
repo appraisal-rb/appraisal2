@@ -72,8 +72,20 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
   end
 
   describe "#test_bundler_version" do
-    it "uses the Ruby-shipped Bundler on TruffleRuby instead of the newest installed spec" do
+    it "uses the loaded Bundler on TruffleRuby before probing the Ruby-shipped version" do
       stub_const("RUBY_ENGINE", "truffleruby")
+      allow(self).to receive(:loaded_bundler_version).and_return("2.6.9")
+      allow(self).to receive(:ruby_shipped_bundler_version).and_return("2.2.32")
+
+      newer_spec = instance_double(Gem::Specification, :version => Gem::Version.new("2.5.23"))
+      allow(Gem::Specification).to receive(:find_all_by_name).with("bundler").and_return([newer_spec])
+
+      expect(test_bundler_version).to eq("2.6.9")
+    end
+
+    it "uses the Ruby-shipped Bundler when TruffleRuby has not loaded one" do
+      stub_const("RUBY_ENGINE", "truffleruby")
+      allow(self).to receive(:loaded_bundler_version).and_return(nil)
       allow(self).to receive(:ruby_shipped_bundler_version).and_return("2.2.32")
 
       newer_spec = instance_double(Gem::Specification, :version => Gem::Version.new("2.5.23"))
@@ -84,6 +96,7 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
 
     it "falls back to the newest installed Bundler spec on TruffleRuby when the shipped version cannot be detected" do
       stub_const("RUBY_ENGINE", "truffleruby")
+      allow(self).to receive(:loaded_bundler_version).and_return(nil)
       allow(self).to receive(:ruby_shipped_bundler_version).and_return(nil)
 
       newer_spec = instance_double(Gem::Specification, :version => Gem::Version.new("2.5.23"))
