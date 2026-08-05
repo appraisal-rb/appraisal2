@@ -28,8 +28,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Acceptance fixture Bundler command rewriting now supports Ruby 2.4.
-
 ### Security
 
 ## [3.2.1] - 2026-08-05
@@ -125,6 +123,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - Skip unsupported-engine bundler setup before acceptance-test fixtures are created.
 
 - Acceptance fixture Bundler commands now invoke the selected Bundler executable on alternate Ruby engines.
+
+- Acceptance fixture Bundler command rewriting now supports Ruby 2.4.
 
 ## [3.2.0] - 2026-07-18
 
