@@ -128,7 +128,7 @@ GEM
       tsort (~> 0.2)
       tty-screen (~> 0.8)
       unicode-display_width (~> 2.6)
-    kettle-gha-pins (0.3.6)
+    kettle-gha-pins (0.3.7)
       ruby-progressbar (~> 1.13)
       tty-progressbar (~> 0.18)
       version_gem (~> 1.1, >= 1.1.15)
@@ -544,7 +544,7 @@ CHECKSUMS
   json (2.21.2) sha256=1f1d3b7cf2b3ba1a69beca0bb6db13d5438b80bff3cd54cdaaa620b9b07c1c6a
   kettle-dev (2.5.18) sha256=10fa8987035bda7472fc1797a39c3d3bb182465708262ac4909a105161e782c5
   kettle-family (1.2.32) sha256=80c8bfc17efad14963d3f08c6adc1881bc982d80494135ebb78d5bd1ee8d193f
-  kettle-gha-pins (0.3.6) sha256=6387ff31f8f665c38acc302962f18a20fe0771038795238f8ebc29c57edffbdd
+  kettle-gha-pins (0.3.7) sha256=a4ca3409638dd29f38b1cfbf619a82f3cc379537c4ec55d83c9468c3e20674c1
   kettle-ndjson (0.1.11) sha256=f09d3d926b0734a1b257109247b919725489b04235a871372e223f46b826a1ca
   kettle-rb (0.1.9) sha256=6dc58a072d6389a1399288f791819ce8f9e9653cf16767a9edc3a5e8a5127936
   kettle-soup-cover (3.0.9) sha256=32e3dbb6b15ad46d1ff7ef141597061b686bbfbfa2af71e7fe2e50d47c35f4e7
