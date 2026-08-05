@@ -28,17 +28,13 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Skip unsupported-engine bundler setup before acceptance-test fixtures are created.
-
-- Acceptance fixture Bundler commands now invoke the selected Bundler executable on alternate Ruby engines.
-
 ### Security
 
 ## [3.2.1] - 2026-08-05
 
 - TAG: [v3.2.1][3.2.1t]
 - COVERAGE: 90.86% -- 915/1007 lines in 29 files
-- BRANCH COVERAGE: 78.57% -- 187/238 branches in 29 files
+- BRANCH COVERAGE: 77.73% -- 185/238 branches in 29 files
 - 43.78% documented
 
 ### Added
@@ -123,6 +119,10 @@ Please file a bug if you notice a violation of semantic versioning.
 - Pin Appraisal subprocess Bundler commands to the version recorded in each appraisal lockfile.
 
 - Clear Bundler load paths before switching appraisal subprocesses to a locked Bundler version.
+
+- Skip unsupported-engine bundler setup before acceptance-test fixtures are created.
+
+- Acceptance fixture Bundler commands now invoke the selected Bundler executable on alternate Ruby engines.
 
 ## [3.2.0] - 2026-07-18
 
