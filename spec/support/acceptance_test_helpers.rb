@@ -529,13 +529,26 @@ module AcceptanceTestHelpers
   end
 
   def command_part_with_test_bundler(part, version)
-    words = part.split(" ")
+    words = Shellwords.split(part)
     index = words.index("bundle")
     return part unless index
-    return part if words.any? { |word| word.start_with?("BUNDLER_VERSION=") }
 
-    words.insert(index, "BUNDLER_VERSION=#{version}")
-    words.join(" ")
+    prefix = words.first(index).reject do |word|
+      word.start_with?("BUNDLE_VERSION=", "BUNDLER_VERSION=")
+    end
+    environment = prefix.select { |word| word.match?(/\A[A-Za-z_][A-Za-z0-9_]*=/) }
+    command_prefix = prefix - environment
+    suffix = words.drop(index + 1)
+    script = %(gem "bundler", #{version.inspect}; load Gem.bin_path("bundler", "bundle"))
+
+    command = Shellwords.join(command_prefix + [RbConfig.ruby, "-e", script] + suffix)
+    assignments = environment.map do |assignment|
+      key, value = assignment.split("=", 2)
+      "#{key}=#{Shellwords.escape(value)}"
+    end
+    assignments.then do |assignments|
+      [*assignments, command].join(" ")
+    end
   end
 end
 

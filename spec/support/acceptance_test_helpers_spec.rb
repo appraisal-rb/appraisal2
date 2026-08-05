@@ -59,6 +59,29 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
     end
   end
 
+  describe "#command_with_test_bundler" do
+    it "invokes the harness-selected Bundler instead of relying on the engine default" do
+      stub_env("APPRAISAL_TEST_BUNDLER_VERSION" => "4.0.18")
+
+      command = send(:command_with_test_bundler, "bundle install --local || bundle binstubs --all")
+      command_with_environment = send(
+        :command_with_test_bundler,
+        "BUNDLE_LOCKFILE=gemfiles/bundler_locked.gemfile.lock bundle install --gemfile gemfiles/bundler_locked.gemfile"
+      )
+
+      expect(command).to include(RbConfig.ruby)
+      expect(command).to include("Gem.bin_path")
+      expect(command).to include("4.0.18")
+      expect(command).not_to include("BUNDLER_VERSION=")
+      expect(command).to include(" || ")
+      expect(command).to include("install --local")
+      expect(command).to include("binstubs --all")
+      expect(command_with_environment).to start_with("BUNDLE_LOCKFILE=gemfiles/bundler_locked.gemfile.lock ")
+      expect(command_with_environment).to include("#{RbConfig.ruby} -e")
+      expect(command_with_environment).to include("install --gemfile gemfiles/bundler_locked.gemfile")
+    end
+  end
+
   describe "#restore_environment_variables" do
     it "restores GEM_HOME after fixture gem setup changes it" do
       stub_env("GEM_HOME" => "/original/gem/home")
