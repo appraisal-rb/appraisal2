@@ -402,7 +402,6 @@
       <pre class="lines">
 
 
-242
 243
 244
 245
@@ -474,10 +473,11 @@
 311
 312
 313
-314</pre>
+314
+315</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 242</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 243</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_method_missing'>method_missing</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='op'>*</span><span class='id identifier rubyid_args'>args</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_name'>name</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -602,12 +602,12 @@
       <pre class="lines">
 
 
-54
 55
-56</pre>
+56
+57</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_exit_on_failure?'>exit_on_failure?</span>
   <span class='kw'>true</span>
@@ -665,7 +665,8 @@
 49
 50
 51
-52</pre>
+52
+53</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 29</span>
@@ -681,7 +682,8 @@
       appraisal, otherwise it runs the EXTERNAL_COMMAND against all appraisals.
 </span><span class='heredoc_end'>  HELP
 </span>
-  <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Appraisals</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_appraisals_file'>appraisals_file</span> <span class='op'>=</span> <span class='const'>ENV</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>APPRAISAL_FILE</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Appraisals</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exist?'>exist?</span><span class='lparen'>(</span><span class='id identifier rubyid_appraisals_file'>appraisals_file</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_shell'>shell</span><span class='period'>.</span><span class='id identifier rubyid_say'>say</span>
     <span class='id identifier rubyid_shell'>shell</span><span class='period'>.</span><span class='id identifier rubyid_say'>say</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Available Appraisal(s):</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 
@@ -720,12 +722,12 @@
       <pre class="lines">
 
 
-129
 130
-131</pre>
+131
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 130</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_clean'>clean</span>
   <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_f'>rm_f</span><span class='lparen'>(</span><span class='const'>Dir</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>gemfiles/*.{gemfile,gemfile.lock}</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -750,12 +752,12 @@
       <pre class="lines">
 
 
-124
 125
-126</pre>
+126
+127</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate'>generate</span>
   <span class='id identifier rubyid_generate_appraisals'>generate_appraisals</span><span class='lparen'>(</span><span class='id identifier rubyid_appraisals'>appraisals</span><span class='comma'>,</span> <span class='id identifier rubyid_appraisal_jobs'>appraisal_jobs</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -780,14 +782,14 @@
       <pre class="lines">
 
 
-117
 118
 119
 120
-121</pre>
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 118</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_install'>generate_install</span>
   <span class='id identifier rubyid_appraisal_list'>appraisal_list</span> <span class='op'>=</span> <span class='id identifier rubyid_appraisals'>appraisals</span>
@@ -814,14 +816,14 @@
       <pre class="lines">
 
 
-139
 140
 141
 142
-143</pre>
+143
+144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 139</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 140</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_update'>generate_update</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_gems'>gems</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_appraisal_list'>appraisal_list</span> <span class='op'>=</span> <span class='id identifier rubyid_appraisals'>appraisals</span>
@@ -848,12 +850,12 @@
       <pre class="lines">
 
 
-90
 91
-92</pre>
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 90</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_install'>install</span>
   <span class='id identifier rubyid_install_appraisals'>install_appraisals</span><span class='lparen'>(</span><span class='id identifier rubyid_appraisals'>appraisals</span><span class='comma'>,</span> <span class='id identifier rubyid_install_options'>install_options</span><span class='comma'>,</span> <span class='id identifier rubyid_appraisal_jobs'>appraisal_jobs</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -878,12 +880,12 @@
       <pre class="lines">
 
 
-146
 147
-148</pre>
+148
+149</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 146</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 147</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_list'>list</span>
   <span class='const'><span class='object_link'><a href="AppraisalFile.html" title="Appraisal::AppraisalFile (class)">AppraisalFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AppraisalFile.html#initialize-instance_method" title="Appraisal::AppraisalFile#initialize (method)">new</a></span></span><span class='period'>.</span><span class='id identifier rubyid_appraisals'><span class='object_link'><a href="AppraisalFile.html#appraisals-instance_method" title="Appraisal::AppraisalFile#appraisals (method)">appraisals</a></span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_appraisal'>appraisal</span><span class='op'>|</span> <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_appraisal'>appraisal</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='rbrace'>}</span>
@@ -908,12 +910,12 @@
       <pre class="lines">
 
 
-134
 135
-136</pre>
+136
+137</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 135</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_gems'>gems</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_update_appraisals'>update_appraisals</span><span class='lparen'>(</span><span class='id identifier rubyid_appraisals'>appraisals</span><span class='comma'>,</span> <span class='id identifier rubyid_gems'>gems</span><span class='comma'>,</span> <span class='id identifier rubyid_update_options'>update_options</span><span class='comma'>,</span> <span class='id identifier rubyid_appraisal_jobs'>appraisal_jobs</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -938,12 +940,12 @@
       <pre class="lines">
 
 
-151
 152
-153</pre>
+153
+154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'lib/appraisal/cli.rb', line 152</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_version'>version</span>
   <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Appraisal2 </span><span class='embexpr_beg'>#{</span><span class='const'><span class='object_link'><a href="../Appraisal.html#VERSION-constant" title="Appraisal::VERSION (constant)">VERSION</a></span></span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
