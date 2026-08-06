@@ -94,6 +94,23 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
     end
   end
 
+  describe "#setup_gem_path_for_local_install" do
+    it "keeps the repository for the Bundler running the test process" do
+      original_gem_path = ENV["GEM_PATH"]
+      begin
+        active_bundler = instance_double(Gem::Specification, :base_dir => "/active/bundler")
+        allow(Gem.loaded_specs).to receive(:[]).with("bundler").and_return(active_bundler)
+        allow(Gem).to receive_messages(:dir => "/system/gems", :path => [])
+
+        send(:setup_gem_path_for_local_install)
+
+        expect(ENV.fetch("GEM_PATH").split(File::PATH_SEPARATOR)).to include("/active/bundler")
+      ensure
+        ENV["GEM_PATH"] = original_gem_path
+      end
+    end
+  end
+
   describe "#build_default_gemfile" do
     it "does not import a Bundler version from the outer test bundle" do
       Dir.mktmpdir("default-stage") do |directory|
