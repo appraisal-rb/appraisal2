@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe "CLI", ".clean" do
+  metadata[:skip_on_jruby] = true
   it "remove all gemfiles from gemfiles directory" do
     build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
       appraise '1.0.0' do

@@ -94,6 +94,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
   end
 
   context "with bundler version switching" do
+    metadata[:skip_on_jruby] = true
     before do
       skip_for(:engine => "jruby", :reason => "Hi, I'm JRuby, and I'm different")
       skip_for(:engine => "truffleruby", :reason => "Upgrading bundler on Truffleruby is not a thing")

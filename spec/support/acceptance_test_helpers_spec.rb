@@ -31,6 +31,26 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
     end
   end
 
+  describe "#skip_jruby_acceptance_example" do
+    it "skips before fixture setup when the example opts out of JRuby" do
+      stub_const("RUBY_ENGINE", "jruby")
+      example = instance_double(RSpec::Core::Example, :metadata => {:skip_on_jruby => true})
+
+      expect(self).to receive(:skip).with(/intentionally skipped on JRuby/)
+
+      send(:skip_jruby_acceptance_example, example)
+    end
+
+    it "does not skip an example without the JRuby opt-out" do
+      stub_const("RUBY_ENGINE", "jruby")
+      example = instance_double(RSpec::Core::Example, :metadata => {})
+
+      expect(self).not_to receive(:skip)
+
+      send(:skip_jruby_acceptance_example, example)
+    end
+  end
+
   describe "#install_test_binstub_gem_path_prelude" do
     it "pins generated test binstubs to the harness-selected Bundler version" do
       FileUtils.mkdir_p(File.join(Dir.pwd, "tmp"))

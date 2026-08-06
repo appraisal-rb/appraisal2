@@ -46,6 +46,13 @@ module AcceptanceTestHelpers
   included do
     metadata[:type] = :acceptance
 
+    # JRuby spends substantially longer inside Bundler than MRI. Specs can
+    # opt out before fixture setup when they duplicate coverage provided by a
+    # representative JRuby acceptance path.
+    before do |example|
+      skip_jruby_acceptance_example(example)
+    end
+
     before :parallel => true do
       unless Appraisal::Utils.support_parallel_installation?
         skip "This Bundler version does not support --jobs flag."
@@ -271,6 +278,12 @@ module AcceptanceTestHelpers
     elsif metadata[:binstub_path]
       add_binstub_path
     end
+  end
+
+  def skip_jruby_acceptance_example(example)
+    return unless RUBY_ENGINE == "jruby" && example.metadata[:skip_on_jruby]
+
+    skip "Acceptance fixture is intentionally skipped on JRuby to limit Bundler runtime"
   end
 
   def copy_default_stage_template

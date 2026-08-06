@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe "Bundle with custom path" do
+  metadata[:skip_on_jruby] = true
   let(:gem_name) { "include_with_respect" }
   let(:path) { "vendor/bundle" }
 

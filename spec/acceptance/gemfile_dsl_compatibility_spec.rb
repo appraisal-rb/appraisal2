@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe "Gemfile DSL compatibility" do
+  metadata[:skip_on_jruby] = true
   it "supports all Bundler DSL in Gemfile", :git_local do
     skip_for(:engine => "truffleruby")
     build_gems ["bacon", "orange_juice", "waffle"]

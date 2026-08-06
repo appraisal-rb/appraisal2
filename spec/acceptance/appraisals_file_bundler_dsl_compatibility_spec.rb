@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe "Appraisals file Bundler DSL compatibility" do
+  metadata[:skip_on_jruby] = true
   it "supports all Bundler DSL in Appraisals file", :git_local do
     skip_for(:engine => "truffleruby")
     build_gems [

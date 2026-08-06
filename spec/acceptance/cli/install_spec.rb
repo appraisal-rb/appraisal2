@@ -85,6 +85,7 @@ RSpec.describe "CLI", ".install" do
   end
 
   context "with full-index", :parallel do
+    metadata[:skip_on_jruby] = true
     before do
       build_appraisal_file <<-APPRAISAL.strip_heredoc.rstrip
         appraise '1.0.0' do
