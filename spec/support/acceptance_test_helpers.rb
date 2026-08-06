@@ -389,7 +389,7 @@ module AcceptanceTestHelpers
     # See:
     #   - https://github.com/rubygems/bundler/pull/6450
     #   - https://github.com/rubygems/bundler/commit/9d59fa41ef43aaccc6cf867a69a49648510c4df7#diff-06572a96a58dc510037d5efa622f9bec8519bc1beab13c9f251e97e657a9d4edR10
-    run "bundle binstubs --all"
+    run "bundle binstubs appraisal2"
     test_bin_path = File.join(current_directory, "bin")
     install_test_binstub_gem_path_prelude(test_bin_path)
   end
@@ -420,30 +420,9 @@ module AcceptanceTestHelpers
   def install_test_binstub_gem_path_prelude(bin_path)
     Dir[File.join(bin_path, "*")].each do |binstub|
       next unless File.file?(binstub)
+      next if File.basename(binstub) == "bundle"
 
       contents = File.read(binstub)
-      if File.basename(binstub) == "bundle"
-        unless contents.include?("APPRAISAL_TEST_EMPTY_BUNDLER_VERSION")
-          contents.sub!(
-            "require \"rubygems\"\n",
-            <<-RUBY.strip_heredoc
-              # Some Ruby engines expose an unset Bundler selection as an
-              # empty string; RubyGems treats that as an invalid requirement.
-              if ENV["BUNDLER_VERSION"] && ENV["BUNDLER_VERSION"].empty?
-                ENV["BUNDLER_VERSION"] = nil
-              end
-              if ENV["BUNDLE_VERSION"] && ENV["BUNDLE_VERSION"].empty?
-                ENV["BUNDLE_VERSION"] = nil
-              end
-              # APPRAISAL_TEST_EMPTY_BUNDLER_VERSION_NORMALIZED
-              require "rubygems"
-            RUBY
-          )
-        end
-        File.write(binstub, contents)
-        next
-      end
-
       unless contents.include?("APPRAISAL_TEST_BUNDLER_VERSION")
         contents.sub!(
           "require \"pathname\"\n",

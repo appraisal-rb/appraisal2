@@ -52,26 +52,6 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
   end
 
   describe "#install_test_binstub_gem_path_prelude" do
-    it "normalizes empty Bundler version variables in the bundle binstub" do
-      FileUtils.mkdir_p(File.join(Dir.pwd, "tmp"))
-
-      Dir.mktmpdir("binstub", File.join(Dir.pwd, "tmp")) do |dir|
-        binstub = File.join(dir, "bundle")
-        File.write(binstub, <<-RUBY.strip_heredoc)
-          #!/usr/bin/env ruby
-          require "rubygems"
-          load Gem.bin_path("bundler", "bundle")
-        RUBY
-
-        install_test_binstub_gem_path_prelude(dir)
-
-        contents = File.read(binstub)
-        expect(contents).to include('ENV["BUNDLER_VERSION"] = nil')
-        expect(contents).to include('ENV["BUNDLE_VERSION"] = nil')
-        expect(contents).to include("APPRAISAL_TEST_EMPTY_BUNDLER_VERSION_NORMALIZED")
-      end
-    end
-
     it "pins generated test binstubs to the harness-selected Bundler version" do
       FileUtils.mkdir_p(File.join(Dir.pwd, "tmp"))
 
@@ -183,6 +163,20 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
         expect(contents).to include("source 'https://rubygems.org'")
         expect(contents).to include("gem 'appraisal2', :path => './appraisal2'")
         expect(contents).not_to include("gem 'bundler'")
+      end
+    end
+
+    it "generates only the Appraisal2 binstub" do
+      Dir.mktmpdir("default-stage") do |directory|
+        allow(self).to receive(:current_directory).and_return(directory)
+        allow(self).to receive(:copy_appraisal2_to_test_directory)
+        allow(self).to receive(:run)
+        allow(self).to receive(:install_test_binstub_gem_path_prelude)
+
+        send(:build_default_gemfile)
+
+        expect(self).to have_received(:run).with("bundle binstubs appraisal2")
+        expect(self).not_to have_received(:run).with("bundle binstubs --all")
       end
     end
   end
