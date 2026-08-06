@@ -14,6 +14,8 @@ module AcceptanceTestHelpers
   extend ActiveSupport::Concern
   include DependencyHelpers
 
+  GEM_COOP_MIRROR_ENV = "BUNDLE_MIRROR__HTTPS://GEM__COOP/"
+
   BUNDLER_ENVIRONMENT_VARIABLES = [
     "RUBYOPT",
     "BUNDLE_PATH",
@@ -39,6 +41,7 @@ module AcceptanceTestHelpers
     "GIT_CONFIG_COUNT",
     "GIT_CONFIG_KEY_0",
     "GIT_CONFIG_VALUE_0",
+    GEM_COOP_MIRROR_ENV,
     "APPRAISAL_TEST_BUNDLER_VERSION",
     "APPRAISAL_TEST_SYSTEM_GEM_PATH"
   ]).freeze
@@ -154,6 +157,11 @@ module AcceptanceTestHelpers
     ENV["GIT_CONFIG_COUNT"] = "1"
     ENV["GIT_CONFIG_KEY_0"] = "safe.bareRepository"
     ENV["GIT_CONFIG_VALUE_0"] = "all"
+
+    # Older Ruby/RubyGems/Bundler workflows use gem.coop in generated
+    # appraisal Gemfiles, but resolve those fixtures through RubyGems.org.
+    # Keep this explicit instead of inheriting the project's Bundler config.
+    ENV[GEM_COOP_MIRROR_ENV] = "https://rubygems.org"
 
     # The ordinary fixture must use the Bundler supplied by the workflow.
     # Never derive a fixture Bundler from the outer bundle or its lockfile;
@@ -367,7 +375,7 @@ module AcceptanceTestHelpers
     copy_appraisal2_to_test_directory
 
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
-      source 'https://gem.coop'
+      source 'https://rubygems.org'
 
       gem 'appraisal2', :path => './appraisal2'
     GEMFILE

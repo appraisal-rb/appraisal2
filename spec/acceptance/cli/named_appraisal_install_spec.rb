@@ -148,7 +148,7 @@ RSpec.describe "CLI", ".install with named appraisal" do
       # The bundler version is specified only in BUNDLED WITH in the lockfile,
       # which tells bundler what version was used to generate the lockfile.
       write_file "gemfiles/bundler_locked.gemfile", <<-GEMFILE.strip_heredoc
-        source "https://gem.coop"
+        source "https://rubygems.org"
 
         gem "appraisal2", :path => "../appraisal2"
         gem "dummy", "1.0.0"

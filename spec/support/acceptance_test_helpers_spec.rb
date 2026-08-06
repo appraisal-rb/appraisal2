@@ -131,6 +131,24 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
     end
   end
 
+  describe "#setup_isolated_bundler_environment" do
+    it "routes gem.coop fixture sources through RubyGems.org" do
+      original_mirror = ENV[AcceptanceTestHelpers::GEM_COOP_MIRROR_ENV]
+
+      Dir.mktmpdir("isolated-bundler") do |directory|
+        begin
+          allow(self).to receive(:current_directory).and_return(directory)
+
+          send(:setup_isolated_bundler_environment)
+
+          expect(ENV[AcceptanceTestHelpers::GEM_COOP_MIRROR_ENV]).to eq("https://rubygems.org")
+        ensure
+          ENV[AcceptanceTestHelpers::GEM_COOP_MIRROR_ENV] = original_mirror
+        end
+      end
+    end
+  end
+
   describe "#build_default_gemfile" do
     it "does not import a Bundler version from the outer test bundle" do
       Dir.mktmpdir("default-stage") do |directory|
@@ -142,6 +160,7 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
         send(:build_default_gemfile)
 
         contents = File.read(File.join(directory, "Gemfile"))
+        expect(contents).to include("source 'https://rubygems.org'")
         expect(contents).to include("gem 'appraisal2', :path => './appraisal2'")
         expect(contents).not_to include("gem 'bundler'")
       end
