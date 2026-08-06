@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Exclude Bundler acceptance fixtures from the experimental TruffleRuby 22.3 workflow because that runtime crashes while parsing fixture Gemfiles.
+
 ### Security
 
 ## [3.2.1] - 2026-08-06
