@@ -148,7 +148,9 @@ module AcceptanceTestHelpers
     ENV["GIT_CONFIG_KEY_0"] = "safe.bareRepository"
     ENV["GIT_CONFIG_VALUE_0"] = "all"
 
-    ENV["APPRAISAL_TEST_BUNDLER_VERSION"] = test_bundler_version
+    # The ordinary fixture must use the Bundler supplied by the workflow.
+    # Never derive a fixture Bundler from the outer bundle or its lockfile;
+    # explicit Bundler-version scenarios provide their own fixture lockfile.
     ENV["APPRAISAL_TEST_SYSTEM_GEM_PATH"] = Gem.path.join(File::PATH_SEPARATOR)
   end
 
@@ -346,11 +348,12 @@ module AcceptanceTestHelpers
     build_gemfile <<-GEMFILE.strip_heredoc.rstrip
       source 'https://gem.coop'
 
-      gem 'bundler', '#{test_bundler_version}'
       gem 'appraisal2', :path => './appraisal2'
     GEMFILE
 
-    # Try to install and allow fallback to remote if local fails
+    # Try to install and allow fallback to remote if local fails. The command
+    # intentionally uses the workflow's active Bundler; this fixture is not a
+    # test of the outer project's BUNDLED WITH value.
     run "bundle install --local || bundle install"
     # Support for binstubs --all was added to bundler's 1-17-stable branch
     #   and released with bundler v1.17.0.pre.2 (2018-10-13)
@@ -384,36 +387,6 @@ module AcceptanceTestHelpers
 
   # Constant for use in heredocs - returns the path as a string suitable for Gemfile
   APPRAISAL2_GEM_PATH = "./appraisal2"
-
-  def test_bundler_version
-    if RUBY_ENGINE == "truffleruby"
-      version = loaded_bundler_version
-      return version if version
-
-      version = ruby_shipped_bundler_version
-      return version if version
-    end
-
-    # Use an installed Bundler spec, not Bundler::VERSION from the current
-    # process. Local Rubies can have an older Bundler library already loaded
-    # while a newer Bundler spec is installed, and subprocesses need a version
-    # RubyGems can activate consistently.
-    Gem::Specification.find_all_by_name("bundler").map(&:version).max.to_s
-  end
-
-  def ruby_shipped_bundler_version
-    output = IO.popen(rubygems_command_env, [RbConfig.ruby, "--disable-gems", "-rbundler/version", "-e", "puts Bundler::VERSION"], &:read)
-    version = output.to_s.strip
-    version unless version.empty?
-  rescue Errno::ENOENT, LoadError
-    nil
-  end
-
-  def loaded_bundler_version
-    return Gem.loaded_specs["bundler"].version.to_s if Gem.loaded_specs["bundler"]
-
-    defined?(Bundler::VERSION) ? Bundler::VERSION.to_s : nil
-  end
 
   def install_test_binstub_gem_path_prelude(bin_path)
     Dir[File.join(bin_path, "*")].each do |binstub|
