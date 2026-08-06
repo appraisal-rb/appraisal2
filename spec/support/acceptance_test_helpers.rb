@@ -420,9 +420,30 @@ module AcceptanceTestHelpers
   def install_test_binstub_gem_path_prelude(bin_path)
     Dir[File.join(bin_path, "*")].each do |binstub|
       next unless File.file?(binstub)
-      next if File.basename(binstub) == "bundle"
 
       contents = File.read(binstub)
+      if File.basename(binstub) == "bundle"
+        unless contents.include?("APPRAISAL_TEST_EMPTY_BUNDLER_VERSION")
+          contents.sub!(
+            "require \"rubygems\"\n",
+            <<-RUBY.strip_heredoc
+              # Some Ruby engines expose an unset Bundler selection as an
+              # empty string; RubyGems treats that as an invalid requirement.
+              if ENV["BUNDLER_VERSION"] && ENV["BUNDLER_VERSION"].empty?
+                ENV["BUNDLER_VERSION"] = nil
+              end
+              if ENV["BUNDLE_VERSION"] && ENV["BUNDLE_VERSION"].empty?
+                ENV["BUNDLE_VERSION"] = nil
+              end
+              # APPRAISAL_TEST_EMPTY_BUNDLER_VERSION_NORMALIZED
+              require "rubygems"
+            RUBY
+          )
+        end
+        File.write(binstub, contents)
+        next
+      end
+
       unless contents.include?("APPRAISAL_TEST_BUNDLER_VERSION")
         contents.sub!(
           "require \"pathname\"\n",

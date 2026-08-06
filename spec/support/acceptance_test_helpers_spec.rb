@@ -52,6 +52,26 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
   end
 
   describe "#install_test_binstub_gem_path_prelude" do
+    it "normalizes empty Bundler version variables in the bundle binstub" do
+      FileUtils.mkdir_p(File.join(Dir.pwd, "tmp"))
+
+      Dir.mktmpdir("binstub", File.join(Dir.pwd, "tmp")) do |dir|
+        binstub = File.join(dir, "bundle")
+        File.write(binstub, <<-RUBY.strip_heredoc)
+          #!/usr/bin/env ruby
+          require "rubygems"
+          load Gem.bin_path("bundler", "bundle")
+        RUBY
+
+        install_test_binstub_gem_path_prelude(dir)
+
+        contents = File.read(binstub)
+        expect(contents).to include('ENV["BUNDLER_VERSION"] = nil')
+        expect(contents).to include('ENV["BUNDLE_VERSION"] = nil')
+        expect(contents).to include("APPRAISAL_TEST_EMPTY_BUNDLER_VERSION_NORMALIZED")
+      end
+    end
+
     it "pins generated test binstubs to the harness-selected Bundler version" do
       FileUtils.mkdir_p(File.join(Dir.pwd, "tmp"))
 
