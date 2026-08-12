@@ -1,6 +1,6 @@
 {
-  "gemfiles/modular/templating.gemfile:3520099156": [
-    [14, 3, 50, "Bundler/DuplicatedGem: Gem `tree_sitter_language_pack` requirements already given on line 10 of the Gemfile.", 1000260798]
+  "gemfiles/modular/templating.gemfile:3733566691": [
+    [15, 3, 50, "Bundler/DuplicatedGem: Gem `tree_sitter_language_pack` requirements already given on line 11 of the Gemfile.", 1000260798]
   ],
   "spec/acceptance/cli/generate_spec.rb:1432205316": [
     [37, 5, 50, "Env/Assign: Mock the return value of an ENV variable instead of assigning to ENV directly.", 2657836748],
