@@ -19,6 +19,15 @@
       ]
     }
   ],
+  ":vendored_gems_env => \"VENDORED_GEMS\",\n:vendor_gem_dir_env => \"VENDOR_GEM_DIR\",": [
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        80,
+        91
+      ]
+    }
+  ],
   "direct: appraisal2.gemspec\nmodular: gemfiles/modular/ruby_1_8.gemfile": [
     {
       "file": ".structuredmerge/kettle-jem.yml",

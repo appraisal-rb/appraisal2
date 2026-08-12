@@ -24,6 +24,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Prepare project for kettle-jem templates: updated 20 project files across dependencies (20).
 
+- Prepare project for kettle-jem templates: updated 5 project files across dependencies (5).
+
 ### Deprecated
 
 ### Removed
