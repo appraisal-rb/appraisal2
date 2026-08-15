@@ -65,7 +65,7 @@ Gem::Specification.new do |spec|
   gemspec_root = __dir__
   relative_package_path = lambda do |path|
     prefix = "#{gemspec_root}/"
-    (path[0, prefix.length] == prefix) ? path[prefix.length..-1] : path
+    path[0, prefix.length] == prefix ? path[prefix.length..-1] : path
   end
   enumerate_package_glob = lambda do |glob|
     files = []
@@ -79,11 +79,11 @@ Gem::Specification.new do |spec|
   enumerate_package_files = lambda do |root|
     enumerate_package_glob.call(File.join(gemspec_root, root, "**", "*"))
   end
-  package_metadata_files = [
-    "CHANGELOG.md",
-    "LICENSE.md",
-    "README.md",
-    "sig/appraisal2.rbs"
+  package_metadata_files = %w[
+    CHANGELOG.md
+    LICENSE.md
+    README.md
+    sig/appraisal2.rbs
   ].select { |path| File.exist?(File.join(gemspec_root, path)) }
 
   # Specify which files are part of the released package.

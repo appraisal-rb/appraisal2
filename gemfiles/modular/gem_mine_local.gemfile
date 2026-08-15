@@ -28,6 +28,7 @@ end
 Kernel.send(:gem, "nomono", *nomono_activation_requirements)
 require "nomono/bundler"
 
+
 local_gems = ["gem_mine"]
 declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
 local_gems_to_eval = local_gems - ["appraisal2"] - declared_gems
