@@ -83,10 +83,12 @@ GEM
     command_kit-completion (0.3.0)
       command_kit (~> 0.1)
       completely (~> 0.6)
+    commonmarker (2.10.0)
+      rb_sys (~> 0.9)
     commonmarker (2.10.0-aarch64-linux)
     commonmarker (2.10.0-aarch64-linux-musl)
+    commonmarker (2.10.0-arm-linux-gnu)
     commonmarker (2.10.0-arm64-darwin)
-    commonmarker (2.10.0-x86_64-darwin)
     commonmarker (2.10.0-x86_64-linux)
     commonmarker (2.10.0-x86_64-linux-musl)
     commonmarker-merge (7.1.4)
@@ -280,9 +282,11 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.4-aarch64-linux-musl)
       racc (~> 1.4)
-    nokogiri (1.19.4-arm64-darwin)
+    nokogiri (1.19.4-arm-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.4-x86_64-darwin)
+    nokogiri (1.19.4-arm-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.19.4-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.19.4-x86_64-linux-gnu)
       racc (~> 1.4)
@@ -324,6 +328,9 @@ GEM
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.4.2)
+    rake-compiler-dock (1.12.0)
+    rb_sys (0.9.127)
+      rake-compiler-dock (= 1.12.0)
     rbs (4.2.0)
       logger
       prism (>= 1.6.0)
@@ -529,11 +536,12 @@ GEM
       parslet (~> 2.0)
       tree_sitter_language_pack (>= 1.13.2, < 2.0)
       version_gem (~> 1.1, >= 1.1.15)
+    tree_sitter_language_pack (1.15.8)
+      rb_sys (>= 0.9, < 0.9.128)
+      sorbet-runtime (~> 0.5)
     tree_sitter_language_pack (1.15.8-aarch64-linux)
       sorbet-runtime (~> 0.5)
     tree_sitter_language_pack (1.15.8-arm64-darwin)
-      sorbet-runtime (~> 0.5)
-    tree_sitter_language_pack (1.15.8-x86_64-darwin)
       sorbet-runtime (~> 0.5)
     tree_sitter_language_pack (1.15.8-x86_64-linux)
       sorbet-runtime (~> 0.5)
@@ -588,11 +596,12 @@ GEM
     zlib (3.2.3)
 
 PLATFORMS
-  aarch64-linux
   aarch64-linux-gnu
   aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
   arm64-darwin
-  x86_64-darwin
+  x86_64-linux
   x86_64-linux-gnu
   x86_64-linux-musl
 
@@ -667,7 +676,7 @@ CHECKSUMS
   bash-merge (7.1.4)
   benchmark (0.5.0)
   bigdecimal (4.1.2)
-  bundler (4.0.17)
+  bundler (4.0.19)
   bundler-audit (0.9.3)
   cgi (0.5.2)
   citrus (3.0.2)
@@ -676,10 +685,11 @@ CHECKSUMS
   colsole (1.0.1)
   command_kit (0.6.0)
   command_kit-completion (0.3.0)
+  commonmarker (2.10.0)
   commonmarker (2.10.0-aarch64-linux)
   commonmarker (2.10.0-aarch64-linux-musl)
+  commonmarker (2.10.0-arm-linux-gnu)
   commonmarker (2.10.0-arm64-darwin)
-  commonmarker (2.10.0-x86_64-darwin)
   commonmarker (2.10.0-x86_64-linux)
   commonmarker (2.10.0-x86_64-linux-musl)
   commonmarker-merge (7.1.4)
@@ -736,8 +746,9 @@ CHECKSUMS
   mutex_m (0.3.0)
   nokogiri (1.19.4-aarch64-linux-gnu)
   nokogiri (1.19.4-aarch64-linux-musl)
+  nokogiri (1.19.4-arm-linux-gnu)
+  nokogiri (1.19.4-arm-linux-musl)
   nokogiri (1.19.4-arm64-darwin)
-  nokogiri (1.19.4-x86_64-darwin)
   nokogiri (1.19.4-x86_64-linux-gnu)
   nokogiri (1.19.4-x86_64-linux-musl)
   nomono (1.1.4)
@@ -758,6 +769,8 @@ CHECKSUMS
   racc (1.8.1)
   rainbow (3.1.1)
   rake (13.4.2)
+  rake-compiler-dock (1.12.0)
+  rb_sys (0.9.127)
   rbs (4.2.0)
   rbs-merge (7.1.4)
   rdoc (7.2.0)
@@ -824,9 +837,9 @@ CHECKSUMS
   toml-merge (7.1.4)
   toml-rb (4.2.1)
   tree_haver (7.1.4)
+  tree_sitter_language_pack (1.15.8)
   tree_sitter_language_pack (1.15.8-aarch64-linux)
   tree_sitter_language_pack (1.15.8-arm64-darwin)
-  tree_sitter_language_pack (1.15.8-x86_64-darwin)
   tree_sitter_language_pack (1.15.8-x86_64-linux)
   tsort (0.2.0)
   tty-cursor (0.7.1)
@@ -851,4 +864,4 @@ CHECKSUMS
   zlib (3.2.3)
 
 BUNDLED WITH
-  4.0.17
+  4.0.19
