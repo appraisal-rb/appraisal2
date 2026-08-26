@@ -519,22 +519,19 @@ See [LICENSE.md][📄license] for the official copyright notice.
 <details markdown="1">
 <summary>Copyright holders</summary>
 
-- Copyright (c) 2010 Joe Ferris
+- Copyright (c) 2010-2011 Joe Ferris
 - Copyright (c) 2011 Dan Croak
 - Copyright (c) 2011-2012 Gabe Berke-Williams
-- Copyright (c) 2011 Joe Ferris
 - Copyright (c) 2011 Joseph Anthony Pasquale Holsten
 - Copyright (c) 2011 Nick Quaranto
-- Copyright (c) 2011 Prem Sichanugrist
+- Copyright (c) 2011, 2013-2016 Prem Sichanugrist
 - Copyright (c) 2012 Gregory Ostermayr
 - Copyright (c) 2012 osheroff
 - Copyright (c) 2013 Jason Waldrip
 - Copyright (c) 2013 Marc Ignacio
 - Copyright (c) 2013 Phill Baker
-- Copyright (c) 2013-2016 Prem Sichanugrist
 - Copyright (c) 2013 sanemat
 - Copyright (c) 2014 Juan González
-- Copyright (c) 2014-2015 Prem Sichanugrist
 - Copyright (c) 2015 akihiro17
 - Copyright (c) 2015 Elliot Winkler
 - Copyright (c) 2015 M.Shibuya
@@ -553,10 +550,9 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2020 James Ebentier
 - Copyright (c) 2021, 2024 Nicolas Rodriguez
 - Copyright (c) 2022 André Arko
-- Copyright (c) 2022 Joe Sharp
+- Copyright (c) 2022, 2024 Joe Sharp
 - Copyright (c) 2023 aymeric-ledorze
 - Copyright (c) 2023 Kyle Fazzari
-- Copyright (c) 2024 Joe Sharp
 - Copyright (c) 2024 Sebastian Cohnen
 - Copyright (c) 2024 Yevhenii Ponomarenko
 - Copyright (c) 2026 Bob McKinven

@@ -3,10 +3,10 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        99,
-        104,
-        109,
-        114
+        111,
+        116,
+        121,
+        126
       ]
     }
   ],
@@ -19,21 +19,12 @@
       ]
     }
   ],
-  ":vendored_gems_env => \"VENDORED_GEMS\",\n:vendor_gem_dir_env => \"VENDOR_GEM_DIR\",": [
-    {
-      "file": "gemfiles/modular/templating_local.gemfile",
-      "lines": [
-        79,
-        90
-      ]
-    }
-  ],
   "direct: appraisal2.gemspec\nmodular: gemfiles/modular/ruby_1_8.gemfile": [
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        100,
-        125
+        112,
+        137
       ]
     }
   ],
@@ -50,8 +41,8 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        101,
-        126
+        113,
+        138
       ]
     }
   ]
