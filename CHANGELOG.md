@@ -22,8 +22,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- [kc] kettle-jem/template: updated 22 project files:
-  - code and tests (2)
+- [kc] kettle-jem/template: updated 25 project files:
+  - code and tests (5)
   - dependencies (18)
   - other (1)
   - workflows (1)
@@ -35,6 +35,8 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 - Keep TruffleRuby 22.3 CI on the supported non-acceptance spec set.
+
+- Limit TruffleRuby 23.0 CI to the supported non-acceptance spec set while investigating appraisal worker liveness.
 
 ### Security
 

@@ -490,14 +490,14 @@ files:
     recipe: template_source_application_github_workflows_truffleruby_22_3_yml
     action: write
     dest_sha256: 167fd621fe6f318077f4faf3a15052aae6426198d9d724aefe824b4f39cbd76d
-    input_fingerprint: d7f43b1329142ac8bc7849d5c5ccfe1bd8b76181ae1e334b4213aad6775bd93c
+    input_fingerprint: 221fdf1d108bceb098177e76cca540fd2967221a77f053406fd2d5ffe67dc681
     template_sources:
     - ".github/workflows/truffleruby-22.3.yml.example"
   ".github/workflows/truffleruby-23.0.yml":
     recipe: template_source_application_github_workflows_truffleruby_23_0_yml
     action: write
-    dest_sha256: c364cce15bf9741f1b40ea949eecfe692746879766955793bd04031fcd9475a2
-    input_fingerprint: d719dedce380d9bd2e48b579e0b2dfaa0e5e7724412fe49ec77453c925decdf3
+    dest_sha256: 2d7f826e45114b03493af53f2d57bb116fa1a31aea2060a489b08a7c2b6fd031
+    input_fingerprint: 4294e2ad3e4ece3d590639caf4d247a32a1a71014a7b12bb1743897bbe4b0054
     template_sources:
     - ".github/workflows/truffleruby-23.0.yml.example"
   ".github/workflows/truffleruby-23.1.yml":
@@ -671,7 +671,7 @@ files:
   CHANGELOG.md:
     recipe: template_source_application_CHANGELOG_md
     action: write
-    dest_sha256: 0f09841fb525f383f29ee911fc8360d1aad729930e990f8b847b38f13ef76024
+    dest_sha256: c0a9a63b9e5f35f88225323eea07d0658f37f06406816c5813e47ea0b9f308dc
     input_fingerprint: 241463abd5310ac50fca8529c4e5dd0590edffc4e93a4d16de990ee378ae8528
     template_sources:
     - CHANGELOG.md.example
