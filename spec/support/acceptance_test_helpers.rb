@@ -264,7 +264,10 @@ module AcceptanceTestHelpers
   end
 
   def setup_acceptance_fixture(metadata)
-    build_default_dummy_gems if metadata[:dummy_gems]
+    if metadata[:dummy_gems]
+      build_default_dummy_gems
+      use_fixture_gem_home
+    end
 
     if metadata[:appraisal_fixture]
       copy_default_stage_template
@@ -325,6 +328,10 @@ module AcceptanceTestHelpers
 
     build_gem "dummy", "1.0.0"
     build_gem "dummy", "1.1.0"
+  end
+
+  def use_fixture_gem_home
+    ENV["GEM_HOME"] = TMP_GEM_ROOT
   end
 
   def ensure_bundler_is_available

@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- [kc] fixture-gem-home-isolation: Restore GEM_HOME after fixture gem builds so later tests and generated Gemfile transforms retain the selected Bundler environment.
+
 ### Security
 
 ## [3.2.3] - 2026-08-29

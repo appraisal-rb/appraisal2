@@ -29,6 +29,16 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
       expect(self).to have_received(:copy_default_stage_template)
       expect(self).to have_received(:add_binstub_path)
     end
+
+    it "selects the fixture gem home after building dummy gems" do
+      allow(self).to receive(:build_default_dummy_gems)
+      allow(self).to receive(:use_fixture_gem_home)
+
+      send(:setup_acceptance_fixture, {:dummy_gems => true})
+
+      expect(self).to have_received(:build_default_dummy_gems).ordered
+      expect(self).to have_received(:use_fixture_gem_home).ordered
+    end
   end
 
   describe "#skip_jruby_acceptance_example" do

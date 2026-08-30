@@ -17,6 +17,7 @@ module DependencyHelpers
   # @option :version [String, nil] version for the gem, default is "1.0.0"
   # @return void
   def build_gem(gem_name, opts = {})
+    original_gem_home = ENV["GEM_HOME"]
     ENV["GEM_HOME"] = TMP_GEM_ROOT
     version = "1.0.0" # default
 
@@ -88,6 +89,8 @@ module DependencyHelpers
     end
 
     nil
+  ensure
+    ENV["GEM_HOME"] = original_gem_home
   end
 
   def build_gems(gems)
@@ -95,6 +98,7 @@ module DependencyHelpers
   end
 
   def build_git_gem(gem_name, version = "1.0.0")
+    original_gem_home = ENV["GEM_HOME"]
     if gem_mine_available?
       ENV["GEM_HOME"] = TMP_GEM_ROOT
       return if File.exist? "#{TMP_GEM_BUILD}/#{gem_name}/.git"
@@ -131,6 +135,8 @@ module DependencyHelpers
       puts "cleaning up bundler git cache: #{path}" if ENV["VERBOSE"]
       FileUtils.rm_r(path)
     end
+  ensure
+    ENV["GEM_HOME"] = original_gem_home
   end
 
   def build_git_gems(gems)
