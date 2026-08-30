@@ -28,10 +28,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- [kc] fixture-gem-home-isolation: Restore GEM_HOME after fixture gem builds so later tests and generated Gemfile transforms retain the selected Bundler environment.
-
-- Prevent GEM_HOME restoration tests from leaking their sentinel path into later parallel examples.
-
 ### Security
 
 ## [3.2.3] - 2026-08-29
@@ -56,6 +52,12 @@ Please file a bug if you notice a violation of semantic versioning.
   - workflows (1)
 
 - [kc] acceptance-shared-bundler-cache: Acceptance fixtures now reuse Bundler's shared user cache while keeping project-specific Bundler state isolated, avoiding redundant compact-index downloads in parallel runs.
+
+### Fixed
+
+- [kc] fixture-gem-home-isolation: Restore GEM_HOME after fixture gem builds so later tests and generated Gemfile transforms retain the selected Bundler environment.
+
+- Prevent GEM_HOME restoration tests from leaking their sentinel path into later parallel examples.
 
 ## [3.2.2] - 2026-08-06
 
