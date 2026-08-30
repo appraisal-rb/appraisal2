@@ -17,6 +17,17 @@ ENV["APPRAISAL_UNDER_TEST"] = "1"
 RSpec.configure do |config|
   config.raise_errors_for_deprecations!
 
+  # Every example shares its worker process. Restore all environment changes so
+  # a failed or incomplete test cannot affect the next example in that worker.
+  config.around do |example|
+    original_environment = ENV.to_hash
+    begin
+      example.run
+    ensure
+      ENV.replace(original_environment)
+    end
+  end
+
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = ".rspec_status"
 

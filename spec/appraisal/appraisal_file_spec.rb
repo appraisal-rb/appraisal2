@@ -8,6 +8,8 @@ require "rspec/matchers/composable"
 require "rspec/matchers/built_in/raise_error"
 
 RSpec.describe Appraisal::AppraisalFile do
+  include_context "with stubbed env"
+
   it "complains when no Appraisals file is found" do
     allow(File).to receive(:exist?).with(/gemfile/i).and_return(true)
     allow(File).to receive(:read).with(/gemfile/i).and_return("")
@@ -28,10 +30,10 @@ RSpec.describe Appraisal::AppraisalFile do
       end
     RUBY
 
-    ENV["APPRAISAL_FILE"] = "Appraisals_4_0"
+    stub_env("APPRAISAL_FILE" => "Appraisals_4_0")
+
     appraisal = described_class.new.appraisals.first
     expect(appraisal.gemfile.to_s).to include('gem "rspec"')
-    ENV["APPRAISAL_FILE"] = nil
   end
 
   describe "#plugin" do

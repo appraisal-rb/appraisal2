@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Isolate every RSpec example's environment so fixture and Bundler setup cannot leak between parallel examples.
+
 ### Security
 
 ## [3.2.3] - 2026-08-29
