@@ -38,6 +38,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Limit TruffleRuby 23.0 CI to the supported non-acceptance spec set while investigating appraisal worker liveness.
 
+- Restore Ruby-compatible hash syntax in the version coverage spec.
+
 ### Security
 
 ## [3.2.3] - 2026-08-29
