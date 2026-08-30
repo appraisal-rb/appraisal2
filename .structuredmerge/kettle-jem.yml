@@ -252,6 +252,11 @@ workflows:
   # Default command used by generated test workflows.
   # ENV override: KJ_EXEC_CMD
   exec_cmd: kettle-test --example-status-log .rspec_status
+  # Legacy TruffleRuby 22.3 crashes in its regex engine when Bundler 2.5
+  # parses the isolated acceptance fixture Gemfiles. Newer TruffleRuby jobs
+  # cover that acceptance suite; retain library and CLI coverage here.
+  engine_exec_cmds:
+    truffleruby-22.3: kettle-test --tag ~type:acceptance --example-status-log .rspec_status
   # Include VCR/WebMock recording modular gemfiles in generated Appraisals.
   # Enable only for projects that actually require recording support.
   recording: false
