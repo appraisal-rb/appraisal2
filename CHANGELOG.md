@@ -30,6 +30,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - [kc] fixture-gem-home-isolation: Restore GEM_HOME after fixture gem builds so later tests and generated Gemfile transforms retain the selected Bundler environment.
 
+- Prevent GEM_HOME restoration tests from leaking their sentinel path into later parallel examples.
+
 ### Security
 
 ## [3.2.3] - 2026-08-29

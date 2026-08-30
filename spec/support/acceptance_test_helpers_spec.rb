@@ -114,13 +114,18 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
 
   describe "#restore_environment_variables" do
     it "restores GEM_HOME after fixture gem setup changes it" do
-      stub_env("GEM_HOME" => "/original/gem/home")
+      original_gem_home = ENV["GEM_HOME"]
+      ENV["GEM_HOME"] = "/original/gem/home"
 
-      save_environment_variables
-      ENV["GEM_HOME"] = TMP_GEM_ROOT
-      restore_environment_variables
+      begin
+        save_environment_variables
+        ENV["GEM_HOME"] = TMP_GEM_ROOT
+        restore_environment_variables
 
-      expect(ENV["GEM_HOME"]).to eq("/original/gem/home")
+        expect(ENV["GEM_HOME"]).to eq("/original/gem/home")
+      ensure
+        ENV["GEM_HOME"] = original_gem_home
+      end
     end
   end
 
