@@ -28,8 +28,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Isolate every RSpec example's environment so fixture and Bundler setup cannot leak between parallel examples.
-
 ### Security
 
 ## [3.2.3] - 2026-08-29
@@ -60,6 +58,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - [kc] fixture-gem-home-isolation: Restore GEM_HOME after fixture gem builds so later tests and generated Gemfile transforms retain the selected Bundler environment.
 
 - Prevent GEM_HOME restoration tests from leaking their sentinel path into later parallel examples.
+
+- Isolate every RSpec example's environment so fixture and Bundler setup cannot leak between parallel examples.
 
 ## [3.2.2] - 2026-08-06
 

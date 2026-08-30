@@ -126,6 +126,9 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>
     <p>Prevent GEM_HOME restoration tests from leaking their sentinel path into later parallel examples.</p>
   </li>
+  <li>
+    <p>Isolate every RSpec example’s environment so fixture and Bundler setup cannot leak between parallel examples.</p>
+  </li>
 </ul>
 
 <h2 id="322---2026-08-06">
