@@ -132,6 +132,28 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
   end
 
   describe "#setup_isolated_bundler_environment" do
+    it "preserves the shared Bundler cache while isolating project configuration" do
+      original_home = ENV["HOME"]
+      original_cache = ENV["BUNDLE_USER_CACHE"]
+
+      Dir.mktmpdir("isolated-bundler") do |directory|
+        begin
+          allow(self).to receive(:current_directory).and_return(directory)
+          ENV["HOME"] = "/shared/home"
+          ENV["BUNDLE_USER_CACHE"] = "/shared/bundler-cache"
+
+          send(:setup_isolated_bundler_environment)
+
+          expect(ENV["HOME"]).to eq("/shared/home")
+          expect(ENV["BUNDLE_USER_CACHE"]).to eq("/shared/bundler-cache")
+          expect(ENV["BUNDLE_APP_CONFIG"]).to eq(File.join(directory, ".bundle"))
+        ensure
+          ENV["HOME"] = original_home
+          ENV["BUNDLE_USER_CACHE"] = original_cache
+        end
+      end
+    end
+
     it "routes gem.coop fixture sources through RubyGems.org" do
       original_mirror = ENV[AcceptanceTestHelpers::GEM_COOP_MIRROR_ENV]
 

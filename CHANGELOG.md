@@ -34,6 +34,8 @@ Please file a bug if you notice a violation of semantic versioning.
   - other (3)
   - workflows (1)
 
+- [kc] acceptance-shared-bundler-cache: Acceptance fixtures now reuse Bundler's shared user cache while keeping project-specific Bundler state isolated, avoiding redundant compact-index downloads in parallel runs.
+
 ### Deprecated
 
 ### Removed

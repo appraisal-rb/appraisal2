@@ -27,13 +27,11 @@ module AcceptanceTestHelpers
     "BUNDLER_SETUP",
     "BUNDLE_APP_CONFIG",
     "BUNDLE_USER_CONFIG",
-    "BUNDLE_USER_CACHE",
     "BUNDLE_USER_PLUGIN"
   ].freeze
 
   ACCEPTANCE_ENVIRONMENT_VARIABLES = (BUNDLER_ENVIRONMENT_VARIABLES + [
     "PATH",
-    "HOME",
     "GEM_HOME",
     "BUNDLE_IGNORE_FUNDING_REQUESTS",
     "BUNDLE_DISABLE_SHARED_GEMS",
@@ -119,13 +117,6 @@ module AcceptanceTestHelpers
     # Ensure the test directory exists
     FileUtils.mkdir_p(current_directory)
 
-    # Some installers still derive cache paths from HOME. Keep those writes
-    # inside the per-worker stage directory so parallel tests do not share
-    # ~/.bundle/compact_index state.
-    test_home_dir = File.join(current_directory, ".home")
-    FileUtils.mkdir_p(test_home_dir)
-    ENV["HOME"] = test_home_dir
-
     # Create an isolated .bundle directory within the test directory
     # This prevents bundler from reading or writing to the parent project's .bundle/config
     test_bundle_config_dir = File.join(current_directory, ".bundle")
@@ -145,11 +136,6 @@ module AcceptanceTestHelpers
     # Disable settings that could cause side effects
     ENV["BUNDLE_IGNORE_FUNDING_REQUESTS"] = "1"
     ENV["BUNDLE_DISABLE_SHARED_GEMS"] = "1"
-
-    # Set a test-specific cache directory to avoid polluting the user's cache
-    test_cache_dir = File.join(current_directory, ".bundle", "cache")
-    FileUtils.mkdir_p(test_cache_dir)
-    ENV["BUNDLE_USER_CACHE"] = test_cache_dir
 
     # Bundler creates bare repositories inside its isolated git cache. Some
     # developer machines set safe.bareRepository=explicit globally, so allow
