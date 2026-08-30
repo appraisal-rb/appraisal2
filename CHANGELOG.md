@@ -22,6 +22,23 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.2.3] - 2026-08-29
+
+- TAG: [v3.2.3][3.2.3t]
+- COVERAGE: 90.86% -- 915/1007 lines in 29 files
+- BRANCH COVERAGE: 77.73% -- 185/238 branches in 29 files
+- 43.78% documented
+
+### Changed
+
 - [kc] kettle-jem/prepare: updated 81 project files:
   - configuration (1)
   - dependencies (77)
@@ -35,14 +52,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - workflows (1)
 
 - [kc] acceptance-shared-bundler-cache: Acceptance fixtures now reuse Bundler's shared user cache while keeping project-specific Bundler state isolated, avoiding redundant compact-index downloads in parallel runs.
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [3.2.2] - 2026-08-06
 
@@ -597,7 +606,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.2...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.3...HEAD
+[3.2.3]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.2...v3.2.3
+[3.2.3t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.3
 [3.2.2]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.1...v3.2.2
 [3.2.2t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.2
 [3.2.1]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.0...v3.2.1

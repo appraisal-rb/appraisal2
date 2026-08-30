@@ -70,7 +70,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.2.2...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/appraisal-rb/appraisal2/compare/v3.2.3...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
@@ -83,6 +83,39 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <h3 id="fixed">Fixed</h3>
 
 <h3 id="security">Security</h3>
+
+<h2 id="323---2026-08-29">
+<a href="https://github.com/appraisal-rb/appraisal2/compare/v3.2.2...v3.2.3">3.2.3</a> - 2026-08-29</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.3">v3.2.3</a>
+</li>
+  <li>COVERAGE: 90.86% – 915/1007 lines in 29 files</li>
+  <li>BRANCH COVERAGE: 77.73% – 185/238 branches in 29 files</li>
+  <li>43.78% documented</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
+
+<ul>
+  <li>[kc] kettle-jem/prepare: updated 81 project files:
+    <ul>
+      <li>configuration (1)</li>
+      <li>dependencies (77)</li>
+      <li>other (3)</li>
+    </ul>
+  </li>
+  <li>[kc] kettle-jem/template: updated 20 project files:
+    <ul>
+      <li>code and tests (10)</li>
+      <li>dependencies (3)</li>
+      <li>documentation (3)</li>
+      <li>other (3)</li>
+      <li>workflows (1)</li>
+    </ul>
+  </li>
+  <li>[kc] acceptance-shared-bundler-cache: Acceptance fixtures now reuse Bundler’s shared user cache while keeping project-specific Bundler state isolated, avoiding redundant compact-index downloads in parallel runs.</li>
+</ul>
 
 <h2 id="322---2026-08-06">
 <a href="https://github.com/appraisal-rb/appraisal2/compare/v3.2.1...v3.2.2">3.2.2</a> - 2026-08-06</h2>
@@ -127,7 +160,7 @@ project’s RubyForum tag as <code>mailing_list_uri</code>, and support docs lin
 tagged RubyForum community alongside Discord.</li>
 </ul>
 
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 
 <ul>
   <li>
@@ -242,7 +275,7 @@ parallelism defaults to 2 workers; use <code>-n 1</code> to run serially. Bundle
 than 2.1 falls back to serial processing.</li>
 </ul>
 
-<h3 id="changed-2">Changed</h3>
+<h3 id="changed-3">Changed</h3>
 
 <ul>
   <li>Full dependency updates now run <code>bundle update --all</code> to avoid Bundler’s<br>
@@ -288,7 +321,7 @@ branches unless the branch targets <code>jruby/</code>, <code>truffleruby/</code
   <li>42.25% documented</li>
 </ul>
 
-<h3 id="changed-3">Changed</h3>
+<h3 id="changed-4">Changed</h3>
 
 <ul>
   <li>Clarified README Bundler path caching guidance and removed hard paragraph<br>
@@ -332,7 +365,7 @@ run a serial Bundler install to avoid legacy fallback index failures.</p>
   <li>Added support for JRuby 10.1 and TruffleRuby 34.0.</li>
 </ul>
 
-<h3 id="changed-4">Changed</h3>
+<h3 id="changed-5">Changed</h3>
 
 <ul>
   <li>Retemplated project metadata and CI/development automation with <code>kettle-jem</code> v7.0.0.</li>
@@ -419,7 +452,7 @@ workflows that need to regenerate Appraisal gemfiles before resolving them.</li>
 <code>generate-update</code>.</li>
 </ul>
 
-<h3 id="changed-5">Changed</h3>
+<h3 id="changed-6">Changed</h3>
 
 <ul>
   <li>Changed <code>install</code> and <code>update</code> to resolve existing Appraisal gemfiles without<br>
@@ -445,7 +478,7 @@ generation commands, and generated gemfile transform hooks in the README.</li>
   <li>42.69% documented</li>
 </ul>
 
-<h3 id="changed-6">Changed</h3>
+<h3 id="changed-7">Changed</h3>
 
 <ul>
   <li>Raised the <code>version_gem</code> runtime dependency floor to <code>version_gem</code> &gt;= 1.1.10.</li>
@@ -498,7 +531,7 @@ per-engine/per-version Ruby workflows.</li>
 contributor/operator guides.</li>
 </ul>
 
-<h3 id="changed-7">Changed</h3>
+<h3 id="changed-8">Changed</h3>
 
 <ul>
   <li>Refreshed project automation and CI templates with the current <code>kettle-jem</code><br>
@@ -658,7 +691,7 @@ is active.</li>
   <li>43.03% documented</li>
 </ul>
 
-<h3 id="changed-8">Changed</h3>
+<h3 id="changed-9">Changed</h3>
 
 <ul>
   <li>Documentation cleanup</li>
@@ -683,7 +716,7 @@ is active.</li>
   <li>Shared RSpec contexts for mocking gem managers (<code>BundlerAdapter</code> and <code>OreAdapter</code>) to facilitate faster unit testing</li>
 </ul>
 
-<h3 id="changed-9">Changed</h3>
+<h3 id="changed-10">Changed</h3>
 
 <ul>
   <li>Improved documentation for using <code>install</code> and <code>update</code> commands with named appraisals and options</li>
@@ -799,7 +832,7 @@ is active.</li>
   <li>CLI configs for RuboCop, RubyGems, YARD, and JRuby (for local development only)</li>
 </ul>
 
-<h3 id="changed-10">Changed</h3>
+<h3 id="changed-11">Changed</h3>
 
 <ul>
   <li>Improved test isolation for acceptance tests to prevent modification of parent project’s Gemfile.lock

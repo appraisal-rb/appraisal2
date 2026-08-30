@@ -373,6 +373,15 @@ to create SHA-256 and SHA-512 checksums. This functionality is provided by the <
 push git commits and tags, and push the <code>.gem</code> file to the gem host configured in the gemspec.</li>
 </ol>
 
+<p>The automated <code>kettle-release</code> flow runs the build and release tasks with a<br>
+temporary <code>BUNDLE_LOCKFILE</code>. Bundler can rewrite a tracked lockfile while<br>
+reconciling the host platform even after the release lockfile has been<br>
+normalized with <code>bundle lock --add-platform</code>; that rewrite trips the clean-tree<br>
+guard in <code>bundler/gem_tasks</code>. The disposable lockfile preserves the committed<br>
+release inputs while allowing Bundler’s runtime reconciliation. Do not replace<br>
+this with <code>BUNDLE_FROZEN=true</code>: frozen mode fails when Bundler needs that<br>
+reconciliation.</p>
+
 </div></div>
 
       <div id="footer">
