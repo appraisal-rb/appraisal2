@@ -22,6 +22,23 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.2.4] - 2026-09-11
+
+- TAG: [v3.2.4][3.2.4t]
+- COVERAGE: 90.86% -- 915/1007 lines in 29 files
+- BRANCH COVERAGE: 77.73% -- 185/238 branches in 29 files
+- 43.78% documented
+
+### Changed
+
 - [kc] kettle-jem/template: updated 23 project files:
   - code and tests (2)
   - dependencies (18)
@@ -32,10 +49,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - code and tests (1)
   - dependencies (19)
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - Keep TruffleRuby 22.3 CI on the supported non-acceptance spec set.
@@ -43,8 +56,6 @@ Please file a bug if you notice a violation of semantic versioning.
 - Limit TruffleRuby 23.0 CI to the supported non-acceptance spec set while investigating appraisal worker liveness.
 
 - Restore Ruby-compatible hash syntax in the version coverage spec.
-
-### Security
 
 ## [3.2.3] - 2026-08-29
 
@@ -630,7 +641,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.3...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.4...HEAD
+[3.2.4]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.3...v3.2.4
+[3.2.4t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.4
 [3.2.3]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.2...v3.2.3
 [3.2.3t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.3
 [3.2.2]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.1...v3.2.2
