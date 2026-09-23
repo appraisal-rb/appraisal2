@@ -65,7 +65,7 @@ Gem::Specification.new do |spec|
   gemspec_root = __dir__
   relative_package_path = lambda do |path|
     prefix = "#{gemspec_root}/"
-    (path[0, prefix.length] == prefix) ? path[prefix.length..-1] : path
+    path[0, prefix.length] == prefix ? path[prefix.length..-1] : path
   end
   enumerate_package_glob = lambda do |glob|
     files = []
@@ -79,11 +79,11 @@ Gem::Specification.new do |spec|
   enumerate_package_files = lambda do |root|
     enumerate_package_glob.call(File.join(gemspec_root, root, "**", "*"))
   end
-  package_metadata_files = [
-    "CHANGELOG.md",
-    "LICENSE.md",
-    "README.md",
-    "sig/appraisal2.rbs"
+  package_metadata_files = %w[
+    CHANGELOG.md
+    LICENSE.md
+    README.md
+    sig/appraisal2.rbs
   ].select { |path| File.exist?(File.join(gemspec_root, path)) }
 
   # Specify which files are part of the released package.
@@ -120,7 +120,6 @@ Gem::Specification.new do |spec|
 
   spec.require_paths = ["lib"]
 
-  # Utilities
   spec.add_dependency("bundler", ">= 1.17.3")  # Last version supporting Ruby 1.8.7
   spec.add_dependency("rake", ">= 10")         # Last version supporting Ruby 1.8.7
   spec.add_dependency("thor", ">= 0.14")       # Last version supporting Ruby 1.8.7 && Rails 3
@@ -139,7 +138,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.0")             # ruby >= 2.4
+  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.1")             # ruby >= 2.4
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
@@ -150,19 +149,19 @@ Gem::Specification.new do |spec|
   # Testing
   # Loads version files in anonymous namespaces for coverage without constant redefinition warnings.
   spec.add_development_dependency("anonymous_loader", "~> 0.1", ">= 0.1.3")         # ruby >= 2.2.0
-  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.21")            # ruby >= 2.4
-  spec.add_development_dependency("turbo_tests2", "~> 3.2", ">= 3.2.7")           # ruby >= 2.4.0, default kettle-test runner
+  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.22")            # ruby >= 2.4
+  spec.add_development_dependency("turbo_tests2", "~> 3.2", ">= 3.2.10")           # ruby >= 2.4.0, default kettle-test runner
 
   # Releasing
   spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
-  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.8")          # ruby >= 2.2.0
+  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.9")          # ruby >= 2.2.0
 
   # Development tasks
   # The cake is a lie. erb v2.2, the oldest release, was never compatible with Ruby 2.3.
   # This means we have no choice but to use the erb that shipped with Ruby 2.3
   # /opt/hostedtoolcache/Ruby/2.3.8/x64/lib/ruby/gems/2.3.0/gems/erb-2.2.2/lib/erb.rb:670:in `prepare_trim_mode': undefined method `match?' for "-":String (NoMethodError)
   # spec.add_development_dependency("erb", ">= 2.2")                                  # ruby >= 2.3.0, not SemVer, old rubies get dropped in a patch.
-  spec.add_development_dependency("gitmoji-regex", "~> 2.0", ">= 2.0.12")            # ruby >= 2.4
+  spec.add_development_dependency("gitmoji-regex", "~> 2.0", ">= 2.0.13")            # ruby >= 2.4
 
   # HTTP recording for deterministic specs
   # In Ruby 3.5 (HEAD) the CGI library has been pared down, so we also need to depend on gem "cgi" for ruby@head

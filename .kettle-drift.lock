@@ -32,8 +32,17 @@
     {
       "file": "Appraisals",
       "lines": [
-        51,
-        118
+        55,
+        122
+      ]
+    }
+  ],
+  "exec_cmd: \"kettle-test --example-status-log .rspec_status\"\nrubygems: latest": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        43,
+        49
       ]
     }
   ],
