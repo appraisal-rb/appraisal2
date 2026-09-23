@@ -120,6 +120,7 @@ Gem::Specification.new do |spec|
 
   spec.require_paths = ["lib"]
 
+  # Utilities
   spec.add_dependency("bundler", ">= 1.17.3")  # Last version supporting Ruby 1.8.7
   spec.add_dependency("rake", ">= 10")         # Last version supporting Ruby 1.8.7
   spec.add_dependency("thor", ">= 0.14")       # Last version supporting Ruby 1.8.7 && Rails 3
@@ -138,7 +139,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.1")             # ruby >= 2.4
+  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.0")             # ruby >= 2.4
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
