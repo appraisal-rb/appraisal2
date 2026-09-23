@@ -137,6 +137,11 @@ module AcceptanceTestHelpers
     ENV["BUNDLE_IGNORE_FUNDING_REQUESTS"] = "1"
     ENV["BUNDLE_DISABLE_SHARED_GEMS"] = "1"
 
+    # Ore updates its cache in place while resolving and downloading gems. The
+    # acceptance suite runs in parallel worker processes, so sharing the user's
+    # cache lets concurrent workers corrupt an in-flight HTTP cache entry.
+    ENV["XDG_CACHE_HOME"] = File.join(TMP_PROCESS_ROOT, "ore-cache")
+
     # Bundler creates bare repositories inside its isolated git cache. Some
     # developer machines set safe.bareRepository=explicit globally, so allow
     # bare repositories only for subprocesses spawned by these isolated specs.
