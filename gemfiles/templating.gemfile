@@ -4,6 +4,8 @@ source "https://gem.coop"
 
 gemspec :path => "../"
 
+eval_gemfile("gemfiles/modular/templating.gemfile")
+
 eval_gemfile("modular/templating.gemfile")
 
 eval_gemfile("modular/x_std_libs.gemfile")

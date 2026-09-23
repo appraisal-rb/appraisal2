@@ -4,6 +4,8 @@ source "https://gem.coop"
 
 gemspec :path => "../"
 
+eval_gemfile("gemfiles/modular/templating.gemfile")
+
 eval_gemfile("modular/json/truffleruby_22_3.gemfile")
 
 eval_gemfile("modular/json/truffleruby_23_0.gemfile")
