@@ -149,14 +149,14 @@ module Appraisal
       # Ruby engines, Bundler may be available through the active app bundle
       # while a manually scrubbed RubyGems spec lookup cannot see it through the
       # current GEM_HOME/GEM_PATH.
-      return if system(process_env, "bundle -v > /dev/null 2>&1")
+      return if system_command(process_env, ["bundle", "-v"])
 
       # Check if any version of bundler is available through RubyGems.
-      return if system(rubygems_env, bundler_available_command)
+      return if system_command(rubygems_env, bundler_available_command)
 
       puts ">> Bundler not found, attempting to install..."
       # If that fails, try to install the latest stable version
-      return if system(rubygems_env, "ruby --disable=gems -S gem install bundler")
+      return if system_command(rubygems_env, ruby_gem_command("install", "bundler"))
 
       puts
       puts <<-ERROR.rstrip
@@ -174,10 +174,13 @@ manually.
 
       rubygems_env = rubygems_command_env(process_env)
 
-      return if system(rubygems_env, bundler_available_command(locked_version))
+      return if system_command(rubygems_env, bundler_available_command(locked_version))
 
       puts ">> Bundler #{locked_version} not found, attempting to install..."
-      return if system(rubygems_env, "ruby --disable=gems -S gem install bundler -v #{Shellwords.escape(locked_version)} --no-document")
+      return if system_command(
+        rubygems_env,
+        ruby_gem_command("install", "bundler", "-v", locked_version, "--no-document")
+      )
 
       puts
       puts <<-ERROR.rstrip
@@ -228,7 +231,19 @@ manually.
         specs = Gem::Specification.find_all_by_name("bundler"#{requirement})
         exit(specs.empty? ? 1 : 0)
       RUBY
-      "ruby --disable=gems -e #{Shellwords.escape(code)}"
+      [RbConfig.ruby, "--disable=gems", "-e", code]
+    end
+
+    def ruby_gem_command(*arguments)
+      [RbConfig.ruby, "--disable=gems", "-S", "gem", *arguments]
+    end
+
+    def system_command(environment, command)
+      if command.is_a?(Array)
+        system(environment, *command)
+      else
+        system(environment, command)
+      end
     end
 
     def announce(command_text = command_as_string)

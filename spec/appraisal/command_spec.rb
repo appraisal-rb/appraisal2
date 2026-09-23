@@ -192,7 +192,7 @@ RSpec.describe Appraisal::Command do
           locked_command.run
 
           expect(locked_command).to have_received(:system)
-            .with(hash_including("GEM_HOME" => gem_home), a_string_matching(/ruby --disable=gems .*bundler/m))
+            .with(hash_including("GEM_HOME" => gem_home), anything, "--disable=gems", "-e", a_string_matching(/Gem::Specification\.find_all_by_name/))
             .once
         end
       end
@@ -213,9 +213,9 @@ RSpec.describe Appraisal::Command do
         command.run
 
         expect(command).to have_received(:system)
-          .with(anything, "bundle -v > /dev/null 2>&1")
+          .with(anything, "bundle", "-v")
         expect(command).not_to have_received(:system)
-          .with(anything, a_string_matching(/Gem::Specification\.find_all_by_name/))
+          .with(anything, anything, anything, a_string_matching(/Gem::Specification\.find_all_by_name/))
         expect(command).not_to have_received(:system)
           .with(anything, a_string_matching(/gem install bundler/))
       end

@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Use argument-vector execution for internal Bundler and RubyGems probes so locked appraisals work on Windows.
+
 ### Security
 
 ## [3.2.4] - 2026-09-11
