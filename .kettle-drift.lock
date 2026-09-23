@@ -23,22 +23,6 @@
     {
       "file": "gemfiles/modular/coverage_local.gemfile",
       "lines": [
-        48,
-        65
-      ]
-    },
-    {
-      "file": "gemfiles/modular/templating_local.gemfile",
-      "lines": [
-        96,
-        113
-      ]
-    }
-  ],
-  ":path_env => \"KETTLE_DEV_DEV\",\n:vendored_gems_env => \"VENDORED_GEMS\",": [
-    {
-      "file": "gemfiles/modular/coverage_local.gemfile",
-      "lines": [
         45,
         62
       ]
@@ -51,7 +35,39 @@
       ]
     }
   ],
+  ":path_env => \"KETTLE_DEV_DEV\",\n:vendored_gems_env => \"VENDORED_GEMS\",": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        42,
+        59
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        90,
+        107
+      ]
+    }
+  ],
   ":prefix => \"KETTLE_DEV\",\n:path_env => \"KETTLE_DEV_DEV\",": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        41,
+        58
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        89,
+        106
+      ]
+    }
+  ],
+  ":vendor_gem_dir_env => \"VENDOR_GEM_DIR\",\n:debug_env => \"KETTLE_DEV_DEBUG\",": [
     {
       "file": "gemfiles/modular/coverage_local.gemfile",
       "lines": [
@@ -67,36 +83,20 @@
       ]
     }
   ],
-  ":vendor_gem_dir_env => \"VENDOR_GEM_DIR\",\n:debug_env => \"KETTLE_DEV_DEBUG\",": [
-    {
-      "file": "gemfiles/modular/coverage_local.gemfile",
-      "lines": [
-        47,
-        64
-      ]
-    },
-    {
-      "file": "gemfiles/modular/templating_local.gemfile",
-      "lines": [
-        95,
-        112
-      ]
-    }
-  ],
   ":vendored_gems_env => \"VENDORED_GEMS\",\n:vendor_gem_dir_env => \"VENDOR_GEM_DIR\",": [
     {
       "file": "gemfiles/modular/coverage_local.gemfile",
       "lines": [
-        46,
-        63
+        43,
+        60
       ]
     },
     {
       "file": "gemfiles/modular/templating_local.gemfile",
       "lines": [
-        80,
-        94,
-        111
+        77,
+        91,
+        108
       ]
     }
   ],
