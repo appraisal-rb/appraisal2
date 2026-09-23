@@ -23,19 +23,35 @@
     {
       "file": "gemfiles/modular/coverage_local.gemfile",
       "lines": [
-        44,
-        61
+        45,
+        62
       ]
     },
     {
       "file": "gemfiles/modular/templating_local.gemfile",
       "lines": [
-        92,
-        109
+        93,
+        110
       ]
     }
   ],
   ":path_env => \"KETTLE_DEV_DEV\",\n:vendored_gems_env => \"VENDORED_GEMS\",": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        42,
+        59
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        90,
+        107
+      ]
+    }
+  ],
+  ":prefix => \"KETTLE_DEV\",\n:path_env => \"KETTLE_DEV_DEV\",": [
     {
       "file": "gemfiles/modular/coverage_local.gemfile",
       "lines": [
@@ -51,23 +67,23 @@
       ]
     }
   ],
-  ":prefix => \"KETTLE_DEV\",\n:path_env => \"KETTLE_DEV_DEV\",": [
+  ":vendor_gem_dir_env => \"VENDOR_GEM_DIR\",\n:debug_env => \"KETTLE_DEV_DEBUG\",": [
     {
       "file": "gemfiles/modular/coverage_local.gemfile",
       "lines": [
-        40,
-        57
+        44,
+        61
       ]
     },
     {
       "file": "gemfiles/modular/templating_local.gemfile",
       "lines": [
-        88,
-        105
+        92,
+        109
       ]
     }
   ],
-  ":vendor_gem_dir_env => \"VENDOR_GEM_DIR\",\n:debug_env => \"KETTLE_DEV_DEBUG\",": [
+  ":vendored_gems_env => \"VENDORED_GEMS\",\n:vendor_gem_dir_env => \"VENDOR_GEM_DIR\",": [
     {
       "file": "gemfiles/modular/coverage_local.gemfile",
       "lines": [
@@ -78,25 +94,9 @@
     {
       "file": "gemfiles/modular/templating_local.gemfile",
       "lines": [
+        77,
         91,
         108
-      ]
-    }
-  ],
-  ":vendored_gems_env => \"VENDORED_GEMS\",\n:vendor_gem_dir_env => \"VENDOR_GEM_DIR\",": [
-    {
-      "file": "gemfiles/modular/coverage_local.gemfile",
-      "lines": [
-        42,
-        59
-      ]
-    },
-    {
-      "file": "gemfiles/modular/templating_local.gemfile",
-      "lines": [
-        76,
-        90,
-        107
       ]
     }
   ],

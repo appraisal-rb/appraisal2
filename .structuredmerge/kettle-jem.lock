@@ -141,7 +141,7 @@ template_state:
     ".yardopts.example": 6fd6f2701713096a8a9ea095c213bbc68eeef37797c4754d97837e3229a3a5f6
     AGENTS.md.example: ac376f33601b6fa7e9dd0614e762f3757850ec4f9605190c5f4c9f30796dc941
     AGPL-3.0-only.md.example: d8a6cc31abc16b6748c7a21f21611f5a1ec33f67d22ca23d7da1c19b95496bee
-    Appraisal.root.gemfile.example: 936337dcb1eaf5577f0873d1270d3669a4a07c4f5c24588329003e631e9f3eee
+    Appraisal.root.gemfile.example: 8724e3f6faea995be655ac49369bec64a70710112b1f65707fa38f1fd2fd3254
     Appraisals.example: 44ec39b53428000c92177c2c9d05c83b7a00fdd8ca3d73589d70b18a33229013
     Big-Time-Public-License.md.example: b0c02a112c9eee0ed69f05fd8f22277a2f8bc62d447b6cb75d6df560e05bf431
     CHANGELOG.md.example: 73459e50dad34d84db88844c993d975097557bdf5229e101b0d1339de6f98ffc
@@ -718,8 +718,8 @@ files:
   Appraisal.root.gemfile:
     recipe: template_source_application_Appraisal_root_gemfile
     action: write
-    dest_sha256: 936337dcb1eaf5577f0873d1270d3669a4a07c4f5c24588329003e631e9f3eee
-    input_fingerprint: 375872884e7d803ab64ff27c268a0556642605e109c014a0f41a1a1ed101554c
+    dest_sha256: 8724e3f6faea995be655ac49369bec64a70710112b1f65707fa38f1fd2fd3254
+    input_fingerprint: 37ad4ed3b02cd67018dc8be421a3160769b3e389edb356c0799be912cd8bcf55
     template_sources:
     - Appraisal.root.gemfile.example
   Appraisals:
