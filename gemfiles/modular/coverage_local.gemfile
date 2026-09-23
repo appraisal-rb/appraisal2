@@ -28,6 +28,7 @@ end
 Kernel.send(:gem, "nomono", *nomono_activation_requirements)
 require "nomono/bundler"
 
+
 local_gems = ["kettle-dev", "kettle-family", "kettle-test", "kettle-soup-cover", "kettle-changelog", "kettle-drift"]
 
 # export KETTLE_DEV_DEV=/path/to/my
