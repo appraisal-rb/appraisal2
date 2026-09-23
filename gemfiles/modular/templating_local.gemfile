@@ -30,6 +30,7 @@ Kernel.send(:gem, "nomono", *nomono_activation_requirements)
 require "nomono/bundler"
 
 
+
 structuredmerge_local_gems = [
   "tree_haver",
   "ast-merge",
