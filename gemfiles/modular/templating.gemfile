@@ -17,8 +17,9 @@ if structuredmerge_remote || !tslp_dev.to_s.empty?
 end
 
 if structuredmerge_remote
-  # Merge recipes for released installs.
-  gem "kettle-jem", "~> 7.1", ">= 7.1.29"
+  # Keep the released floor when templating with local StructuredMerge paths;
+  # kettle-jem-deps-floor advances this requirement from published versions.
+  gem "kettle-jem", "~> 7.1", ">= 7.1.28"
 end
 
 if kettle_remote

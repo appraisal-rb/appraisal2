@@ -885,7 +885,7 @@ DEPENDENCIES
   stringio (>= 3.0)
   toml-merge!
   tree_haver!
-  turbo_tests2 (~> 3.2, >= 3.2.10)
+  turbo_tests2 (~> 3.2, >= 3.2.11)
   typescript-merge!
   webrick (~> 1.9)
   yaml-converter (~> 0.2, >= 0.2.6)
@@ -893,7 +893,7 @@ DEPENDENCIES
   yard (~> 0.9, >= 0.9.45)
   yard-fence (~> 0.9, >= 0.9.9)
   yard-junk (~> 0.1, >= 0.1.0)
-  yard-lint (~> 1.11, >= 1.11.0)
+  yard-lint (~> 1.12, >= 1.12.0)
   yard-relative_markdown_links (~> 0.6)
   yard-timekeeper (~> 0.2, >= 0.2.7)
   yard-yaml (~> 0.2, >= 0.2.6)
