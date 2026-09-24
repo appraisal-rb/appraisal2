@@ -66,24 +66,27 @@ structuredmerge_local_gems = [
 kettle_dev_local_gems = [
   "kettle-dev", "kettle-family", "kettle-test", "kettle-soup-cover", "kettle-changelog", "kettle-drift"
 ]
-kettle_dev_nomono_options = {
+shared_nomono_options = {
+  :vendored_gems_env => "VENDORED_GEMS",
+  :vendor_gem_dir_env => "VENDOR_GEM_DIR"
+}
+kettle_dev_nomono_options = shared_nomono_options.merge(
   :prefix => "KETTLE_DEV",
   :path_env => "KETTLE_DEV_DEV",
-  :vendored_gems_env => "VENDORED_GEMS",
-  :vendor_gem_dir_env => "VENDOR_GEM_DIR",
   :debug_env => "KETTLE_DEV_DEBUG",
   :root => ["src", "my", "kettle-dev"]
-}
+)
+structuredmerge_nomono_options = shared_nomono_options.merge(
+  :prefix => "STRUCTUREDMERGE",
+  :path_env => "STRUCTUREDMERGE_DEV",
+  :debug_env => "STRUCTUREDMERGE_DEBUG"
+)
 structuredmerge_local_gems_to_eval = structuredmerge_local_gems - []
 
 if ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false") != 0
   eval_nomono_gems(
     :gems => structuredmerge_local_gems_to_eval,
-    :prefix => "STRUCTUREDMERGE",
-    :path_env => "STRUCTUREDMERGE_DEV",
-    :vendored_gems_env => "VENDORED_GEMS",
-    :vendor_gem_dir_env => "VENDOR_GEM_DIR",
-    :debug_env => "STRUCTUREDMERGE_DEBUG"
+    **structuredmerge_nomono_options
   )
 end
 
