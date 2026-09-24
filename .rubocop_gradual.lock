@@ -22,11 +22,11 @@
     [75, 13, 2, "Lint/LtsRuby/UnavailableMethod: Method/Proc#<< is unavailable before Ruby 2.6.", 5859461],
     [100, 13, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002]
   ],
-  "gemfiles/modular/coverage_local.gemfile:501956461": [
+  "gemfiles/modular/coverage_local.gemfile:3386554473": [
     [19, 27, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002],
-    [37, 101, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002],
-    [46, 5, 5, "Lint/LtsRuby/UnavailableMethod: Thread#fetch is unavailable before Ruby 2.5.", 171106201],
-    [49, 31, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002]
+    [45, 101, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002],
+    [49, 5, 5, "Lint/LtsRuby/UnavailableMethod: Thread#fetch is unavailable before Ruby 2.5.", 171106201],
+    [52, 31, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002]
   ],
   "gemfiles/modular/documentation_local.gemfile:1434779033": [
     [19, 27, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002]
@@ -45,11 +45,11 @@
     [11, 35, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
     [11, 40, 6, "Lint/LtsRuby/UnavailableMethod: Pathname#empty? is unavailable before Ruby 2.4.", 1165546895]
   ],
-  "gemfiles/modular/templating_local.gemfile:3286935470": [
+  "gemfiles/modular/templating_local.gemfile:748530378": [
     [20, 27, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002],
-    [85, 101, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002],
-    [94, 5, 5, "Lint/LtsRuby/UnavailableMethod: Thread#fetch is unavailable before Ruby 2.5.", 171106201],
-    [97, 31, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002]
+    [93, 101, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002],
+    [97, 5, 5, "Lint/LtsRuby/UnavailableMethod: Thread#fetch is unavailable before Ruby 2.5.", 171106201],
+    [100, 31, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002]
   ],
   "lib/appraisal/appraisal.rb:3755167560": [
     [50, 15, 4, "Lint/LtsRuby/UnavailableMethod: IO/SyntaxError#path is unavailable before Ruby 3.2.", 2088095368],
