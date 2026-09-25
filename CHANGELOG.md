@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.2.5] - 2026-09-25
+
+- TAG: [v3.2.5][3.2.5t]
+- COVERAGE: 90.72% -- 919/1013 lines in 29 files
+- BRANCH COVERAGE: 77.50% -- 186/240 branches in 29 files
+- 43.78% documented
+
+### Added
+
 - kettle-jem-template-20260913-001 - Templating now also surfaces a review
   entry in `dependency_conflicts.resolve` when a direct development
   dependency doesn't support one or more of this project's declared
@@ -38,15 +57,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - other (1)
   - workflows (30)
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - Use argument-vector execution for internal Bundler and RubyGems probes so locked appraisals work on Windows.
-
-### Security
 
 ## [3.2.4] - 2026-09-11
 
@@ -659,7 +672,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.4...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.5...HEAD
+[3.2.5]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.4...v3.2.5
+[3.2.5t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.5
 [3.2.4]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.3...v3.2.4
 [3.2.4t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.4
 [3.2.3]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.2...v3.2.3
