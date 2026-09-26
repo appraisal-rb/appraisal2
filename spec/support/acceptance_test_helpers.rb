@@ -200,7 +200,8 @@ module AcceptanceTestHelpers
   def add_binstub_path
     # Add the test directory's bin folder to PATH using absolute path
     test_bin_path = File.join(current_directory, "bin")
-    ENV["PATH"] = "#{test_bin_path}:#{ENV["PATH"]}"
+    existing_path = ENV["PATH"]
+    ENV["PATH"] = existing_path ? "#{test_bin_path}#{File::PATH_SEPARATOR}#{existing_path}" : test_bin_path
   end
 
   def ore_available?

@@ -41,6 +41,26 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
     end
   end
 
+  describe "#add_binstub_path" do
+    it "prepends the fixture bin directory using the platform path separator" do
+      original_path = ENV["PATH"]
+      fixture_directory = File.join(Dir.pwd, "tmp", "acceptance-fixture")
+      allow(self).to receive(:current_directory).and_return(fixture_directory)
+
+      begin
+        ENV["PATH"] = "existing-path"
+        send(:add_binstub_path)
+
+        expect(ENV.fetch("PATH").split(File::PATH_SEPARATOR)).to eq([
+          File.join(fixture_directory, "bin"),
+          "existing-path"
+        ])
+      ensure
+        ENV["PATH"] = original_path
+      end
+    end
+  end
+
   describe "#skip_jruby_acceptance_example" do
     it "skips before fixture setup when the example opts out of JRuby" do
       stub_const("RUBY_ENGINE", "jruby")
