@@ -109,26 +109,35 @@ RSpec.describe AcceptanceTestHelpers, :appraisal_fixture => false, :dummy_gems =
     end
   end
 
-  describe "#command_with_test_bundler" do
-    it "invokes the harness-selected Bundler instead of relying on the engine default" do
+  describe "#command_part_with_test_bundler" do
+    it "invokes the harness-selected Bundler with an explicit subprocess environment" do
       stub_env("APPRAISAL_TEST_BUNDLER_VERSION" => "4.0.18")
 
-      command = send(:command_with_test_bundler, "bundle install --local || bundle binstubs --all")
-      command_with_environment = send(
-        :command_with_test_bundler,
-        "BUNDLE_LOCKFILE=gemfiles/bundler_locked.gemfile.lock bundle install --gemfile gemfiles/bundler_locked.gemfile"
+      process_env, command = send(
+        :command_part_with_test_bundler,
+        "BUNDLE_LOCKFILE=gemfiles/bundler_locked.gemfile.lock bundle install --gemfile gemfiles/bundler_locked.gemfile",
+        "4.0.18"
       )
 
-      expect(command).to include(RbConfig.ruby)
-      expect(command).to include("Gem.bin_path")
-      expect(command).to include("4.0.18")
-      expect(command).not_to include("BUNDLER_VERSION=")
-      expect(command).to include(" || ")
-      expect(command).to include("install --local")
-      expect(command).to include("binstubs --all")
-      expect(command_with_environment).to start_with("BUNDLE_LOCKFILE=gemfiles/bundler_locked.gemfile.lock ")
-      expect(command_with_environment).to include("#{RbConfig.ruby} -e")
-      expect(command_with_environment).to include("install --gemfile gemfiles/bundler_locked.gemfile")
+      expect(process_env["BUNDLE_LOCKFILE"]).to eq("gemfiles/bundler_locked.gemfile.lock")
+      expect(command).to start_with(RbConfig.ruby, "-e")
+      expect(command[2]).to include("Gem.bin_path")
+      expect(command[2]).to include("4.0.18")
+      expect(command).to end_with("install", "--gemfile", "gemfiles/bundler_locked.gemfile")
+    end
+  end
+
+  describe "#run_test_command" do
+    it "tries the next command when a shell fallback is declared" do
+      stub_env("APPRAISAL_TEST_BUNDLER_VERSION" => nil)
+
+      output, status = send(
+        :run_test_command,
+        "#{RbConfig.ruby} -e 'exit 1' || #{RbConfig.ruby} -e 'puts :fallback'"
+      )
+
+      expect(status).to be_success
+      expect(output).to include("fallback")
     end
   end
 

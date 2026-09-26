@@ -4,6 +4,7 @@
 require "rspec/expectations/expectation_target"
 require "active_support/core_ext/string/filters"
 require "active_support/concern"
+require "open3"
 require "rbconfig"
 require "shellwords"
 
@@ -497,11 +498,8 @@ module AcceptanceTestHelpers
           puts "DEBUG: appraisal binstub exists? #{File.exist?(appraisal_bin)}"
         end
 
-        command = command_with_test_bundler(command)
-
-        # Capture both stdout and stderr
-        output = `#{command} 2>&1`
-        exitstatus = $?.exitstatus
+        output, status = run_test_command(command)
+        exitstatus = status.exitstatus
 
         puts output if ENV["VERBOSE"]
 
@@ -523,19 +521,10 @@ module AcceptanceTestHelpers
     end
   end
 
-  def command_with_test_bundler(command)
-    version = ENV["APPRAISAL_TEST_BUNDLER_VERSION"].to_s
-    return command if version.empty?
-
-    command.split(" || ").map do |part|
-      command_part_with_test_bundler(part, version)
-    end.join(" || ")
-  end
-
   def command_part_with_test_bundler(part, version)
     words = Shellwords.split(part)
     index = words.index("bundle")
-    return part unless index
+    return [ENV.to_h, words] unless index
 
     prefix = words.first(index).reject do |word|
       word.start_with?("BUNDLE_VERSION=", "BUNDLER_VERSION=")
@@ -545,12 +534,32 @@ module AcceptanceTestHelpers
     suffix = words.drop(index + 1)
     script = %(gem "bundler", #{version.inspect}; load Gem.bin_path("bundler", "bundle"))
 
-    command = Shellwords.join(command_prefix + [RbConfig.ruby, "-e", script] + suffix)
-    assignments = environment.map do |assignment|
+    process_env = ENV.to_h
+    environment.each do |assignment|
       key, value = assignment.split("=", 2)
-      "#{key}=#{Shellwords.escape(value)}"
+      process_env.store(key, value)
     end
-    [*assignments, command].join(" ")
+    argv = command_prefix + [RbConfig.ruby, "-e", script] + suffix
+    [process_env, argv]
+  end
+
+  def run_test_command(command)
+    outputs = []
+    status = nil
+    version = ENV["APPRAISAL_TEST_BUNDLER_VERSION"].to_s
+
+    command.split(" || ").each do |part|
+      process_env, argv = if version.empty?
+        [ENV.to_h, Shellwords.split(part)]
+      else
+        command_part_with_test_bundler(part, version)
+      end
+      output, status = Open3.capture2e(process_env, *argv)
+      outputs.push(output)
+      break if status.success?
+    end
+
+    [outputs.join, status]
   end
 end
 

@@ -2,7 +2,7 @@
 
 RSpec.describe "CLI", ".install" do
   it "raises error when there is no Appraisals file" do
-    output = run "appraisal install 2>&1", false
+    output = run "appraisal install", false
 
     expect(output).to include "Unable to locate 'Appraisals' file"
   end

@@ -30,6 +30,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Launch locked Bundler subprocesses with argument-safe invocation on Windows.
 
+- Run acceptance subprocesses with argument-safe, platform-independent environment handling.
+
 ### Security
 
 ## [3.2.5] - 2026-09-26
