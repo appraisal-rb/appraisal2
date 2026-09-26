@@ -32,6 +32,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Run acceptance subprocesses with argument-safe, platform-independent environment handling.
 
+- Keep Bundler check, install, and path configuration commands as argument vectors on Windows.
+
 ### Security
 
 ## [3.2.5] - 2026-09-26

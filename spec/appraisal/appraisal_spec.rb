@@ -124,7 +124,7 @@ RSpec.describe Appraisal::Appraisal do
       end
 
       expect(Appraisal::Command).to have_received(:new).with(
-        "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory'",
+        ["bundle", "install", "--gemfile", "/home/test/test directory"],
         :env => {"BUNDLE_JOBS" => "1"},
         :gemfile => "/home/test/test directory"
       )
@@ -137,7 +137,7 @@ RSpec.describe Appraisal::Appraisal do
       @appraisal.install("jobs" => 42)
 
       expect(Appraisal::Command).to have_received(:new).with(
-        "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --jobs=42",
+        ["bundle", "install", "--gemfile", "/home/test/test directory", "--jobs=42"],
         :env => {"BUNDLE_JOBS" => "42"},
         :gemfile => "/home/test/test directory"
       )
@@ -147,7 +147,7 @@ RSpec.describe Appraisal::Appraisal do
       @appraisal.install("retry" => 3)
 
       expect(Appraisal::Command).to have_received(:new).with(
-        "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory' --retry 3",
+        ["bundle", "install", "--gemfile", "/home/test/test directory", "--retry", "3"],
         :env => {"BUNDLE_JOBS" => "1"},
         :gemfile => "/home/test/test directory"
       )
@@ -157,11 +157,14 @@ RSpec.describe Appraisal::Appraisal do
       @appraisal.install("path" => "vendor/appraisal")
 
       expect(Appraisal::Command).to have_received(:new).with(
-        "bundle config set --local path /home/test/vendor/appraisal && " \
-          "(bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory')",
+        ["bundle", "config", "set", "--local", "path", "/home/test/vendor/appraisal"],
+        :gemfile => "/home/test/test directory"
+      ).ordered
+      expect(Appraisal::Command).to have_received(:new).with(
+        ["bundle", "install", "--gemfile", "/home/test/test directory"],
         :env => {"BUNDLE_JOBS" => "1"},
         :gemfile => "/home/test/test directory"
-      )
+      ).ordered
     end
 
     it "generates the gemfile when installing and the gemfile is missing" do
@@ -172,7 +175,8 @@ RSpec.describe Appraisal::Appraisal do
       @appraisal.install
 
       expect(Appraisal::Command).to have_received(:new).with(
-        "bundle check --gemfile='/home/test/test directory' || bundle install --gemfile='/home/test/test directory'",
+        ["bundle", "check", "--gemfile", "/home/test/test directory"],
+        :allow_failure => true,
         :env => {"BUNDLE_JOBS" => "1"},
         :gemfile => "/home/test/test directory"
       )

@@ -71,16 +71,16 @@ RSpec.describe "CLI", ".install" do
       run "appraisal generate"
       output = run "appraisal install --jobs=2"
 
-      expect(output).to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}' --jobs=2")
+      expect(output).to include("bundle install --gemfile #{file("gemfiles/1.0.0.gemfile")} --jobs\\=2 --retry 1")
     end
 
     it "ignores --jobs option if the job size is less than or equal to 1" do
       run "appraisal generate"
       output = run "appraisal install --jobs=0"
 
-      expect(output).to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}'")
-      expect(output).not_to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}' --jobs=0")
-      expect(output).not_to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}' --jobs=1")
+      expect(output).to include("bundle install --gemfile #{file("gemfiles/1.0.0.gemfile")} --retry 1")
+      expect(output).not_to include("--jobs\\=0")
+      expect(output).not_to include("--jobs\\=1")
     end
   end
 
@@ -98,7 +98,7 @@ RSpec.describe "CLI", ".install" do
       run "appraisal generate"
       output = run("appraisal install --full-index")
 
-      expect(output).to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}' --retry 1 --full-index true")
+      expect(output).to include("bundle install --gemfile #{file("gemfiles/1.0.0.gemfile")} --retry 1 --full-index true")
     end
   end
 
@@ -118,7 +118,7 @@ RSpec.describe "CLI", ".install" do
       run "appraisal generate"
       output = run("appraisal install --path vendor/appraisal")
 
-      expect(output).to include("bundle install --gemfile='#{file("gemfiles/1.0.0.gemfile")}' --retry 1")
+      expect(output).to include("bundle install --gemfile #{file("gemfiles/1.0.0.gemfile")} --retry 1")
       expect(output).not_to include("bundle install --path")
       expect(file("vendor/appraisal")).to be_directory
     end

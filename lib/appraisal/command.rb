@@ -41,6 +41,7 @@ module Appraisal
       @gemfile = options[:gemfile]
       @env = options.fetch(:env, {})
       @skip_bundle_exec = options.fetch(:skip_bundle_exec, false)
+      @allow_failure = options[:allow_failure] || false
       @command = @skip_bundle_exec ? command : command_starting_with_bundle(command)
     end
 
@@ -143,7 +144,10 @@ module Appraisal
       else
         Kernel.system(process_env, command_text)
       end
+      return succeeded if @allow_failure
+
       exit(1) unless succeeded
+      succeeded
     end
 
     def ensure_bundler_is_available(process_env)
@@ -289,14 +293,14 @@ manually.
     end
 
     def versioned_bundler_command(version)
-      script = %(gem "bundler", #{version.inspect}; load Gem.bin_path("bundler", "bundle"))
+      script = %(require "rubygems"; Gem::Specification.find_by_name("bundler", #{version.inspect}).activate; load Gem.bin_path("bundler", "bundle"))
       Shellwords.join([RbConfig.ruby, "-e", script])
     end
 
     def command_arguments(bundler_version)
       return command unless bundler_version
 
-      script = %(gem "bundler", #{bundler_version.inspect}; load Gem.bin_path("bundler", "bundle"))
+      script = %(require "rubygems"; Gem::Specification.find_by_name("bundler", #{bundler_version.inspect}).activate; load Gem.bin_path("bundler", "bundle"))
       command.flat_map do |argument|
         if argument == "bundle"
           [RbConfig.ruby, "-e", script]

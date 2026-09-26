@@ -118,40 +118,40 @@
     [400, 47, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002],
     [400, 60, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426]
   ],
-  "lib/appraisal/command.rb:2874758720": [
+  "lib/appraisal/command.rb:2598394351": [
     [42, 22, 5, "Lint/LtsRuby/UnavailableMethod: Thread#fetch is unavailable before Ruby 2.5.", 171106201],
     [43, 35, 5, "Lint/LtsRuby/UnavailableMethod: Thread#fetch is unavailable before Ruby 2.5.", 171106201],
-    [84, 31, 4, "Lint/LtsRuby/UnavailableMethod: Array/Enumerable#to_h is unavailable before Ruby 2.1.", 2087961417],
-    [86, 30, 4, "Lint/LtsRuby/UnavailableMethod: Array/Enumerable#to_h is unavailable before Ruby 2.1.", 2087961417],
-    [88, 21, 4, "Lint/LtsRuby/UnavailableMethod: Array/Enumerable#to_h is unavailable before Ruby 2.1.", 2087961417],
-    [92, 16, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2217651653],
-    [97, 18, 5, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 240024390],
-    [100, 16, 11, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2338077300],
-    [108, 18, 11, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2338077300],
-    [108, 40, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
+    [85, 31, 4, "Lint/LtsRuby/UnavailableMethod: Array/Enumerable#to_h is unavailable before Ruby 2.1.", 2087961417],
+    [87, 30, 4, "Lint/LtsRuby/UnavailableMethod: Array/Enumerable#to_h is unavailable before Ruby 2.1.", 2087961417],
+    [89, 21, 4, "Lint/LtsRuby/UnavailableMethod: Array/Enumerable#to_h is unavailable before Ruby 2.1.", 2087961417],
+    [93, 16, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2217651653],
+    [98, 18, 5, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 240024390],
+    [101, 16, 11, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2338077300],
     [109, 18, 11, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2338077300],
-    [109, 60, 6, "Lint/LtsRuby/UnavailableMethod: Pathname#empty? is unavailable before Ruby 2.4.", 1165546895],
-    [115, 16, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 3347133567],
-    [116, 16, 18, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 1139798770],
-    [117, 16, 17, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 4094394205],
-    [118, 16, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2224711456],
-    [121, 18, 5, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 240418772],
-    [124, 16, 11, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2338179480],
-    [131, 18, 18, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2880632353],
-    [136, 20, 18, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 1139798770],
-    [137, 20, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2224711456],
-    [139, 18, 25, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2247944245],
-    [207, 32, 5, "Lint/LtsRuby/UnavailableMethod: MatchData#match is unavailable before Ruby 3.1.", 174531222],
-    [221, 12, 21, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 474688604],
-    [222, 12, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 3347133567],
-    [223, 12, 18, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2880632353],
-    [224, 12, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2217651653],
-    [225, 12, 18, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 1139798770],
-    [226, 12, 17, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 4094394205],
-    [227, 12, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2224711456],
-    [228, 12, 11, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2338077300],
-    [274, 28, 1, "Lint/LtsRuby/UnavailableMethod: Enumerator#+ is unavailable before Ruby 2.6.", 177550],
-    [314, 61, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426]
+    [109, 40, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
+    [110, 18, 11, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2338077300],
+    [110, 60, 6, "Lint/LtsRuby/UnavailableMethod: Pathname#empty? is unavailable before Ruby 2.4.", 1165546895],
+    [116, 16, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 3347133567],
+    [117, 16, 18, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 1139798770],
+    [118, 16, 17, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 4094394205],
+    [119, 16, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2224711456],
+    [122, 18, 5, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 240418772],
+    [125, 16, 11, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2338179480],
+    [132, 18, 18, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2880632353],
+    [137, 20, 18, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 1139798770],
+    [138, 20, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2224711456],
+    [140, 18, 25, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2247944245],
+    [211, 32, 5, "Lint/LtsRuby/UnavailableMethod: MatchData#match is unavailable before Ruby 3.1.", 174531222],
+    [225, 12, 21, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 474688604],
+    [226, 12, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 3347133567],
+    [227, 12, 18, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2880632353],
+    [228, 12, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2217651653],
+    [229, 12, 18, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 1139798770],
+    [230, 12, 17, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 4094394205],
+    [231, 12, 19, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2224711456],
+    [232, 12, 11, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2338077300],
+    [278, 28, 1, "Lint/LtsRuby/UnavailableMethod: Enumerator#+ is unavailable before Ruby 2.6.", 177550],
+    [318, 61, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426]
   ],
   "lib/appraisal/customize.rb:267138763": [
     [6, 25, 5, "Lint/LtsRuby/UnavailableMethod: Thread#fetch is unavailable before Ruby 2.5.", 171106201],
@@ -173,25 +173,18 @@
   "lib/appraisal/errors.rb:1548709415": [
     [28, 68, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679]
   ],
-  "lib/appraisal/gem_manager/bundler_adapter.rb:2533965597": [
-    [25, 46, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
-    [28, 58, 6, "Lint/LtsRuby/UnavailableMethod: Pathname#empty? is unavailable before Ruby 2.4.", 1165546895],
-    [29, 42, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
-    [32, 28, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
-    [36, 24, 6, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 3549783940],
-    [36, 48, 6, "Lint/LtsRuby/UnavailableMethod: Pathname#empty? is unavailable before Ruby 2.4.", 1165546895],
-    [54, 72, 7, "Lint/LtsRuby/UnavailableMethod: Enumerable/Enumerator::Lazy#compact is unavailable before Ruby 3.1.", 3711215938],
-    [58, 28, 7, "Lint/LtsRuby/UnavailableMethod: Enumerable/Enumerator::Lazy#compact is unavailable before Ruby 3.1.", 3711215938],
-    [59, 44, 6, "Lint/LtsRuby/UnavailableMethod: Pathname#empty? is unavailable before Ruby 2.4.", 1165546895],
-    [77, 29, 2, "Lint/LtsRuby/UnavailableMethod: Method/Proc#<< is unavailable before Ruby 2.6.", 5859461],
-    [87, 27, 2, "Lint/LtsRuby/UnavailableMethod: Method/Proc#<< is unavailable before Ruby 2.6.", 5859461],
-    [90, 25, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
-    [94, 38, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
-    [95, 75, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
-    [99, 71, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
-    [102, 14, 30, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 227119081],
-    [105, 12, 15, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 3398562236],
-    [105, 46, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426]
+  "lib/appraisal/gem_manager/bundler_adapter.rb:2447293638": [
+    [51, 66, 6, "Lint/LtsRuby/UnavailableMethod: Pathname#empty? is unavailable before Ruby 2.4.", 1165546895],
+    [66, 28, 7, "Lint/LtsRuby/UnavailableMethod: Enumerable/Enumerator::Lazy#compact is unavailable before Ruby 3.1.", 3711215938],
+    [67, 44, 6, "Lint/LtsRuby/UnavailableMethod: Pathname#empty? is unavailable before Ruby 2.4.", 1165546895],
+    [85, 29, 2, "Lint/LtsRuby/UnavailableMethod: Method/Proc#<< is unavailable before Ruby 2.6.", 5859461],
+    [95, 52, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
+    [103, 38, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
+    [104, 70, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
+    [108, 71, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
+    [111, 14, 30, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 227119081],
+    [114, 12, 15, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 3398562236],
+    [114, 46, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426]
   ],
   "lib/appraisal/gem_manager/factory.rb:1884199471": [
     [47, 61, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
@@ -251,20 +244,20 @@
   "spec/acceptance/cli/help_spec.rb:496242800": [
     [4, 11, 16, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2115164111]
   ],
-  "spec/acceptance/cli/install_spec.rb:161428910": [
+  "spec/acceptance/cli/install_spec.rb:2303253838": [
     [88, 13, 16, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2115164111]
   ],
   "spec/acceptance/cli/list_spec.rb:1890974210": [
     [29, 80, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679]
   ],
-  "spec/acceptance/cli/named_appraisal_install_spec.rb:465187016": [
-    [97, 13, 16, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2115164111],
-    [144, 57, 5, "Lint/LtsRuby/UnavailableMethod: Thread#fetch is unavailable before Ruby 2.5.", 171106201],
-    [165, 25, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
-    [170, 14, 4, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2089623647],
-    [170, 33, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
-    [171, 15, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
-    [176, 21, 5, "Lint/LtsRuby/UnavailableMethod: Pathname#write is unavailable before Ruby 2.1.", 190228632]
+  "spec/acceptance/cli/named_appraisal_install_spec.rb:1957887934": [
+    [91, 13, 16, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2115164111],
+    [138, 57, 5, "Lint/LtsRuby/UnavailableMethod: Thread#fetch is unavailable before Ruby 2.5.", 171106201],
+    [159, 25, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
+    [164, 14, 4, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2089623647],
+    [164, 33, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
+    [165, 15, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
+    [170, 21, 5, "Lint/LtsRuby/UnavailableMethod: Pathname#write is unavailable before Ruby 2.1.", 190228632]
   ],
   "spec/acceptance/cli/version_spec.rb:3125270550": [
     [4, 11, 16, "Lint/LtsRuby/UnavailableMethod: Matrix/Vector#[]= is unavailable before Ruby 2.6.", 2115164111]
@@ -279,7 +272,7 @@
     [128, 32, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
     [129, 32, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426]
   ],
-  "spec/appraisal/appraisal_spec.rb:3225191643": [
+  "spec/appraisal/appraisal_spec.rb:3670566854": [
     [26, 71, 4, "Lint/LtsRuby/UnavailableMethod: IO/SyntaxError#path is unavailable before Ruby 3.2.", 2088095368],
     [37, 73, 4, "Lint/LtsRuby/UnavailableMethod: IO/SyntaxError#path is unavailable before Ruby 3.2.", 2088095368],
     [54, 73, 4, "Lint/LtsRuby/UnavailableMethod: IO/SyntaxError#path is unavailable before Ruby 3.2.", 2088095368],
@@ -325,9 +318,9 @@
     [57, 16, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679],
     [62, 16, 4, "Lint/LtsRuby/UnavailableMethod: Fiber#kill is unavailable before Ruby 3.3.", 2088043111]
   ],
-  "spec/appraisal/command_spec.rb:3072265354": [
+  "spec/appraisal/command_spec.rb:1659403457": [
     [72, 128, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
-    [169, 13, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679]
+    [186, 13, 4, "Lint/LtsRuby/UnavailableMethod: Set#join is unavailable before Ruby 3.0.", 2088000679]
   ],
   "spec/appraisal/conditional_spec.rb:894426385": [
     [14, 30, 4, "Lint/LtsRuby/UnavailableMethod: Set#to_s is unavailable before Ruby 2.5.", 2087961426],
@@ -355,7 +348,7 @@
   "spec/appraisal/gem_manager/base_spec.rb:2592094889": [
     [41, 21, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002]
   ],
-  "spec/appraisal/gem_manager/bundler_adapter_spec.rb:3091380719": [
+  "spec/appraisal/gem_manager/bundler_adapter_spec.rb:4094175401": [
     [13, 22, 4, "Lint/LtsRuby/UnavailableMethod: Symbol#name is unavailable before Ruby 3.0.", 2087876002]
   ],
   "spec/appraisal/gem_manager/ore_adapter_spec.rb:822676386": [

@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require "shellwords"
-
 require "appraisal/utils"
+require "set"
 
 require_relative "base"
 
@@ -22,20 +21,19 @@ module Appraisal
       end
 
       def install(options = {})
-        commands = [install_command(options).join(" ")]
+        env = install_environment(options)
+        command_options = {:env => env, :gemfile => gemfile_path}
 
-        # Only run check command if not using --without option
-        if options["without"].nil? || options["without"].empty?
-          commands.unshift(check_command.join(" "))
+        if options["path"]
+          Command.new(path_config_command(options["path"]), :gemfile => gemfile_path).run
         end
 
-        command = commands.join(" || ")
-        command = path_config_command(options["path"], command) if options["path"]
-        env = install_environment(options)
-        command_options = {:gemfile => gemfile_path}
-        command_options[:env] = env unless env.empty?
+        unless install_options_require_execution?(options)
+          check_options = command_options.merge(:allow_failure => true)
+          return if Command.new(check_command, check_options).run
+        end
 
-        Command.new(command, command_options).run
+        Command.new(install_command(options), command_options).run
       end
 
       def update(gems = [])
@@ -45,13 +43,23 @@ module Appraisal
       private
 
       def check_command
-        gemfile_option = "--gemfile='#{gemfile_path}'"
-        ["bundle", "check", gemfile_option]
+        ["bundle", "check", "--gemfile", gemfile_path]
+      end
+
+      def install_options_require_execution?(options)
+        return true if options["path"]
+        return true if options["without"] && !options["without"].empty?
+        return true if options["full-index"]
+        return true if options.key?("jobs") && options["jobs"] != 1
+        return true if options.key?("retry") && options["retry"] != 1
+
+        false
       end
 
       def install_command(options = {})
-        gemfile_option = "--gemfile='#{gemfile_path}'"
-        ["bundle", "install", gemfile_option, bundle_options(options)].compact
+        command = ["bundle", "install", "--gemfile", gemfile_path]
+        bundle_options(options).each { |argument| command.push(argument) }
+        command
       end
 
       def update_command(gems)
@@ -84,15 +92,16 @@ module Appraisal
         full_options.delete("path")
 
         full_options.each do |flag, val|
-          options_strings << "--#{flag} #{val}"
+          option_value = val.is_a?(Set) ? val.to_a.join(" ") : String(val)
+          options_strings.push("--#{flag}", option_value)
         end
 
-        options_strings.join(" ") if options_strings != []
+        options_strings
       end
 
-      def path_config_command(path, command)
+      def path_config_command(path)
         relative_path = project_root.join(path)
-        "bundle config set --local path #{Shellwords.escape(relative_path.to_s)} && (#{command})"
+        ["bundle", "config", "set", "--local", "path", relative_path.to_s]
       end
 
       def install_environment(options)

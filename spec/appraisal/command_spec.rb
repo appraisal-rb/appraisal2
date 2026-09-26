@@ -148,6 +148,23 @@ RSpec.describe Appraisal::Command do
       end
     end
 
+    context "when command failure is allowed" do
+      it "returns false instead of exiting when the subprocess fails" do
+        check_command = described_class.new(
+          ["bundle", "check"],
+          :allow_failure => true,
+          :gemfile => gemfile
+        )
+        allow(check_command).to receive(:system).and_return(true)
+        allow(check_command).to receive(:puts)
+        allow(Bundler).to receive(:unbundled_env).and_return({})
+        allow(Kernel).to receive(:system).and_return(false)
+
+        expect(check_command.run).to be false
+        expect(Kernel).to have_received(:system)
+      end
+    end
+
     context "with a locked appraisal Bundler version" do
       it "installs and selects the Bundler version from the appraisal lockfile" do
         Dir.mktmpdir("appraisal-command-lock") do |dir|
@@ -185,7 +202,7 @@ RSpec.describe Appraisal::Command do
             expect(command).to eq([
               RbConfig.ruby,
               "-e",
-              %(gem "bundler", "4.0.5"; load Gem.bin_path("bundler", "bundle")),
+              %(require "rubygems"; Gem::Specification.find_by_name("bundler", "4.0.5").activate; load Gem.bin_path("bundler", "bundle")),
               "exec",
               "rake",
               "test with spaces"
