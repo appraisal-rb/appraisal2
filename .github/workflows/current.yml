@@ -63,7 +63,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        uses: appraisal-rb/setup-ruby-flash@514cf877bbd233af66527dae14b6b59a434d92a9 # v2.10
+        uses: appraisal-rb/setup-ruby-flash@e7af663f8c588f1fe44fb7599d8535099ca27142 # v2.11
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
