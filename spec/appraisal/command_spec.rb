@@ -169,7 +169,7 @@ RSpec.describe Appraisal::Command do
           ].join("\n"))
           gem_home = File.join(dir, "gems")
 
-          locked_command = described_class.new(command_string, :gemfile => gemfile, :env => {"GEM_HOME" => gem_home, "GEM_PATH" => ""})
+          locked_command = described_class.new(["rake", "test with spaces"], :gemfile => gemfile, :env => {"GEM_HOME" => gem_home, "GEM_PATH" => ""})
           allow(locked_command).to receive(:system).and_return(true)
           allow(locked_command).to receive(:puts)
           allow(Bundler).to receive(:unbundled_env).and_return({})
@@ -177,15 +177,19 @@ RSpec.describe Appraisal::Command do
           allow(locked_command).to receive(:system)
             .with(hash_including("GEM_HOME" => gem_home), a_string_matching(/ruby --disable=gems .*bundler/m))
             .and_return(true)
-          expect(Kernel).to receive(:system) do |env, command|
+          expect(Kernel).to receive(:system) do |env, *command|
             expect(env["BUNDLE_GEMFILE"]).to eq(gemfile)
             expect(env["BUNDLE_VERSION"]).to eq("4.0.5")
             expect(env["BUNDLER_VERSION"]).to eq("4.0.5")
             expect(env["BUNDLE_BIN_PATH"]).to be_nil
-            expect(command).to include(RbConfig.ruby)
-            expect(command).to include("4.0.5")
-            expect(command).to include("Gem.bin_path")
-            expect(command).to include("exec rake test")
+            expect(command).to eq([
+              RbConfig.ruby,
+              "-e",
+              %(gem "bundler", "4.0.5"; load Gem.bin_path("bundler", "bundle")),
+              "exec",
+              "rake",
+              "test with spaces"
+            ])
             true
           end
 

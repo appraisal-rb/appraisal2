@@ -458,7 +458,7 @@ module AcceptanceTestHelpers
     Dir.chdir current_directory, &block
   end
 
-  def run(command, raise_on_error = true)
+  def run(command, raise_on_error = true, env: {})
     in_test_directory do
       # GUARD: Fail fast if we're somehow in the project root directory
       # This should never happen - all test commands must run in tmp/stage
@@ -478,11 +478,13 @@ module AcceptanceTestHelpers
       original_bundle_gemfile = ENV["BUNDLE_GEMFILE"]
       original_bundle_lockfile = ENV["BUNDLE_LOCKFILE"]
       original_bundle_app_config = ENV["BUNDLE_APP_CONFIG"]
+      original_command_environment = env.keys.zip(env.keys.map { |key| ENV[key] })
 
       begin
         ENV["BUNDLE_GEMFILE"] = test_gemfile
         ENV["BUNDLE_LOCKFILE"] = test_lockfile
         ENV["BUNDLE_APP_CONFIG"] = test_bundle_config
+        env.each_pair { |key, value| ENV[key] = value }
 
         # Debug output if VERBOSE
         if ENV["VERBOSE"]
@@ -516,6 +518,7 @@ module AcceptanceTestHelpers
         ENV["BUNDLE_GEMFILE"] = original_bundle_gemfile
         ENV["BUNDLE_LOCKFILE"] = original_bundle_lockfile
         ENV["BUNDLE_APP_CONFIG"] = original_bundle_app_config
+        original_command_environment.each { |key, value| ENV[key] = value }
       end
     end
   end

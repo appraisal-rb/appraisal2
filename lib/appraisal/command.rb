@@ -138,7 +138,12 @@ module Appraisal
       end
       process_env["APPRAISAL_INITIALIZED"] = "1"
 
-      exit(1) unless Kernel.system(process_env, command_text)
+      succeeded = if command.is_a?(Array)
+        Kernel.system(process_env, *command_arguments(bundler_version))
+      else
+        Kernel.system(process_env, command_text)
+      end
+      exit(1) unless succeeded
     end
 
     def ensure_bundler_is_available(process_env)
@@ -286,6 +291,19 @@ manually.
     def versioned_bundler_command(version)
       script = %(gem "bundler", #{version.inspect}; load Gem.bin_path("bundler", "bundle"))
       Shellwords.join([RbConfig.ruby, "-e", script])
+    end
+
+    def command_arguments(bundler_version)
+      return command unless bundler_version
+
+      script = %(gem "bundler", #{bundler_version.inspect}; load Gem.bin_path("bundler", "bundle"))
+      command.flat_map do |argument|
+        if argument == "bundle"
+          [RbConfig.ruby, "-e", script]
+        else
+          [argument]
+        end
+      end
     end
 
     def test_environment

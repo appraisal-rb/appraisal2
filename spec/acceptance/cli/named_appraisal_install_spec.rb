@@ -154,7 +154,8 @@ RSpec.describe "CLI", ".install with named appraisal" do
         gem "dummy", "1.0.0"
       GEMFILE
 
-      run "BUNDLE_LOCKFILE=gemfiles/bundler_locked.gemfile.lock bundle install --gemfile 'gemfiles/bundler_locked.gemfile'"
+      run "bundle install --gemfile 'gemfiles/bundler_locked.gemfile'",
+        :env => {"BUNDLE_LOCKFILE" => "gemfiles/bundler_locked.gemfile.lock"}
 
       lockfile_path = file("gemfiles/bundler_locked.gemfile.lock")
       lockfile_content = lockfile_path.read
