@@ -10,6 +10,15 @@
       ]
     }
   ],
+  "- other (2)\n- workflows (30)": [
+    {
+      "file": "CHANGELOG.md",
+      "lines": [
+        30,
+        70
+      ]
+    }
+  ],
   "// Use 'forwardPorts' to make a list of ports inside the container available locally.\n// \"forwardPorts\": [],": [
     {
       "file": ".devcontainer/devcontainer.json",

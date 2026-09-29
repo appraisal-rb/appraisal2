@@ -25,10 +25,10 @@ Please file a bug if you notice a violation of semantic versioning.
 - [kc] kettle-jem/prepare: updated 19 project files:
   - dependencies (19)
 
-- [kc] kettle-jem/template: updated 31 project files:
+- [kc] kettle-jem/template: updated 34 project files:
   - code and tests (2)
-  - other (1)
-  - workflows (28)
+  - other (2)
+  - workflows (30)
 
 ### Deprecated
 
