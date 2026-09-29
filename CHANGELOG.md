@@ -22,35 +22,19 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- [kc] kettle-jem/prepare: updated 19 project files:
-  - dependencies (19)
-
-- [kc] kettle-jem/template: updated 34 project files:
-  - code and tests (2)
-  - other (2)
-  - workflows (30)
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- Launch locked Bundler subprocesses with argument-safe invocation on Windows.
-
-- Run acceptance subprocesses with argument-safe, platform-independent environment handling.
-
-- Keep Bundler check, install, and path configuration commands as argument vectors on Windows.
-
-- Skip the style-only RuboCop toolchain in the Ruby 3.2 appraisal bundle.
-
 ### Security
 
-## [3.2.5] - 2026-09-26
+## [3.2.5] - 2026-09-29
 
 - TAG: [v3.2.5][3.2.5t]
-- COVERAGE: 90.72% -- 919/1013 lines in 29 files
-- BRANCH COVERAGE: 77.50% -- 186/240 branches in 29 files
+- COVERAGE: 91.00% -- 940/1033 lines in 29 files
+- BRANCH COVERAGE: 79.07% -- 204/258 branches in 29 files
 - 43.78% documented
 
 ### Added
@@ -64,17 +48,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- [kc] kettle-jem/prepare: updated 41 project files:
-  - dependencies (41)
-- [kc] kettle-jem/template: updated 39 project files:
-  - code and tests (5)
+- [kc] kettle-jem/prepare: updated 60 project files:
+  - dependencies (60)
+- [kc] kettle-jem/template: updated 73 project files:
+  - code and tests (7)
   - dependencies (2)
-  - other (2)
-  - workflows (30)
+  - other (4)
+  - workflows (60)
 
 ### Fixed
 
 - Use argument-vector execution for internal Bundler and RubyGems probes so locked appraisals work on Windows.
+
+- Launch locked Bundler subprocesses with argument-safe invocation on Windows.
+
+- Run acceptance subprocesses with argument-safe, platform-independent environment handling.
+
+- Keep Bundler check, install, and path configuration commands as argument vectors on Windows.
+
+- Skip the style-only RuboCop toolchain in the Ruby 3.2 appraisal bundle.
 
 ## [3.2.4] - 2026-09-11
 
