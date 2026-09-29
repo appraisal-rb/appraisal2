@@ -42,6 +42,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Keep Bundler check, install, and path configuration commands as argument vectors on Windows.
 
+- Skip the style-only RuboCop toolchain in the Ruby 3.2 appraisal bundle.
+
 ### Security
 
 ## [3.2.5] - 2026-09-26
