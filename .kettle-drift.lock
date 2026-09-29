@@ -1,4 +1,94 @@
 {
+  "# Bootstrapping nomono here cannot rely on a plain `gem \"nomono\", ...` line.\n# Bundler records that dependency during Gemfile evaluation, but it does not": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        6,
+        39
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        6,
+        39
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        9,
+        42
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        7,
+        40
+      ]
+    }
+  ],
+  "# Bundler records that dependency during Gemfile evaluation, but it does not\n# activate that exact version before the immediate `require \"nomono/bundler\"`.": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        7,
+        40
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        7,
+        40
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        10,
+        43
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        8,
+        41
+      ]
+    }
+  ],
+  "# activate that exact version before the immediate `require \"nomono/bundler\"`.\nnomono_activation_requirements = [\"~> 1.1\", \">= 1.1.6\"]": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        8,
+        41
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        8,
+        41
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        11,
+        44
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        9,
+        42
+      ]
+    }
+  ],
   "- gem: activesupport\ndirect: appraisal2.gemspec": [
     {
       "file": ".structuredmerge/kettle-jem.yml",
@@ -15,7 +105,7 @@
       "file": "CHANGELOG.md",
       "lines": [
         30,
-        70
+        72
       ]
     }
   ],
@@ -25,6 +115,96 @@
       "lines": [
         11,
         22
+      ]
+    }
+  ],
+  "File.expand_path(\nFile.join(nomono_locked_spec.source.path, \"lib\", \"nomono\", \"bundler\"),": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        22,
+        55
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        22,
+        55
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        25,
+        58
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        23,
+        56
+      ]
+    }
+  ],
+  "File.join(nomono_locked_spec.source.path, \"lib\", \"nomono\", \"bundler\"),\nFile.dirname(nomono_lockfile)": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        23,
+        56
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        23,
+        56
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        26,
+        59
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        24,
+        57
+      ]
+    }
+  ],
+  "Gem::Specification.find_all_by_name(\"nomono\").any? { |spec| spec.version == nomono_locked_spec.version }\nnomono_locked = nomono_locked_spec &&": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        32,
+        65
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        32,
+        65
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        35,
+        68
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        33,
+        66
       ]
     }
   ],
@@ -55,12 +235,462 @@
       ]
     }
   ],
+  "if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already_activated.version)\nnomono_locked_installed = nomono_locked_spec &&": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        30,
+        63
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        30,
+        63
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        33,
+        66
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        31,
+        64
+      ]
+    }
+  ],
+  "if File.file?(nomono_lockfile)\nrequire \"bundler\"": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        14,
+        47
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        14,
+        47
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        17,
+        50
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        15,
+        48
+      ]
+    }
+  ],
+  "if nomono_local_loader && File.file?(\"#{nomono_local_loader}.rb\")\nrequire nomono_local_loader": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        27,
+        60
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        27,
+        60
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        30,
+        63
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        28,
+        61
+      ]
+    }
+  ],
   "modular: gemfiles/modular/ruby_1_8.gemfile\naction: keep_both": [
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
         113,
         138
+      ]
+    }
+  ],
+  "nomono_activation_requirements = [\"~> 1.1\", \">= 1.1.6\"]\nnomono_requirement = Gem::Requirement.new(nomono_activation_requirements)": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        9,
+        42
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        9,
+        42
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        12,
+        45
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        10,
+        43
+      ]
+    }
+  ],
+  "nomono_already_activated = Gem.loaded_specs[\"nomono\"]\nnomono_lockfile = File.expand_path(\"../../Gemfile.lock\", __dir__)": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        11,
+        44
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        11,
+        44
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        14,
+        47
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        12,
+        45
+      ]
+    }
+  ],
+  "nomono_local_loader = if nomono_locked_spec && nomono_locked_spec.source.is_a?(Bundler::Source::Path)\nFile.expand_path(": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        21,
+        54
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        21,
+        54
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        24,
+        57
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        22,
+        55
+      ]
+    }
+  ],
+  "nomono_locked = nomono_locked_spec &&\nnomono_locked_installed &&": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        33,
+        66
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        33,
+        66
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        36,
+        69
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        34,
+        67
+      ]
+    }
+  ],
+  "nomono_locked_installed &&\nnomono_requirement.satisfied_by?(nomono_locked_spec.version)": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        34,
+        67
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        34,
+        67
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        37,
+        70
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        35,
+        68
+      ]
+    }
+  ],
+  "nomono_locked_installed = nomono_locked_spec &&\nGem::Specification.find_all_by_name(\"nomono\").any? { |spec| spec.version == nomono_locked_spec.version }": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        31,
+        64
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        31,
+        64
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        34,
+        67
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        32,
+        65
+      ]
+    }
+  ],
+  "nomono_locked_spec = Bundler::LockfileParser\n.new(Bundler.read_file(nomono_lockfile))": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        16,
+        49
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        16,
+        49
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        19,
+        52
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        17,
+        50
+      ]
+    }
+  ],
+  "nomono_locked_spec = nil\nif File.file?(nomono_lockfile)": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        13,
+        46
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        13,
+        46
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        16,
+        49
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        14,
+        47
+      ]
+    }
+  ],
+  "nomono_lockfile = File.expand_path(\"../../Gemfile.lock\", __dir__)\nnomono_locked_spec = nil": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        12,
+        45
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        12,
+        45
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        15,
+        48
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        13,
+        46
+      ]
+    }
+  ],
+  "nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)\nnomono_already_activated = Gem.loaded_specs[\"nomono\"]": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        10,
+        43
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        10,
+        43
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        13,
+        46
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        11,
+        44
+      ]
+    }
+  ],
+  "nomono_requirement.satisfied_by?(nomono_locked_spec.version)\nnomono_activation_requirements = [\"= #{nomono_locked_spec.version}\"] if nomono_locked": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        35,
+        68
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        35,
+        68
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        38,
+        71
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        36,
+        69
+      ]
+    }
+  ],
+  "require \"bundler\"\nnomono_locked_spec = Bundler::LockfileParser": [
+    {
+      "file": "gemfiles/modular/coverage_local.gemfile",
+      "lines": [
+        15,
+        48
+      ]
+    },
+    {
+      "file": "gemfiles/modular/documentation_local.gemfile",
+      "lines": [
+        15,
+        48
+      ]
+    },
+    {
+      "file": "gemfiles/modular/style_local.gemfile",
+      "lines": [
+        18,
+        51
+      ]
+    },
+    {
+      "file": "gemfiles/modular/templating_local.gemfile",
+      "lines": [
+        16,
+        49
       ]
     }
   ]
