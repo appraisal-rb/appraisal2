@@ -5,6 +5,8 @@ permissions:
   contents: read
 
 env:
+  # Kill stalled test workers instead of hanging until the CI job timeout.
+  TURBO_TESTS2_WATCHDOG_SECONDS: 900
   K_SOUP_COV_DO: false
 
 on:
@@ -31,6 +33,7 @@ jobs:
     if: "github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))"
     name: Specs ${{ matrix.ruby }}@${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.bundle_gemfile || 'Appraisal.root.gemfile' }}
@@ -61,7 +64,7 @@ jobs:
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: appraisal-rb/setup-ruby-flash@643b5a1f21af52a180b132cd8cb2ce8b5e7972b6 # v2.12
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
@@ -134,7 +137,7 @@ jobs:
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: appraisal-rb/setup-ruby-flash@643b5a1f21af52a180b132cd8cb2ce8b5e7972b6 # v2.12
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
@@ -208,7 +211,7 @@ jobs:
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: appraisal-rb/setup-ruby-flash@643b5a1f21af52a180b132cd8cb2ce8b5e7972b6 # v2.12
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}

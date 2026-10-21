@@ -10,12 +10,12 @@
       ]
     }
   ],
-  "- other (2)\n- workflows (30)": [
+  "- ruby: \"ruby\"\nappraisal: \"current\"": [
     {
-      "file": "CHANGELOG.md",
+      "file": ".github/workflows/current.yml",
       "lines": [
-        30,
-        72
+        41,
+        47
       ]
     }
   ],
@@ -25,6 +25,15 @@
       "lines": [
         11,
         22
+      ]
+    }
+  ],
+  "config: .licenserc.yaml\nmode: \"check\"": [
+    {
+      "file": ".github/workflows/license-eye.yml",
+      "lines": [
+        49,
+        62
       ]
     }
   ],
@@ -50,8 +59,8 @@
     {
       "file": ".github/workflows/current.yml",
       "lines": [
-        43,
-        49
+        44,
+        50
       ]
     }
   ],
