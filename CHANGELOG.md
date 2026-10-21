@@ -22,6 +22,23 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [3.2.6] - 2026-10-21
+
+- TAG: [v3.2.6][3.2.6t]
+- COVERAGE: 91.00% -- 940/1033 lines in 29 files
+- BRANCH COVERAGE: 79.07% -- 204/258 branches in 29 files
+- 43.78% documented
+
+### Changed
+
 - [kc] kettle-jem/prepare: updated 20 project files:
   - configuration (1)
   - dependencies (19)
@@ -32,14 +49,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - documentation (2)
   - other (1)
   - workflows (31)
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [3.2.5] - 2026-09-29
 
@@ -690,7 +699,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - code coverage tracked with Coveralls, QLTY.sh, and the kettle-soup-cover gem
   - other minor fixes and improvements
 
-[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.5...HEAD
+[Unreleased]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.6...HEAD
+[3.2.6]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.5...v3.2.6
+[3.2.6t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.6
 [3.2.5]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.4...v3.2.5
 [3.2.5t]: https://github.com/appraisal-rb/appraisal2/releases/tag/v3.2.5
 [3.2.4]: https://github.com/appraisal-rb/appraisal2/compare/v3.2.3...v3.2.4
